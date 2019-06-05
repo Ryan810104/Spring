@@ -15,6 +15,7 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDao memberdao;
+	private Member member;
 	
 	@Transactional(readOnly = true)
 	public List<Member> getAll() {
@@ -24,4 +25,12 @@ public class MemberService {
 	if(member.getId()!=null)memberdao.delete(member);
  }
 	 
+ public Member getById(Integer Id) {
+	 return memberdao.findById(Id).orElse(null);
+	 
+ }
+ 
+ public Member findById(Integer Id) {
+	  return memberdao.findById(Id).orElse(null);
+ }
 }

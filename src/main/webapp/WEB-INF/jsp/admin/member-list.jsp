@@ -10,5 +10,6 @@
 <h1>這是member.table目前有的內容</h1>
 <div>${memberList}</div>
 <div>${deletesucceed}</div>
+<button onclick="location='/admin/member/index'">回index</button>
 </body>
 </html>

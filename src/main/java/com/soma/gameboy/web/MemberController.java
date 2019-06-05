@@ -33,8 +33,8 @@ public class MemberController {
 	
 	@RequestMapping("/delete")
 	public String delete(@ModelAttribute("form1") Member member, Model model) {
-		System.out.println(member);
-//		memberservice.delete(member);
+		System.out.println(memberservice.getById(member.getId()));
+		memberservice.delete(member);
 		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/admin/member-list";
 	}
