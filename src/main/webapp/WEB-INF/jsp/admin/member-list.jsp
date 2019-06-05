@@ -9,6 +9,6 @@
 <body>
 <h1>這是member.table目前有的內容</h1>
 <div>${memberList}</div>
-
+<div>${deletesucceed}</div>
 </body>
 </html>

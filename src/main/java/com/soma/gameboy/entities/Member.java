@@ -11,13 +11,16 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="Member")
+@Table(name="member1")
 public class Member {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private Long id;
+	private Integer id;
+	@Column(name="password")
 	private Byte[] password;
+	@Column(name="email")
 	private String email;
+	@Column(name="phone")
 	private String phone;
 }

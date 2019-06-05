@@ -20,4 +20,8 @@ public class MemberService {
 	public List<Member> getAll() {
 		return memberdao.findAll();
 	}
+ public void delete(Member member) {
+	if(member.getId()!=null)memberdao.delete(member);
+ }
+	 
 }
