@@ -18,7 +18,7 @@ public class Member {
 	@Column(name="id")
 	private Integer id;
 	@Column(name="password")
-	private Byte[] password;
+	private String password;
 	@Column(name="email")
 	private String email;
 	@Column(name="phone")

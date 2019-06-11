@@ -9,5 +9,4 @@ public class GameboyAPP {
 	public static void main(String[] args) {
 		SpringApplication.run(GameboyAPP.class, args);
 	}
-
 }
