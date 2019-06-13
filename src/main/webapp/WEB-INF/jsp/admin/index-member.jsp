@@ -2,9 +2,17 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript" charset="utf-8" id="zm-extension" src="chrome-extension://fdcgdnkidjaadafnichfpabhfomcebme/scripts/webrtc-patch.js" async=""></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.3/examples/sign-in/">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link href="/resources/css/signin.css" rel="stylesheet">
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("delete1").addEventListener("click", delete1);
@@ -20,69 +28,125 @@
 		document.form1.action = "/admin/member/update";
 		document.form1.submit();
 	}
-	function insert1(){
+	function insert1() {
 		document.form1.action = "/admin/member/insert";
 		document.form1.submit();
 	}
-	function find1(){
+	function find1() {
 		document.form1.action = "/admin/member/findone";
 		document.form1.submit();
 	}
+
+	// 		$(document).ready(function(){
+	// 			$("#delete1").click(function(){
+	// 				$("#form1").action="/admin/member/delete";
+	// 				$("#form1").submit();
+	// 			});
+
+	// 			$("#find1").click(function(){
+	// 				$("#form1").attr("action","/admin/member/findone")
+	// 				$("#form1").action="/admin/member/findone";
+	// 				$("#form1").submit();
+	// 			});
+	// 		});
 </script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
-<body>
-	<form name="form1" id="form1" action="" method="POST">
-		<table border='3'>
-			<thead>
-				<tr bgcolor='tan'>
-					<th height="60" colspan="2" align="center">新增高速公路資料</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr bgcolor='tan'>
-					<td width="120" height="40">id:</td>
-					<td width="400" height="40" align="left"><input
-						id='highwaynameid' style="text-align: left" name="id" type="text"
-						size="15" value="${param.id}"> <span id="checkHighwayName"></span>
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.highwayName}</div>
-					</td>
-				</tr>
-				<tr bgcolor='tan'>
-					<td width="120" height="40">password:</td>
-					<td width="400" height="40" align="left"><input
-						id='password' style="text-align: left" name="password"
-						type="text" size="15" value="${param.password}"> <span id="checkHighwayName"></span>
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.highwayName}</div>
-					</td>
-				</tr>
-				<tr bgcolor='tan'>
-					<td width="120" height="40">email:</td>
-					<td width="400" height="40" align="left"><input
-						id='email' style="text-align: left" name="email"
-						type="text" size="15" value="${param.email}"> <span id="checkHighwayName" ></span>
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.highwayName}</div>
-					</td>
-				</tr>
-				<tr bgcolor='tan'>
-					<td width="120" height="40">phone:</td>
-					<td width="400" height="40" align="left"><input
-						id='phone' style="text-align: left" name="phone"
-						type="text" size="15" value="${param.phone}"> <span id="checkHighwayName"></span>
-						<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.highwayName}</div>
-					</td>
-				</tr>
+<body class="text-center">
+	<form class="form-signin" name="form1" id="form1" action=""
+		method="POST">
+		<div>
+			<h2>新增高速公路資料</h2>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<input id='highwaynameida' name="id" type="text"
+						value="${param.id}" class="form-control" placeholder="id:">
+					<div>${ErrorMsg.highwayName}</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<input id='password' name="password" type="text"
+						value="${param.password}" placeholder="password:"
+						class="form-control">
+					<div>${ErrorMsg.highwayName}</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<input id='email' name="email" type="text" value="${param.email}"
+						placeholder="email:" class="form-control">
+					<div>${ErrorMsg.highwayName}</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<input id='phone' name="phone" type="text" value="${param.phone}"
+						placeholder="phone:" class="form-control">
+					<div>${ErrorMsg.highwayName}</div>
+				</div>
+			</div>
 
-				<tr bgcolor='tan'>
-					<td height="50" colspan="2" align="center">
-					<input id="delete1" type="button" value="delete"> 
-						<input id="update1" type="button" value="update">
-						<input id="insert1" type="button" value="insert">
-						<input id="find1" type="button" value="find"></td>
-				</tr>
+			<div class="form-group row">
+				<div class="btn-group">
+					<button class="btn btn-lg btn-primary" type="button"
+						id="delete1">delete</button>
 
-			</tbody>
-		</table>
-		<div style="color: #FF0000; display: inline">${ErrorMsg.exception}</div>
+					<button class="btn btn-lg btn-primary" type="button"
+						id="update1">update</button>
+
+					<button class="btn btn-lg btn-primary" type="button"
+						id="insert1">insert</button>
+
+					<button class="btn btn-lg btn-primary" type="button"
+						id="find1">find</button>
+				</div>
+
+			</div>
+			<div>${ErrorMsg.exception}</div>
+		</div>
 	</form>
+<script>
+$("#insert1").click(function(){
+	var insert=$("#form1").serializeArray();
+	alert(insert);
+	alert(JSON.stringify(insert));
+	var i = {};
+	$.each(insert,function(index,value1){
+		i[value1.name]=value1.value;
+	});
+	var ant=JSON.stringify(i);
+	alert(ant);
+	$.ajax({
+		url:"/admin/member/insert",
+		method:"POST",
+		contentType:"application/json;charset=UTF-8",
+		data :article,
+		success:function(hoho){
+			alert("新增成功"+JSON.stringify(hoho));
+			$(location).attr("href"="/admin/membe/list");
+		},
+		error:function(hoho){
+			alert("資料新增失敗");
+		}
+	});
+});
+
+
+</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
 </body>
 </html>

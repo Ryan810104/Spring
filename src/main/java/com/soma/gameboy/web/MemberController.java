@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soma.gameboy.entities.Member;
 import com.soma.gameboy.service.MemberService;
@@ -40,6 +41,18 @@ public class MemberController {
 	public String openindex(Model model) {
 		return "/admin/index-member";
 	}
+	
+	@RequestMapping("query1")
+	public String openquery1(Model model) {
+		return "/admin/member-list";
+	}
+	
+	@RequestMapping("/query")
+	@ResponseBody//轉JSON
+	public List<Member> query(Integer id){
+		return memberservice.getAll();
+	}
+	
 
 	@RequestMapping("/delete")
 	public String delete(@ModelAttribute("form1") Member member, Model model){
@@ -63,18 +76,21 @@ public class MemberController {
 	}
 
 	@RequestMapping("/insert")
+	@ResponseBody
 	public String insert(@Valid @ModelAttribute("form1") Member member, BindingResult result, Model model) {
 
-		member.setId(member.getId());
-		member.setPassword(member.getPassword());
-		member.setEmail(member.getEmail());
-		member.setPhone(member.getPhone());
+//		member.setId(member.getId());
+//		member.setPassword(member.getPassword());
+//		member.setEmail(member.getEmail());
+//		member.setPhone(member.getPhone());
+		
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "/admin/index-member";
+		}
 		System.out.println(member);
 		memberservice.save(member);
 		model.addAttribute("insert", member);
-		if (result.hasErrors()) {
-			return "fail";
-		}
 		return "/admin/member-list";
 	}
 
