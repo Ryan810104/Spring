@@ -16,14 +16,20 @@ public class memberBeansService {
 	
 	public String login(String memberId,String memberPwd) {
 		String result="false";
-		System.out.println();
+//		System.out.println("1");
 		
 		memberBeans beans=dao.findByMemberId(memberId);
+//		System.out.println("2");
+//		System.out.println(beans);
+		if(beans==null) {
+			return result;
+		}
 		
 		if(beans.getMemberId()!=null&&beans.getMemberPassword().equals(memberPwd)){
 
 			result="Success";
 		}
+		System.out.println("3");
 		return result;
 	}
 	

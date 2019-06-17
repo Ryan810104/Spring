@@ -19,9 +19,15 @@ public class memberBeansController {
 	private memberBeansService service;
 	@RequestMapping("/login")
 	public String login(@Valid @ModelAttribute("memberBeansForm") memberBeans member, BindingResult result, Model model) {
-		System.out.println(member.getMemberId());
-		System.out.println(member.getMemberPassword());
+//		System.out.println(member.getMemberId());
+//		System.out.println(member.getMemberPassword());
+//		System.out.println(result);
+//		System.out.println(model);
 		
+		if (result.hasErrors()) {
+			model.addAttribute("memberParam", member);
+			return "/admin/memberForm";
+		}
 		
 		String loginResult=service.login(member.getMemberId(),member.getMemberPassword());
 		if(loginResult.equals("Success")) {
@@ -30,7 +36,7 @@ public class memberBeansController {
 			
 			return "/admin/clearTemplate";
 		}else {
-			
+			model.addAttribute("memberParam", member);
 			
 			return "/admin/memberForm";
 		}

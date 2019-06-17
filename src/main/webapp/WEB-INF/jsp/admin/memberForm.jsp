@@ -13,7 +13,7 @@
 		<table>
 			<tr>
 				<td>ID :</td>
-				<td><input type="text" id="memberId" name="memberId" value=""></td>
+				<td><input type="text" id="memberId" name="memberId" value="${memberParam.memberId}"></td>
 				<td style="color:red"></td>
 			</tr>
 			<tr>
