@@ -30,7 +30,7 @@ public class memberBeansController {
 		model.addAttribute("ErrorMsg", errorMessage);
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
-			return "/admin/memberForm";
+			return "/admin/LoginForm";
 		}
 		
 		String loginResult=service.login(member.getMemberId(),member.getMemberPassword());
@@ -42,13 +42,13 @@ public class memberBeansController {
 		}else {
 			model.addAttribute("memberParam", member);
 			errorMessage.put("loginError", "帳號或密碼錯誤");
-			return "/admin/memberForm";
+			return "/admin/LoginForm";
 		}
 		
 	}
 	@RequestMapping("/index")
 	public String openindex(Model model) {
-		return "/admin/memberForm";
+		return "/admin/LoginForm";
 	}
 	
 	
