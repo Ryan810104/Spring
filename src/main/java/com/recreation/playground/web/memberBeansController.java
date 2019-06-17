@@ -1,5 +1,8 @@
 package com.recreation.playground.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,8 @@ public class memberBeansController {
 //		System.out.println(member.getMemberPassword());
 //		System.out.println(result);
 //		System.out.println(model);
-		
+		Map<String, String> errorMessage=new HashMap<>();
+		model.addAttribute("ErrorMsg", errorMessage);
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
 			return "/admin/memberForm";
@@ -37,7 +41,7 @@ public class memberBeansController {
 			return "/admin/clearTemplate";
 		}else {
 			model.addAttribute("memberParam", member);
-			
+			errorMessage.put("loginError", "帳號或密碼錯誤");
 			return "/admin/memberForm";
 		}
 		

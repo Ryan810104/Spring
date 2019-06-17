@@ -17,20 +17,27 @@ public class memberBeansService {
 	public String login(String memberId,String memberPwd) {
 		String result="false";
 //		System.out.println("1");
+		memberBeans beans=dao.findByMemberId(memberId);//查詢資料庫有無此帳戶
 		
-		memberBeans beans=dao.findByMemberId(memberId);
+		
 //		System.out.println("2");
 //		System.out.println(beans);
 		if(beans==null) {
-			return result;
+			return result;//查無帳號回傳'false'
 		}
+		
+		
 		
 		if(beans.getMemberId()!=null&&beans.getMemberPassword().equals(memberPwd)){
 
-			result="Success";
+			result="Success";//有此帳號且資料庫密碼與前端輸入相同時，result改為'Success'
+			
 		}
-		System.out.println("3");
-		return result;
+		
+//		System.out.println("3");
+		
+		return result;//回傳result
+		
 	}
 	
 }
