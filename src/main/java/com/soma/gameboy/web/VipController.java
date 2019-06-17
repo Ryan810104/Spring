@@ -27,7 +27,7 @@ public class VipController {
 	public String listPage(Model model) {
 		List<Vip> list = vipservice.getAll();
 		model.addAttribute("vipList", list);
-		return "/admin/vip-list";
+		return "main/Index";
 	}
 
 	@RequestMapping("/findone")
@@ -43,9 +43,9 @@ public class VipController {
 		return "/admin/index-vip";
 	}
 	
-	@RequestMapping("query1")
+	@RequestMapping("/query1")
 	public String openquery1(Model model) {
-		return "/admin/member-list";
+		return "/main/Index";
 	}
 	
 	@RequestMapping("/query2")

@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="header.jsp"></jsp:include>
+<!-- Custom styles for this template -->
+<link rel="stylesheet" href="/resources/css/CustomAfterIndex.css">
 </head>
 <body>
 	<!-- wrapper -->
@@ -22,7 +24,7 @@
 			<div class="container">
 
 				<div id="result"
-					style="overflow: scroll; border: 1px solid black; height: 25rem; width: 68rem; font-size: 12px; margin-top: 10px;">
+					style="overflow: scroll; border: 1px solid black; height: 20rem; width: 68rem; font-size: 12px; margin-top: 10px;">
 
 				</div>
 			</div>
@@ -52,6 +54,7 @@
 							</div>
 							<a id="edittitle" style="line-height: 2rem; display: none"><i
 								class="fas fa-edit"></i></a>
+								
 						</div>
 					</div>
 					<div class="col">
@@ -64,6 +67,12 @@
 						</form>
 					</div>
 				</div>
+				<img src="https://tw.beanfun.com/bnb/images/game/5/image100.gif">
+				<img src="https://tw.beanfun.com/bnb/images/game/5/image120.gif">
+				<img src="https://tw.beanfun.com/bnb/images/game/5/image130.gif">
+				<img src="https://tw.beanfun.com/bnb/images/game/5/image140.gif">
+				<img src="https://tw.beanfun.com/bnb/images/game/5/image150.gif">
+				<img src="https://tw.beanfun.com/bnb/images/game/5/image160.gif">
 				<!-- b:row-2 -->
 
 				<!-- e:row-2 -->
