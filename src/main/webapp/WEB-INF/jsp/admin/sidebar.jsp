@@ -42,22 +42,22 @@
 	</ul>
 
 	<ul class="list-unstyled components">
-		<li class="active"><a href="#homeSubmenu" data-toggle="collapse"
-			aria-expanded="false"> <i class="fas fa-home"></i> 首頁
-		</a></li>
-		<li><a href="#"> <i class="fas fa-newspaper"></i> 活動消息
-		</a> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-			class="dropdown-toggle"> <i class="fas fa-gamepad"></i>遊戲
-		</a>
-			<ul class="collapse list-unstyled" id="pageSubmenu">
-				<li><a href="#">Page 1</a></li>
-				<li><a href="#">Page 2</a></li>
-				<li><a href="#">Page 3</a></li>
-			</ul></li>
+<!-- 		<li class="active"><a href="#" data-toggle="collapse" -->
+<!-- 			aria-expanded="false"> <i class="fas fa-home"></i> 首頁 -->
+<!-- 		</a></li> -->
+<!-- 		<li><a href="#"> <i class="fas fa-newspaper"></i> 活動消息 -->
+<!-- 		</a> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" -->
+<!-- 			class="dropdown-toggle"> <i class="fas fa-gamepad"></i>遊戲 -->
+<!-- 		</a> -->
+<!-- 			<ul class="collapse list-unstyled" id="pageSubmenu"> -->
+<!-- 				<li><a href="#">Page 1</a></li> -->
+<!-- 				<li><a href="#">Page 2</a></li> -->
+<!-- 				<li><a href="#">Page 3</a></li> -->
+<!-- 			</ul></li> -->
 
-		<li><a href="#"> <i class="far fa-comment-dots"></i>討論區
+		<li><a href="http://localhost/admin/member/index"> <i class="far fa-comment-dots"></i>會員相關
 		</a></li>
-		<li><a href="#"> <i class="fas fa-sort-numeric-down"></i>排行榜
+		<li><a href="http://localhost/admin/vip/index"> <i class="fas fa-sort-numeric-down"></i>Vip
 		</a></li>
 		<li><a href="#"> <i class="fas fa-cart-arrow-down"></i>購物
 		</a></li>
