@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.soma.gameboy.entities.Member;
+
 import com.soma.gameboy.entities.Vip;
-import com.soma.gameboy.service.MemberService;
 import com.soma.gameboy.service.VipService;
 
 @Controller

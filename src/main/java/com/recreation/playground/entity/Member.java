@@ -1,4 +1,4 @@
-package com.soma.gameboy.entities;
+package com.recreation.playground.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

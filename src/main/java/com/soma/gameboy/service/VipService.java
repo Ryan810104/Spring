@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.soma.gameboy.dao.VipDao;
-import com.soma.gameboy.entities.Member;
 import com.soma.gameboy.entities.Vip;
 
 @Service

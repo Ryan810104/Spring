@@ -1,4 +1,4 @@
-package com.soma.gameboy.web;
+package com.recreation.playground.web;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.soma.gameboy.entities.Member;
-import com.soma.gameboy.service.MemberService;
+import com.recreation.playground.entity.Member;
+import com.recreation.playground.service.MemberService;
 
 @Controller
 @RequestMapping("/admin/member")

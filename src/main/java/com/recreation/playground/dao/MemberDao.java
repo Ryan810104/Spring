@@ -1,8 +1,8 @@
-package com.soma.gameboy.dao;
+package com.recreation.playground.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.soma.gameboy.entities.Member;
+import com.recreation.playground.entity.Member;
 
 public interface MemberDao extends JpaRepository<Member, Integer> {
 
