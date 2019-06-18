@@ -88,6 +88,7 @@ public class MemberController {
 			System.out.println(result.getAllErrors());
 			return "/admin/index-member";
 		}
+		
 		System.out.println(member);
 		memberservice.save(member);
 		model.addAttribute("insert", member);

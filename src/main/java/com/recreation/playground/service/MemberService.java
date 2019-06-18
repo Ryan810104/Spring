@@ -15,7 +15,6 @@ public class MemberService {
 
 	@Autowired
 	private MemberDao memberdao;
-	private Member member;
 
 	@Transactional(readOnly = true)
 	public List<Member> getAll() {
