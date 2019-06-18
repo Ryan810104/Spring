@@ -1,4 +1,4 @@
-package com.recreation.playground.web;
+package com.recreation.playground.service;
 
 import java.util.List;
 

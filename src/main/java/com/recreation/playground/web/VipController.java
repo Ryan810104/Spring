@@ -1,4 +1,4 @@
-package com.recreation.playground.service;
+package com.recreation.playground.web;
 
 import java.util.List;
 
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.Vip;
-import com.recreation.playground.web.VipService;
+import com.recreation.playground.service.VipService;
+
 
 
 
