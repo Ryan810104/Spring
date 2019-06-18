@@ -397,16 +397,18 @@
                                 </button>
                 </div>
                 <div class="modal-body">
-                    <form class="d-block mx-auto mb-4">
+                    <form id="memberBeansForm" name="memberBeansForm"
+		action="/admin/memberBeans/login" method="post">
                         <h4 class="mb-3"></h4>
                         <div class="mb-3">
                             <label for="inputID">請輸入ID</label>
-                            <input type="ID" id="inputID" name="inputID" class="form-control" placeholder="" required autofocus>
+                            <input type="text" id="memberId" name="memberId" value="${memberParam.memberId}" class="form-control" placeholder="" required autofocus>
                         </div>
                       
                         <div class="mb-3">
                             <label for="inputPassword">請輸入密碼</label>
-                            <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="" required>
+                            <input type="password" id="memberPassword"
+					name="memberPassword" value="" class="form-control" placeholder="" required>
                         </div>
                       
                         <div class="mb-3">
@@ -415,6 +417,7 @@
                           </label>
                         </div>
                         <hr>
+                        <p style="color: red">${ErrorMsg.loginError}</p>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
                       </form>
                 </div>
