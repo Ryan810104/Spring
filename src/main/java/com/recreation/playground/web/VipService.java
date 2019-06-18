@@ -1,4 +1,4 @@
-package com.soma.gameboy.service;
+package com.recreation.playground.web;
 
 import java.util.List;
 
@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.soma.gameboy.dao.VipDao;
-import com.soma.gameboy.entities.Vip;
+import com.recreation.playground.dao.VipDao;
+import com.recreation.playground.entity.Vip;
+
 
 @Service
 @Transactional

@@ -1,4 +1,4 @@
-package com.soma.gameboy.web;
+package com.recreation.playground.service;
 
 import java.util.List;
 
@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.recreation.playground.entity.Vip;
+import com.recreation.playground.web.VipService;
 
-import com.soma.gameboy.entities.Vip;
-import com.soma.gameboy.service.VipService;
+
 
 @Controller
 @RequestMapping("/admin/vip")
