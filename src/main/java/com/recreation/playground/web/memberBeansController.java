@@ -29,7 +29,7 @@ public class memberBeansController {
 		Map<String, String> errorMessage=new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);
 		model.addAttribute("LoginResult","1");
-		System.out.println("1");
+//		System.out.println("1");
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
 			return "/main/Index";
@@ -39,8 +39,8 @@ public class memberBeansController {
 		if(loginResult.equals("Success")) {
 			
 			model.addAttribute("LoginResult","0");
-			System.out.println("2");
-			
+//			System.out.println("2");
+			model.addAttribute("userId", member.getMemberId());
 			return "/main/Index";
 		}else {
 			model.addAttribute("memberParam", member);

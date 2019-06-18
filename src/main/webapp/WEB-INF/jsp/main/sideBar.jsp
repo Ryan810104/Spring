@@ -12,7 +12,7 @@
                 <li style="text-align: center">
 
                     <img class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt="" style="max-width: 7rem;">
-                    <button type="button" class="btn btn-info " style="margin:1rem;">Username</button>
+                    <button type="button" class="btn btn-info " style="margin:1rem;">${userId}</button>
                 </li>
                 <li>
 
