@@ -44,7 +44,7 @@ public class MemberController {
 	
 	@RequestMapping("query1")
 	public String openquery1(Model model) {
-		return "/admin/member-list";
+		return "/main/index";
 	}
 	
 	@RequestMapping("/query")

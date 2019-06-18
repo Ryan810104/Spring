@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <!-- 請用LOGIN SUCCESS / FAIL 的值控制輸出頁面 ( ${empty LoginOK}) -->
 <!-- 目前是用 LogorNot控制 ; 0 為 未登入 ,1 是登入後-->
-<c:set var="LogorNot" scope="session" value="${1}"/>
+<c:set var="LogorNot" scope="session" value="${0}"/>
 
 <c:choose>
 	<c:when test="${LogorNot == 1}">
