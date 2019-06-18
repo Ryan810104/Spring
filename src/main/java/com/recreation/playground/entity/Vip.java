@@ -15,8 +15,11 @@ import lombok.Data;
 public class Vip {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="vip_level")
-	private Integer vipnumber;
+	@Column(name="vip_num")
+	private Integer vipnum;
+	
+	@Column(name="vip_viplevel")
+	private Integer viplevel;
 	
 	@Column(name="vip_title")
 	private String viptitle;

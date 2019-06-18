@@ -24,7 +24,7 @@ public class VipService {
 	}
 
 	public void delete(Vip vip) {
-		if (vip.getVipnumber() != null)
+		if (vip.getVipnum() != null)
 			vipdao.delete(vip);
 	}
 

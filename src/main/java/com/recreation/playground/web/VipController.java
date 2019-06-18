@@ -25,35 +25,36 @@ public class VipController {
 	@Autowired
 	private VipService vipservice;
 
-	@RequestMapping("/list")
-	public String listPage(Model model) {
-		List<Vip> list = vipservice.getAll();
-		model.addAttribute("vipList", list);
-		return "main/Index";
-	}
+//	@RequestMapping("/list")
+//	public String listPage(Model model) {
+//		List<Vip> list = vipservice.getAll();
+//		model.addAttribute("vipList", list);
+//		return "main/Index";
+//	}
 
-	@RequestMapping("/findone")
-	public String findById(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
-		Vip vip1 = vipservice.findById(vip.getVipnumber());
-		System.out.println(vip1);
-		model.addAttribute("findById", vip1);
-		return "/admin/index-vip";
-	}
+//	@RequestMapping("/findone")
+//	public String findById(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
+//		Vip vip1 = vipservice.findById(vip.getViplevel());
+//		System.out.println(vip1);
+//		model.addAttribute("findById", vip1);
+//		return "/admin/index-vip";
+//	}
 
+
+	
+//	@RequestMapping("/query1")
+//	public String openquery1(Model model) {
+//		return "/main/Index";
+//	}
 	@RequestMapping("/index")
 	public String openindex(Model model) {
 		return "/admin/index-vip";
 	}
 	
-	@RequestMapping("/query1")
-	public String openquery1(Model model) {
-		return "/main/Index";
-	}
-	
 	@RequestMapping("/query2")
 	@ResponseBody
 	public int findNextId() {
-		System.out.println(vipservice.findCurrentId());
+//		System.out.println(vipservice.findCurrentId());
 		return vipservice.findCurrentId();
 	}
 	
@@ -66,7 +67,7 @@ public class VipController {
 
 	@RequestMapping("/delete")
 	public String delete(@ModelAttribute("form1") Vip vip, Model model){
-		System.out.println(vipservice.getById(vip.getVipnumber()));
+		System.out.println(vipservice.getById(vip.getVipnum()));
 		vipservice.delete(vip);
 		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/admin/index-vip";
@@ -74,8 +75,11 @@ public class VipController {
 
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
-		Vip vip1 = vipservice.findById(vip.getVipnumber());
+		System.out.println("aa1");
+		Vip vip1 = vipservice.findById(vip.getVipnum());
+		System.out.println("aa");
 		vip1.setViptitle(vip.getViptitle());
+		vip1.setViplevel(vip.getViplevel());
 		System.out.println(vip1);
 		Vip update = vipservice.save(vip);
 		// System.out.println(update);
@@ -85,11 +89,6 @@ public class VipController {
 
 	@RequestMapping("/insert")
 	public String insert(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
-
-//		member.setId(member.getId());
-//		member.setPassword(member.getPassword());
-//		member.setEmail(member.getEmail());
-//		member.setPhone(member.getPhone());
 		
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
