@@ -67,7 +67,7 @@ public class VipController {
 
 	@RequestMapping("/delete")
 	public String delete(@ModelAttribute("form1") Vip vip, Model model){
-		System.out.println(vipservice.getById(vip.getVipnum()));
+//		System.out.println(vipservice.getById(vip.getVipnum()));
 		vipservice.delete(vip);
 		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/admin/index-vip";
@@ -75,12 +75,12 @@ public class VipController {
 
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
-		System.out.println("aa1");
+
 		Vip vip1 = vipservice.findById(vip.getVipnum());
-		System.out.println("aa");
+
 		vip1.setViptitle(vip.getViptitle());
 		vip1.setViplevel(vip.getViplevel());
-		System.out.println(vip1);
+//		System.out.println(vip1);
 		Vip update = vipservice.save(vip);
 		// System.out.println(update);
 		model.addAttribute("update", update);
@@ -94,7 +94,7 @@ public class VipController {
 			System.out.println(result.getAllErrors());
 			return "/admin/index-vip";
 		}
-		System.out.println(vip);
+//		System.out.println(vip);
 		vipservice.save(vip);
 		model.addAttribute("insert", vip);
 		return "/admin/index-vip";
