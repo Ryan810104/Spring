@@ -14,6 +14,8 @@ public class memberBeansService {
 	private memberBeansDao dao;
 
 	
+
+	
 	public String login(String memberId,String memberPwd) {
 		String result="false";
 //		System.out.println("1");

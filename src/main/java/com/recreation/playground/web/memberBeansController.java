@@ -28,27 +28,30 @@ public class memberBeansController {
 //		System.out.println(model);
 		Map<String, String> errorMessage=new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);
+		model.addAttribute("LoginResult","1");
+		System.out.println("1");
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
-			return "/admin/LoginForm";
+			return "/main/Index";
 		}
 		
 		String loginResult=service.login(member.getMemberId(),member.getMemberPassword());
 		if(loginResult.equals("Success")) {
 			
+			model.addAttribute("LoginResult","0");
+			System.out.println("2");
 			
-			
-			return "/admin/clearTemplate";
+			return "/main/Index";
 		}else {
 			model.addAttribute("memberParam", member);
 			errorMessage.put("loginError", "帳號或密碼錯誤");
-			return "/admin/LoginForm";
+			return "/main/Index";
 		}
 		
 	}
 	@RequestMapping("/index")
 	public String openindex(Model model) {
-		return "/admin/LoginForm";
+		return "/main/Index";
 	}
 	
 	
