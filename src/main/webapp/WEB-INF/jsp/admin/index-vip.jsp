@@ -34,45 +34,58 @@
 			<!-- e:row-1 -->
 			<div class="container" style="text-align: -webkit-center">
 				<div class="row">
-					<div class="col">
-						<div class="form-group row">
-							<label for="viplevel" class="col-sm-2 col-form-label">流水號</label>
-							<div class="col-sm-4">
-								<input type="text" style="text-align: center" readonly
-									class="form-control-plaintext" id="vipnum" value="">
-							</div>
+						<div class="col">
+							<div class="form-group row">
 
-						</div>
-						<div class="form-group row">
-							<label for="viplevel" class="col-sm-2 col-form-label"
-								style="align-self: center;">VipLevel</label>
-							<div class="col-sm-4">
-								<i style="line-height: 2.5rem;" id="upbutton"
-									class="fas fa-lg fa-caret-up"></i> <input type="text"
-									style="text-align: center" readonly
-									class="form-control-plaintext" id="viplevel" value="">
-								<i style="line-height: 2.5rem" id="downbutton"
-									class="fas fa-lg fa-caret-down"></i>
+								<label for="viplevel" class="col-sm-2 col-form-label">流水號</label>
+								<div class="col-sm-4">
+									<input type="text" style="text-align: center" readonly
+										class="form-control-plaintext" id="vipnum" value="">
+								</div>
 
 							</div>
-							<a style="line-height: 2.5rem; align-self: center;"
-								href="http://localhost/admin/vip/index"><i
-								class="fas fa-redo"></i></a>
+							<div class="form-group row">
+								<label for="viplevel" class="col-sm-2 col-form-label"
+									style="align-self: center;">VipLevel</label>
+								<div class="col-sm-4">
+									<i style="line-height: 2.5rem;" id="upbutton"
+										class="fas fa-lg fa-caret-up"></i> <input type="text"
+										style="text-align: center" readonly
+										class="form-control-plaintext" id="viplevel" value="">
+									<i style="line-height: 2.5rem" id="downbutton"
+										class="fas fa-lg fa-caret-down"></i>
+
+								</div>
+								<a style="line-height: 2.5rem; align-self: center;"
+									href="http://localhost/admin/vip/index"><i
+									class="fas fa-redo"></i></a>
 
 
 
-						</div>
-						<div class="form-group row">
-							<label for="inputPassword" class="col-sm-2 col-form-label">VipTitle</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="viptitle"
-									placeholder="請輸入名稱">
 							</div>
-							<a id="edittitle" style="line-height: 2rem; display: none"><i
-								class="fas fa-edit"></i></a>
+							<div class="form-group row">
+								<label for="viptitle" class="col-sm-2 col-form-label">VipTitle</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="viptitle"
+										placeholder="請輸入名稱">
+								</div>
+								<a id="edittitle" style="line-height: 2rem; display: none"><i
+									class="fas fa-edit"></i></a>
 
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-2 col-form-label">
+									<input type="button" class="btn btn-outline-dark"
+										data-toggle="modal" id="picbutton"
+										data-target=".bd-example-modal-sm" value="徽章">
+								</label>
+								<div class="col-sm-4" id="vippic" style="align-self: center">
+								</div>
+								<a id="edittitle" style="line-height: 2rem; display: none"><i
+									class="fas fa-edit"></i></a>
+
+							</div>
 						</div>
-					</div>
 					<div class="col">
 						<input type="button" id="insertbutton" disabled="disabled"
 							class="btn btn-outline-success btn-block" value="新增"> <input
@@ -80,19 +93,16 @@
 							class="btn btn-outline-success btn-block" value="修改"> <input
 							type="button" id="deletebutton" disabled="disabled"
 							class="btn btn-outline-danger btn-block" value="刪除">
+
 						<form method="POST" action="/admin/vip/query">
 							<input type="button" id="queryall" class="btn btn-primary"
 								value="全部查詢" style="display: none;">
 						</form>
+
 					</div>
 				</div>
-				<img src="https://tw.beanfun.com/bnb/images/game/5/image100.gif">
-				<img src="https://tw.beanfun.com/bnb/images/game/5/image120.gif">
-				<img src="https://tw.beanfun.com/bnb/images/game/5/image130.gif">
-				<img src="https://tw.beanfun.com/bnb/images/game/5/image140.gif">
-				<img src="https://tw.beanfun.com/bnb/images/game/5/image150.gif">
-				<img src="https://tw.beanfun.com/bnb/images/game/5/image160.gif">
 				<div id="result112"></div>
+				<div id="result1" style="display:none"></div>
 				<!-- b:row-2 -->
 
 				<!-- e:row-2 -->
@@ -106,6 +116,94 @@
 			<!-- End of wrapper -->
 		</div>
 	</div>
+
+	<!-- Modal -->
+	<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+		aria-labelledby="mySmallModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm">
+			<div class="modal-content">
+				<div class="container-fluid">
+					<br>
+					<div class="row">
+						<div id="vippic1" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image001.gif">
+						</div>
+						<div id="vippic2" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image050.gif">
+						</div>
+						<div id="vippic3" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image100.gif">
+						</div>
+						<div id="vippic4" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image130.gif">
+						</div>
+						<div id="vippic5" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image160.gif">
+						</div>
+						<div id="vippic6" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image200.gif">
+						</div>
+						<div id="vippic7" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image220.gif">
+						</div>
+						<div id="vippic8" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image250.gif">
+						</div>
+						<div id="vippic9" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image275.gif">
+						</div>
+						<div id="vippic10" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image300.gif">
+						</div>
+						<div id="vippic11" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image325.gif">
+						</div>
+						<div id="vippic12" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image340.gif">
+						</div>
+						<div id="vippic13" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image350.gif">
+						</div>
+						<div id="vippic14" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image375.gif">
+						</div>
+						<div id="vippic15" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image390.gif">
+						</div>
+						<div id="vippic16" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image400.gif">
+						</div>
+						<div id="vippic17" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image425.gif">
+						</div>
+						<div id="vippic18" onclick="picclick(this)"
+							class="col-md-2 ml-auto">
+							<img src="https://tw.beanfun.com/bnb/images/game/5/image450.gif">
+						</div>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 <style>
 input[type="button"]:disabled {
@@ -114,6 +212,12 @@ input[type="button"]:disabled {
 </style>
 
 <script>
+	function picclick(id) {
+		$("#vippic").html($(id).html());
+		$("#picbutton").click();
+		$("#result1").html($("#vippic img").attr("src"));
+	}
+
 	//press down function
 	var number = 0;
 	$("#downbutton").click(function() {
@@ -154,7 +258,7 @@ input[type="button"]:disabled {
 		showId();
 		location.reload()
 	});
-	
+
 	//Insert JQery by enter the form1
 	$("#viptitle").keypress(function(event) {
 		if (event.keyCode == 13) {
@@ -165,22 +269,24 @@ input[type="button"]:disabled {
 	function upndown() {
 		var count = 0;
 		$("#numbercount tr td:nth-child(1)").each(function() {
-			if ($(this).text() == number) {			
+			if ($(this).text() == number) {
 				trclick($(this).next().next().text());
 				count++;
 			}
 		});
 		if (count == 0) {
 			$("#viptitle").val("");
+			$("#vippic").html("");
 			showId();
 			$("#edittitle").css('display', 'none');
 			$("#viptitle").removeAttr("readonly");
 			$("#insertbutton").attr('disabled', false);
 			$("#deletebutton").attr('disabled', true);
+			$("#picbutton").attr('disabled', false);
 		}
 		$("#viplevel").val(number);
-		if ($("#viplevel").val() == 0 ){
-			$("#insertbutton").attr("disabled",true);
+		if ($("#viplevel").val() == 0) {
+			$("#insertbutton").attr("disabled", true);
 		}
 	};
 	//Change disable or not when the following situation
@@ -188,24 +294,28 @@ input[type="button"]:disabled {
 		$("#viptitle").val($("#row" + id).children('td').eq(1).html());
 		$("#viplevel").val($("#row" + id).children('td').eq(0).html());
 		$("#vipnum").val($("#row" + id).children('td').eq(2).html());
+		$("#vippic").html($("#row" + id).children('td').eq(3).html());
 		$("#insertbutton").attr('disabled', true);
 		$("#updatebutton").attr('disabled', true);
 		$("#deletebutton").attr('disabled', false);
 		$("#viptitle").attr("readonly", "readonly");
 		$("#edittitle").css('display', 'block');
+		$("#picbutton").attr('disabled', true);
 	}
 	//edit function control
 	$("#edittitle").click(function() {
 		$("#viptitle").removeAttr("readonly");
 		$("#deletebutton").attr('disabled', true);
 		$("#updatebutton").attr('disabled', false);
+		$("#picbutton").attr('disabled', false);
 
 	});
 	// insert function
 	function insertfunc() {
 		$.ajax({
-			url : "/admin/vip/insert?viplevel=" + $("#viplevel").val()
-					+ "&viptitle=" + $("#viptitle").val(),
+			url : "/admin/vip/insert?" +$("#vipnum").val()
+			+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
+			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src"),
 			type : "GET",
 			success : function(data) {
 				$("#queryall").click();
@@ -217,8 +327,8 @@ input[type="button"]:disabled {
 	function updatefunc() {
 		$.ajax({
 			url : "/admin/vip/update?vipnum=" + $("#vipnum").val()
-					+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
-					+ $("#viplevel").val(),
+			+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
+			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src"),
 			type : "GET",
 			success : function(data) {
 				$("#queryall").click();
@@ -255,7 +365,7 @@ input[type="button"]:disabled {
 			.click(
 					function() {
 						var text = "<table id=\"numbercount\" class=\" table table-sm table-hover\">";
-						text += "<tr><th>等級</th><th>稱號</th><th>流水號</th></tr>"
+						text += "<tr><th>等級</th><th>稱號</th><th>流水號</th><th>徽章</th></tr>"
 						$.ajax({
 							url : "/admin/vip/query",
 							type : "GET",
@@ -270,8 +380,9 @@ input[type="button"]:disabled {
 											+ "</td>";
 									text += "<td>" + Jdata[i]["viptitle"]
 											+ "</td>";
-									text += "<td >" + Jdata[i]["vipnum"]
+									text += "<td>" + Jdata[i]["vipnum"]
 											+ "</td>";
+									text += "<td><img src=\""+ Jdata[i]["vippic"] + "\"></td>"
 									text += "</tr>";
 								}
 								text += "<table>"

@@ -1,5 +1,6 @@
 package com.recreation.playground.web;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.Vip;
@@ -42,10 +45,29 @@ public class VipController {
 
 
 	
-//	@RequestMapping("/query1")
-//	public String openquery1(Model model) {
-//		return "/main/Index";
-//	}
+	@RequestMapping("/query1")
+	public String openquery1(Model model) {
+		return "/main/Index";
+	}
+	@RequestMapping("/test2")
+	public String testtoggle(Model model) {
+		System.out.println(model);
+		return "/admin/toggletest";
+	}
+	
+	@RequestMapping("/test1")
+	public String test1(Model model) {
+		System.out.println(model);
+		return "/admin/viptest";
+	}
+
+	@RequestMapping("/test")
+	@ResponseBody
+	public String test(@RequestBody List<Vip> vip) {
+		System.out.println(vip);
+		return "vip";
+	}
+	
 	@RequestMapping("/index")
 	public String openindex(Model model) {
 		return "/admin/index-vip";
@@ -59,7 +81,7 @@ public class VipController {
 	}
 	
 	@RequestMapping("/query")
-	@ResponseBody//轉JSON
+	@ResponseBody
 	public List<Vip> query(Integer id){
 		return vipservice.getAll();
 	}

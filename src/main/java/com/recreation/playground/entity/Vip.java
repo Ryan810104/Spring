@@ -23,5 +23,8 @@ public class Vip {
 	
 	@Column(name="vipTitle")
 	private String viptitle;
+	
+	@Column(name="vipPic")
+	private String vippic;
 
 }
