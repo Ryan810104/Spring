@@ -74,6 +74,16 @@
 
 							</div>
 							<div class="form-group row">
+								<label for="vipdiscount" class="col-sm-2 col-form-label">vipDiscount</label>
+								<div class="col-sm-4">
+									<input type="text" class="form-control" id="vipdiscount"
+										placeholder="請輸入折扣">
+								</div>
+								<a id="edittitle" style="line-height: 2rem; display: none"><i
+									class="fas fa-edit"></i></a>
+
+							</div>
+							<div class="form-group row">
 								<label class="col-sm-2 col-form-label">
 									<input type="button" class="btn btn-outline-dark"
 										data-toggle="modal" id="picbutton"
@@ -84,6 +94,11 @@
 								<a id="edittitle" style="line-height: 2rem; display: none"><i
 									class="fas fa-edit"></i></a>
 
+
+
+
+
+
 							</div>
 						</div>
 					<div class="col">
@@ -93,7 +108,15 @@
 							class="btn btn-outline-success btn-block" value="修改"> <input
 							type="button" id="deletebutton" disabled="disabled"
 							class="btn btn-outline-danger btn-block" value="刪除">
-
+						
+							
+							<table>
+							<tr><td>新增 :  按鈕選取vipLevel 沒有重複的 vipLevel 才能新增 (uniQue 屬性)</td></tr>
+							<tr><td>修改 :  列表選取修改哪項 接著按編輯按鈕<i
+									class="fas fa-edit"></i>修改後 點擊修改按鈕))</td></tr>
+							<tr><td>刪除 :  列表選取刪除哪項 點擊刪除按鈕)</td></tr>
+							</table>
+							
 						<form method="POST" action="/admin/vip/query">
 							<input type="button" id="queryall" class="btn btn-primary"
 								value="全部查詢" style="display: none;">
@@ -268,18 +291,20 @@ input[type="button"]:disabled {
 	//up and down function
 	function upndown() {
 		var count = 0;
-		$("#numbercount tr td:nth-child(1)").each(function() {
+		$("#numbercount tr td:nth-child(2)").each(function() {
 			if ($(this).text() == number) {
-				trclick($(this).next().next().text());
+				trclick($(this).prev().text());
 				count++;
 			}
 		});
 		if (count == 0) {
 			$("#viptitle").val("");
+			$("#vipdiscount").val("");
 			$("#vippic").html("");
 			showId();
 			$("#edittitle").css('display', 'none');
 			$("#viptitle").removeAttr("readonly");
+			$("#vipdiscount").removeAttr("readonly");
 			$("#insertbutton").attr('disabled', false);
 			$("#deletebutton").attr('disabled', true);
 			$("#picbutton").attr('disabled', false);
@@ -291,20 +316,23 @@ input[type="button"]:disabled {
 	};
 	//Change disable or not when the following situation
 	function trclick(id) {
-		$("#viptitle").val($("#row" + id).children('td').eq(1).html());
-		$("#viplevel").val($("#row" + id).children('td').eq(0).html());
-		$("#vipnum").val($("#row" + id).children('td').eq(2).html());
-		$("#vippic").html($("#row" + id).children('td').eq(3).html());
+		$("#viptitle").val($("#row" + id).children('td').eq(3).html());
+		$("#viplevel").val($("#row" + id).children('td').eq(1).html());
+		$("#vipnum").val($("#row" + id).children('td').eq(0).html());
+		$("#vippic").html($("#row" + id).children('td').eq(2).html());
+		$("#vipdiscount").val($("#row" + id).children('td').eq(4).html());
 		$("#insertbutton").attr('disabled', true);
 		$("#updatebutton").attr('disabled', true);
 		$("#deletebutton").attr('disabled', false);
 		$("#viptitle").attr("readonly", "readonly");
+		$("#vipdiscount").attr("readonly", "readonly");
 		$("#edittitle").css('display', 'block');
 		$("#picbutton").attr('disabled', true);
 	}
 	//edit function control
 	$("#edittitle").click(function() {
 		$("#viptitle").removeAttr("readonly");
+		$("#vipdiscount").removeAttr("readonly");
 		$("#deletebutton").attr('disabled', true);
 		$("#updatebutton").attr('disabled', false);
 		$("#picbutton").attr('disabled', false);
@@ -315,7 +343,7 @@ input[type="button"]:disabled {
 		$.ajax({
 			url : "/admin/vip/insert?" +$("#vipnum").val()
 			+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
-			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src"),
+			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src") + "&vipdiscount="+$("#vipdiscount").val(),
 			type : "GET",
 			success : function(data) {
 				$("#queryall").click();
@@ -328,7 +356,7 @@ input[type="button"]:disabled {
 		$.ajax({
 			url : "/admin/vip/update?vipnum=" + $("#vipnum").val()
 			+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
-			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src"),
+			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src") + "&vipdiscount="+$("#vipdiscount").val(),
 			type : "GET",
 			success : function(data) {
 				$("#queryall").click();
@@ -365,7 +393,7 @@ input[type="button"]:disabled {
 			.click(
 					function() {
 						var text = "<table id=\"numbercount\" class=\" table table-sm table-hover\">";
-						text += "<tr><th>等級</th><th>稱號</th><th>流水號</th><th>徽章</th></tr>"
+						text += "<tr><th>流水號</th><th>等級</th><th>徽章</th><th>稱號</th><th>折扣</th></tr>"
 						$.ajax({
 							url : "/admin/vip/query",
 							type : "GET",
@@ -376,13 +404,15 @@ input[type="button"]:disabled {
 											+ Jdata[i]["vipnum"]
 											+ ");\" class=\"col\"" + "id = row"
 											+ Jdata[i]["vipnum"] + ">";
-									text += "<td>" + Jdata[i]["viplevel"]
-											+ "</td>";
-									text += "<td>" + Jdata[i]["viptitle"]
-											+ "</td>";
 									text += "<td>" + Jdata[i]["vipnum"]
 											+ "</td>";
+									text += "<td>" + Jdata[i]["viplevel"]
+											+ "</td>";
 									text += "<td><img src=\""+ Jdata[i]["vippic"] + "\"></td>"
+									text += "<td>" + Jdata[i]["viptitle"]
+											+ "</td>";
+									text += "<td>" + Jdata[i]["vipdiscount"]
+									+ "</td>";
 									text += "</tr>";
 								}
 								text += "<table>"

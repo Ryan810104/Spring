@@ -26,5 +26,8 @@ public class Vip {
 	
 	@Column(name="vipPic")
 	private String vippic;
+	
+	@Column(columnDefinition="Decimal(10,2)", name="vipDiscount")
+	private Double vipdiscount;
 
 }
