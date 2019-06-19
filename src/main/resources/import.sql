@@ -14,5 +14,5 @@ INSERT INTO vip_level values
 (5,'乾爹'),
 (6,'管理員');
 
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,member_registered_date,member_viplevel,member_photo) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,member_registered_date,member_viplevel,member_photo) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),1,null);
 
