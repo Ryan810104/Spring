@@ -24,7 +24,7 @@
 			<div class="container">
 
 				<div id="result"
-					style="overflow: scroll; border: 1px solid black; height: 20rem; width: 68rem; font-size: 12px; margin-top: 10px;">
+					style="overflow: scroll; border: 1px solid black; height: 15rem; width: 68rem; font-size: 12px; margin-top: 10px;">
 
 				</div>
 			</div>
@@ -34,73 +34,66 @@
 			<!-- e:row-1 -->
 			<div class="container" style="text-align: -webkit-center">
 				<div class="row">
-						<div class="col">
-							<div class="form-group row">
-
-								<label for="viplevel" class="col-sm-2 col-form-label">流水號</label>
-								<div class="col-sm-4">
-									<input type="text" style="text-align: center" readonly
-										class="form-control-plaintext" id="vipnum" value="">
-								</div>
+					<div class="col">
+						<div class="form-group row">
+							<label for="viplevel" class="col-sm-4 col-form-label">流水號</label>
+							<div class="col-sm-4">
+								<input type="text" style="text-align: center" readonly
+									class="form-control-plaintext" id="vipnum" value="">
+							</div>
+							<a id="edittitle"
+								style="line-height: 2.5rem; align-self: center; display: none"><i
+								class="fas fa-edit"></i></a>
+						</div>
+						<div class="form-group row">
+							<label for="viplevel" class="col-sm-4 col-form-label"
+								style="align-self: center;">VipLevel</label>
+							<div class="col-sm-4">
+								<i style="line-height: 2.5rem;" id="upbutton"
+									class="fas fa-lg fa-caret-up"></i> <input type="text"
+									style="text-align: center" readonly
+									class="form-control-plaintext" id="viplevel" value="">
+								<i style="line-height: 2.5rem" id="downbutton"
+									class="fas fa-lg fa-caret-down"></i>
 
 							</div>
-							<div class="form-group row">
-								<label for="viplevel" class="col-sm-2 col-form-label"
-									style="align-self: center;">VipLevel</label>
-								<div class="col-sm-4">
-									<i style="line-height: 2.5rem;" id="upbutton"
-										class="fas fa-lg fa-caret-up"></i> <input type="text"
-										style="text-align: center" readonly
-										class="form-control-plaintext" id="viplevel" value="">
-									<i style="line-height: 2.5rem" id="downbutton"
-										class="fas fa-lg fa-caret-down"></i>
-
-								</div>
-								<a style="line-height: 2.5rem; align-self: center;"
-									href="http://localhost/admin/vip/index"><i
-									class="fas fa-redo"></i></a>
+							<a style="line-height: 2.5rem; align-self: center;"
+								href="http://localhost/admin/vip/index"><i
+								class="fas fa-redo"></i></a>
+						</div>
 
 
-
+					</div>
+					<div class="col">
+						<div class="form-group row">
+							<label for="vipdiscount" class="col-sm-4 col-form-label">VipDiscount</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="vipdiscount"
+									placeholder="請輸入折扣">
 							</div>
-							<div class="form-group row">
-								<label for="viptitle" class="col-sm-2 col-form-label">VipTitle</label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="viptitle"
-										placeholder="請輸入名稱">
-								</div>
-								<a id="edittitle" style="line-height: 2rem; display: none"><i
-									class="fas fa-edit"></i></a>
-
-							</div>
-							<div class="form-group row">
-								<label for="vipdiscount" class="col-sm-2 col-form-label">vipDiscount</label>
-								<div class="col-sm-4">
-									<input type="text" class="form-control" id="vipdiscount"
-										placeholder="請輸入折扣">
-								</div>
-								<a id="edittitle" style="line-height: 2rem; display: none"><i
-									class="fas fa-edit"></i></a>
-
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-2 col-form-label">
-									<input type="button" class="btn btn-outline-dark"
-										data-toggle="modal" id="picbutton"
-										data-target=".bd-example-modal-sm" value="徽章">
-								</label>
-								<div class="col-sm-4" id="vippic" style="align-self: center">
-								</div>
-								<a id="edittitle" style="line-height: 2rem; display: none"><i
-									class="fas fa-edit"></i></a>
 
 
-
-
-
-
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label"> <input
+								type="button" class="btn btn-outline-dark" data-toggle="modal"
+								id="picbutton" data-target=".bd-example-modal-sm" value="徽章">
+							</label>
+							<div class="col-sm-8" id="vippic" style="align-self: center">
 							</div>
 						</div>
+
+						<div class="form-group row">
+							<label for="viptitle" class="col-sm-4 col-form-label">VipTitle</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="viptitle"
+									placeholder="請輸入名稱">
+							</div>
+							<a id="edittitle" style="line-height: 2rem; display: none"><i
+								class="fas fa-edit"></i></a>
+
+						</div>
+					</div>
 					<div class="col">
 						<input type="button" id="insertbutton" disabled="disabled"
 							class="btn btn-outline-success btn-block" value="新增"> <input
@@ -108,24 +101,29 @@
 							class="btn btn-outline-success btn-block" value="修改"> <input
 							type="button" id="deletebutton" disabled="disabled"
 							class="btn btn-outline-danger btn-block" value="刪除">
-						
-							
-							<table>
-							<tr><td>新增 :  按鈕選取vipLevel 沒有重複的 vipLevel 才能新增 (uniQue 屬性)</td></tr>
-							<tr><td>修改 :  列表選取修改哪項 接著按編輯按鈕<i
-									class="fas fa-edit"></i>修改後 點擊修改按鈕))</td></tr>
-							<tr><td>刪除 :  列表選取刪除哪項 點擊刪除按鈕)</td></tr>
-							</table>
-							
+
+
+						<table>
+							<tr>
+								<td>新增 : 按鈕選取vipLevel 沒有重複的 vipLevel 才能新增 (uniQue 屬性)</td>
+							</tr>
+							<tr>
+								<td>修改 : 列表選取修改哪項 接著按編輯按鈕<i class="fas fa-edit"></i>修改後
+									點擊修改按鈕
+								</td>
+							</tr>
+							<tr>
+								<td>刪除 : 列表選取刪除哪項 點擊刪除按鈕</td>
+							</tr>
+						</table>
 						<form method="POST" action="/admin/vip/query">
 							<input type="button" id="queryall" class="btn btn-primary"
 								value="全部查詢" style="display: none;">
 						</form>
-
 					</div>
 				</div>
 				<div id="result112"></div>
-				<div id="result1" style="display:none"></div>
+				<div id="result1" style="display: none"></div>
 				<!-- b:row-2 -->
 
 				<!-- e:row-2 -->
@@ -341,9 +339,11 @@ input[type="button"]:disabled {
 	// insert function
 	function insertfunc() {
 		$.ajax({
-			url : "/admin/vip/insert?" +$("#vipnum").val()
-			+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
-			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src") + "&vipdiscount="+$("#vipdiscount").val(),
+			url : "/admin/vip/insert?" + $("#vipnum").val() + "&viptitle="
+					+ $("#viptitle").val() + "&viplevel="
+					+ $("#viplevel").val() + "&vippic="
+					+ $("#vippic img").attr("src") + "&vipdiscount="
+					+ $("#vipdiscount").val(),
 			type : "GET",
 			success : function(data) {
 				$("#queryall").click();
@@ -355,8 +355,10 @@ input[type="button"]:disabled {
 	function updatefunc() {
 		$.ajax({
 			url : "/admin/vip/update?vipnum=" + $("#vipnum").val()
-			+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
-			+ $("#viplevel").val() + "&vippic=" + $("#vippic img").attr("src") + "&vipdiscount="+$("#vipdiscount").val(),
+					+ "&viptitle=" + $("#viptitle").val() + "&viplevel="
+					+ $("#viplevel").val() + "&vippic="
+					+ $("#vippic img").attr("src") + "&vipdiscount="
+					+ $("#vipdiscount").val(),
 			type : "GET",
 			success : function(data) {
 				$("#queryall").click();
@@ -392,33 +394,39 @@ input[type="button"]:disabled {
 	$("#queryall")
 			.click(
 					function() {
-						var text = "<table id=\"numbercount\" class=\" table table-sm table-hover\">";
+						var text = "<table id=\"numbercount\" style=\"text-align:center\" class=\" table table-sm table-hover\">";
 						text += "<tr><th>流水號</th><th>等級</th><th>徽章</th><th>稱號</th><th>折扣</th></tr>"
-						$.ajax({
-							url : "/admin/vip/query",
-							type : "GET",
-							success : function(Jdata) {
-								var NumOfJData = Jdata.length;
-								for (var i = 0; i < NumOfJData; i++) {
-									text += "<tr onclick=\"trclick("
-											+ Jdata[i]["vipnum"]
-											+ ");\" class=\"col\"" + "id = row"
-											+ Jdata[i]["vipnum"] + ">";
-									text += "<td>" + Jdata[i]["vipnum"]
-											+ "</td>";
-									text += "<td>" + Jdata[i]["viplevel"]
-											+ "</td>";
-									text += "<td><img src=\""+ Jdata[i]["vippic"] + "\"></td>"
-									text += "<td>" + Jdata[i]["viptitle"]
-											+ "</td>";
-									text += "<td>" + Jdata[i]["vipdiscount"]
-									+ "</td>";
-									text += "</tr>";
-								}
-								text += "<table>"
-								$("#result").html(text);
-							}
-						});
+						$
+								.ajax({
+									url : "/admin/vip/query",
+									type : "GET",
+									success : function(Jdata) {
+										var NumOfJData = Jdata.length;
+										for (var i = 0; i < NumOfJData; i++) {
+											text += "<tr onclick=\"trclick("
+													+ Jdata[i]["vipnum"]
+													+ ");\" class=\"col\""
+													+ "id = row"
+													+ Jdata[i]["vipnum"] + ">";
+											text += "<td style=\"width:3.5rem\">"
+													+ Jdata[i]["vipnum"]
+													+ "</td>";
+											text += "<td>"
+													+ Jdata[i]["viplevel"]
+													+ "</td>";
+											text += "<td><img src=\""+ Jdata[i]["vippic"] + "\"></td>"
+											text += "<td>"
+													+ Jdata[i]["viptitle"]
+													+ "</td>";
+											text += "<td>"
+													+ Jdata[i]["vipdiscount"]
+													+ "</td>";
+											text += "</tr>";
+										}
+										text += "<table>"
+										$("#result").html(text);
+									}
+								});
 					});
 </script>
 </html>
