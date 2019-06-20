@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="UTF-8">
-    <jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
     <link href="/resources/css/CustomBeforeIndex.css" rel="stylesheet">
 </head>
 
