@@ -5,17 +5,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/main/game")
+@RequestMapping("/main")
 public class FrontendSidebarController {
 
 	
 	@RequestMapping("/index")
-	public String openquery1(Model model) {
+	public String toIndex(Model model) {
 		return "/main/AfterIndex";
 	}
 	
-	@RequestMapping("/Mineweeper")
-	public String openquery2(Model model) {
+	@RequestMapping("/news")
+	public String toNews(Model model) {
+		return "";
+	}
+	@RequestMapping("/game/Mineweeper")
+	public String toGame1(Model model) {
 		return "/main/Mineweeper";
 	}
 }

@@ -17,7 +17,7 @@
 		<li style="text-align: center"><img
 			class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt=""
 			style="max-width: 7rem;">
-			<button type="button" class="btn btn-info " style="margin: 1rem;">Username</button>
+			<button type="button" class="btn btn-info " style="margin: 1rem;">${userId}</button>
 		</li>
 		<li></li>
 		<li><a class="" href="#" style="text-align: center">遊戲幣 : <b>500P</b></a>
@@ -25,15 +25,15 @@
 	</ul>
 
 	<ul class="list-unstyled components">
-		<li class="active"><a href="/admin/memberBeans/index" data-toggle="collapse"
-			aria-expanded="false"> <i class="fas fa-home"></i> 首頁
+		<li><a href="/main/index" aria-expanded="false"> <i
+				class="fas fa-home"></i> 首頁
 		</a></li>
-		<li><a href="/admin/memberBeans/index"> <i class="fas fa-newspaper"></i> 活動消息
+		<li><a href="#"> <i class="fas fa-newspaper"></i> 活動消息
 		</a> <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
 			class="dropdown-toggle"> <i class="fas fa-gamepad"></i>遊戲
 		</a>
 			<ul class="collapse list-unstyled" id="pageSubmenu">
-				<li><a href="/main/game/Mineweeper">Page 1</a></li>
+				<li><a href="/main/game/Mineweeper">踩地雷</a></li>
 				<li><a href="#">Page 2</a></li>
 				<li><a href="#">Page 3</a></li>
 			</ul></li>
@@ -51,8 +51,8 @@
 
 
 	<ul class="list-unstyled CTAs">
-		<li><a href="#" class="download" style="text-align: center">登出</a>
-		</li>
+		<li><a href="/admin/memberBeans/index" class="download"
+			style="text-align: center">登出</a></li>
 	</ul>
 
 </nav>
