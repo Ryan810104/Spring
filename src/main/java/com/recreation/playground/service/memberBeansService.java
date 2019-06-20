@@ -13,33 +13,43 @@ public class memberBeansService {
 	@Autowired
 	private memberBeansDao dao;
 
-	
+	public String register(memberBeans member) {
+		memberBeans insertData = new memberBeans();
+		System.out.println(insertData);
+		insertData.setMemberId(member.getMemberId());
+		insertData.setMemberPassword(member.getMemberPassword());
+		insertData.setMemberEmail(member.getMemberEmail());
+		insertData.setMemberPhonenum(member.getMemberPhonenum());
+		insertData.setMemberPermission(0);
+		insertData.setMemberViplevel(0);
+		System.out.println(insertData);
+		System.out.println(dao.save(insertData));
+		System.out.println(insertData);
 
-	
-	public String login(String memberId,String memberPwd) {
-		String result="false";
+		return "123";
+	}
+
+	public String login(String memberId, String memberPwd) {
+		String result = "false";
 //		System.out.println("1");
-		memberBeans beans=dao.findByMemberId(memberId);//查詢資料庫有無此帳戶
-		
-		
+		memberBeans beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
+
 //		System.out.println("2");
 //		System.out.println(beans);
-		if(beans==null) {
-			return result;//查無帳號回傳'false'
+		if (beans == null) {
+			return result;// 查無帳號回傳'false'
 		}
-		
-		
-		
-		if(beans.getMemberId()!=null&&beans.getMemberPassword().equals(memberPwd)){
 
-			result="Success";//有此帳號且資料庫密碼與前端輸入相同時，result改為'Success'
-			
+		if (beans.getMemberId() != null && beans.getMemberPassword().equals(memberPwd)) {
+
+			result = "Success";// 有此帳號且資料庫密碼與前端輸入相同時，result改為'Success'
+
 		}
-		
+
 //		System.out.println("3");
-		
-		return result;//回傳result
-		
+
+		return result;// 回傳result
+
 	}
-	
+
 }

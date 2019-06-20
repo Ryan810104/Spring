@@ -53,6 +53,53 @@ public class memberBeansController {
 	public String openindex(Model model) {
 		return "/main/Index";
 	}
+	@RequestMapping("/register")
+	public String openregister(Model model) {
+		return "/main/registerForm";
+	}
 	
+	@RequestMapping("/registerForm")
+	public String register(@Valid @ModelAttribute("registerForm") memberBeans member, BindingResult result,
+			Model model) {
+//		System.out.println(member.getMemberId());
+//		System.out.println(member.getMemberPassword());
+//		System.out.println(member.getMemberPasswordComfirm());
+//		System.out.println(member.getMemberEmail());
+//		System.out.println(member.getMemberPhonenum());
+//		System.out.println(member);
+//		System.out.println(result);
+//		System.out.println(model);
+		String memberId=member.getMemberId();
+		String memberPwd=member.getMemberPassword();
+		String memberPwdCon=member.getMemberPasswordComfirm();
+		String memberEmail=member.getMemberEmail();
+		
+		Map<String, String> errorMessage = new HashMap<>();
+		model.addAttribute("ErrorMsg", errorMessage);
+		model.addAttribute("registerResult", "1");
+		
+//		System.out.println("1");
+//		if (result.hasErrors()) {
+//			model.addAttribute("memberParam", member);
+//			return "/main/registerForm";
+//		}
+		String registerResult = service.register(member);
+//		
+//		
+//		
+//		
+//		
+		if (registerResult.equals("Success")) {
+
+//			System.out.println("2");
+			model.addAttribute("userId", member.getMemberId());
+			return "/main/Index";
+		} else {
+			model.addAttribute("memberParam", member);
+			errorMessage.put("registerError", "所需資訊錯誤");
+			return "/main/registerForm";
+		}
+
+	}
 	
 }
