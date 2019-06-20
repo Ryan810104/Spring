@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<button onclick="topFunction()" id="footbtn" title="Go to top">
+	<i class="fas fa-angle-up"></i>
+</button>
+
+
 <script>
 	window.onscroll = function() {
 		scrollFunction()
 	};
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("myBtn").style.display = "block";
+            document.getElementById("footbtn").style.display = "block";
         } else {
-            document.getElementById("myBtn").style.display = "none";
+            document.getElementById("footbtn").style.display = "none";
         }
     }
 	// When the user clicks on the button, scroll to the top of the document
@@ -18,7 +23,7 @@
 	}
 </script>
 <style>
-#myBtn {
+#footbtn {
 	display: none;
 	position: fixed;
 	bottom: 20px;
@@ -30,19 +35,3 @@
 	border-radius: 4px;
 }
 </style>
-<button onclick="topFunction()" id="myBtn" title="Go to top">
-	<i class="fas fa-angle-up"></i>
-</button>
-<footer class="fixed-bottom" style="text-align:center">
-	<p class="d-inline ">
-		<a href="#">© iii - 107 - Team2</a>
-	</p>
-	<p class="d-inline text-success">×</p>
-	<p class="d-inline ">
-		<a href="#">關於我們</a>
-	</p>
-	<p class="d-inline text-success">×</p>
-	<p class="d-inline ">
-		<a href="#">技術支援</a>
-	</p>
-</footer>

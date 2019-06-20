@@ -4,20 +4,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<jsp:include page="header.jsp"></jsp:include>
-<!-- Custom styles for this template -->
-<link rel="stylesheet" href="/resources/css/CustomAfterIndex.css">
+<jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
+<!-- Custom styles for this template -->   
 </head>
 <body>
 	<!-- wrapper -->
 	<div class="wrapper">
 		<!-- Sidebar -->
-		<jsp:include page="sidebar.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
 		<div class="container">
 			<!-- b:nav -->
 			<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-				VipLevel 新增 / 修改 / 刪除</nav>
+				VipLevel 新增 / 修改 / 刪除
+				<a href="/admin/vip/test2">sdsds</a>
+				</nav>
+				
 			<!-- e:nav -->
 			<!-- b:row -->
 			<!-- b:row-1 -->
@@ -114,6 +116,7 @@
 							</tr>
 							<tr>
 								<td>刪除 : 列表選取刪除哪項 點擊刪除按鈕</td>
+								
 							</tr>
 						</table>
 						<form method="POST" action="/admin/vip/query">
@@ -130,7 +133,9 @@
 
 
 				<!-- e:row -->
-				<jsp:include page="footer.jsp"></jsp:include>
+				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+				
+
 				<!-- Your data ends here -->
 				<!-- End of context -->
 			</div>

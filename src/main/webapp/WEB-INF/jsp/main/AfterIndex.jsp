@@ -5,7 +5,7 @@
 
 <head>
 
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
@@ -17,7 +17,7 @@
 <body>
     <!--NavBar-->
     <div class="wrapper" >
-    <jsp:include page="sideBar.jsp" />
+		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 
         <!--NAV BAR end-->
         <!-- Page Content  -->
@@ -182,7 +182,7 @@
                         </div>
                     </div>
                 </div>
-                <jsp:include page="footer.jsp" />
+				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
             </div>
         </div>
     </div>
