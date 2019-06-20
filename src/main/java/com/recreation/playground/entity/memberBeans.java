@@ -38,6 +38,8 @@ public class memberBeans {
 	
 	private String memberPasswordComfirm;
 	
+	private String nickName;
+	
 	@Column
 	private Integer memberPermission;
 	//會員權限

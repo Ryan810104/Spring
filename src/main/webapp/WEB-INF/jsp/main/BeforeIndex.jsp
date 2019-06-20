@@ -324,7 +324,7 @@
 
                         <div class="mb-3">
                             <label for="identityCode">ID<span class="text-muted">(必要)</span></label>
-                            <input type="text" class="form-control" id="identityCode" name="identityCode" placeholder="" required>
+                            <input type="text" class="form-control" id="memberId" name="memberId" placeholder="" required>
                             <div class="invalid-feedback">
                                 不合法的ID
                             </div>
@@ -334,14 +334,14 @@
                       <div class="row">
                         <div class="col-md-6 mb-3">
                           <label for="firstTimePassword">密碼<span class="text-muted">(必要)</span></label>
-                          <input type="password" class="form-control" id="firstTimePassword" name="firstTimePassword" placeholder="" value="" required>
+                          <input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="" value="" required>
                           <div class="invalid-feedback">
                             不合法的密碼
                           </div>
                         </div>
                         <div class="col-md-6 mb-3">
                           <label for="secondTimePassword">確認密碼<span class="text-muted">(必要)</span></label>
-                          <input type="password" class="form-control" id="secondTimePassword" name="secondTimePassword" placeholder="" value="" required>
+                          <input type="password" class="form-control" id="memberPasswordComfirm" name="memberPasswordComfirm" placeholder="" value="" required>
                           <div class="invalid-feedback">
                             跟前面不一樣ㄛ
                           </div>
@@ -354,7 +354,7 @@
                           <div class="input-group-prepend">
                             <span class="input-group-text">@</span>
                           </div>
-                          <input type="text" class="form-control" id="username" name="username" placeholder="" required>
+                          <input type="text" class="form-control" id="nickName" name="nickName" placeholder="" required>
                           <div class="invalid-feedback" style="width: 100%;">
                             暱稱怪怪der
                           </div>
@@ -363,7 +363,7 @@
                       
                       <div class="mb-3">
                           <label for="phone">手機號碼</label>
-                          <input type="text" class="form-control" id="phone" name="phone" placeholder="" required>
+                          <input type="text" class="form-control" id="memberPhonenum" name="memberPhonenum" placeholder="" required>
                           <div class="invalid-feedback">
                               請輸入合法號碼
                           </div>
@@ -371,7 +371,7 @@
           
                       <div class="mb-3">
                         <label for="email">E-mail </label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="">
+                        <input type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
                         <div class="invalid-feedback">
                           請輸入合法電子郵件
                         </div>
