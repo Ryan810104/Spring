@@ -6,451 +6,584 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
-    <link href="/resources/css/CustomBeforeIndex.css" rel="stylesheet">
+<link href="/resources/css/CustomBeforeIndex.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav" style="background: #6d7fcc; max-height: 5.1rem;">
-        <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">EEIT107 Team2 Demo</a>
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                NoneShow
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav text-uppercase ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#services">大綱</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#about">導覽</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#team">團隊</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="#contact">註冊</a>
-                    </li>
-                </ul>
-                <div>
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-info pull-right  mr-5" data-toggle="modal" data-target="#login">&nbsp&nbsp&nbsp&nbsp立即登入&nbsp&nbsp&nbsp&nbsp</button>
-    </nav>
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav"
+		style="background: #6d7fcc; max-height: 5.1rem;">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">EEIT107
+				Team2 Demo</a>
+			<button class="navbar-toggler navbar-toggler-right" type="button"
+				data-toggle="collapse" data-target="#navbarResponsive"
+				aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				NoneShow <i class="fas fa-bars"></i>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav text-uppercase ml-auto">
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#services">大綱</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#about">導覽</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#team">團隊</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger"
+						href="#contact">註冊</a></li>
+				</ul>
+				<div></div>
+			</div>
+		</div>
+		<button class="btn btn-info pull-right  mr-5" data-toggle="modal"
+			data-target="#login">&nbsp&nbsp&nbsp&nbsp立即登入&nbsp&nbsp&nbsp&nbsp</button>
+	</nav>
 
-    <!-- Header -->
-    <header class="masthead">
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-lead-in"></div>
-                <div class="intro-heading text-uppercase">歡迎您!</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" href="#services">查看更多</a>
-            </div>
-        </div>
-    </header>
+	<!-- Header -->
+	<header class="masthead">
+		<div class="container">
+			<div class="intro-text">
+				<div class="intro-lead-in"></div>
+				<div class="intro-heading text-uppercase">歡迎您!</div>
+				<a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger"
+					href="#services">查看更多</a>
+			</div>
+		</div>
+	</header>
 
-    <!-- Services -->
-    <section class="page-section" id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">大綱</h2>
-                    <h3 class="section-subheading text-muted">網頁主功能介紹</h3>
-                </div>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">購物</h4>
-                    <p class="text-muted">一起來購物!</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-dice fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">開始遊戲</h4>
-                    <p class="text-muted">我們有非常多的遊戲等您來挑戰!</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                        <i class="fas fa-user-friends fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <h4 class="service-heading">社交</h4>
-                    <p class="text-muted">交朋友!</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- About -->
-    <section class="bg-light page-section" id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">導覽</h2>
-                    <h3 class="section-subheading text-muted">跟著步驟，開始遊戲並賺取金幣！</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-image">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fas fa-clipboard-check fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h6>第一步</h6>
-                                    <h4 class="subheading">註冊</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">填寫以下表格，成為我們的會員吧！</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fas fa-dice fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h6>第二步</h6>
-                                    <h4 class="subheading">開始遊戲</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">請選擇遊戲：</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="timeline-image">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h6>第三步</h6>
-                                    <h4 class="subheading">賺取金幣</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">贏得遊戲，賺取金幣</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <span class="fa-stack fa-4x">
-                                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h6>第四步</h6>
-                                    <h4 class="subheading">購物</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">利用您賺取的金幣，開始購物吧！</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <br>
-                                <h4>開始遊戲</h4>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+	<!-- Services -->
+	<section class="page-section" id="services">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading text-uppercase">大綱</h2>
+					<h3 class="section-subheading text-muted">網頁主功能介紹</h3>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fas fa-circle fa-stack-2x text-primary"></i> <i
+						class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">購物</h4>
+					<p class="text-muted">一起來購物!</p>
+				</div>
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fas fa-circle fa-stack-2x text-primary"></i> <i
+						class="fas fa-dice fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">開始遊戲</h4>
+					<p class="text-muted">我們有非常多的遊戲等您來挑戰!</p>
+				</div>
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fas fa-circle fa-stack-2x text-primary"></i> <i
+						class="fas fa-user-friends fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="service-heading">社交</h4>
+					<p class="text-muted">交朋友!</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- About -->
+	<section class="bg-light page-section" id="about">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading text-uppercase">導覽</h2>
+					<h3 class="section-subheading text-muted">跟著步驟，開始遊戲並賺取金幣！</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<ul class="timeline">
+						<li>
+							<div class="timeline-image">
+								<span class="fa-stack fa-4x"> <i
+									class="fas fa-clipboard-check fa-stack-1x fa-inverse"></i>
+								</span>
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h6>第一步</h6>
+									<h4 class="subheading">註冊</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">填寫以下表格，成為我們的會員吧！</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<span class="fa-stack fa-4x"> <i
+									class="fas fa-dice fa-stack-1x fa-inverse"></i>
+								</span>
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h6>第二步</h6>
+									<h4 class="subheading">開始遊戲</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">請選擇遊戲：</p>
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="timeline-image">
+								<span class="fa-stack fa-4x"> <i
+									class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
+								</span>
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h6>第三步</h6>
+									<h4 class="subheading">賺取金幣</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">贏得遊戲，賺取金幣</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<span class="fa-stack fa-4x"> <i
+									class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+								</span>
+							</div>
+							<div class="timeline-panel">
+								<div class="timeline-heading">
+									<h6>第四步</h6>
+									<h4 class="subheading">購物</h4>
+								</div>
+								<div class="timeline-body">
+									<p class="text-muted">利用您賺取的金幣，開始購物吧！</p>
+								</div>
+							</div>
+						</li>
+						<li class="timeline-inverted">
+							<div class="timeline-image">
+								<br>
+								<h4>開始遊戲</h4>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <!-- Team -->
-    <section class=" page-section" id="team">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">我們的團隊</h2>
-                    <h3 class="section-subheading text-muted">團隊介紹</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt="">
-                        <h4>陳峻宏</h4>
-                        <p class="text-muted">Background Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt="">
-                        <h4>劉九榕</h4>
-                        <p class="text-muted">Background Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt="">
-                        <h4>謝政餘</h4>
-                        <p class="text-muted">Background Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+	<!-- Team -->
+	<section class=" page-section" id="team">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading text-uppercase">我們的團隊</h2>
+					<h3 class="section-subheading text-muted">團隊介紹</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img class="mx-auto rounded-circle"
+							src="/resources/img/team/1.jpg" alt="">
+						<h4>陳峻宏</h4>
+						<p class="text-muted">Background Designer</p>
+						<ul class="list-inline social-buttons">
+							<li class="list-inline-item"><a href="#"> <i
+									class="fas fa-bars"></i>
+							</a></li>
+							<li class="list-inline-item"><a href="#"> <i
+									class="fab fa-facebook-f"></i>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img class="mx-auto rounded-circle"
+							src="/resources/img/team/1.jpg" alt="">
+						<h4>劉九榕</h4>
+						<p class="text-muted">Background Designer</p>
+						<ul class="list-inline social-buttons">
+							<li class="list-inline-item"><a href="#"> <i
+									class="fas fa-bars"></i>
+							</a></li>
+							<li class="list-inline-item"><a href="#"> <i
+									class="fab fa-facebook-f"></i>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img class="mx-auto rounded-circle"
+							src="/resources/img/team/1.jpg" alt="">
+						<h4>謝政餘</h4>
+						<p class="text-muted">Background Designer</p>
+						<ul class="list-inline social-buttons">
+							<li class="list-inline-item"><a href="#"> <i
+									class="fas fa-bars"></i>
+							</a></li>
+							<li class="list-inline-item"><a href="#"> <i
+									class="fab fa-facebook-f"></i>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt="">
-                        <h4>張人友</h4>
-                        <p class="text-muted">Background Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="/resources/img/team/2.jpg" alt="">
-                        <h4>王泉</h4>
-                        <p class="text-muted">Background Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="team-member">
-                        <img class="mx-auto rounded-circle" src="/resources/img/team/3.jpg" alt="">
-                        <h4>吳紹銘</h4>
-                        <p class="text-muted">Background Designer</p>
-                        <ul class="list-inline social-buttons">
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fas fa-bars"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img class="mx-auto rounded-circle"
+							src="/resources/img/team/1.jpg" alt="">
+						<h4>張人友</h4>
+						<p class="text-muted">Background Designer</p>
+						<ul class="list-inline social-buttons">
+							<li class="list-inline-item"><a href="#"> <i
+									class="fas fa-bars"></i>
+							</a></li>
+							<li class="list-inline-item"><a href="#"> <i
+									class="fab fa-facebook-f"></i>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img class="mx-auto rounded-circle"
+							src="/resources/img/team/2.jpg" alt="">
+						<h4>王泉</h4>
+						<p class="text-muted">Background Designer</p>
+						<ul class="list-inline social-buttons">
+							<li class="list-inline-item"><a href="#"> <i
+									class="fas fa-bars"></i>
+							</a></li>
+							<li class="list-inline-item"><a href="#"> <i
+									class="fab fa-facebook-f"></i>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="team-member">
+						<img class="mx-auto rounded-circle"
+							src="/resources/img/team/3.jpg" alt="">
+						<h4>吳紹銘</h4>
+						<p class="text-muted">Background Designer</p>
+						<ul class="list-inline social-buttons">
+							<li class="list-inline-item"><a href="#"> <i
+									class="fas fa-bars"></i>
+							</a></li>
+							<li class="list-inline-item"><a href="#"> <i
+									class="fab fa-facebook-f"></i>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		function chkId() {
+			let theId = document.getElementById("memberId").value;
+			let theIdLen = theId.length;
+			let re = new RegExp("^[a-zA-Z][a-zA-Z0-9]{7,15}$");
+			flag1 = false;
+
+			if (theId == "")
+				document.getElementById("idsp").innerHTML = "<i style='color:red'>不可空白</i>"
+			else if (theIdLen < 16) {
+				if (theIdLen >= 8) {
+					if (re.test(theId)) {
+						flag1 = true;
+						document.getElementById("idsp").innerHTML = "<n style='color:#66FFFF'>正確</i>"
+					} else
+						document.getElementById("idsp").innerHTML = "<i style='color:red'>必須含英文或數字,首字為英文</i>"
+				} else
+					document.getElementById("idsp").innerHTML = "<i style='color:red'>必須大於8個字</i>"
+			} else
+				document.getElementById("idsp").innerHTML = "<i style='color:red'>必須小於16個字</i>"
+		}
+		document.addEventListener("DOMContentLoaded",
+				function() {
+					document.getElementById("memberId").addEventListener(
+							"blur", chkId);
+				})
+
+		function chkPwd() {
+			let thePwd1 = document.getElementById("memberPassword").value;
+			let thePwdLen = thePwd1.length;
+			let re = new RegExp("^[a-zA-Z0-9]{7,15}$");
+			flag2 = false;
+
+			if (thePwd1 == "")
+				document.getElementById("pwdsp1").innerHTML = "<i style='color:red'>不可空白</i>"
+			else if (thePwdLen < 16) {
+				if (thePwdLen >= 8) {
+					if (re.test(thePwd1)) {
+						flag2 = true;
+						document.getElementById("pwdsp1").innerHTML = "<n style='color:#66FFFF'>正確</i>"
+					} else
+						document.getElementById("pwdsp1").innerHTML = "<i style='color:red'>必須含英文及數字</i>"
+				} else
+					document.getElementById("pwdsp1").innerHTML = "<i style='color:red'>必須大於8個字</i>"
+			} else
+				document.getElementById("pwdsp1").innerHTML = "<i style='color:red'>必須小於16個字</i>"
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("memberPassword").addEventListener("blur",
+					chkPwd);
+		})
+
+		function chkPwd2() {
+			let thePwd1 = document.getElementById("memberPassword").value;
+			let thePwd2 = document.getElementById("memberPasswordComfirm").value;
+			flag3 = false;
+
+			if (thePwd2 == "")
+				document.getElementById("pwdsp2").innerHTML = "<i style='color:red'>不可空白</i>"
+			else if (thePwd2 === thePwd1) {
+				flag3 = true;
+				document.getElementById("pwdsp2").innerHTML = "<n style='color:#66FFFF'>正確</i>"
+			} else
+				document.getElementById("pwdsp2").innerHTML = "<i style='color:red'>錯誤</i>"
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("memberPasswordComfirm").addEventListener(
+					"blur", chkPwd2);
+		})
+
+		function chkName() {
+			let theName = document.getElementById("nickName").value;
+			let theNameLen = theName.length;
+			let re = new RegExp("^[\\u4E00-\\u9FFF]{2,8}$");
+			flag4 = true;
+			
+			
+			if (theName != "") {
+				flag4 = false;
+				if (theNameLen <= 8) {
+					if (theNameLen >= 2) {
+						if (re.test(theName)) {
+							flag4 = true;
+							document.getElementById("nnsp").innerHTML = "<n style='color:#66FFFF'>正確</n>";
+
+						} else
+							document.getElementById("nnsp").innerHTML = "<i style='color:red'>必須全部為中文字</i>";
+					} else
+						document.getElementById("nnsp").innerHTML = "<i style='color:red'>至少2個字</i>";
+				} else
+					document.getElementById("nnsp").innerHTML = "<i style='color:red'>需小於8個字</i>";
+			} else
+				
+				document.getElementById("nnsp").innerHTML = "";
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("nickName").addEventListener("blur",
+					chkName);
+		})
+
+		function chkPhone() {
+			let thePhone = document.getElementById("memberPhonenum").value;
+			let re = new RegExp("^[09]{2}[0-9]{8}$");
+			flag5 = false;
+
+			if (thePhone == "") {
+				document.getElementById("phonesp").innerHTML = "<i style='color:red'>不可空白</n>";
+			} else if (re.test(thePhone)) {
+				flag5 = true;
+				document.getElementById("phonesp").innerHTML = "<n style='color:#66FFFF'>正確</n>";
+			} else
+				document.getElementById("phonesp").innerHTML = "<i style='color:red'>錯誤</i>";
+
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("memberPhonenum").addEventListener("blur",
+					chkPhone);
+		})
+
+		function chkEmail() {
+			let theEmail = document.getElementById("memberEmail").value;
+			let re = new RegExp(
+					"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\.\\w+([-.]\\w+)*$");
+			flag6 = true;
+			
+			if (theEmail != "") {
+				flag6 = false;
+				if (re.test(theEmail)) {
+					flag6 = true;
+					document.getElementById("emailsp").innerHTML = "<n style='color:#66FFFF'>正確</n>";
+				} else
+					document.getElementById("emailsp").innerHTML = "<i style='color:red'>格式不符</i>";
+			} else
+				
+				document.getElementById("emailsp").innerHTML = "";
+		}
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("memberEmail").addEventListener("blur",
+					chkEmail);
+		})
+
+		function chkAll() {
+			chkId();
+			chkPwd();
+			chkPwd2();
+			chkName();
+			chkPhone();
+			chkEmail();
+			
+			if (flag1 && flag2 && flag3 && flag4 && flag5 && flag6 ) {
+				document.fileForm.submit();
+			}
+		}
+	</script>
+
+	<!-- Contact -->
+	<section class="page-section" id="contact">
+		<div class="container ">
+			<div class="row">
+				<div class="col-lg-12 text-center">
+					<h2 class="section-heading text-uppercase">註冊</h2>
+					<h3 class="section-subheading text-muted">//</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4  m-auto" style="color: white">
+					<form class="needs-validation" name="fileForm">
+
+						<div class="mb-3">
+							<label for="memberId">ID<span class="text-muted">(必要)必須含英文或數字,首字為英文</span></label>
+							<input type="text" class="form-control" id="memberId"
+								name="memberId"><span id="idsp"></span>
+						</div>
 
 
-    <!-- Contact -->
-    <section class="page-section" id="contact">
-        <div class="container ">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading text-uppercase">註冊</h2>
-                    <h3 class="section-subheading text-muted">//</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4  m-auto" style="color:white">
-                    <form class="needs-validation" novalidate>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="memberPassword">密碼<span class="text-muted">(必要)英文及數字</span></label>
+								<input type="password" class="form-control" id="memberPassword"
+									name="memberPassword"><span id="pwdsp1"></span>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="memberPasswordComfirm">確認密碼<span
+									class="text-muted">(必要)</span></label> <input type="password"
+									class="form-control" id="memberPasswordComfirm"
+									name="memberPasswordComfirm"> <span id="pwdsp2"></span>
+							</div>
+						</div>
 
-                        <div class="mb-3">
-                            <label for="identityCode">ID<span class="text-muted">(必要)</span></label>
-                            <input type="text" class="form-control" id="memberId" name="memberId" placeholder="" required>
-                            <div class="invalid-feedback">
-                                不合法的ID
-                            </div>
-                          </div>
-                        
-                              
-                      <div class="row">
-                        <div class="col-md-6 mb-3">
-                          <label for="firstTimePassword">密碼<span class="text-muted">(必要)</span></label>
-                          <input type="password" class="form-control" id="memberPassword" name="memberPassword" placeholder="" value="" required>
-                          <div class="invalid-feedback">
-                            不合法的密碼
-                          </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                          <label for="secondTimePassword">確認密碼<span class="text-muted">(必要)</span></label>
-                          <input type="password" class="form-control" id="memberPasswordComfirm" name="memberPasswordComfirm" placeholder="" value="" required>
-                          <div class="invalid-feedback">
-                            跟前面不一樣ㄛ
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="mb-3">
-                        <label for="username">暱稱</label>
-                        <div class="input-group">
-                          <div class="input-group-prepend">
-                            <span class="input-group-text">@</span>
-                          </div>
-                          <input type="text" class="form-control" id="nickName" name="nickName" placeholder="" required>
-                          <div class="invalid-feedback" style="width: 100%;">
-                            暱稱怪怪der
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div class="mb-3">
-                          <label for="phone">手機號碼</label>
-                          <input type="text" class="form-control" id="memberPhonenum" name="memberPhonenum" placeholder="" required>
-                          <div class="invalid-feedback">
-                              請輸入合法號碼
-                          </div>
-                        </div>
-          
-                      <div class="mb-3">
-                        <label for="email">E-mail </label>
-                        <input type="email" class="form-control" id="memberEmail" name="memberEmail" placeholder="">
-                        <div class="invalid-feedback">
-                          請輸入合法電子郵件
-                        </div>
-                      </div>
-                      <hr class="mb-4">
-                      <button class="btn btn-primary btn-lg btn-block" type="submit">註冊</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+						<div class="mb-3">
+							<label for="nickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
+							<input type="text" class="form-control" id="nickName"
+								name="nickName"> <span id="nnsp"></span>
+						</div>
 
-    <!-- Footer -->
+						<div class="mb-3">
+							<label for="memberPhonenum">手機號碼<span class="text-muted">(必要)</span></label>
+							<input type="text" class="form-control" id="memberPhonenum"
+								name="memberPhonenum"> <span id="phonesp"></span>
+						</div>
 
-    <!-- Modal login-->
-    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">登入</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                </div>
-                <div class="modal-body">
-                    <form id="memberBeansForm" name="memberBeansForm"
-		action="/admin/memberBeans/login" method="post">
-                        <h4 class="mb-3"></h4>
-                        <div class="mb-3">
-                            <label for="inputID">請輸入ID</label>
-                            <input type="text" id="memberId" name="memberId" value="${memberParam.memberId}" class="form-control" placeholder="" required autofocus>
-                        </div>
-                      
-                        <div class="mb-3">
-                            <label for="inputPassword">請輸入密碼</label>
-                            <input type="password" id="memberPassword"
-					name="memberPassword" value="" class="form-control" placeholder="" required>
-                        </div>
-                      
-                        <div class="mb-3">
-                          <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                          </label>
-                        </div>
-                        <hr>
-                        <p style="color: red">${ErrorMsg.loginError}</p>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
-                      </form>
-                </div>
-            </div>
-        </div>
-    </div>
+						<div class="mb-3">
+							<label for="memberEmail">E-mail <span class="text-muted">(非必要)</span></label>
+							<input type="email" class="form-control" id="memberEmail"
+								name="memberEmail"> <span id="emailsp"></span>
+						</div>
+						<hr class="mb-4">
+						<input type="button" class="btn btn-primary btn-lg btn-block"
+							onclick="chkAll()" value="註冊">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<!--     Bootstrap core JavaScript -->
-<!--     <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
-<!--     <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+	<!-- Footer -->
 
-<!--     Plugin JavaScript -->
-<!--     <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+	<!-- Modal login-->
+	<div class="modal fade" id="login" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">登入</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="memberBeansForm" name="memberBeansForm"
+						action="/admin/memberBeans/login" method="post">
+						<h4 class="mb-3"></h4>
+						<div class="mb-3">
+							<label for="inputID">請輸入ID</label> <input type="text"
+								id="memberId" name="memberId" value="${memberParam.memberId}"
+								class="form-control" placeholder="" required autofocus>
+						</div>
 
-<!--     Contact form JavaScript -->
-<!--     <script src="/resources/vendor/js/jqBootstrapValidation.js"></script> -->
+						<div class="mb-3">
+							<label for="inputPassword">請輸入密碼</label> <input type="password"
+								id="memberPassword" name="memberPassword" value=""
+								class="form-control" placeholder="" required>
+						</div>
+
+						<div class="mb-3">
+							<label> <input type="checkbox" value="remember-me">
+								Remember me
+							</label>
+						</div>
+						<hr>
+						<p style="color: red">${ErrorMsg.loginError}</p>
+						<button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--     Bootstrap core JavaScript -->
+	<!--     <script src="/resources/vendor/jquery/jquery.min.js"></script> -->
+	<!--     <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+	<!--     Plugin JavaScript -->
+	<!--     <script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script> -->
+
+	<!--     Contact form JavaScript -->
+	<!--     <script src="/resources/vendor/js/jqBootstrapValidation.js"></script> -->
 
 
-<!--     Custom scripts for this template -->
-<!--     <script src="/resources/vendor/js/agency.min.js"></script> -->
+	<!--     Custom scripts for this template -->
+	<!--     <script src="/resources/vendor/js/agency.min.js"></script> -->
 
 
 
 </body>
 <script src="/resources/js/CustomBeforeIndex.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Noto Sans TC', sans-serif;
-        }
-    </style>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css">
+<link href='https://fonts.googleapis.com/css?family=Kaushan+Script'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic'
+	rel='stylesheet' type='text/css'>
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+<link
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
+	rel="stylesheet">
+<style>
+* {
+	font-family: 'Noto Sans TC', sans-serif;
+}
+</style>
 </html>
