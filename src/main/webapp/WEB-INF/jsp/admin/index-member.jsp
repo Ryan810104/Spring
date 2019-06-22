@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" charset="utf-8" id="zm-extension" src="chrome-extension://fdcgdnkidjaadafnichfpabhfomcebme/scripts/webrtc-patch.js" async=""></script>
+<script type="text/javascript" charset="utf-8" id="zm-extension"
+	src="chrome-extension://fdcgdnkidjaadafnichfpabhfomcebme/scripts/webrtc-patch.js"
+	async=""></script>
 <head>
 <meta charset="UTF-8">
 
@@ -18,8 +20,8 @@
 <script>
 	document.addEventListener("DOMContentLoaded", function() {
 		document.getElementById("delete1").addEventListener("click", delete1);
-		document.getElementById("update1").addEventListener("click", update2);
-		document.getElementById("insert1").addEventListener("click", insert1);
+		// 		document.getElementById("update1").addEventListener("click", update2);
+		// 		document.getElementById("insert1").addEventListener("click", insert1);
 		document.getElementById("find1").addEventListener("click", find1);
 	});
 	function delete1() {
@@ -30,10 +32,10 @@
 		document.form1.action = "/admin/member/update";
 		document.form1.submit();
 	}
-	function insert1() {
-		document.form1.action = "/admin/member/insert";
-		document.form1.submit();
-	}
+	// 	function insert1() {
+	// 		document.form1.action = "/admin/member/insert";
+	// 		document.form1.submit();
+	// 	}
 	function find1() {
 		document.form1.action = "/admin/member/findone";
 		document.form1.submit();
@@ -52,40 +54,39 @@
 	// 			});
 	// 		});
 </script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 </head>
 
 <body class="text-center">
 	<form class="form-signin" name="form1" id="form1" action=""
 		method="POST">
 		<div>
-			<h2>新增高速公路資料</h2>
+			<h2>註冊資料</h2>
 			<div class="form-group row">
 				<div class="col-sm-12">
 					<input id='highwaynameida' name="id" type="text"
-						value="${param.id}" class="form-control" placeholder="id:">
+						value="${memberP.id}" class="form-control" placeholder="id:">
 					<div>${ErrorMsg.highwayName}</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
 					<input id='password' name="password" type="text"
-						value="${param.password}" placeholder="password:"
+						value="${memberP.password}" placeholder="password:"
 						class="form-control">
 					<div>${ErrorMsg.highwayName}</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='email' name="email" type="text" value="${param.email}"
+					<input id='email' name="email" type="text" value="${memberP.email}"
 						placeholder="email:" class="form-control">
 					<div>${ErrorMsg.highwayName}</div>
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='phone' name="phone" type="text" value="${param.phone}"
+					<input id='phone' name="phone" type="text" value="${memberP.phone}"
 						placeholder="phone:" class="form-control">
 					<div>${ErrorMsg.highwayName}</div>
 				</div>
@@ -95,55 +96,23 @@
 
 			<div class="form-group row">
 				<div class="btn-group">
-					<button class="btn btn-lg btn-primary" type="button"
-						id="delete1">delete</button>
+					<button class="btn btn-lg btn-primary" type="button" id="delete1">delete</button>
 
 
 
-					<button class="btn btn-lg btn-primary" type="button"
-						id="update1">update</button>
+					<button class="btn btn-lg btn-primary" type="button" id="update1">update</button>
 
-					<button class="btn btn-lg btn-primary" type="button"
-						id="insert1">insert</button>
+					<button class="btn btn-lg btn-primary" type="button" id="insert1">insert</button>
 
-					<button class="btn btn-lg btn-primary" type="button"
-						id="find1">find</button>
+					<button class="btn btn-lg btn-primary" type="button" id="find1">find</button>
 				</div>
 
 			</div>
 			<div>${ErrorMsg.exception}</div>
 		</div>
 	</form>
-<script>
-$("#insert1").click(function(){
-	var insert=$("#form1").serializeArray();
-	alert(insert);
-	alert(JSON.stringify(insert));
-	var i = {};
-	$.each(insert,function(index,value1){
-		i[value1.name]=value1.value;
-	});
-	var ant=JSON.stringify(i);
-	alert(ant);
-	$.ajax({
-		url:"/admin/member/insert",
-		method:"POST",
-		contentType:"application/json;charset=UTF-8",
-		data :article,
-		success:function(hoho){
-			alert("新增成功"+JSON.stringify(hoho));
-			$(location).attr("href"="/admin/membe/list");
-		},
-		error:function(hoho){
-			alert("資料新增失敗");
-		}
-	});
-});
 
-
-</script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- 	Bootstarp -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 		crossorigin="anonymous"></script>
@@ -155,6 +124,65 @@ $("#insert1").click(function(){
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 		crossorigin="anonymous"></script>
+	<script>
+		$("#insert1").click(function() {
+			var insert = $("#form1").serializeArray();
+			alert(insert);
+			alert(JSON.stringify(insert));
+			var i = {};
+			$.each(insert, function(index, value1) {
+				i[value1.name] = value1.value;
+			});
+			var ant = JSON.stringify(i);
+			alert(ant);
+			$.ajax({
+				url : '/admin/member/insert',
+				method : 'POST',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : ant,
+				success : function(ajaxres) {
+					// 					data=JSON.stringify(data);
+					alert("新增成功" + ajaxres.data.id);
+					$(location).attr("href", "/admin/member/query1");
 
+				},
+				error : function(ajaxres) {
+					alert("資料新增失敗");
+				}
+			});
+		});
+	</script>
+	<script>
+		$("#update1").click(function() {
+			var update = $("#form1").serializeArray();
+			JSON.stringify(update);
+			var n = {};
+			$.each(update, function(key, value1) {
+				n[value1.name] = value1.value;
+			})
+			var update1 = JSON.stringify(n);
+			alert(update1);
+			
+			$.ajax({
+				url : '/admin/member/update',
+				method : 'POST',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : update1,
+				success : function(ajaxres) {
+					alert("新增成功" + ajaxres.data.phone);
+					$(location).attr("href", "/admin/member/query1");
+				},
+				error : function(ajaxres) {
+					alert("資料新增失敗");
+				}
+			})
+		})
+		
+	</script>
+	<!-- jquery	Google CDN -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </body>
 </html>
