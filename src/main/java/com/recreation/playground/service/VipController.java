@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.Vip;
-import com.recreation.playground.web.VipService;
 
 
 
@@ -34,7 +33,7 @@ public class VipController {
 
 	@RequestMapping("/findone")
 	public String findById(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
-		Vip vip1 = vipservice.findById(vip.getVipnumber());
+		Vip vip1 = vipservice.findById(vip.getVipnum());
 		System.out.println(vip1);
 		model.addAttribute("findById", vip1);
 		return "/admin/index-vip";
@@ -66,7 +65,7 @@ public class VipController {
 
 	@RequestMapping("/delete")
 	public String delete(@ModelAttribute("form1") Vip vip, Model model){
-		System.out.println(vipservice.getById(vip.getVipnumber()));
+		System.out.println(vipservice.getById(vip.getVipnum()));
 		vipservice.delete(vip);
 		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/admin/index-vip";
@@ -74,7 +73,7 @@ public class VipController {
 
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("form1") Vip vip, BindingResult result, Model model) {
-		Vip vip1 = vipservice.findById(vip.getVipnumber());
+		Vip vip1 = vipservice.findById(vip.getVipnum());
 		vip1.setViptitle(vip.getViptitle());
 		System.out.println(vip1);
 		Vip update = vipservice.save(vip);

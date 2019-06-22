@@ -11,4 +11,6 @@ public interface MemberDao extends JpaRepository<Member, Integer> {
 	public Member findByIdAndPassword(Integer id,String password);
 	
 	List<Member> findByPhoneOrPassword(String phone,String password);
+	
+}
 
