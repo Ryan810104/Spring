@@ -25,7 +25,7 @@
 
 				<div id="result"
 					style="overflow: scroll; border: 1px solid black; height: 20rem; width: 68rem; font-size: 12px; margin-top: 10px;">
-
+	
 				</div>
 			</div>
 			<br>

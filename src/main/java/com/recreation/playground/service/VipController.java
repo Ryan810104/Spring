@@ -17,6 +17,7 @@ import com.recreation.playground.web.VipService;
 
 
 
+
 @Controller
 @RequestMapping("/admin/vip")
 public class VipController {

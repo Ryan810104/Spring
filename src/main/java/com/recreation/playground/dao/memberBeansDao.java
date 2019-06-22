@@ -7,11 +7,13 @@ import org.springframework.data.repository.query.Param;
 import com.recreation.playground.entity.memberBeans;
 
 public interface memberBeansDao extends JpaRepository<memberBeans, Integer>{
-
-	
 	
 	@Select("select member_id, member_password from member where member_id=#{name}")
 	public memberBeans findByMemberId(@Param("name") String name);
+	
+	public memberBeans findByMemberIdAndMemberPassword(String id,String password);
+	
+	
 	
 
 }

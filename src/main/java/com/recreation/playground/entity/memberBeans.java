@@ -24,6 +24,11 @@ public class memberBeans {
 	@Column
 	private String  memberPassword;
 	//會員密碼
+	
+	private String memberPasswordComfirm;
+	
+	private String nickName;
+	
 	@Column
 	private Integer memberPermission;
 	//會員權限

@@ -39,6 +39,8 @@ public class MemberService {
 		return memberdao.save(member);
 	}
 	
-	
+	public Member getidpsd(Integer id , String password) {
+		return memberdao.findByIdAndPassword(id, password);
+	}
 
 }

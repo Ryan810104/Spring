@@ -42,4 +42,14 @@ public class memberBeansService {
 		
 	}
 	
+	
+	public boolean checkpassword(String id,String password) {
+		if(dao.findByMemberIdAndMemberPassword(id,password) != null) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+	
 }
