@@ -25,6 +25,10 @@ public class MemberService {
 		if (member.getId() != null)
 			memberdao.delete(member);
 	}
+	
+	public List <Member> getByPhoneOrPassword(String phone,String password) {
+		return memberdao.findByPhoneOrPassword(phone, password);
+	}
 
 	public Member getById(Integer Id) {
 		return memberdao.findById(Id).orElse(null);
