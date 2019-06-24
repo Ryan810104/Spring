@@ -26,13 +26,7 @@
 			<div class="container">
 
 				<div id="result"
-<<<<<<< HEAD
 					style="overflow: scroll; border: 1px solid black; height: 20rem; width: 68rem; font-size: 12px; margin-top: 10px;">
-	
-=======
-					style="overflow: scroll; border: 1px solid black; height: 15rem; width: 68rem; font-size: 12px; margin-top: 10px;">
-
->>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 				</div>
 			</div>
 			<br>
