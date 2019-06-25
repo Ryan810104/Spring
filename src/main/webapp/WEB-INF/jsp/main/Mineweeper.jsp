@@ -261,10 +261,11 @@ code {
 }
 </style>
 <body>
+		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar2.jsp"></jsp:include>
 	<!-- wrapper -->
 	<div class="wrapper">
 		<!-- Sidebar -->
-		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
+
 		<!-- start context -->
 		
 		<div class="container">
@@ -370,12 +371,13 @@ code {
 			<!-- Write your data here -->
 			<!-- Write your data here -->
 			<!-- insert footer in the end of context -->
-			<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+
 			<!-- Your data ends here -->
 			<!-- End of context -->
 		</div>
 		<!-- End of wrapper -->
 	</div>
+				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 </body>
 <script src="/resources/js/Mine1.js"></script>
 <script src="/resources/js/Mine2.js"></script>

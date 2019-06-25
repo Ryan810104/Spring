@@ -16,11 +16,14 @@
 </head>
 <body>
     <!--NavBar-->
-    <div class="wrapper" >
-		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
+    
+<!--     <div class="wrapper" > -->
+		
+<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 
         <!--NAV BAR end-->
         <!-- Page Content  -->
+         <article class="content moe">
         <div id="content">
             <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="bd-example">
@@ -182,11 +185,12 @@
                         </div>
                     </div>
                 </div>
-				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+
             </div>
         </div>
-    </div>
-
+        				
+   </article>
+<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 
     <!--Modal1 踩地雷-->
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
