@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
-<!-- Custom styles for this template -->   
+<!-- Custom styles for this template -->
 </head>
 <body>
 	<!-- wrapper -->
@@ -16,23 +16,17 @@
 		<div class="container">
 			<!-- b:nav -->
 			<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-				VipLevel 新增 / 修改 / 刪除
-				<a href="/admin/vip/test2">sdsds</a>
-				</nav>
-				
+				VipLevel 新增 / 修改 / 刪除 <a href="/admin/vip/test2">sdsds</a>
+			</nav>
+
 			<!-- e:nav -->
 			<!-- b:row -->
 			<!-- b:row-1 -->
 			<div class="container">
 
 				<div id="result"
-<<<<<<< HEAD
-					style="overflow: scroll; border: 1px solid black; height: 20rem; width: 68rem; font-size: 12px; margin-top: 10px;">
-	
-=======
 					style="overflow: scroll; border: 1px solid black; height: 15rem; width: 68rem; font-size: 12px; margin-top: 10px;">
 
->>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 				</div>
 			</div>
 			<br>
@@ -121,7 +115,7 @@
 							</tr>
 							<tr>
 								<td>刪除 : 列表選取刪除哪項 點擊刪除按鈕</td>
-								
+
 							</tr>
 						</table>
 						<form method="POST" action="/admin/vip/query">
@@ -139,7 +133,7 @@
 
 				<!-- e:row -->
 				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
-				
+
 
 				<!-- Your data ends here -->
 				<!-- End of context -->
