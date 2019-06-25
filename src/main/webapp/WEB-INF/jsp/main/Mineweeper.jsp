@@ -261,7 +261,7 @@ code {
 }
 </style>
 <body>
-		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar2.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 	<!-- wrapper -->
 	<div class="wrapper">
 		<!-- Sidebar -->
@@ -269,9 +269,7 @@ code {
 		<!-- start context -->
 		
 		<div class="container">
-			<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-				OO <a href="/admin/vip/test2">sdsds</a>
-			</nav>
+
 			<!-- Write your data here -->
 			 <div class="bd-example">
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
@@ -378,6 +376,7 @@ code {
 		<!-- End of wrapper -->
 	</div>
 				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+				<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include> 
 </body>
 <script src="/resources/js/Mine1.js"></script>
 <script src="/resources/js/Mine2.js"></script>

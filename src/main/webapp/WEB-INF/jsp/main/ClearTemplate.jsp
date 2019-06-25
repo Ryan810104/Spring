@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar2.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
          <article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
@@ -15,6 +15,7 @@
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
          </article>
-<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>         
+<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>     
 </body>
 </html>

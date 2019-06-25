@@ -191,6 +191,7 @@
         				
    </article>
 <jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 
     <!--Modal1 踩地雷-->
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
