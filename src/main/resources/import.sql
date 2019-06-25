@@ -1,5 +1,5 @@
 
-NSERT INTO member1 (password, email, phone) values
+INSERT INTO member1 (password, email, phone) values
 (123, 'aaa@gmail.com', '0912345678'),
 (321, 'bbb@gmail.com', '0912345678'),
 (111, '456@gmail.com', '0912311111'),
@@ -28,8 +28,8 @@ NSERT INTO member1 (password, email, phone) values
 (0.59,5,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
 (0.49,6,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
 
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,member_registered_date,member_viplevel,member_photo) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null);
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,member_registered_date,member_viplevel,member_photo) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null);
 
 
 

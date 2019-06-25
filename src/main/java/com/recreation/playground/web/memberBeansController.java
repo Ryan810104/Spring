@@ -3,6 +3,7 @@ package com.recreation.playground.web;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +22,13 @@ public class memberBeansController {
 	@Autowired
 	private memberBeansService service;
 	@RequestMapping("/login")
-	public String login(@Valid @ModelAttribute("memberBeansForm") memberBeans member, BindingResult result, Model model) {
+	public String login(@Valid @ModelAttribute("memberBeansForm") memberBeans member, BindingResult result, Model model,HttpSession session) {
 //		System.out.println(member.getMemberId());
 //		System.out.println(member.getMemberPassword());
 //		System.out.println(result);
 //		System.out.println(model);
 		Map<String, String> errorMessage=new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);
-		model.addAttribute("LoginResult","1");
-//		System.out.println("1");
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
 			return "/main/Index";
@@ -37,9 +36,7 @@ public class memberBeansController {
 
 		String loginResult =service.login(member.getMemberId(),member.getMemberPassword());
 		if(loginResult.equals("Success")) {
-			
-			model.addAttribute("LoginResult","0");
-//			System.out.println("2");
+			session.setAttribute("login", "1");
 			model.addAttribute("userId", member.getMemberId());
 			return "/main/Index";
 		}else {
