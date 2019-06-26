@@ -4,14 +4,14 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.recreation.playground.entity.memberBeans;
+import com.recreation.playground.entity.Member;
 
-public interface memberBeansDao extends JpaRepository<memberBeans, Integer>{
+public interface memberBeansDao extends JpaRepository<Member, Integer>{
 	
 	@Select("select member_id, member_password from member where member_id=#{name}")
-	public memberBeans findByMemberId(@Param("name") String name);
+	public Member findByMemberId(@Param("name") String name);
 	
-	public memberBeans findByMemberIdAndMemberPassword(String id,String password);
+	public Member findByMemberIdAndMemberPassword(String id,String password);
 	
 	
 	

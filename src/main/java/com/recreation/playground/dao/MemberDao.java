@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.recreation.playground.entity.Member;
+import com.recreation.playground.entity.test;
 
-public interface MemberDao extends JpaRepository<Member, Integer> {
+public interface MemberDao extends JpaRepository<test, Integer> {
 
-	public Member findByIdAndPassword(Integer id,String password);
+	public test findByIdAndPassword(Integer id,String password);
 	
-	List<Member> findByPhoneOrPassword(String phone,String password);
+	List<test> findByPhoneOrPassword(String phone,String password);
 	
 }
 

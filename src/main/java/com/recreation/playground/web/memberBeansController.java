@@ -13,7 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.recreation.playground.entity.memberBeans;
+import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.memberBeansService;
 
 @Controller
@@ -22,7 +22,7 @@ public class memberBeansController {
 	@Autowired
 	private memberBeansService service;
 	@RequestMapping("/login")
-	public String login(@Valid @ModelAttribute("memberBeansForm") memberBeans member, BindingResult result, Model model,HttpSession session) {
+	public String login(@Valid @ModelAttribute("memberBeansForm") Member member, BindingResult result, Model model,HttpSession session) {
 //		System.out.println(member.getMemberId());
 //		System.out.println(member.getMemberPassword());
 //		System.out.println(result);
@@ -36,8 +36,7 @@ public class memberBeansController {
 
 		String loginResult =service.login(member.getMemberId(),member.getMemberPassword());
 		if(loginResult.equals("Success")) {
-			session.setAttribute("login", "1");
-			model.addAttribute("userId", member.getMemberId());
+			session.setAttribute("UID", member.getMemberId());
 			return "/main/Index";
 		}else {
 			model.addAttribute("memberParam", member);
@@ -60,13 +59,13 @@ public class memberBeansController {
 	@RequestMapping("/update")
 	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
 	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
-	public String update(@Valid @ModelAttribute("userupdate") memberBeans member, BindingResult result,
+	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result,
 			Model model) {
 		
 		return "/admin/userupdate";
 	}
 	@RequestMapping("/registerForm")
-	public String register(@Valid @ModelAttribute("registerForm") memberBeans member, BindingResult result,
+	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result,
 			Model model) {
 //		System.out.println(member.getMemberId());
 //		System.out.println(member.getMemberPassword());
@@ -113,7 +112,7 @@ public class memberBeansController {
 	@RequestMapping("/beforeupdate")
 	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
 	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
-	public String beforeupdate(@Valid @ModelAttribute("beforeupdate") memberBeans member, BindingResult result,
+	public String beforeupdate(@Valid @ModelAttribute("beforeupdate") Member member, BindingResult result,
 			Model model) {
 		
 		if (result.hasErrors()) {

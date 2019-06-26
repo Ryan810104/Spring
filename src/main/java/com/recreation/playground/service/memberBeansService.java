@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.memberBeansDao;
-import com.recreation.playground.entity.memberBeans;
+import com.recreation.playground.entity.Member;
 
 @Service
 @Transactional
@@ -13,8 +13,8 @@ public class memberBeansService {
 	@Autowired
 	private memberBeansDao dao;
 
-	public String register(memberBeans member) {
-		memberBeans insertData = new memberBeans();
+	public String register(Member member) {
+		Member insertData = new Member();
 		System.out.println(insertData);
 		insertData.setMemberId(member.getMemberId());
 		insertData.setMemberPassword(member.getMemberPassword());
@@ -32,7 +32,7 @@ public class memberBeansService {
 	public String login(String memberId, String memberPwd) {
 		String result = "false";
 //		System.out.println("1");
-		memberBeans beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
+		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
 
 //		System.out.println("2");
 //		System.out.println(beans);

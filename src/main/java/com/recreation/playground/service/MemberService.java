@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.MemberDao;
-import com.recreation.playground.entity.Member;
+import com.recreation.playground.entity.test;
 
 @Service
 @Transactional
@@ -17,33 +17,33 @@ public class MemberService {
 	private MemberDao memberdao;
 
 	@Transactional(readOnly = true)
-	public List<Member> getAll() {
+	public List<test> getAll() {
 		return memberdao.findAll();
 	}
 
-	public void delete(Member member) {
+	public void delete(test member) {
 		if (member.getId() != null)
 			memberdao.delete(member);
 	}
 	
-	public List <Member> getByPhoneOrPassword(String phone,String password) {
+	public List <test> getByPhoneOrPassword(String phone,String password) {
 		return memberdao.findByPhoneOrPassword(phone, password);
 	}
 
-	public Member getById(Integer Id) {
+	public test getById(Integer Id) {
 		return memberdao.findById(Id).orElse(null);
 
 	}
 
-	public Member findById(Integer Id) {
+	public test findById(Integer Id) {
 		return memberdao.findById(Id).orElse(null);
 	}
 
-	public Member save(Member member) {
+	public test save(test member) {
 		return memberdao.save(member);
 	}
 	
-	public Member getidpsd(Integer id , String password) {
+	public test getidpsd(Integer id , String password) {
 		return memberdao.findByIdAndPassword(id, password);
 	}
 

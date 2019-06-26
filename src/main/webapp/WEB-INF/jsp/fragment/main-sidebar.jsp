@@ -9,7 +9,7 @@
                 <img class="sidebar-avatar-logo moe" src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
             </figure>
 
-            <div class="sidebar-title moe username-line-height">${userId}</div>
+            <div class="sidebar-title moe username-line-height">${sessionScope.UID}</div>
             <div class="sidebar-title moe">500 p</div>
 
         </header>
