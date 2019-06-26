@@ -11,7 +11,7 @@ public class FrontendSidebarController {
 // Sidebar 回到首頁
 	@RequestMapping("/index")
 	public String toIndex(Model model) {
-		return "/main/AfterIndex";
+		return "/main/Index";
 	}
 // Sidebar 活動消息
 	@RequestMapping("/news")

@@ -581,8 +581,9 @@ Inicio Tercer Estado: Oculto (OK)
 		for(i = 0 ; i < 9 ; i++){		
 		if(localStorage.getItem("nav["+i+"]")) {
 			$("nav["+i+"]").click();
-			a(i);
+			
 			localStorage.removeItem("nav["+i+"]");
+			a(i);
 			}
 		}
 	});
@@ -607,7 +608,7 @@ function a(i){
 		if (clica !== activo) {
 			activo.classList.remove('active');
 			clica.classList.add('active');
-			console.log("2 activado");
+			console.log(i+"2 activado");
 		} else {
 			console.log("nulo");
 		}

@@ -11,7 +11,7 @@
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<div class="container">
 			<div class="card-deck">
-				<div class="card" style="height: 30rem">
+				<div class="card" style="height: 35rem">
 					<img src="/resources/img/game1.jpg" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h3 class="card-title">Emoji踩地雷</h3>
@@ -59,7 +59,7 @@
 </body>
 <style>
 .card {
-	border-radius: 5rem;
+	border-radius: 2rem;
 }
 
 .btn {

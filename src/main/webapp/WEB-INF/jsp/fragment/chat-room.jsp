@@ -407,7 +407,7 @@ $(document).ready(function(){
         var ws = null;
         $('.chat_on').click(function(){
 //             var username = $('#in_user_name').val();
-            var username = '${userId}';
+            var username = '${sessionScope.member.memberId}';
             
             var url = urlPrefix + username;
             ws = new WebSocket(url);
