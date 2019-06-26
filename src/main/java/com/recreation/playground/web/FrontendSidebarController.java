@@ -47,5 +47,10 @@ public class FrontendSidebarController {
 	@RequestMapping("/setting")
 	public String toSetting(Model model) {
 		return "/main/setting/SettingIndex";
-	}	
+	}
+// Game 踩地雷
+	@RequestMapping("/minesweeper")
+	public String toEmojiGame(Model model) {
+		return "/main/games/Mineweeper";
+		}
 }
