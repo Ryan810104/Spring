@@ -37,6 +37,7 @@ public class MemberController {
 		String loginResult =service.login(member.getMemberId(),member.getMemberPassword());
 		if(loginResult.equals("Success")) {
 			session.setAttribute("UID", member.getMemberId());
+			session.setAttribute("member", service.finById(member.getMemberId()));
 			return "/main/Index";
 		}else {
 			model.addAttribute("memberParam", member);

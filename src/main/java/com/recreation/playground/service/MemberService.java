@@ -12,7 +12,12 @@ import com.recreation.playground.entity.Member;
 public class MemberService {
 	@Autowired
 	private MemberDao dao;
-
+	
+	
+	public Member finById(String memberId) {
+		return dao.findByMemberId(memberId);
+	}
+	
 	public String register(Member member) {
 		Member insertData = new Member();
 		System.out.println(insertData);

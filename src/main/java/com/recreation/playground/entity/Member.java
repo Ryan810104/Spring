@@ -64,7 +64,8 @@ public class Member {
 	private byte[]  memberPhoto;
 	//會員照片
 	
-	
+	@Column
+	private Integer moneyBalance;
 	
 	
 	
