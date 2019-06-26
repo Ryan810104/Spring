@@ -168,11 +168,11 @@ code {
 }
 
 .lost {
-	box-shadow: 0 0 1px #f00;
+	box-shadow: 0 0 0px #f00;
 }
 
 .won {
-	box-shadow: 0 0 1px #1a1;
+	box-shadow: 0 0 0px #1a1;
 }
 
 .bar {
@@ -261,123 +261,140 @@ code {
 }
 </style>
 <body>
-		<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 	<!-- wrapper -->
 	<div class="wrapper">
 		<!-- Sidebar -->
 
 		<!-- start context -->
-		
+
 		<div class="container">
 
 			<!-- Write your data here -->
-			 <div class="bd-example">
-                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="/resources/img/01.jpg" class="d-block w-100" style="height:24rem" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/resources/img/02.jpg" class="d-block w-100" style="height:24rem" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/resources/img/03.jpg" class="d-block w-100" style="height:24rem" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-			<div class="wrapper1">
-				<button type="button" class="settings js-settings"
-					aria-haspopup="true" aria-expanded="false" aria-label="Settings"></button>
-				<div class="js-settings-popup settings-popup">
-					<div class="flex">
-						<label class="btn flex-cell" aria-label="Use Twitter Emoji"><input
-							type="radio" name="emoji" id="twemoji" checked> Twemoji</label> <label
-							class="btn flex-cell" aria-label="Use Native Emoji"><input
-							type="radio" name="emoji" id="emoji"> Native emoji</label>
+			<div class="bd-example">
+				<div id="carouselExampleCaptions" class="carousel slide"
+					data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleCaptions" data-slide-to="0"
+							class="active"></li>
+						<li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+						<li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="/resources/img/01.jpg" class="d-block w-100"
+								style="height: 24rem" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>First slide label</h5>
+								<p>Nulla vitae elit libero, a pharetra augue mollis
+									interdum.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="/resources/img/02.jpg" class="d-block w-100"
+								style="height: 24rem" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>Second slide label</h5>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							</div>
+						</div>
+						<div class="carousel-item">
+							<img src="/resources/img/03.jpg" class="d-block w-100"
+								style="height: 24rem" alt="...">
+							<div class="carousel-caption d-none d-md-block">
+								<h5>Third slide label</h5>
+								<p>Praesent commodo cursus magna, vel scelerisque nisl
+									consectetur.</p>
+							</div>
+						</div>
 					</div>
-					<div class="flex">
-						<input id="cols" class="input flex-cell" type="number" value="10"
-							min="1" max="500" aria-label="Columns">
-						<div class="flex-cell divider">&times;</div>
-						<input id="rows" class="input flex-cell" type="number" value="10"
-							min="1" max="500" aria-label="Rows"><br>
-					</div>
-					<div class="prepend-input">💣</div>
-					<input id="bombs" class="input" type="number" value="10" min="1"
-						max="2500" aria-label="Number of bombs"> <select
-						id="emojiset" class="input input-select"
-						aria-label="Change emoji set">
-						<option value="🐣 💣 🚧 ◻️">🐣 💣 🚧</option>
-						<option value="🍰 👾 📌 ◻️">🍰 👾 📌</option>
-						<option value="🌷 ⚡️ 🐞 ◻️">🌷 ⚡️ 🐞</option>
-						<option value="⭕️ ❌ ❗️ ✖️️">⭕️ ❌ ❗️ ✖️</option>
-						<option value="☀ ⚡ ☔ ☁️">☀ ⚡ ☔ ☁️</option>
-					</select>
-					<button class="js-popup-new-game btn" type="button">Save
-						and restart game</button>
-				</div>
-				<button type="button" class="action-btn js-new-game"
-					aria-label="New game">
-					<span class="default-emoji"></span> <span id="result"
-						class="result-emoji"></span>
-				</button>
-				<div id="map" role="grid" aria-label="Mine field"></div>
-				<div class="bar flex">
-					<div class="stat flex-cell">
-						<div id="bombs-left">0</div>
-						<span class="small-text">BOMBS</span>
-					</div>
-					<div class="stat flex-cell">
-						<div id="moves"></div>
-						<span class="small-text">MOVES</span>
-					</div>
-					<div class="stat flex-cell">
-						<div id="timer"></div>
-						<span class="small-text">TIME</span>
-					</div>
+					<a class="carousel-control-prev" href="#carouselExampleCaptions"
+						role="button" data-slide="prev"> <span
+						class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+						class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carouselExampleCaptions"
+						role="button" data-slide="next"> <span
+						class="carousel-control-next-icon" aria-hidden="true"></span> <span
+						class="sr-only">Next</span>
+					</a>
 				</div>
 			</div>
-			<a href="https://github.com/muan/emoji-minesweeper"
-				class="link-to-github">[Code]</a>
-			<div aria-live="assertive" class="feedback"></div>
-			<!-- Write your data here -->
-			<!-- Write your data here -->
-			<!-- insert footer in the end of context -->
+			<br>
+			<div class="container">
+				<div class="row">
+					<div class="col" style="flex-grow: 0;">
+						<button type="button" class="settings js-settings"
+							aria-haspopup="true" aria-expanded="false" aria-label="Settings"></button>
+						<div class="js-settings-popup settings-popup">
+							<div class="flex">
+								<label class="btn flex-cell" aria-label="Use Twitter Emoji"><input
+									type="radio" name="emoji" id="twemoji" checked> Twemoji</label>
+								<label class="btn flex-cell" aria-label="Use Native Emoji"><input
+									type="radio" name="emoji" id="emoji"> Native emoji</label>
+							</div>
+							<div class="flex">
+								<input id="cols" class="input flex-cell" type="number"
+									value="10" min="1" max="500" aria-label="Columns">
+								<div class="flex-cell divider">&times;</div>
+								<input id="rows" class="input flex-cell" type="number"
+									value="10" min="1" max="500" aria-label="Rows"><br>
+							</div>
+							<div class="prepend-input">💣</div>
+							<input id="bombs" class="input" type="number" value="10" min="1"
+								max="2500" aria-label="Number of bombs"> <select
+								id="emojiset" class="input input-select"
+								aria-label="Change emoji set">
+								<option value="🐣 💣 🚧 ◻️">🐣 💣 🚧</option>
+								<option value="🍰 👾 📌 ◻️">🍰 👾 📌</option>
+								<option value="🌷 ⚡️ 🐞 ◻️">🌷 ⚡️ 🐞</option>
+								<option value="⭕️ ❌ ❗️ ✖️️">⭕️ ❌ ❗️ ✖️</option>
+								<option value="☀ ⚡ ☔ ☁️">☀ ⚡ ☔ ☁️</option>
+							</select>
+							<button class="js-popup-new-game btn" type="button">Save
+								and restart game</button>
+						</div>
+						<button type="button" class="action-btn js-new-game"
+							aria-label="New game">
+							<span class="default-emoji"></span> <span id="result"
+								class="result-emoji"></span>
+						</button>
+						<div id="map" role="grid" aria-label="Mine field"></div>
+						<div class="bar flex">
+							<div class="stat flex-cell">
+								<div id="bombs-left">0</div>
+								<span class="small-text">BOMBS</span>
+							</div>
+							<div class="stat flex-cell">
+								<div id="moves"></div>
+								<span class="small-text">MOVES</span>
+							</div>
+							<div class="stat flex-cell">
+								<div id="timer"></div>
+								<span class="small-text">TIME</span>
+							</div>
+						</div>
+					</div>
+					<div class="col" style="text-align: center;" id="resultall"></div>
+					<a href="https://github.com/muan/emoji-minesweeper"
+						class="link-to-github">[Code]</a>
+					<div aria-live="assertive" class="feedback"></div>
+					<!-- Write your data here -->
+					<!-- Write your data here -->
+					<!-- insert footer in the end of context -->
 
-			<!-- Your data ends here -->
-			<!-- End of context -->
+					<!-- Your data ends here -->
+					<!-- End of context -->
+
+				</div>
+
+			</div>
 		</div>
-		<!-- End of wrapper -->
 	</div>
-				<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
-				<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include> 
+	<!-- End of wrapper -->
+	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 </body>
+
 <script src="/resources/js/Mine1.js"></script>
 <script src="/resources/js/Mine2.js"></script>
 <script>
