@@ -10,7 +10,7 @@
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
 
-		<div class="sidebar-title moe username-line-height">${sessionScope.UID}</div>
+		<div class="sidebar-title moe username-line-height">${sessionScope.member.memberId}</div>
 		<div class="sidebar-title moe">${sessionScope.member.moneyBalance} p</div>
 
 	</header>
@@ -354,9 +354,10 @@ Inicio Segundo Estado: Expandido (EX)
 }
 
 .sidebar-avatar.ex {
-	height: 60%;
-	width: 60%;
-	transition: 1.2s ease;
+	height: 50%;
+	width: 50%;
+	transition-timing-function: cubic-bezier(0.1, 0.1, 0.5, 0.5); 
+ 	transition: 0.1s ; 
 }
 
 .sidebar-avatar-logo.ex {
@@ -365,12 +366,13 @@ Inicio Segundo Estado: Expandido (EX)
 
 .sidebar-title.ex {
 	display: block;
-	transition: 4s ease;
+	transition: 1s ease;
 }
 
 .sidebar-nav-item.ex {
 	padding: 1rem 0 2.8rem 4.5rem;
-	transition: 1.2s ease;
+	transition: 0.1s ease;
+
 }
 
 .sidebar-nav-item-zelda.ex {
@@ -455,6 +457,7 @@ Inicio Tercer Estado: Oculto (OK)
 </style>
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
 <script>
+
 	var hamburguesa = document.querySelector('.toggle');
 	hamburguesa
 			.addEventListener(
@@ -574,21 +577,32 @@ Inicio Tercer Estado: Oculto (OK)
 					})
 
 	var nav = document.querySelectorAll('.sidebar-nav-item');
+	$(document).ready(function(){
+		for(i = 0 ; i < 9 ; i++){		
+		if(localStorage.getItem("nav["+i+"]")) {
+			$("nav["+i+"]").click();
+			a(i);
+			localStorage.removeItem("nav["+i+"]");
+			}
+		}
+	});
 
 	nav[0].addEventListener('click', function() {
+
 		var clica = nav[0];
 		var activo = document.querySelector('.active');
 		if (clica !== activo) {
 			activo.classList.remove('active');
 			clica.classList.add('active');
 			console.log("1 activado");
+
 		} else {
 			console.log("nulo");
 		}
 	})
+function a(i){
 
-	nav[1].addEventListener('click', function() {
-		var clica = nav[1];
+		var clica = nav[i];
 		var activo = document.querySelector('.active');
 		if (clica !== activo) {
 			activo.classList.remove('active');
@@ -597,90 +611,44 @@ Inicio Tercer Estado: Oculto (OK)
 		} else {
 			console.log("nulo");
 		}
-	})
+	}
+
+	nav[1].addEventListener('click', function() {
+		localStorage.setItem("nav[1]", "true");
+		a(1);
+	});
 
 	nav[2].addEventListener('click', function() {
-		var clica = nav[2];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("3 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[2]", "true");
+		a(2);
 	})
 
 	nav[3].addEventListener('click', function() {
-		var clica = nav[3];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("4 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[3]", "true");
+		a(3);
 	})
 
 	nav[4].addEventListener('click', function() {
-		var clica = nav[4];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("5 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[4]", "true");
+		a(4);
 	})
 
 	nav[5].addEventListener('click', function() {
-		var clica = nav[5];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("6 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[5]", "true");
+		a(5);
 	})
-
 	nav[6].addEventListener('click', function() {
-		var clica = nav[6];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("7 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[6]", "true");
+		a(6);
 	})
-
 	nav[7].addEventListener('click', function() {
-		var clica = nav[7];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("8 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[7]", "true");
+		a(7);
 	})
 
 	nav[8].addEventListener('click', function() {
-		var clica = nav[8];
-		var activo = document.querySelector('.active');
-		if (clica !== activo) {
-			activo.classList.remove('active');
-			clica.classList.add('active');
-			console.log("9 activado");
-		} else {
-			console.log("nulo");
-		}
+		localStorage.setItem("nav[8]", "true");
+		a(8);
 	})
 
 	//# sourceURL=pen.js
