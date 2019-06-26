@@ -1,50 +1,65 @@
 package com.recreation.playground.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.MemberDao;
-import com.recreation.playground.entity.test;
+import com.recreation.playground.entity.Member;
 
 @Service
 @Transactional
 public class MemberService {
-
 	@Autowired
-	private MemberDao memberdao;
+	private MemberDao dao;
 
-	@Transactional(readOnly = true)
-	public List<test> getAll() {
-		return memberdao.findAll();
+	public String register(Member member) {
+		Member insertData = new Member();
+		System.out.println(insertData);
+		insertData.setMemberId(member.getMemberId());
+		insertData.setMemberPassword(member.getMemberPassword());
+		insertData.setMemberEmail(member.getMemberEmail());
+		insertData.setMemberPhonenum(member.getMemberPhonenum());
+		insertData.setMemberPermission(0);
+		insertData.setMemberViplevel(0);
+		System.out.println(insertData);
+		System.out.println(dao.save(insertData));
+		System.out.println(insertData);
+
+		return "123";
 	}
 
-	public void delete(test member) {
-		if (member.getId() != null)
-			memberdao.delete(member);
+	public String login(String memberId, String memberPwd) {
+		String result = "false";
+//		System.out.println("1");
+		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
+
+//		System.out.println("2");
+//		System.out.println(beans);
+		if (beans == null) {
+			return result;// 查無帳號回傳'false'
+		}
+
+		if (beans.getMemberId() != null && beans.getMemberPassword().equals(memberPwd)) {
+
+			result = "Success";// 有此帳號且資料庫密碼與前端輸入相同時，result改為'Success'
+
+		}
+
+//		System.out.println("3");
+
+		return result;// 回傳result
+
 	}
 	
-	public List <test> getByPhoneOrPassword(String phone,String password) {
-		return memberdao.findByPhoneOrPassword(phone, password);
-	}
-
-	public test getById(Integer Id) {
-		return memberdao.findById(Id).orElse(null);
-
-	}
-
-	public test findById(Integer Id) {
-		return memberdao.findById(Id).orElse(null);
-	}
-
-	public test save(test member) {
-		return memberdao.save(member);
+	
+	public boolean checkpassword(String id,String password) {
+		if(dao.findByMemberIdAndMemberPassword(id,password) != null) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
-	public test getidpsd(Integer id , String password) {
-		return memberdao.findByIdAndPassword(id, password);
-	}
-
 }
