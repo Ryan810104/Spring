@@ -91,7 +91,7 @@ public class VipController {
 	public String delete(@ModelAttribute("form1") Vip vip, Model model){
 //		System.out.println(vipservice.getById(vip.getVipnum()));
 		vipservice.delete(vip);
-		model.addAttribute("deletesucceed", "資料刪除成功");
+//		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/admin/index-vip";
 	}
 

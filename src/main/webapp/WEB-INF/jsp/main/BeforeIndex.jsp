@@ -293,7 +293,7 @@
 
 	<script>
 		function chkId() {
-			let theId = document.getElementById("memberId").value;
+			let theId = document.getElementById("memberRId").value;
 			let theIdLen = theId.length;
 			let re = new RegExp("^[a-zA-Z][a-zA-Z0-9]{7,15}$");
 			flag1 = false;
@@ -314,12 +314,12 @@
 		}
 		document.addEventListener("DOMContentLoaded",
 				function() {
-					document.getElementById("memberId").addEventListener(
+					document.getElementById("memberRId").addEventListener(
 							"blur", chkId);
 				})
 
 		function chkPwd() {
-			let thePwd1 = document.getElementById("memberPassword").value;
+			let thePwd1 = document.getElementById("memberRPassword").value;
 			let thePwdLen = thePwd1.length;
 			let re = new RegExp("^[a-zA-Z0-9]{7,15}$");
 			flag2 = false;
@@ -339,13 +339,13 @@
 				document.getElementById("pwdsp1").innerHTML = "<i style='color:red'>必須小於16個字</i>"
 		}
 		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("memberPassword").addEventListener("blur",
+			document.getElementById("memberRPassword").addEventListener("blur",
 					chkPwd);
 		})
 
 		function chkPwd2() {
-			let thePwd1 = document.getElementById("memberPassword").value;
-			let thePwd2 = document.getElementById("memberPasswordComfirm").value;
+			let thePwd1 = document.getElementById("memberRPassword").value;
+			let thePwd2 = document.getElementById("memberRPasswordComfirm").value;
 			flag3 = false;
 
 			if (thePwd2 == "")
@@ -357,7 +357,7 @@
 				document.getElementById("pwdsp2").innerHTML = "<i style='color:red'>錯誤</i>"
 		}
 		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("memberPasswordComfirm").addEventListener(
+			document.getElementById("memberRPasswordComfirm").addEventListener(
 					"blur", chkPwd2);
 		})
 
@@ -460,22 +460,22 @@
 					<form class="needs-validation" name="fileForm">
 
 						<div class="mb-3">
-							<label for="memberId">ID<span class="text-muted">(必要)必須含英文或數字,首字為英文</span></label>
-							<input type="text" class="form-control" id="memberId"
+							<label for="memberRId">ID<span class="text-muted">(必要)必須含英文或數字,首字為英文</span></label>
+							<input type="text" class="form-control" id="memberRId"
 								name="memberId"><span id="idsp"></span>
 						</div>
 
 
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="memberPassword">密碼<span class="text-muted">(必要)英文及數字</span></label>
-								<input type="password" class="form-control" id="memberPassword"
+								<label for="memberRPassword">密碼<span class="text-muted">(必要)英文及數字</span></label>
+								<input type="password" class="form-control" id="memberRPassword"
 									name="memberPassword"><span id="pwdsp1"></span>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="memberPasswordComfirm">確認密碼<span
+								<label for="memberRPasswordComfirm">確認密碼<span
 									class="text-muted">(必要)</span></label> <input type="password"
-									class="form-control" id="memberPasswordComfirm"
+									class="form-control" id="memberRPasswordComfirm"
 									name="memberPasswordComfirm"> <span id="pwdsp2"></span>
 							</div>
 						</div>
