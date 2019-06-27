@@ -27,5 +27,6 @@ public class Test {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	@Column(name="datetime")
 	private java.util.Date datetime;
-     
+      
 }
+ 

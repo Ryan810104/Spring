@@ -58,13 +58,17 @@ public class MemberService {
 	}
 	
 	
-	public boolean checkpassword(String id,String password) {
-		if(dao.findByMemberIdAndMemberPassword(id,password) != null) {
-			return true;
+	public Member checkpassword(String id,String password) {
+		Member member = dao.findByMemberIdAndMemberPassword(id,password);
+		if( member != null) {
+			return member;
 		}else {
-			return false;
-		}
-		
+			return null;
+		}	
+	}
+	
+	public Member update(Member memberbeans) {
+		 return dao.save(memberbeans);
 	}
 	
 }
