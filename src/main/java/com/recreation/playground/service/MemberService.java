@@ -18,29 +18,24 @@ public class MemberService {
 		return dao.findByMemberId(memberId);
 	}
 	
-	public String register(Member member) {
+	public String register(Member member) {		
 		Member insertData = new Member();
-		System.out.println(insertData);
 		insertData.setMemberId(member.getMemberId());
 		insertData.setMemberPassword(member.getMemberPassword());
 		insertData.setMemberEmail(member.getMemberEmail());
 		insertData.setMemberPhonenum(member.getMemberPhonenum());
 		insertData.setMemberPermission(0);
 		insertData.setMemberViplevel(0);
-		System.out.println(insertData);
-		System.out.println(dao.save(insertData));
-		System.out.println(insertData);
-
-		return "123";
+		dao.save(insertData);	
+		return "okSignup";
 	}
 
 	public String login(String memberId, String memberPwd) {
 		String result = "false";
-//		System.out.println("1");
+
 		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
 
-//		System.out.println("2");
-//		System.out.println(beans);
+
 		if (beans == null) {
 			return result;// 查無帳號回傳'false'
 		}
@@ -48,27 +43,29 @@ public class MemberService {
 		if (beans.getMemberId() != null && beans.getMemberPassword().equals(memberPwd)) {
 
 			result = "Success";// 有此帳號且資料庫密碼與前端輸入相同時，result改為'Success'
-
 		}
-
-//		System.out.println("3");
-
 		return result;// 回傳result
 
 	}
 	
 	
-	public Member checkpassword(String id,String password) {
-		Member member = dao.findByMemberIdAndMemberPassword(id,password);
-		if( member != null) {
-			return member;
+	public boolean checkpassword(String id,String password) {
+		if(dao.findByMemberIdAndMemberPassword(id,password) != null) {
+			return false;
 		}else {
-			return null;
-		}	
+			return true;
+		}
+		
 	}
 	
-	public Member update(Member memberbeans) {
-		 return dao.save(memberbeans);
+	public boolean findById(String memberId) {
+		
+		if(dao.findByMemberId(memberId)!=null) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 	
 }
