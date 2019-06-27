@@ -29,4 +29,4 @@ public class CMBBean {
 	@Column
 	private String CustomermessageboardStatus ;
 
-}
+} 
