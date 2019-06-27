@@ -19,21 +19,21 @@ import lombok.Data;
 public class MoneyRecordBeans {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	@Column(name="MoneyRecord_num")
 	private Integer moneyRecordNum;
 	
-	@Column(name="MoneyRecord_userid")
+	@Column
 	private String 	moneyRecordUserId;
 	
-	@Column(name="MoneyRecord_time")
+	@Column
 	@CreatedDate
 	private Date 	moneyRecordTime;
 	
-	@Column(name="MoneyRecord_amount")
+	@Column
 	private Integer moneyRecordAmount;
 	
-	@Column(name="MoneyRecord_chiptype")
+	@Column
 	private String 	moneyRecordChipType;
 	
 }

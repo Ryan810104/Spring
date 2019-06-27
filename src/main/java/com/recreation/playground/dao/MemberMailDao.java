@@ -6,9 +6,9 @@ import com.recreation.playground.entity.MemberMailBeans;
 
 public interface MemberMailDao extends JpaRepository<MemberMailBeans, Integer>{
 	
-	public MemberMailBeans findBymemberId(String memberid);
+	public MemberMailBeans findByMailMemberId(String memberid);
 	
-	public MemberMailBeans findByReceiver(String receiver);	
+	public MemberMailBeans findByMailReceiver(String receiver);	
 	
 	
 }

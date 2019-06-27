@@ -35,10 +35,10 @@ public class MemberMailService {
 		return dao.findById(mailNum).orElse(null);
 	}	
 	public MemberMailBeans findBymemberId(MemberMailBeans MB) {
-		return dao.findBymemberId(MB.getMailmemberId());
+		return dao.findByMailMemberId(MB.getMailMemberId());
 	}	
 	public MemberMailBeans findByReceiver(MemberMailBeans MB) {
-		return dao.findByReceiver(MB.getMailReceiver());
+		return dao.findByMailReceiver(MB.getMailReceiver());
 	}
 		
 //	public MemberMailBeans save(MemberMailBeans MB) {
@@ -46,7 +46,7 @@ public class MemberMailService {
 //}
 	public String sendMail(MemberMailBeans MB) {
 		MemberMailBeans insertData = new MemberMailBeans();
-		insertData.setMailmemberId(MB.getMailmemberId());
+		insertData.setMailMemberId(MB.getMailMemberId());
 		insertData.setMailTitle(MB.getMailTitle());
 		insertData.setMailMessage(MB.getMailMessage());
 		insertData.setMailReceiver(MB.getMailReceiver());

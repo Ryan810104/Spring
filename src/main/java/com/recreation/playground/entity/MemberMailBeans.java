@@ -19,22 +19,22 @@ import lombok.Data;
 public class MemberMailBeans {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="MemberMail_num")
+	@Column
 	private Integer mailNum;
 	
-	@Column(name="MemberMail_memberid")
-	private String 	mailmemberId;
+	@Column
+	private String 	mailMemberId;
 	
-	@Column(name="MemberMail_title")
+	@Column
 	private String 	mailTitle;
 	
-	@Column(name="MemberMail_message")
+	@Column
 	private String 	mailMessage;
 	
-	@Column(name="MemberMail_messagetime")
+	@Column
 	@CreatedDate
 	private Date 	mailMessageTime;
 	
-	@Column(name="MemberMail_receiver")
+	@Column
 	private String 	mailReceiver;
 }

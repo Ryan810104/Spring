@@ -34,10 +34,10 @@ public class MoneyRecordService {
 	}
 	
 	public MoneyRecordBeans findByUserId(MoneyRecordBeans RB) {
-		return dao.findByUserId(RB.getMoneyRecordUserId());
+		return dao.findByMoneyRecordUserId(RB.getMoneyRecordUserId());
 	}
 	public MoneyRecordBeans findByChipType(MoneyRecordBeans RB) {
-		return dao.findByChipType(RB.getMoneyRecordChipType());
+		return dao.findByMoneyRecordChipType(RB.getMoneyRecordChipType());
 	}
 	
 	public MoneyRecordBeans findByMoneyRecordTimeLike(MoneyRecordBeans RB) {

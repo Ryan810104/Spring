@@ -8,9 +8,9 @@ import com.recreation.playground.entity.MoneyRecordBeans;
 
 public interface MoneyRecordDao extends JpaRepository<MoneyRecordBeans, Integer>{
 	
-	public MoneyRecordBeans findByUserId(String type);
+	public MoneyRecordBeans findByMoneyRecordUserId(String type);
 	
-	public MoneyRecordBeans findByChipType(String type);
+	public MoneyRecordBeans findByMoneyRecordChipType(String type);
 	
 	public MoneyRecordBeans findByMoneyRecordTimeLike(Date date);
 
