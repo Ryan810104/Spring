@@ -47,12 +47,12 @@ public class VipController {
 	
 	@RequestMapping("/query1")
 	public String openquery1(Model model) {
-		return "/main/Index";
+		return "/main/AfterIndex";
 	}
 	@RequestMapping("/test2")
 	public String testtoggle(Model model) {
 		System.out.println(model);
-		return "/admin/toggletest";
+		return "/main/ClearTemplate";
 	}
 	
 	@RequestMapping("/test1")

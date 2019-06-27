@@ -20,7 +20,7 @@ var Game = function (cols, rows, number_of_bombs, set, usetwemoji) {
 
 Game.prototype.init = function () {
   this.prepareEmoji()
-
+  document.getElementById("resultall").innerHTML = "";
   if (this.number_of_cells > 2500) { alert('too big, go away, have less than 2500 cells'); return false }
   if (this.number_of_cells <= this.number_of_bombs) { alert('more bombs than cells, can\'t do it'); return false }
   var that = this
@@ -294,6 +294,20 @@ Game.prototype.showMessage = function () {
   var winner = this.result === 'won'
   var emoji = winner ? '😎' : '😵'
   this.updateFeedback(winner ? "Yay, you won!" : "Boom! you lost.")
+  
+  if (!winner){
+	  console.log("ss");
+	  document.getElementById("resultall").innerHTML += emoji + "<br>";
+	  document.getElementById("resultall").innerHTML += "You Lose"+"<br>";
+	  console.log(seconds);
+	  console.log(this.Game);
+  } else{
+	  document.getElementById("resultall").innerHTML += emoji + "<br>";
+	  document.getElementById("resultall").innerHTML += "You Win!"+"<br>";
+	  document.getElementById("resultall").innerHTML += "花費時間:" + seconds + "<br>"
+	  document.getElementById("resultall").innerHTML += "獲得點數:" + seconds*1000 + "<br>"
+	  
+  }
   document.querySelector('.wrapper').classList.add(this.result)
   document.getElementById('timer').textContent = seconds
   document.getElementById('result').innerHTML = this.usetwemoji ? twemoji.parse(emoji) : emoji

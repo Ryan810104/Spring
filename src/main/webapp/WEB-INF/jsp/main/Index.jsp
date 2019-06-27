@@ -7,7 +7,7 @@
 <%-- <c:set var="LogorNot" scope="session" value="${0}"/> --%>
 
 <c:choose>
-	<c:when test="${sessionScope.login == 1}">
+	<c:when test="${!empty sessionScope.UID}">
 		<jsp:include page="AfterIndex.jsp" />
    </c:when>
 	<c:otherwise>

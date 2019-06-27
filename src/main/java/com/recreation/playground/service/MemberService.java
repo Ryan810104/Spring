@@ -1,7 +1,5 @@
 package com.recreation.playground.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,39 +10,65 @@ import com.recreation.playground.entity.Member;
 @Service
 @Transactional
 public class MemberService {
-
 	@Autowired
-	private MemberDao memberdao;
-
-	@Transactional(readOnly = true)
-	public List<Member> getAll() {
-		return memberdao.findAll();
-	}
-
-	public void delete(Member member) {
-		if (member.getId() != null)
-			memberdao.delete(member);
+	private MemberDao dao;
+	
+	
+	public Member finById(String memberId) {
+		return dao.findByMemberId(memberId);
 	}
 	
-	public List <Member> getByPhoneOrPassword(String phone,String password) {
-		return memberdao.findByPhoneOrPassword(phone, password);
+	public String register(Member member) {
+		Member insertData = new Member();
+		System.out.println(insertData);
+		insertData.setMemberId(member.getMemberId());
+		insertData.setMemberPassword(member.getMemberPassword());
+		insertData.setMemberEmail(member.getMemberEmail());
+		insertData.setMemberPhonenum(member.getMemberPhonenum());
+		insertData.setMemberPermission(0);
+		insertData.setMemberViplevel(0);
+		System.out.println(insertData);
+		System.out.println(dao.save(insertData));
+		System.out.println(insertData);
+
+		return "123";
 	}
 
-	public Member getById(Integer Id) {
-		return memberdao.findById(Id).orElse(null);
+	public String login(String memberId, String memberPwd) {
+		String result = "false";
+//		System.out.println("1");
+		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
 
-	}
+//		System.out.println("2");
+//		System.out.println(beans);
+		if (beans == null) {
+			return result;// 查無帳號回傳'false'
+		}
 
-	public Member findById(Integer Id) {
-		return memberdao.findById(Id).orElse(null);
-	}
+		if (beans.getMemberId() != null && beans.getMemberPassword().equals(memberPwd)) {
 
-	public Member save(Member member) {
-		return memberdao.save(member);
+			result = "Success";// 有此帳號且資料庫密碼與前端輸入相同時，result改為'Success'
+
+		}
+
+//		System.out.println("3");
+
+		return result;// 回傳result
+
 	}
 	
-	public Member getidpsd(Integer id , String password) {
-		return memberdao.findByIdAndPassword(id, password);
+	
+	public Member checkpassword(String id,String password) {
+		Member member = dao.findByMemberIdAndMemberPassword(id,password);
+		if( member != null) {
+			return member;
+		}else {
+			return null;
+		}	
 	}
-
+	
+	public Member update(Member memberbeans) {
+		 return dao.save(memberbeans);
+	}
+	
 }

@@ -74,6 +74,14 @@
     SIDEBAR STYLE
 ----------------------------------------------------- */
 
+#sidebar a{
+color:white;
+}
+
+a{
+color:black;
+}
+
 .wrapper {
     display: flex;
     align-items: stretch;

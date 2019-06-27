@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <button onclick="topFunction()" id="footbtn" title="Go to top">
-	<i class="fas fa-angle-up"></i>
+	<i class="fas fa-angle-up fa-2x"></i>
 </button>
-
 
 <script>
 	window.onscroll = function() {
@@ -27,7 +26,6 @@
 	display: none;
 	position: fixed;
 	bottom: 20px;
-	right: 30px;
 	z-index: 99;
 	border: none;
 	outline: none;
