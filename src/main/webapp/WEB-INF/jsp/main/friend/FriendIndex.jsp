@@ -68,6 +68,7 @@
 				</div>
 			</div>
 			<hr>
+			<!--  
 			<div class="row">
 				<div class="col-md-4">
 					<div class="well well-sm">
@@ -141,6 +142,7 @@
 					</div>
 				</div>
 			</div>
+			-->
 		</div>
 		<div class="container">
 			<div class="row" id="friend_search_result"></div>
@@ -217,8 +219,8 @@ $(document).ready(function(){
 			myfriend +=       "   <img class=\"media-object\" src=\"http://placehold.it/80\">";
 			myfriend +=    " </a>";
 			myfriend +=    "  <div class=\"media-body\">";
-			myfriend +=       "   <h4 class=\"media-heading\">"+Jdata[i][0] +"</h4>";
-			myfriend +=        "  <p><span class=\"label label-info\">VipLevel : </span> <span class=\"label label-primary\">"+Jdata[i][1]+"</span><br>";
+			myfriend +=       "   <h4 class=\"media-heading\">"+Jdata[i][1] +"</h4>";
+			myfriend +=        "  <p><span class=\"label label-info\">VipLevel : </span> <span class=\"label label-primary\">"+Jdata[i][3]+"</span><br>";
 			myfriend +=  	"	<span class=\"label label-info\">Email: </span> <span class=\"label label-primary\">"+Jdata[i][2]+"</span></p>";
 			myfriend +=      "     <p>";
 			myfriend +=       " <a  class=\"btn btn-xs btn-default btn-success btn-block\"><span class=\"glyphicon glyphicon-comment\"></span>傳訊息</a>";
