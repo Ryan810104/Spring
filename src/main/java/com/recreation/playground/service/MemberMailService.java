@@ -50,6 +50,7 @@ public class MemberMailService {
 		insertData.setMailTitle(MB.getMailTitle());
 		insertData.setMailMessage(MB.getMailMessage());
 		insertData.setMailReceiver(MB.getMailReceiver());
+		dao.save(insertData);
 		return "sendMail";
 	}
 	

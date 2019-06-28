@@ -18,7 +18,7 @@ import com.recreation.playground.entity.MemberMailBeans;
 import com.recreation.playground.service.MemberMailService;
 
 @Controller
-@RequestMapping("/admin/mail")
+@RequestMapping("/test/MemberMailBeans")
 public class MemberMailController {
 
 	@Autowired
@@ -50,8 +50,8 @@ public class MemberMailController {
 
 	@RequestMapping("/deleteMailBySerialNum")
 	public String deleteMailBySerialNum(@ModelAttribute("form01") MemberMailBeans bean, Model model) {
-		Map<String, String> message=new HashMap<>();
-		model.addAttribute("MessageD",message);
+		Map<String, String> message = new HashMap<>();
+		model.addAttribute("MessageD", message);
 		service.delete(bean);
 		message.put("deleteMailSucceed", "信件刪除成功");
 		return "/";
@@ -59,8 +59,8 @@ public class MemberMailController {
 
 	@RequestMapping("/deleteMailByReceiver")
 	public String deleteMailByReceiver(@ModelAttribute("form01") MemberMailBeans bean, Model model) {
-		Map<String, String> message=new HashMap<>();
-		model.addAttribute("MessageDbR",message);
+		Map<String, String> message = new HashMap<>();
+		model.addAttribute("MessageDbR", message);
 		MemberMailBeans bean2 = service.findByReceiver(bean);
 		service.delete(bean2);
 		message.put("deleteReceiverSucceed", "收件匣已清空");
@@ -69,8 +69,8 @@ public class MemberMailController {
 
 	@RequestMapping("/deleteMailBySender")
 	public String deleteMailBySender(@ModelAttribute("form02") MemberMailBeans bean, Model model) {
-		Map<String, String> message=new HashMap<>();
-		model.addAttribute("MessageDbS",message);	
+		Map<String, String> message = new HashMap<>();
+		model.addAttribute("MessageDbS", message);
 		MemberMailBeans bean2 = service.findBymemberId(bean);
 		service.delete(bean2);
 		message.put("deleteSenderSucceed", "寄件備份已清空");
@@ -79,17 +79,28 @@ public class MemberMailController {
 
 	@RequestMapping("/send_insertMail")
 	public String insertMail(@Valid @ModelAttribute("form03") MemberMailBeans bean, BindingResult result, Model model) {
-		Map<String, String> message=new HashMap<>();
-		model.addAttribute("MessageI",message);	
+		Map<String, String> message = new HashMap<>();
+		model.addAttribute("MessageI", message);
+		String sender=bean.getMailMemberId();
+		String receiver=bean.getMailReceiver();
+		String title=bean.getMailTitle();
+		String Message=bean.getMailMessage();
+		
+		
 		if (result.hasErrors()) {
 			message.put("sendMailFail", "信件寄送失敗");
-			return "/";
+			return "/test/memberMail";
 		} else {
 			service.sendMail(bean);
 			message.put("sendMailSucceed", "信件寄送成功");
-			return "/";
+			return "/test/memberMail";
 		}
 
+	}
+
+	@RequestMapping("/MemberMail")
+	public String openMemberMail(Model model) {
+		return "/test/memberMail";
 	}
 
 }

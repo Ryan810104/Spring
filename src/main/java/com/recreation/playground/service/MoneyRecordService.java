@@ -56,6 +56,7 @@ public class MoneyRecordService {
 		insertData.setMoneyRecordUserId(RB.getMoneyRecordUserId());
 		insertData.setMoneyRecordChipType(RB.getMoneyRecordChipType());
 		insertData.setMoneyRecordAmount(RB.getMoneyRecordAmount());
+		dao.save(insertData);
 		return "tradeOccur";
 	}
 

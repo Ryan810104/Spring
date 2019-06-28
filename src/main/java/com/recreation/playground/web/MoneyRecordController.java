@@ -18,7 +18,7 @@ import com.recreation.playground.entity.MoneyRecordBeans;
 import com.recreation.playground.service.MoneyRecordService;
 
 @Controller
-@RequestMapping("/admin/moneyRecord")
+@RequestMapping("/test/moneyRecord")
 public class MoneyRecordController {
 
 	@Autowired
@@ -79,6 +79,11 @@ public class MoneyRecordController {
 			message.put("tradeSucceed", "交易成功");
 			return "/";
 		}
+	}
+	
+	@RequestMapping("/MoneyRecord")
+	public String openMoneyRecord(Model model) {
+		return "/test/";
 	}
 
 }
