@@ -24,15 +24,15 @@ public class MemberMailController {
 	@Autowired
 	private MemberMailService service;
 
-	@RequestMapping("/mailFromWhom")
+	@RequestMapping("/mailFromWho")
 	@ResponseBody
-	public MemberMailBeans mailFromWhom(MemberMailBeans bean) {
+	public MemberMailBeans mailFromWho(MemberMailBeans bean) {
 		return service.findBymemberId(bean);
 	}
 
-	@RequestMapping("/mailToWhom")
+	@RequestMapping("/mailToWho")
 	@ResponseBody
-	public MemberMailBeans mailToWhom(MemberMailBeans bean) {
+	public MemberMailBeans mailToWho(MemberMailBeans bean) {
 		return service.findByReceiver(bean);
 	}
 
@@ -48,8 +48,8 @@ public class MemberMailController {
 		return service.findById(num);
 	}
 
-	@RequestMapping("/deleteMail")
-	public String deleteMail(@ModelAttribute("form01") MemberMailBeans bean, Model model) {
+	@RequestMapping("/deleteMailBySerialNum")
+	public String deleteMailBySerialNum(@ModelAttribute("form01") MemberMailBeans bean, Model model) {
 		Map<String, String> message=new HashMap<>();
 		model.addAttribute("MessageD",message);
 		service.delete(bean);

@@ -59,6 +59,12 @@ public class MoneyRecordController {
 		service.delete(bean);
 		return "/";
 	}
+	
+	@RequestMapping("/updateMRBySerialNum")
+	public String updateMRBySerialNum(@ModelAttribute("formR1") MoneyRecordBeans bean) {
+		service.update(bean);
+		return "/";
+	}
 
 	@RequestMapping("/insertMoneyRecord")
 	public String insertMoneyRecord(@Valid @ModelAttribute("formR1") MoneyRecordBeans bean, BindingResult result,

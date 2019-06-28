@@ -14,4 +14,5 @@ public interface MoneyRecordDao extends JpaRepository<MoneyRecordBeans, Integer>
 	
 	public MoneyRecordBeans findByMoneyRecordTimeLike(Date date);
 
+
 }
