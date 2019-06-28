@@ -1,6 +1,7 @@
 package com.recreation.playground.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.MemberService;
@@ -243,5 +245,12 @@ public class MemberController {
 		return "/admin/userupdate";
 		
 		
+	}
+	@ResponseBody
+	@RequestMapping("/findfriend")
+	public List<Member> friendsfind (String findmemberid) {
+		service.findFriendsByMemberId(findmemberid);
+		System.out.println("ss0"+service.findFriendsByMemberId(findmemberid));
+		return service.findFriendsByMemberId(findmemberid);
 	}
 }
