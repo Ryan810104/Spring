@@ -1,5 +1,7 @@
 package com.recreation.playground.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Select;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +15,7 @@ public interface MemberDao extends JpaRepository<Member, Integer>{
 	
 	public Member findByMemberIdAndMemberPassword(String id,String password);
 	
-	
-	
+	//好友功能需要的搜尋功能
+	public List<Member> findByMemberIdContaining(String memberid);
 
 }

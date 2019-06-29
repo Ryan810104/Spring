@@ -74,7 +74,12 @@
 	</ul>
 </header>
 <hr>
+	
 <style>
+.navbarontop{
+/* position:fixed; */
+/* background-color:red; */
+}
 /*  Estilos Generales  */
 *, *:before, *:after {
 	box-sizing: border-box;
@@ -123,7 +128,8 @@ img {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	position: relative;
+	    position: fixed;
+
 	font-size: 1.4rem;
 	width: 100%;
 	color: #b0b0b0;
@@ -290,6 +296,8 @@ Inicio Primer Estado: Colapsado (Default:MOE)
 .sidebar.moe {
 	grid-column: 1/2;
 	grid-row: 1/2;
+		    height: inherit;
+	        width: initial;
 }
 
 .sidebar-header.moe {
@@ -345,6 +353,10 @@ Inicio Segundo Estado: Expandido (EX)
 .sidebar.ex {
 	grid-column: 1/3;
 	grid-row: 1/2;
+		    height: inherit;
+	        width: initial;
+	    
+	
 }
 
 .sidebar-header.ex {

@@ -32,7 +32,23 @@
       </div>
     </div>
     <!--===============CHAT ON BUTTON STRART===============-->
-    <div class="chat_on"> <span class="chat_on_icon" style="line-height:0.8rem;"><i class="fa fa-comments fa-xs" aria-hidden="true"></i></span> </div>
+    <div class="chat_on_box">
+    <div class="chat_on" style="visibility:hidden"> 
+    <span class="chat_on_icon" style="line-height:0.8rem;">
+    <i class="fa fa-comments fa-xs" aria-hidden="true"></i></span> </div><br>
+    <div class="chat_on" style="visibility:hidden"> 
+    <span class="chat_on_icon" style="line-height:0.8rem;">
+    <i class="fa fa-comments fa-xs" aria-hidden="true"></i></span> </div><br>
+     <div class="chat_on" style="visibility:hidden"> 
+    <span class="chat_on_icon" style="line-height:0.8rem;">
+    <i class="fa fa-comments fa-xs" aria-hidden="true"></i></span> </div><br>
+        <div class="chat_on" style="visibility:hidden"> 
+    <span class="chat_on_icon" style="line-height:0.8rem;">
+    <i class="fa fa-comments fa-xs" aria-hidden="true"></i></span> </div><br>
+        <div class="chat_on" > 
+    <span class="chat_on_icon" style="line-height:0.8rem;">
+    <i class="fa fa-comments fa-xs" aria-hidden="true"></i></span> </div>
+    </div>
     <!--===============CHAT ON BUTTON END===============-->
   </div>
 	</div>
@@ -58,13 +74,15 @@
     right: 12px;
     z-index: 9;
 }
-.chat_on {
-    position: fixed;
+.chat_on_box {
+position: fixed;
     z-index: 10;
     width: 45px;
     height: 45px;
     right: 15px;
-    bottom:20px;
+    bottom: 280px;
+}
+.chat_on {
     background-color: black;
     color: #fff;
     border-radius: 50%;
