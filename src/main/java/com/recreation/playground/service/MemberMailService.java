@@ -40,6 +40,9 @@ public class MemberMailService {
 	public MemberMailBeans findByReceiver(MemberMailBeans MB) {
 		return dao.findByMailReceiver(MB.getMailReceiver());
 	}
+	public MemberMailBeans findByMailTitle(MemberMailBeans MB) {
+		return dao.findByMailTitle(MB.getMailTitle());
+	}
 		
 //	public MemberMailBeans save(MemberMailBeans MB) {
 //	return dao.save(MB);

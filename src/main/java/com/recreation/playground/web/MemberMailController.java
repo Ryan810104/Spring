@@ -35,6 +35,12 @@ public class MemberMailController {
 	public MemberMailBeans mailToWho(MemberMailBeans bean) {
 		return service.findByReceiver(bean);
 	}
+	
+	@RequestMapping("getContentByTitle")
+	@ResponseBody
+	public MemberMailBeans getContentByTitle(MemberMailBeans bean) {
+		return service.findByMailTitle(bean);
+	}
 
 	@RequestMapping("/getAllMail")
 	@ResponseBody
@@ -51,8 +57,18 @@ public class MemberMailController {
 	@RequestMapping("/deleteMailBySerialNum")
 	public String deleteMailBySerialNum(@ModelAttribute("form01") MemberMailBeans bean, Model model) {
 		Map<String, String> message = new HashMap<>();
-		model.addAttribute("MessageD", message);
+		model.addAttribute("MessageDN", message);
 		service.delete(bean);
+		message.put("deleteMailSucceed", "信件刪除成功");
+		return "/";
+	}
+	
+	@RequestMapping("/deleteMailByTitle")
+	public String deleteMailByTitle(@ModelAttribute("form01") MemberMailBeans bean, Model model) {
+		Map<String, String> message = new HashMap<>();
+		model.addAttribute("MessageDT", message);
+		MemberMailBeans bean2 = service.findByMailTitle(bean);
+		service.delete(bean2);
 		message.put("deleteMailSucceed", "信件刪除成功");
 		return "/";
 	}
