@@ -133,14 +133,17 @@
 							</div>
 							<div class="pull-left meta">
 								<div>
-									<textarea cols="95" rows="3">輸入你想要寫的內容...</textarea>
+									<textarea cols="95" rows="1" placeholder="標題..." ></textarea>
+								</div>
+								<div>
+									<textarea cols="95" rows="3" placeholder="輸入你想要寫的內容..." ></textarea>
 
 								</div>
 								<!-- 								<h6 class="text-muted time">1 minute ago</h6> -->
 
 							</div>
 							<div class="pull-left meta" style="all: inherit;">
-								<input type="button" class="btn btn-success btn-lg" value="送出">
+								<input type="button" class="btn btn-success btn-lg" style="margin: 1.5px" value="送出">
 							</div>
 						</div>
 						<div class="post-description"></div>

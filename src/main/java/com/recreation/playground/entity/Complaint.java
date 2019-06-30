@@ -7,26 +7,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name="CustomerMessageBoard")
-public class CMBBean {
+@Table(name="Complaint")
+public class Complaint {
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private int CustomermessageboardNum ; 
+	private int ComplaintNum ; 
 	@Column
-	private String CustomermessageboardMemberid ;
+	private String MemberId ; 
 	@Column
-	private String CustomermessageboardTitle ; 
+	private String ComplaintTitle ; 
 	@Column
-	private String CustomermessageboardMessage ; 
+	private String ComplaintMessage ; 
 	@Column
-	private java.util.Date CustomermessageboardMessagetime ;
+	@CreatedDate
+	private java.util.Date ComplaintMessagetime ;
 	@Column
-	private String CustomermessageboardStatus ;
+	private String ComplaintStatus ;
+	@Column
+	private String ComplaintResponse ;
 
-} 
+}
