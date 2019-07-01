@@ -109,42 +109,60 @@
 //declare global variable to presist the value from function opencontact(sender,receiver)
 var sender0 = 0;
 var receiver0 = 0;
+
 //1. link sender and receiver 
-//2. use long polling to fetch the message 
-//3. keep Local variable into Global variable
 function opencontact(sender,receiver){
+
+	localStorage.setItem("chatroom", "true")
 	$("#chat_room_1").css("visibility","visible");
 	$.get("/friend/list/getreceiversid?memberid="+receiver,function(Jdata){
 		$("#chat_room_1_id").html((Jdata[0][1]));
 	});
   $("#Layout1").toggle();
   $("#chat_room_1").hide(300);
-
-setInterval(function(){
-  $.ajax({ url: "/chatroom/querymessage?sender="+sender+"&receiver="+receiver, success: function(data){
-      //Update your dashboard gauge
-      var dataL = data.length;
-      $("#Messages1").empty();
-      for(var i = 0 ; i < dataL ; i++ ){
-          var text = "";
-		  var time = data[i][5].substr(11,8).replace("T","").replace("-","/");
-      	if (data[i][0] == sender){
-      	text = "<div class=\"msg_cotainer\">"+data[i][4]+"<span class=\"msg_time\">"+time+"</span></div>";
-//           text = $("<div class=\"msg_cotainer\"></div>").text(data[i][4]);
-//           time = $("<span class=\"msg_time\"></span>").text(data[i][5]);
-      	} else{
-      	text = "<div class=\"msg_cotainer_send\">"+data[i][4]+"<span class=\"msg_time_send\">"+time+"</span></div>";
-//       	text = $("<div class=\"msg_cotainer_send\"></div>").text(data[i][4]);
-//       	time = $("<span class=\"msg_time_send\"></span>").text(data[i][5]);
-      	}
-      	$("#Messages1").append(text);
-//       	$(".Messages").append(time);
-      }
-  }, dataType: "json"});
-}, 3000);
+//2. keep Local variable into Global variable
 	sender0 = sender;
+	localStorage.setItem("sendersession",sender);
 	receiver0 = receiver;
+	localStorage.setItem("receiversession",receiver);
+//3. use long polling to fetch the message 
+	readmessageInterval();
+	setTimeout(function(){
+		clicksendbutton();
+	},3050);
+};
+if (localStorage.getItem("chatroom")){
+	opencontact(localStorage.getItem("sendersession"),localStorage.getItem("receiversession"));
+	readmessage();
+	setTimeout(function(){
+		clicksendbutton();
+	},50);
 }
+// if (localStorage.getItem("chatroomopen")){
+// 	$("#chat_room_1").css("visibility","visible");
+// 	opencontact(localStorage.getItem("sendersession"),localStorage.getItem("receiversession"));
+// }
+function readmessage(){
+	  $.ajax({ url: "/chatroom/querymessage?sender="+sender0+"&receiver="+receiver0, success: function(data){
+	      var dataL = data.length;
+	      $("#Messages1").empty();
+	      for(var i = 0 ; i < dataL ; i++ ){
+	          var text = "";
+			  var time = data[i][5].substr(11,8).replace("T","").replace("-","/");
+	      	if (data[i][0] == sender0){
+	      	text = "<div class=\"msg_cotainer\">"+data[i][4]+"<span class=\"msg_time\">"+time+"</span></div>";
+	      	} else{
+	      	text = "<div class=\"msg_cotainer_send\">"+data[i][4]+"<span class=\"msg_time_send\">"+time+"</span></div>";
+	      	}
+	      	$("#Messages1").append(text);
+	      }
+	  }, dataType: "json"});
+};
+function readmessageInterval(){
+	setInterval(function(){
+		readmessage();
+		}, 3000);
+		}
 //prevent from pressing enter to reload the page. 
 function preventreload(e){
     if (e.keyCode == 13) {	
@@ -155,6 +173,9 @@ function preventreload(e){
 </script>
 <script>
 function enter(){
+	if ($("#chat_room1_messageinput").val() == ""){
+		return;
+	}
 	$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
 	});
 	var text = $("<div class=\"msg_cotainer\"></div>").text($("#chat_room1_messageinput").val());
@@ -164,7 +185,14 @@ function enter(){
 	objDiv.scrollTop = objDiv.scrollHeight;
 }
 $("#input_send_button").click(function(){
-//		alert(sender0+","+receiver0);
+	clicksendbutton();
+});
+function clicksendbutton(){
+	if ($("#chat_room1_messageinput").val() == ""){
+		var objDiv = document.getElementById("Messages1");
+		objDiv.scrollTop = objDiv.scrollHeight;
+		return;
+	}
 	$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
 	});
 	var text = $("<div class=\"msg_cotainer\"></div>").text($("#chat_room1_messageinput").val());
@@ -172,20 +200,7 @@ $("#input_send_button").click(function(){
 	$("#chat_room1_messageinput").val("");
 	var objDiv = document.getElementById("Messages1");
 	objDiv.scrollTop = objDiv.scrollHeight;
-});
-//room1 chat:
-	$("#input_send_button").click(function(){
-// 		alert(sender0+","+receiver0);
-		$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
-		});
-		var text = $("<div class=\"msg_cotainer\"></div>").text($("#chat_room1_messageinput").val());
-		$("#Messages1").append(text);
-		$("#chat_room1_messageinput").val("");
-		var objDiv = document.getElementById("est1");
-		objDiv.scrollTop = objDiv.scrollHeight;
-	});
-//listening message
-
+	};
 </script>
 <script>
 
@@ -194,6 +209,7 @@ $("#input_send_button").click(function(){
 
 $(document).ready(function(){
 	 $("#chat_room_1").click(function(){
+		 localStorage.setItem("chatroomopen","true");
 	     $("#Layout1").toggle();
 	     $("#chat_room_1").hide(300);
 	 });
@@ -206,6 +222,8 @@ $(document).ready(function(){
      $("#chat_room_0").show(300);
 	 $("#Layout1").hide();
 	 $("#chat_room_1").show(300);
+	 localStorage.removeItem("chatroom");
+
  });
 });
 
