@@ -168,6 +168,9 @@ $(".search_icon").click(function(){
 //				console.log(Jdata);
 			var NumOfJData = Jdata.length;
 			for (var i = 0; i < NumOfJData; i++) {
+				if (Jdata[i]["memberNum"] == '${sessionScope.member.memberNum}'){
+					continue;
+				}
 				text += "<div class=\"col-md-4\">";
 					text +=	"<div class=\"well well-sm\">";
 					text += "  <div class=\"media\">";
