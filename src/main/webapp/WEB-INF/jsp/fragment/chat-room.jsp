@@ -39,13 +39,13 @@
         <div class="Messenger_content">
           <div class="Messages">
             <div class="Messages_list"></div>
-				<div class=" rounded-top border border-success chatbox__body__message--right">
+				<div class=" rounded-top border border-success chatbox__body__message--right" id="chat_room_content">5656	
 				</div>
 				<div class=" rounded-top border border-light chatbox__body__message--left">
 				</div>
           </div>
           <div class="Input Input-blank">
-            <input type="text" class="Input_field" placeholder="Send a message..." style="height: 20px;">
+            <input type="text" class="Input_field" id="chat_room1_messageinput" placeholder="Send a message..." style="height: 20px;">
             <button class="Input_button Input_button-send" id="input_send_button">
               <div class="Icon" style="width: 18px; height: 18px;">
                 <svg width="57px" height="54px" viewBox="1496 193 57 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="width: 18px; height: 18px;">
@@ -88,7 +88,10 @@
 </div> 
 <link rel="stylesheet" href="/resources/css/chat-room.css">
 <script>
+var sender0 = 0;
+var receiver0 = 0;
 function opencontact(sender,receiver){
+// alert(sender+","+receiver);
 // 	alert(receiver+sender);
 	$("#chat_room_1").css("visibility","visible");
 	$.get("/friend/list/getreceiversid?memberid="+receiver,function(Jdata){
@@ -99,9 +102,23 @@ function opencontact(sender,receiver){
 //     $.get("/chat-room/"+sender+"/to/"+receive+"?message="+message,function() {
 //         alert("发送成功...")
 //      })
+	sender0 = sender;
+	receiver0 = receiver;
 }
 </script>
-
+<script>
+//room1 chat:
+	$("#input_send_button").click(function(){
+// 		alert(sender0+","+receiver0);
+		$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
+		});
+		$("#chat_room1_messageinput").val("");
+	});
+//listening message
+	$("#input_send_button").click(function(){
+		$("#chat_room_content").append("<p>44gngn</p>");
+	});
+</script>
 <script>
 
 //CHAT BOOT MESSENGER////////////////////////
