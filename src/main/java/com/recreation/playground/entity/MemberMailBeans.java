@@ -1,7 +1,5 @@
 ﻿package com.recreation.playground.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -36,7 +34,7 @@ public class MemberMailBeans {
 	
 	@Column
 	@CreatedDate
-	private Date 	mailMessageTime;
+	private java.util.Date	mailMessageTime;
 	
 	@Column
 	private String 	mailReceiver;

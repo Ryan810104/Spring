@@ -2,39 +2,40 @@ package com.recreation.playground.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Data
-@Table(name="Complaint")
-public class Complaint {
-	
-	
+@Table(name="MemberAnnotation")
+public class MemberAnnotation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private int complaintNum ; 
+	private Integer annotNum;
+	
 	@Column
-	private String memberId ; 
+	private String annotfromId;
+	
 	@Column
-	private String complaintTitle ; 
+	private String annotTitle;
+	
 	@Column
-	private String complaintMessage ; 
+	private String annotMessage;
+	
 	@Column
 	@CreatedDate
-	private java.util.Date complaintMessagetime ;
+	private java.util.Date annotTime;
+	
 	@Column
-	private String complaintStatus ;
-	@Column
-	private String violator ;
-	@Column
-	private String complaintResponse ;
-
+	private String annotforId;
 }

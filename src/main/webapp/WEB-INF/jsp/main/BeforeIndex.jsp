@@ -413,7 +413,7 @@
 		function chkEmail() {
 			let theEmail = document.getElementById("memberEmail").value;
 			let re = new RegExp(
-					"^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\.\\w+([-.]\\w+)*$");
+					"^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$");
 			flag6 = true;
 
 			if (theEmail != "") {

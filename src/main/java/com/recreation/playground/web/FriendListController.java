@@ -51,8 +51,8 @@ public class FriendListController {
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("/findmyfriend")
-	public List<Object[]> findmyfriend(Integer memberid , Model model) { 
-		String sql = "SELECT f.friend_list_friendid , m.member_id , m.member_email , m.member_viplevel FROM friend_list f ,member m  WHERE f.friend_list_memberid = "+memberid+" AND  f.friend_list_friendid = m.member_num";
+	public List<Object[]> findmyfriend(Integer membernum , Model model) { 
+		String sql = "SELECT f.friend_list_friendid , m.member_id , m.member_email , m.member_viplevel FROM friend_list f ,member m  WHERE f.friend_list_memberid = "+membernum+" AND  f.friend_list_friendid = m.member_num";
 		return em.createNativeQuery(sql)
 				.getResultList();
 	}

@@ -37,15 +37,31 @@
         <div class="Messenger_header" style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
           <h4 class="Messenger_prompt" id="chat_room_1_id">userid position</h4> <span class="chat_close_icon"><i class="fas fa-times"></i></span> </div>
         <div class="Messenger_content">
-          <div class="Messages">
-            <div class="Messages_list"></div>
-				<div class=" rounded-top border border-success chatbox__body__message--right" id="chat_room_content">5656	
-				</div>
-				<div class=" rounded-top border border-light chatbox__body__message--left">
-				</div>
+        
+          <div class="Messages" id="Messages1">
+            
+<div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          
+<!--              <div class="msg_cotainer_send"> -->
+<!-- 					Hi Maryam i am good tnx how about you? -->
+<!-- 					<span class="msg_time_send">8:55 AM, Today</span> -->
+<!-- 			</div> -->
+<!-- 			<div class="msg_cotainer"> -->
+<!-- 					Hi, how are you samim? -->
+<!-- 					<span class="msg_time">8:40 AM, Today</span> -->
+<!-- 			</div>	 -->
+<!-- 			<div class="msg_cotainer"> -->
+<!-- 					Hi, how are you samim?asdasdasdasdasdsadsad -->
+<!-- 					<span class="msg_time">8:40 AM, Today</span> -->
+<!-- 			</div> -->
+<!-- 				<div class=" rounded-top border border-success chatbox__body__message--right" id="chat_room_content">5656	 -->
+<!-- 				</div> -->
+<!-- 				<div class=" rounded-top border border-light chatbox__body__message--left"> -->
+<!-- 				</div> -->
           </div>
           <div class="Input Input-blank">
-            <input type="text" class="Input_field" id="chat_room1_messageinput" placeholder="Send a message..." style="height: 20px;">
+
+            <input type="text" class="Input_field" id="chat_room1_messageinput" placeholder="Send a message..." style="height: 20px;" onkeypress="return preventreload(event)">
             <button class="Input_button Input_button-send" id="input_send_button">
               <div class="Icon" style="width: 18px; height: 18px;">
                 <svg width="57px" height="54px" viewBox="1496 193 57 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="width: 18px; height: 18px;">
@@ -55,6 +71,7 @@
                 </svg>
               </div>
             </button>
+
           </div>
         </div>
       </div>
@@ -87,37 +104,103 @@
 	</div>
 </div> 
 <link rel="stylesheet" href="/resources/css/chat-room.css">
+
 <script>
+//declare global variable to presist the value from function opencontact(sender,receiver)
 var sender0 = 0;
 var receiver0 = 0;
+
+//1. link sender and receiver 
 function opencontact(sender,receiver){
-// alert(sender+","+receiver);
-// 	alert(receiver+sender);
+
+	localStorage.setItem("chatroom", "true")
 	$("#chat_room_1").css("visibility","visible");
 	$.get("/friend/list/getreceiversid?memberid="+receiver,function(Jdata){
 		$("#chat_room_1_id").html((Jdata[0][1]));
 	});
-    $("#Layout1").toggle();
-    $("#chat_room_1").hide(300);
-//     $.get("/chat-room/"+sender+"/to/"+receive+"?message="+message,function() {
-//         alert("发送成功...")
-//      })
+  $("#Layout1").toggle();
+  $("#chat_room_1").hide(300);
+//2. keep Local variable into Global variable
 	sender0 = sender;
+	localStorage.setItem("sendersession",sender);
 	receiver0 = receiver;
+	localStorage.setItem("receiversession",receiver);
+//3. use long polling to fetch the message 
+	readmessageInterval();
+	setTimeout(function(){
+		clicksendbutton();
+	},3050);
+};
+if (localStorage.getItem("chatroom")){
+	opencontact(localStorage.getItem("sendersession"),localStorage.getItem("receiversession"));
+	readmessage();
+	setTimeout(function(){
+		clicksendbutton();
+	},50);
+}
+// if (localStorage.getItem("chatroomopen")){
+// 	$("#chat_room_1").css("visibility","visible");
+// 	opencontact(localStorage.getItem("sendersession"),localStorage.getItem("receiversession"));
+// }
+function readmessage(){
+	  $.ajax({ url: "/chatroom/querymessage?sender="+sender0+"&receiver="+receiver0, success: function(data){
+	      var dataL = data.length;
+	      $("#Messages1").empty();
+	      for(var i = 0 ; i < dataL ; i++ ){
+	          var text = "";
+			  var time = data[i][5].substr(11,8).replace("T","").replace("-","/");
+	      	if (data[i][0] == sender0){
+	      	text = "<div class=\"msg_cotainer\">"+data[i][4]+"<span class=\"msg_time\">"+time+"</span></div>";
+	      	} else{
+	      	text = "<div class=\"msg_cotainer_send\">"+data[i][4]+"<span class=\"msg_time_send\">"+time+"</span></div>";
+	      	}
+	      	$("#Messages1").append(text);
+	      }
+	  }, dataType: "json"});
+};
+function readmessageInterval(){
+	setInterval(function(){
+		readmessage();
+		}, 3000);
+		}
+//prevent from pressing enter to reload the page. 
+function preventreload(e){
+    if (e.keyCode == 13) {	
+    	enter();
+        return false;
+    }
 }
 </script>
 <script>
-//room1 chat:
-	$("#input_send_button").click(function(){
-// 		alert(sender0+","+receiver0);
-		$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
-		});
-		$("#chat_room1_messageinput").val("");
+function enter(){
+	if ($("#chat_room1_messageinput").val() == ""){
+		return;
+	}
+	$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
 	});
-//listening message
-	$("#input_send_button").click(function(){
-		$("#chat_room_content").append("<p>44gngn</p>");
+	var text = $("<div class=\"msg_cotainer\"></div>").text($("#chat_room1_messageinput").val());
+	$("#Messages1").append(text);
+	$("#chat_room1_messageinput").val("");
+	var objDiv = document.getElementById("Messages1");
+	objDiv.scrollTop = objDiv.scrollHeight;
+}
+$("#input_send_button").click(function(){
+	clicksendbutton();
+});
+function clicksendbutton(){
+	if ($("#chat_room1_messageinput").val() == ""){
+		var objDiv = document.getElementById("Messages1");
+		objDiv.scrollTop = objDiv.scrollHeight;
+		return;
+	}
+	$.get("/chatroom/sendmessage?memberid="+sender0+"&sendto="+receiver0+"&message="+$("#chat_room1_messageinput").val(),function(Jdata){
 	});
+	var text = $("<div class=\"msg_cotainer\"></div>").text($("#chat_room1_messageinput").val());
+	$("#Messages1").append(text);
+	$("#chat_room1_messageinput").val("");
+	var objDiv = document.getElementById("Messages1");
+	objDiv.scrollTop = objDiv.scrollHeight;
+	};
 </script>
 <script>
 
@@ -126,9 +209,9 @@ function opencontact(sender,receiver){
 
 $(document).ready(function(){
 	 $("#chat_room_1").click(function(){
+		 localStorage.setItem("chatroomopen","true");
 	     $("#Layout1").toggle();
 	     $("#chat_room_1").hide(300);
-         
 	 });
  $("#chat_room_0").click(function(){
      $("#Layout0").toggle();
@@ -139,8 +222,9 @@ $(document).ready(function(){
      $("#chat_room_0").show(300);
 	 $("#Layout1").hide();
 	 $("#chat_room_1").show(300);
+	 localStorage.removeItem("chatroom");
+
  });
- 
 });
 
 </script>
