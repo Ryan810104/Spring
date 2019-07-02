@@ -37,12 +37,17 @@ public class Member {
 	//會員密碼
 	
 	private String memberPasswordComfirm;
-	
-	private String nickName;
+	@Column
+	private String memberNickName;
+	@Column
+	private String memberFitstName;
+	@Column
+	private String memberLastName;
 	
 	@Column
 	private Integer memberPermission;
 	//會員權限
+	
 	@Column
 	private String  memberEmail;
 	//會員郵箱
@@ -50,6 +55,9 @@ public class Member {
 	private String  memberPhonenum;
 	//會員電話
 	
+	@Column
+	private String memberAddress;
+	//會員住址
 	
 	@Column(name="CREATE_TIME")
 	@CreatedDate

@@ -82,10 +82,11 @@ public class MemberController {
 		model.addAttribute("ErrorMsg", errorMessage);
 		model.addAttribute("registerResult", "1");
 		String memberId = member.getMemberId();
-		System.out.println(memberId);
+		
 		String memberPwd = member.getMemberPassword();
 		String memberPwdCon = member.getMemberPasswordComfirm();
-		String memberNickName = member.getNickName();
+		String memberNickName=member.getMemberNickName();
+		System.out.println(memberNickName);
 		String memberEmail = member.getMemberEmail();
 		String memberPhonenum = member.getMemberPhonenum();
 		String registerResult1 = "success";
@@ -153,7 +154,7 @@ public class MemberController {
 
 		// 暱稱驗證
 		String chknickname = "^[\\u4E00-\\u9FFF]{2,8}$";
-
+		
 		if (memberNickName != "") {
 			if (memberNickName.length() >= 2 && memberNickName.length() <= 8) {
 				if (memberNickName.matches(chknickname)) {

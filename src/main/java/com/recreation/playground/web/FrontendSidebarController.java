@@ -53,4 +53,12 @@ public class FrontendSidebarController {
 	public String toEmojiGame(Model model) {
 		return "/main/games/Mineweeper";
 		}
+//Game俄羅斯輪盤
+	@RequestMapping("/Circlegame")
+	public String tocirlegame(Model model) {
+		
+		return"/main/games/circlegame";
+	}
+
+	
 }
