@@ -82,7 +82,7 @@ public class MemberController {
 		model.addAttribute("ErrorMsg", errorMessage);
 		model.addAttribute("registerResult", "1");
 		String memberId = member.getMemberId();
-		System.out.println(memberId);
+//		System.out.println(memberId);
 		String memberPwd = member.getMemberPassword();
 		String memberPwdCon = member.getMemberPasswordComfirm();
 		String memberNickName = member.getNickName();
@@ -103,7 +103,7 @@ public class MemberController {
 					errorMessage.put("memberId", "");
 				} else {
 					errorMessage.put("memberId", "必須含英文或數字,首字為英文");
-					System.out.println("必須含英文或數字,首字為英文");
+//					System.out.println("必須含英文或數字,首字為英文");
 					registerResult1 = "false";
 				}
 			} else {
@@ -131,12 +131,12 @@ public class MemberController {
 				}
 			} else {
 				errorMessage.put("memberPwd", "必須大於8個字");
-				System.out.println("必須大於8個字");
+//				System.out.println("必須大於8個字");
 				registerResult1 = "false";
 			}
 		} else {
 			errorMessage.put("memberPwd", "必須小於16個字");
-			System.out.println("必須小於16個字");
+//			System.out.println("必須小於16個字");
 			registerResult1 = "false";
 		}
 
@@ -158,7 +158,6 @@ public class MemberController {
 			if (memberNickName.length() >= 2 && memberNickName.length() <= 8) {
 				if (memberNickName.matches(chknickname)) {
 					errorMessage.put("memberNickName", "");
-					
 				} else {
 					errorMessage.put("memberNickName", "一定要中文");
 					registerResult1 = "false";					
@@ -205,7 +204,7 @@ public class MemberController {
 			errorMessage.put("memberId", "此ID有人註冊過了");
 			registerResult1 = "false";
 		}
-		System.out.println(registerResult1);
+//		System.out.println(registerResult1);
 		
 
 		if (registerResult1.equals("success")) {			
@@ -232,8 +231,8 @@ public class MemberController {
 			System.out.println(result.getAllErrors());
 			return "/admin/userupdate";
 		}else {
-			System.out.println(member.getMemberId());
-			System.out.println(member.getMemberPassword());
+//			System.out.println(member.getMemberId());
+//			System.out.println(member.getMemberPassword());
 			boolean result1 = service.checkpassword(member.getMemberId(), member.getMemberPassword());
 			if(result1) {
 				System.out.println("correct");
