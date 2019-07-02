@@ -1,4 +1,4 @@
-﻿package com.recreation.playground.entity;
+package com.recreation.playground.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,26 +16,26 @@ import lombok.Data;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Data
-@Table(name = "MemberMail")
-public class MemberMailBeans {
+@Table(name="MemberAnnotation")
+public class MemberAnnotation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private Integer mailNum;
+	private Integer annotNum;
 	
 	@Column
-	private String 	mailMemberId;
+	private String annotfromId;
 	
 	@Column
-	private String 	mailTitle;
+	private String annotTitle;
 	
 	@Column
-	private String 	mailMessage;
+	private String annotMessage;
 	
 	@Column
 	@CreatedDate
-	private java.util.Date	mailMessageTime;
+	private java.util.Date annotTime;
 	
 	@Column
-	private String 	mailReceiver;
+	private String annotforId;
 }
