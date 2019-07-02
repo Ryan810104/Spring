@@ -20,7 +20,7 @@ public class Complaint {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private int complaintNum ; 
+	private Integer complaintNum ; 
 	@Column
 	private String memberId ; 
 	@Column
