@@ -363,7 +363,7 @@
 		})
 
 		function chkName() {
-			let theName = document.getElementById("nickName").value;
+			let theName = document.getElementById("memberNickName").value;
 			let theNameLen = theName.length;
 			let re = new RegExp("^[\\u4E00-\\u9FFF]{2,8}$");
 			flag4 = true;
@@ -388,7 +388,7 @@
 				document.getElementById("nnsp").innerHTML = "";
 		}
 		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("nickName").addEventListener("blur",
+			document.getElementById("memberNickName").addEventListener("blur",
 					chkName);
 		})
 
@@ -498,9 +498,9 @@
 						</div>
 
 						<div class="mb-3">
-							<label for="nickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
-							<input type="text" class="form-control" id="nickName"
-								name="nickName"> <span id="nnsp" style="color:red">${ErrorMsg.memberNickName}</span>
+							<label for="memberNickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
+							<input type="text" class="form-control" id="memberNickName"
+								name="memberNickName"> <span id="nnsp" style="color:red">${ErrorMsg.memberNickName}</span>
 						</div>
 
 						<div class="mb-3">

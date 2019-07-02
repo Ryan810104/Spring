@@ -20,11 +20,16 @@ public class MemberService {
 		return dao.findByMemberId(memberId);
 	}
 	
+	public List<Member> findAll() {
+		return dao.findAll();
+	}
+	
 	public String register(Member member) {		
 		Member insertData = new Member();
 		insertData.setMemberId(member.getMemberId());
 		insertData.setMemberPassword(member.getMemberPassword());
 		insertData.setMemberEmail(member.getMemberEmail());
+		insertData.setMemberNickName(member.getMemberNickName());
 		insertData.setMemberPhonenum(member.getMemberPhonenum());
 		insertData.setMemberPermission(0);
 		insertData.setMemberViplevel(0);
@@ -72,4 +77,8 @@ public class MemberService {
 	public List<Member> findFriendsByMemberId (String memberid) {
 		return dao.findByMemberIdContaining(memberid);
 	}
+	
+	
+	
+	
 }
