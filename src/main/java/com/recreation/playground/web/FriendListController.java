@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.FriendList;
+import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.FriendListService;
 import com.recreation.playground.service.MemberService;
 
@@ -54,6 +55,22 @@ public class FriendListController {
 		String sql = "SELECT f.friend_list_friendid , m.member_id , m.member_email , m.member_viplevel FROM friend_list f ,member m  WHERE f.friend_list_memberid = "+memberid+" AND  f.friend_list_friendid = m.member_num";
 		return em.createNativeQuery(sql)
 				.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@RequestMapping("/getreceiversid")
+	@ResponseBody
+	public List<Object[]> chatroomuserid(Integer memberid,Model model){
+		String sql = " SELECT member_num,member_id  FROM member where member_num = "+memberid;
+		return em.createNativeQuery(sql).getResultList();
+	}
+	
+	@ResponseBody
+	@RequestMapping("/test")
+	public Member test1 (Integer memberid,Model model) {
+		Member a = em.find(Member.class, memberid);
+		System.out.println(a.getMemberEmail());
+		return a;
 	}
 
 }

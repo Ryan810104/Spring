@@ -168,6 +168,9 @@ $(".search_icon").click(function(){
 //				console.log(Jdata);
 			var NumOfJData = Jdata.length;
 			for (var i = 0; i < NumOfJData; i++) {
+				if (Jdata[i]["memberNum"] == '${sessionScope.member.memberNum}'){
+					continue;
+				}
 				text += "<div class=\"col-md-4\">";
 					text +=	"<div class=\"well well-sm\">";
 					text += "  <div class=\"media\">";
@@ -223,7 +226,7 @@ $(document).ready(function(){
 			myfriend +=        "  <p><span class=\"label label-info\">VipLevel : </span> <span class=\"label label-primary\">"+Jdata[i][3]+"</span><br>";
 			myfriend +=  	"	<span class=\"label label-info\">Email: </span> <span class=\"label label-primary\">"+Jdata[i][2]+"</span></p>";
 			myfriend +=      "     <p>";
-			myfriend +=       " <a  class=\"btn btn-xs btn-default btn-success btn-block\"><span class=\"glyphicon glyphicon-comment\"></span>傳訊息</a>";
+			myfriend +=       " <a onclick=\"talktofromclickbutton("+Jdata[i][0]+")\" class=\"btn btn-xs btn-default btn-success btn-block\"><span class=\"glyphicon glyphicon-comment\"></span>傳訊息</a>";
 //                         <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
 //                         <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</a>
        	 myfriend +=        "    </p>";
@@ -236,6 +239,11 @@ $(document).ready(function(){
 		}
 	});
 });
+function talktofromclickbutton(id){
+	var sender = '${sessionScope.member.memberNum}';
+	var receiver = id;
+	opencontact(sender,receiver);
+}
 </script>
 <style>
 .searchbar {

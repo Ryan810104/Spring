@@ -5,6 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+ table{
+      border-collapse:collapse;
+   }
+ tr {
+ 	border: 1px solid black ;
+ }
+</style>
 </head>
 <body>
 
@@ -22,15 +30,15 @@
 		
 	</form>
 	
-	
-	<img src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-									class="img-circle avatar" alt="user profile image">
-	
-	<div style="border: 1px solid black ; width: 100%">
-	<div style="border: 1px solid black ; width: 60%">標題..............................................</div>
-	<span style="border: 1px solid black ; width: 20%"><img src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"></span>
-	<span style="border: 1px solid black ; width: 20%">John wick</span>
-	</div>
+	<table>
+	<tbody>
+	<tr >
+	<td style="width: 70%">標題..............................................</td>
+	<td style="width: 20%"><img src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"></td>
+	<td style="width: 10%"><div>John Wick</div><div>2019-06-30</div></td>
+	</tr>
+	</tbody>
+	</table>
 	
 </body>
 </html>
