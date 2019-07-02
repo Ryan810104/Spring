@@ -260,8 +260,10 @@
 			$("#chat_room_1").hide(300);
 		});
 		$("#chat_room_0").click(function() {
+			
 			$("#Layout0").toggle();
 			$("#chat_room_0").hide(300);
+			$("#search_friend").click();
 		});
 		$(".chat_close_icon").click(function() {
 			$("#Layout0").hide();
