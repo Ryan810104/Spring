@@ -36,7 +36,7 @@ public class MemberMailBeans {
 	
 	@Column
 	@CreatedDate
-	private Date 	mailMessageTime;
+	private java.util.Date	mailMessageTime;
 	
 	@Column
 	private String 	mailReceiver;
