@@ -13,6 +13,10 @@
     <!-- Awesome Fonts -->
     <link href="/resources/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> 
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <!--FB LOGIN JavaScript -->
+    <script src="/resources/vendor/fblogin/all.js"></script>
+    
+    
     <!-- Bootstrap core JavaScript -->
     <script src="/resources/vendor/jquery/jquery.min.js"></script>
     <script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

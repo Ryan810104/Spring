@@ -44,7 +44,7 @@
 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/setting">使用者設定</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height">登出</a></li>
+				class="sidebar-nav-item-zelda moe text-line-height" href="/main/logout">登出</a></li>
 		</ul>
 	</nav>
 

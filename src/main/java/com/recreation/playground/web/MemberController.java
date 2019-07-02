@@ -33,18 +33,18 @@ public class MemberController {
 		model.addAttribute("ErrorMsg", errorMessage);
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
-			return "/main/Index";
+			return "redirect:/main/index";
 		}
 
 		String loginResult =service.login(member.getMemberId(),member.getMemberPassword());
 		if(loginResult.equals("Success")) {
 			session.setAttribute("UID", member.getMemberId());
 			session.setAttribute("member", service.finById(member.getMemberId()));
-			return "/main/Index";
+			return "redirect:/main/index";
 		}else {
 			model.addAttribute("memberParam", member);
 			errorMessage.put("loginError", "帳號或密碼錯誤");
-			return "/main/Index";
+			return "redirect:/main/index";
 		}
 		
 	}
