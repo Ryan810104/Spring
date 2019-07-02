@@ -1,12 +1,9 @@
 package com.recreation.playground.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -31,7 +28,7 @@ public class MoneyRecordBeans {
 	
 	@Column
 	@CreatedDate
-	private Date 	moneyRecordTime;
+	private java.util.Date 	moneyRecordTime;
 	
 	@Column
 	private Integer moneyRecordAmount;
