@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+		    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <aside class="sidebar moe">
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
 			<img class="sidebar-avatar-in"
-				src="http://vignette1.wikia.nocookie.net/adventuretimewithfinnandjake/images/e/ec/Princess_Bubblegum_7.png/revision/latest?cb=20130206231030" />
+				src="<c:url value='/admin/memberBeans/getPicture/${sessionScope.member.memberNum}' />" />
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
@@ -43,10 +44,13 @@
 				class="sidebar-nav-item-icon fa fa-cog"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/setting">使用者中心</a></li>
 			<li class="sidebar-nav-item moe"><i
+				class="sidebar-nav-item-icon fas fa-vial"></i> <a
+				class="sidebar-nav-item-zelda moe text-line-height" href="/main/testing">測試</a></li>
+			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height">登出</a></li>
 		</ul>
-	</nav>
+
 
 	<footer class="sidebar-footer">
 		<span class="sidebar-footer-icon moe">···</span> <span

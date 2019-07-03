@@ -1,19 +1,43 @@
 package com.recreation.playground.web;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.MemberService;
@@ -23,6 +47,12 @@ import com.recreation.playground.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService service;
+	@Autowired
+	EntityManager em ;
+
+	@Autowired
+	ServletContext context;
+	
 	@RequestMapping("/login")
 	public String login(@Valid @ModelAttribute("memberBeansForm") Member member, BindingResult result, Model model,HttpSession session) {
 //		System.out.println(member.getMemberId());
@@ -254,4 +284,81 @@ public class MemberController {
 		System.out.println("ss0"+service.findFriendsByMemberId(findmemberid));
 		return service.findFriendsByMemberId(findmemberid);
 	}
+	
+	//存圖片
+		@RequestMapping("/gogo/{membernum}")
+		@Transactional
+		public String openupload(@RequestParam("memberPhoto") MultipartFile m,@PathVariable("membernum") Integer num, Model model) throws SerialException, SQLException, IOException {
+	//玩家上傳圖片
+			Member mem = em.find(Member.class, num);
+			MultipartFile productImage = m;
+			byte[] b = productImage.getBytes();
+			Blob blob = new SerialBlob(b);
+			mem.setMemberPhoto(blob);
+			em.persist(mem);
+			System.out.println("OK");
+			return "/test/testupload";
+		}
+	//顯示圖片
+		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET)
+		public ResponseEntity<byte[]> getPicture(@PathVariable("membernum") Integer num,HttpServletResponse resp ) throws SerialException, SQLException, IOException{
+			String filename2="src/main/webapp/resources/img/default-picture.png";
+		    Path pathToFile = Paths.get(filename2);
+		    String filePath = pathToFile.toAbsolutePath().toString();
+
+			byte[] media = null;
+			HttpHeaders headers = new HttpHeaders();
+			String filename = "default-picture.png";
+			int len = 0 ;
+			Member mem = em.find(Member.class, num);
+			if (mem != null) {
+				Blob blob = mem.getMemberPhoto();
+				System.out.println("2 step");
+				if (blob != null) {
+					try {
+						System.out.println("3 step");
+						len = (int) blob.length();
+						System.out.println(len);
+						media = blob.getBytes(1, len);
+					} catch (SQLException e) {
+						throw new RuntimeException ("ProductController的getPicture()發生SQLException:"+ e.getMessage());
+					}	
+				} else {
+					media = Files.readAllBytes(Paths.get(filePath));
+					System.out.println("hehehe");
+					filename = filePath;
+				}
+			} else {
+				media = toByteArray(filePath);
+				System.out.println(media);
+				filename = filePath;
+				System.out.println("no image");
+			}
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			String mimeType = context.getMimeType(filename);
+			MediaType mediaType = MediaType.valueOf(mimeType);
+			System.out.println("mediaType="+mediaType);
+			headers.setContentType(mediaType);
+			ResponseEntity<byte[]> responseEntity = 
+					new ResponseEntity<>(media,headers,HttpStatus.OK);
+			
+			return responseEntity;
+		}
+		private byte[] toByteArray(String filepath) {
+			
+			byte[] b = null;
+			try {
+				File file = new File(filepath);
+				long size = file.length();
+				System.out.println(size);
+				b = new byte[(int) size];
+				InputStream fis = context.getResourceAsStream(filepath);
+				fis.read(b);
+			} catch (FileNotFoundException e ) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return b;
+		}
 }

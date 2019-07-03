@@ -59,6 +59,9 @@ public class FrontendSidebarController {
 		
 		return"/main/games/circlegame";
 	}
-
+	@RequestMapping("/testing")
+	public String totesting(Model model) {
+		return"/test/testupload";
+	}
 	
 }
