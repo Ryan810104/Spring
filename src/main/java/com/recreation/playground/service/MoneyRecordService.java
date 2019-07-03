@@ -6,58 +6,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.recreation.playground.dao.ChipRecordDao;
 import com.recreation.playground.dao.MoneyRecordDao;
-import com.recreation.playground.entity.MoneyRecordBeans;
+import com.recreation.playground.entity.Chip;
+import com.recreation.playground.entity.MoneyRecord;
 
 @Service
 @Transactional
 public class MoneyRecordService {
 
 	@Autowired
-	private MoneyRecordDao dao;
+	MoneyRecordDao moneyRecordDao;
+	
+	@Autowired
+	ChipRecordDao chipRecordDao;
+	
+	
+	public List<MoneyRecord> getAll() {
+		return moneyRecordDao.findAll();
+	}
+	
 
-	public void delete(MoneyRecordBeans RB) {
-		if (RB.getMoneyRecordNum() != null) {
-			dao.delete(RB);
+	public MoneyRecord insertMoney(MoneyRecord moneyRecord) {
+		return moneyRecordDao.save(moneyRecord);
+	}
+		
+	public void delete(MoneyRecord moneyRecord) {
+		if(moneyRecord.getMoneyRecordMemberNum()!=null) {
+			moneyRecordDao.delete(moneyRecord);
 		}
 	}
-//	public void deleteAll() {
-//		dao.deleteAll();
-//	}
-
-	public void update(MoneyRecordBeans RB) {
-		if (RB.getMoneyRecordNum() != null) {
-			dao.save(RB);
-		}
+		 
+	public MoneyRecord findByMoneyRecordMemberNum(Integer moneyRecordMemberNum) {
+		return moneyRecordDao.findByMoneyRecordMemberNum(moneyRecordMemberNum);
 	}
-
-	public List<MoneyRecordBeans> getAll() {
-		return dao.findAll();
+	
+	public MoneyRecord findByMoneyRecordNum(Integer moneyRecordNum) {
+		 return moneyRecordDao.findById(moneyRecordNum).orElse(null);
 	}
-
-	public MoneyRecordBeans findById(Integer moneyRecordNum) {
-		return dao.findById(moneyRecordNum).orElse(null);
+	
+	
+	public List<Object> findBestSeller() {
+		return moneyRecordDao.findBestMoneyRecordid();
 	}
-
-	public MoneyRecordBeans findByUserId(MoneyRecordBeans RB) {
-		return dao.findByMoneyRecordUserId(RB.getMoneyRecordUserId());
-	}
-
-	public MoneyRecordBeans findByChipType(MoneyRecordBeans RB) {
-		return dao.findByMoneyRecordChipType(RB.getMoneyRecordChipType());
-	}
-
-	public MoneyRecordBeans findByMoneyRecordTimeLike(MoneyRecordBeans RB) {
-		return dao.findByMoneyRecordTimeLike(RB.getMoneyRecordTime());
-	}
-
-	public String tradeOccur(MoneyRecordBeans RB) {
-		MoneyRecordBeans insertData = new MoneyRecordBeans();
-		insertData.setMoneyRecordUserId(RB.getMoneyRecordUserId());
-		insertData.setMoneyRecordChipType(RB.getMoneyRecordChipType());
-		insertData.setMoneyRecordAmount(RB.getMoneyRecordAmount());
-		dao.save(insertData);
-		return "tradeOccur";
-	}
-
+	
+	
 }

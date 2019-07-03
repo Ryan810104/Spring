@@ -33,14 +33,26 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.recreation.playground.common.AjaxResponse;
+import com.recreation.playground.common.AjaxResponseType;
+import com.recreation.playground.dao.ChipDao;
+import com.recreation.playground.dao.ChipRecordDao;
+import com.recreation.playground.dao.MoneyRecordDao;
+import com.recreation.playground.entity.Chip;
+import com.recreation.playground.entity.ChipRecord;
 import com.recreation.playground.entity.Member;
+import com.recreation.playground.entity.MoneyRecord;
+import com.recreation.playground.service.ChipRecordService;
+import com.recreation.playground.service.ChipService;
 import com.recreation.playground.service.MemberService;
+import com.recreation.playground.service.MoneyRecordService;
 
 @Controller
 @RequestMapping("/admin/memberBeans")
@@ -52,6 +64,27 @@ public class MemberController {
 
 	@Autowired
 	ServletContext context;
+	
+	
+	
+	@Autowired
+	MoneyRecordService moneyRecordService;
+
+	@Autowired
+	ChipRecordService chipRecordService;
+
+	@Autowired
+	ChipService chipService;
+	
+
+	@Autowired
+	ChipDao chipDao;
+	
+	@Autowired
+	ChipRecordDao chipRecordDao;
+
+	@Autowired
+	MoneyRecordDao moneyRecordDao;
 	
 	@RequestMapping("/login")
 	public String login(@Valid @ModelAttribute("memberBeansForm") Member member, BindingResult result, Model model,HttpSession session) {
@@ -93,7 +126,165 @@ public class MemberController {
 		return"/testChat/chatroom";
 	}
 	
+	@RequestMapping("/index1")
+	public String query1(Model model) {
+		return "/test1/index-member";
+	}
 
+	@RequestMapping("/index2")
+	public String index2(Model model) {
+		return "/test1/ClearTemplateIndex";
+	}
+	
+	@RequestMapping("/index3")
+	public String index3(Model model) {
+		return "/test1/ClearTemplateChipIndex";
+	}
+
+	@RequestMapping("/list")
+	public String list(Model model) {
+		return "/test1/ClearTemplateList";
+	}
+	
+	
+	@RequestMapping("/listtest")
+	public String listtest(Model model) {
+		return "/test1/ClearTemplateListwintimerank";
+	}
+	
+	
+	
+	@RequestMapping("/insert1")
+	@ResponseBody
+	public String insert1(
+			@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
+			@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
+			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+			@RequestParam(value = "moneyRecordChiptype", defaultValue = "0") String moneyRecordChiptype,
+			@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = "0") String chipType,
+			@RequestParam(value = "time", defaultValue = "0") Integer round,
+			@RequestParam(value = "win", defaultValue = "0") Integer win) {
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+
+		MoneyRecord moneyRecord = new MoneyRecord();
+		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+		moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
+		moneyRecord.setMoneyRecordChip(moneyRecordChip);
+		moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
+
+		moneyRecordService.insertMoney(moneyRecord);
+		chipService.save(chip);
+		return "/MoneyRecord/member-list";
+	}
+
+	@RequestMapping("/insert2")
+	@ResponseBody
+	public AjaxResponse<String> insert2(
+			@RequestParam(value = "moneyRecordMemberNum", defaultValue = " ") Integer moneyRecordMemberNum,
+			@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
+			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+			@RequestParam(value = "moneyRecordChiptype", defaultValue = " ") String moneyRecordChiptype,
+			@RequestParam(value = "chipMemberNum", defaultValue = " ") Integer chipMemberNum,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = " ") String chipType,
+			@RequestParam(value = "time", defaultValue = "0") Integer round,
+			@RequestParam(value = "win", defaultValue = "0") Integer win) {
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+
+		MoneyRecord moneyRecord = new MoneyRecord();
+		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+		moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
+		moneyRecord.setMoneyRecordChip(moneyRecordChip);
+		moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
+		AjaxResponse<String> res = new AjaxResponse<>();
+//		if (result.hasErrors()) {
+//			res.setType(AjaxResponseType.ERROR);
+//			System.out.println(result.getAllErrors());
+//			return res;
+//		}
+
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
+//		res.setData(chipService.save(chip).toString());
+		return res;
+	}
+
+	@RequestMapping("/insert3")
+	@ResponseBody
+	public AjaxResponse<String> insert3(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = "") String chipType,
+			@RequestParam(value = "win", defaultValue = "0") Integer win,
+			@RequestParam(value = "round", defaultValue = "0") Integer round,
+			@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
+			@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
+			@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
+			@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
+			@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+		
+		
+		ChipRecord chiprecord = new ChipRecord();
+		chiprecord.setChipRecordMemberNum(chipRecordMemberNum);
+		chiprecord.setChipRecordChip(chipRecordChip);
+		chiprecord.setChipRecordChipType(chipRecordChipType);
+		chiprecord.setChipRecordWin(chipRecordWin);
+		chiprecord.setChipRecordRound(chipRecordRound);
+		AjaxResponse<String> res = new AjaxResponse<>();
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(chipService.save(chip).toString()+ chipRecordService.save(chiprecord).toString());
+		
+		return res;
+	}
+
+	@PostMapping("/query")
+	@ResponseBody // 轉JSON
+	public List<MoneyRecord> query(Integer moneyRecordNum) {
+		System.out.println(moneyRecordNum);
+		return moneyRecordService.getAll();
+	}
+
+	@RequestMapping("/top3cash")
+	@ResponseBody
+	public List<Object> top3() {
+//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+		System.out.println(moneyRecordService.findBestSeller());
+		return moneyRecordService.findBestSeller();
+	}
+	
+	
+	@RequestMapping("/topwinner")
+	@ResponseBody
+	public List<Object> topwinner() {
+//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+		System.out.println(chipDao.findTheBestWinner());
+		return chipDao.findTheBestWinner();
+	}
+
+	
+	
+	
+	
+	
 	
 
 	@RequestMapping("/update")
