@@ -115,7 +115,7 @@
 				</div>
 				<br>
 				<!-- chat_room_1_icon -->
-				<div class="" id="chat_room_1_icon_icon" style="visibility: hidden">
+				<div class="" id="chat_room_1_icon" style="visibility: hidden">
 <!-- 					<span class="chat_on_icon" style="line-height: 0.8rem;"> <i -->
 <!-- 						class="fa fa-comments fa-xs" aria-hidden="true"></i></span> -->
 				<img class="media-object-chat-icon" src="<c:url value='/admin/memberBeans/getPicture/2' />">
