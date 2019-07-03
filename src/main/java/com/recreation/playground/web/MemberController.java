@@ -295,13 +295,14 @@ public class MemberController {
 
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
-		System.out.println(member);
+//		System.out.println(member);
 		Member member1 = service.finById(member.getMemberId());
-		member1.setFirstName(member.getFirstName());
-		member1.setLastName(member.getLastName());
+		member1.setMemberFitstName(member.getMemberFitstName());
+		member1.setMemberLastName(member.getMemberLastName());
 		member1.setMemberEmail(member.getMemberEmail());
-		member1.setLocation(member.getLocation());
+		member1.setMemberLocation(member.getMemberLocation());
 		member1.setMemberNickName(member.getMemberNickName());
+//		System.out.println(member1);
 		service.update(member1);
 		return "/main/setting/SettingIndex";
 	}

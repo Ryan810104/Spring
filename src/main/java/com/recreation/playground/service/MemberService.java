@@ -16,6 +16,7 @@ public class MemberService {
 	private MemberDao dao;
 	
 	public Member update(Member member) {
+//		System.out.println("dao");
 		return dao.save(member);
 	}
 	public Member finById(String memberId) {

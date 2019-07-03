@@ -87,11 +87,6 @@ public class Member {
 	
 	@Column
 	private Integer moneyBalance;
-	
-
-	private String firstName;
-	
-	private String lastName;
 
 	@XmlTransient
 	@Transient
@@ -99,6 +94,6 @@ public class Member {
     private MultipartFile productImage;
   
 	
-	private String location;
+	private String memberLocation;
 	
 }

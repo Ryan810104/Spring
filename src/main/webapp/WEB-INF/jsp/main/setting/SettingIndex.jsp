@@ -97,7 +97,7 @@
 									<input type="text" value="${sessionScope.member.memberId}"
 										id="memberId" style="display: none"> <label
 										for="first_name"><h4>姓</h4></label> <input type="text"
-										class="form-control" name="firstName" id="firstName"
+										class="form-control" name="memberFitstName" id="memberFitstName"
 										placeholder="姓" title="enter your first name if any.">
 								</div>
 							</div>
@@ -105,7 +105,7 @@
 
 								<div class="col-xs-6">
 									<label for="last_name"><h4>名</h4></label> <input type="text"
-										class="form-control" name="lastName" id="lastName"
+										class="form-control" name="memberLastName" id="memberLastName"
 										placeholder="名" title="enter your last name if any.">
 								</div>
 							</div>
@@ -113,7 +113,7 @@
 
 								<div class="col-xs-6">
 									<label for="last_name"><h4>暱稱</h4></label> <input type="text"
-										class="form-control" name="nickName" id="nickName"
+										class="form-control" name="memberNickName" id="memberNickName"
 										placeholder="暱稱" title="enter your last name if any.">
 								</div>
 							</div>
@@ -137,7 +137,7 @@
 
 								<div class="col-xs-6">
 									<label for="email"><h4>住址</h4></label> <input type="text"
-										class="form-control" id="location" name="location"
+										class="form-control" id="memberLocation" name="memberLocation"
 										placeholder="住址" title="enter a location">
 								</div>
 							</div>
@@ -185,12 +185,12 @@
 				type : "POST",
 				success : function(data) {
 					$("#memberId").val(data["memberId"])
-					$("#firstName").val(data["firstName"]);
-					$("#lastName").val(data["lastName"]);
-					$("#nickName").val(data["nickName"]);
+					$("#memberFitstName").val(data["memberFitstName"]);
+					$("#memberLastName").val(data["memberLastName"]);
+					$("#memberNickName").val(data["memberNickName"]);
 					$("#memberPhonenum").val(data["memberPhonenum"]);
 					$("#memberEmail").val(data["memberEmail"]);
-					$("#location").val(data["location"]);
+					$("#memberLocation").val(data["memberLocation"]);
 				}
 			});
 		}
@@ -200,12 +200,12 @@
 				data : {
 					memberPhotoURL : $("memberPhotoURL").val(),
 					memberId : $("#memberId").val(),
-					firstName : $("#firstName").val(),
-					lastName : $("#lastName").val(),
-					nickName : $("#nickName").val(),
+					memberFitstName : $("#memberFirstName").val(),
+					memberLastName : $("#memberLastName").val(),
+					memberNickName : $("#memberNickName").val(),
 					memberPhonenum : $("#memberPhonenum").val(),
 					memberEmail : $("#memberEmail").val(),
-					location : $("#location").val(),
+					memberLocation : $("#memberLocation").val(),
 				},
 				type : "POST",
 				success : function(data) {
