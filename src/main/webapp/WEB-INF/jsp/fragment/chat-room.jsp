@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- public chat room -->
 <div class="container">
 	<div class="row">
@@ -338,7 +339,7 @@
 			myfriends += "<div class=\"well well-sm\">"
 			myfriends += "<div class=\"media\">"
 			myfriends += "<a class=\"thumbnail pull-left\" href=\"#\"> <img"
-			myfriends += "	class=\"media-object\" src=\"http://placehold.it/80\">"
+			myfriends += "	class=\"media-object1\" src=\"<c:url value='/admin/memberBeans/getPicture/"+Jdata[i][0]+"' />\">";
 			myfriends += "</a>"
 			myfriends += "<div class=\"media-body\">"
 			myfriends += "<h4 class=\"media-heading\">"
