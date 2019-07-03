@@ -478,7 +478,7 @@ public class MemberController {
 	@RequestMapping("/findfriend")
 	public List<Member> friendsfind(String findmemberid) {
 		service.findFriendsByMemberId(findmemberid);
-		System.out.println("ss0" + service.findFriendsByMemberId(findmemberid));
+//		System.out.println("ss0" + service.findFriendsByMemberId(findmemberid));
 		return service.findFriendsByMemberId(findmemberid);
 	}
 	
@@ -493,7 +493,7 @@ public class MemberController {
 			Blob blob = new SerialBlob(b);
 			mem.setMemberPhoto(blob);
 			em.persist(mem);
-			System.out.println("OK");
+//			System.out.println("OK");
 			return "/test/testupload";
 		}
 	//顯示圖片
@@ -510,31 +510,31 @@ public class MemberController {
 			Member mem = em.find(Member.class, num);
 			if (mem != null) {
 				Blob blob = mem.getMemberPhoto();
-				System.out.println("2 step");
+//				System.out.println("2 step");
 				if (blob != null) {
 					try {
-						System.out.println("3 step");
+//						System.out.println("3 step");
 						len = (int) blob.length();
-						System.out.println(len);
+//						System.out.println(len);
 						media = blob.getBytes(1, len);
 					} catch (SQLException e) {
 						throw new RuntimeException ("ProductController的getPicture()發生SQLException:"+ e.getMessage());
 					}	
 				} else {
 					media = Files.readAllBytes(Paths.get(filePath));
-					System.out.println("hehehe");
+//					System.out.println("hehehe");
 					filename = filePath;
 				}
 			} else {
 				media = toByteArray(filePath);
-				System.out.println(media);
+//				System.out.println(media);
 				filename = filePath;
-				System.out.println("no image");
+//				System.out.println("no image");
 			}
 			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 			String mimeType = context.getMimeType(filename);
 			MediaType mediaType = MediaType.valueOf(mimeType);
-			System.out.println("mediaType="+mediaType);
+//			System.out.println("mediaType="+mediaType);
 			headers.setContentType(mediaType);
 			ResponseEntity<byte[]> responseEntity = 
 					new ResponseEntity<>(media,headers,HttpStatus.OK);
@@ -547,7 +547,7 @@ public class MemberController {
 			try {
 				File file = new File(filepath);
 				long size = file.length();
-				System.out.println(size);
+//				System.out.println(size);
 				b = new byte[(int) size];
 				InputStream fis = context.getResourceAsStream(filepath);
 				fis.read(b);

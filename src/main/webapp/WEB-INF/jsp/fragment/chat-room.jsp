@@ -250,7 +250,7 @@
 	};
 </script>
 <script>
-	//CHAT BOOT MESSENGER////////////////////////
+//CHAT BOOT MESSENGER////////////////////////
 //跳轉頁面且視窗打開時，下一個頁面視窗仍開著
 if (localStorage.getItem("layout_chatroom_status")) {
 		opencontact(localStorage.getItem("sendersession"), localStorage
@@ -303,6 +303,25 @@ if (localStorage.getItem("layout_chatroom_status")) {
 	});
 </script>
 <script type="text/javascript">
+$(document).ready(function(){
+	var ws = sessionStorage.getItem("websocketexist");
+	if (!ws){
+		var ws = null ;
+		var urlPrefix = "ws://localhost:80/websocket/";
+		var username = '${sessionScope.member.memberNum}'
+		var url = urlPrefix + username ; 
+		ws = new WebSocket(url);
+		ws.onopen = function (){
+			console.log("建立webSocket連線");
+			sessionStorage.setItem("websocketexist",ws);
+		}
+	} else {
+		console.log("已經在線上囉!");
+	}
+	ws.onmessage = function(event){
+		alert(event.data)
+	};
+});
 	//websocket
 	//     $(document).ready(function(){
 	//         var urlPrefix ='ws://localhost:80/chat-room/';

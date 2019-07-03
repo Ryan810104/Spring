@@ -26,7 +26,7 @@ import static  com.recreation.playground.websocket.WebSocketUtils.sendMessageAll
  * @since 2018/6/26 0026
  */
 @RestController
-@ServerEndpoint("/chat-room/{username}")
+@ServerEndpoint("/websocket/{username}")
 public class ChatRoomServerEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(ChatRoomServerEndpoint.class);
