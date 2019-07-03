@@ -4,13 +4,16 @@
 <aside class="sidebar moe">
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
-			<img class="sidebar-avatar-in"
+		<a href="/main/setting" >
+		<img class="sidebar-avatar-in"
 				src="http://vignette1.wikia.nocookie.net/adventuretimewithfinnandjake/images/e/ec/Princess_Bubblegum_7.png/revision/latest?cb=20130206231030" />
+		</a>
+			
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
 
-		<div class="sidebar-title moe username-line-height">${sessionScope.member.memberId}</div>
+		<div class="sidebar-title moe username-line-height"><a href="/main/setting" >${sessionScope.member.memberId}</a></div>
 		<div class="sidebar-title moe">${sessionScope.member.moneyBalance} p</div>
 
 	</header>

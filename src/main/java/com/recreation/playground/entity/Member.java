@@ -60,14 +60,16 @@ public class Member {
 	@Column
 	private Integer memberViplevel;
 	//會員VIP等級
-	@Column(length=100000)
-	private byte[]  memberPhoto;
+	private String memberPhotoURL;
 	//會員照片
 	
 	@Column
 	private Integer moneyBalance;
 	
+	private String firstName;
 	
+	private String lastName;
 	
+	private String location;
 	
 }

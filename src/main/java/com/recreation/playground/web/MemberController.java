@@ -23,31 +23,34 @@ import com.recreation.playground.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService service;
+
 	@RequestMapping("/login")
-	public String login(@Valid @ModelAttribute("memberBeansForm") Member member, BindingResult result, Model model,HttpSession session) {
+	public String login(@Valid @ModelAttribute("memberBeansForm") Member member, BindingResult result, Model model,
+			HttpSession session) {
 //		System.out.println(member.getMemberId());
 //		System.out.println(member.getMemberPassword());
 //		System.out.println(result);
 //		System.out.println(model);
-		Map<String, String> errorMessage=new HashMap<>();
+		Map<String, String> errorMessage = new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);
 		if (result.hasErrors()) {
 			model.addAttribute("memberParam", member);
 			return "redirect:/main/index";
 		}
 
-		String loginResult =service.login(member.getMemberId(),member.getMemberPassword());
-		if(loginResult.equals("Success")) {
+		String loginResult = service.login(member.getMemberId(), member.getMemberPassword());
+		if (loginResult.equals("Success")) {
 			session.setAttribute("UID", member.getMemberId());
 			session.setAttribute("member", service.finById(member.getMemberId()));
 			return "redirect:/main/index";
-		}else {
+		} else {
 			model.addAttribute("memberParam", member);
 			errorMessage.put("loginError", "帳號或密碼錯誤");
 			return "redirect:/main/index";
 		}
-		
+
 	}
+
 	@RequestMapping("/index")
 	public String openindex(Model model) {
 		return "/main/Index";
@@ -57,26 +60,34 @@ public class MemberController {
 	public String openregister(Model model) {
 		return "/main/BeforeIndex";
 	}
-	
+
 	@RequestMapping("/chatroom")
 	public String openchatroom(Model model) {
-		return"/testChat/chatroom";
+		return "/testChat/chatroom";
 	}
-	
 
-	
+	@ResponseBody
+	@RequestMapping("/findBymemberId")
+	public Member finBymemberId(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
+//		System.out.println(member);
+		return service.finById(member.getMemberId());
+	}
 
 	@RequestMapping("/update")
-	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
-	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
-	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result,
-			Model model) {
-		
-		return "/admin/userupdate";
+	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
+		System.out.println(member);
+		Member member1 = service.finById(member.getMemberId());
+		member1.setFirstName(member.getFirstName());
+		member1.setLastName(member.getLastName());
+		member1.setMemberEmail(member.getMemberEmail());
+		member1.setLocation(member.getLocation());
+		member1.setNickName(member.getNickName());
+		service.update(member1);
+		return "/main/setting/SettingIndex";
 	}
+
 	@RequestMapping("/registerForm")
-	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result,
-			Model model) {
+	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result, Model model) {
 
 		Map<String, String> errorMessage = new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);
@@ -89,7 +100,6 @@ public class MemberController {
 		String memberEmail = member.getMemberEmail();
 		String memberPhonenum = member.getMemberPhonenum();
 		String registerResult1 = "success";
-		
 
 //     Id檢查部分
 		if (memberId == null || memberId.trim().length() == 0) {
@@ -99,7 +109,7 @@ public class MemberController {
 		} else if (memberId.length() < 16) {
 			if (memberId.length() >= 8) {
 				String pattern = "^[a-zA-Z][a-zA-Z0-9]{7,15}$";
-				if (memberId.matches(pattern)) {					
+				if (memberId.matches(pattern)) {
 					errorMessage.put("memberId", "");
 				} else {
 					errorMessage.put("memberId", "必須含英文或數字,首字為英文");
@@ -160,13 +170,13 @@ public class MemberController {
 					errorMessage.put("memberNickName", "");
 				} else {
 					errorMessage.put("memberNickName", "一定要中文");
-					registerResult1 = "false";					
+					registerResult1 = "false";
 				}
 
 			} else {
 				errorMessage.put("memberNickName", "至少需要2~8個字");
 				registerResult1 = "false";
-				
+
 			}
 		} else {
 			registerResult1 = "success";
@@ -180,23 +190,23 @@ public class MemberController {
 			} else {
 				errorMessage.put("checkmail", "不符合信箱格式");
 				registerResult1 = "false";
-				
+
 			}
 		} else {
 			registerResult1 = "success";
-			
+
 		}
 
 		// 電話驗證
 		String chkphone = "^[09]{2}[0-9]{8}$";
 		if (memberPhonenum == null || memberPhonenum.trim().length() == 0) {
-			errorMessage.put("memberPhonenum", "不可空白");			
+			errorMessage.put("memberPhonenum", "不可空白");
 			registerResult1 = "false";
 		} else if (memberPhonenum.matches(chkphone)) {
-			errorMessage.put("memberPhonenum", "");			
+			errorMessage.put("memberPhonenum", "");
 		} else {
 			errorMessage.put("memberPhonenum", "錯誤");
-			
+
 			registerResult1 = "false";
 		}
 		// 判斷是否註冊過
@@ -205,10 +215,9 @@ public class MemberController {
 			registerResult1 = "false";
 		}
 //		System.out.println(registerResult1);
-		
 
-		if (registerResult1.equals("success")) {			
-			String registerResult = service.register(member);			
+		if (registerResult1.equals("success")) {
+			String registerResult = service.register(member);
 			if (registerResult.equals("okSignup")) {
 				model.addAttribute("registerResult1", "0");
 				return "/main/BeforeIndex";
@@ -220,36 +229,35 @@ public class MemberController {
 		return "/main/BeforeIndex";
 	}
 
-
 	@RequestMapping("/beforeupdate")
-	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
-	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
+	// modelAttribute 網頁表格名稱，接到的值放入對應memberBeans，BindingResult
+	// 將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
 	public String beforeupdate(@Valid @ModelAttribute("beforeupdate") Member member, BindingResult result,
 			Model model) {
-		
+
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
 			return "/admin/userupdate";
-		}else {
+		} else {
 //			System.out.println(member.getMemberId());
 //			System.out.println(member.getMemberPassword());
 			boolean result1 = service.checkpassword(member.getMemberId(), member.getMemberPassword());
-			if(result1) {
+			if (result1) {
 				System.out.println("correct");
-			}else {
+			} else {
 				System.out.println("incorrect");
 			}
 		}
-		
+
 		return "/admin/userupdate";
-		
-		
+
 	}
+
 	@ResponseBody
 	@RequestMapping("/findfriend")
-	public List<Member> friendsfind (String findmemberid) {
+	public List<Member> friendsfind(String findmemberid) {
 		service.findFriendsByMemberId(findmemberid);
-		System.out.println("ss0"+service.findFriendsByMemberId(findmemberid));
+		System.out.println("ss0" + service.findFriendsByMemberId(findmemberid));
 		return service.findFriendsByMemberId(findmemberid);
 	}
 }

@@ -30,8 +30,8 @@ INSERT INTO chipRecord values
 (0.59,5,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
 (0.49,6,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
 
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567);
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,789);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photourl,money_balance) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photourl,money_balance) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,789);
 
 
 
