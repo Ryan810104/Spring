@@ -22,21 +22,21 @@ public class ChipRecordService {
 	}
 	
 	public void delete(ChipRecord chipRecord){
-		if(chipRecord.getChipRecordMemberid()!=null){
+		if(chipRecord.getChipRecordMemberNum()!=null){
 			dao.delete(chipRecord);
 		}
 	}
 	
-	public ChipRecord getByMemberid(ChipRecord chipRecord) {
-		return dao.findByChipRecordMemberid(chipRecord.getChipRecordMemberid());
+	public ChipRecord getByChipRecordMemberNum(ChipRecord chipRecord) {
+		return dao.findByChipRecordMemberNum(chipRecord.getChipRecordMemberNum());
 	}
 	
 	public ChipRecord save(ChipRecord chipRecord) {
 		return dao.save(chipRecord);
 	}
 	
-	public ChipRecord getByChipMemberid(String chipRecordMemberid) {
-		return dao.findByChipRecordMemberid(chipRecordMemberid);
+	public ChipRecord getByChipRecordMemberNum(Integer chipRecordMemberNum) {
+		return dao.findByChipRecordMemberNum(chipRecordMemberNum);
 
 	}
 	

@@ -26,10 +26,10 @@ public class FrontendSidebarController {
 		return "/main/games/GameIndex";
 	}
 // Sidebar 儲值中心
-	@RequestMapping("/deposit")
-	public String toDeposit(Model model) {
-		return "/main/deposit/DepositIndex";
-	}
+//	@RequestMapping("/deposit")
+//	public String toDeposit(Model model) {
+//		return "/main/deposit/DepositIndex";
+//	}
 // Sidebar 購物中心
 	@RequestMapping("/shop")
 	public String toShop(Model model) {
@@ -61,4 +61,15 @@ public class FrontendSidebarController {
 		session.removeAttribute("member");
 		return "/main/Index";
 		}
+//Game俄羅斯輪盤
+	@RequestMapping("/Circlegame")
+	public String tocirlegame(Model model) {
+		
+		return"/main/games/circlegame";
+	}
+	@RequestMapping("/testing")
+	public String totesting(Model model) {
+		return"/test/testupload";
+	}
+	
 }

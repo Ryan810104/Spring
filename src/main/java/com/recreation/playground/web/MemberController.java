@@ -1,28 +1,91 @@
 package com.recreation.playground.web;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.EntityManager;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.recreation.playground.common.AjaxResponse;
+import com.recreation.playground.common.AjaxResponseType;
+import com.recreation.playground.dao.ChipDao;
+import com.recreation.playground.dao.ChipRecordDao;
+import com.recreation.playground.dao.MoneyRecordDao;
+import com.recreation.playground.entity.Chip;
+import com.recreation.playground.entity.ChipRecord;
 import com.recreation.playground.entity.Member;
+import com.recreation.playground.entity.MoneyRecord;
+import com.recreation.playground.service.ChipRecordService;
+import com.recreation.playground.service.ChipService;
 import com.recreation.playground.service.MemberService;
+import com.recreation.playground.service.MoneyRecordService;
 
 @Controller
 @RequestMapping("/admin/memberBeans")
 public class MemberController {
 	@Autowired
 	private MemberService service;
+
+	@Autowired
+	EntityManager em ;
+
+	@Autowired
+	ServletContext context;
+	
+	
+	
+	@Autowired
+	MoneyRecordService moneyRecordService;
+
+	@Autowired
+	ChipRecordService chipRecordService;
+
+	@Autowired
+	ChipService chipService;
+	
+
+	@Autowired
+	ChipDao chipDao;
+	
+	@Autowired
+	ChipRecordDao chipRecordDao;
+
+	@Autowired
+	MoneyRecordDao moneyRecordDao;
 
 	@RequestMapping("/login")
 	public String login(@Valid @ModelAttribute("memberBeansForm") Member member, BindingResult result, Model model,
@@ -66,12 +129,169 @@ public class MemberController {
 		return "/testChat/chatroom";
 	}
 
+	
+	@RequestMapping("/index1")
+	public String query1(Model model) {
+		return "/test1/index-member";
+	}
+
+
 	@ResponseBody
 	@RequestMapping("/findBymemberId")
 	public Member finBymemberId(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
 //		System.out.println(member);
 		return service.finById(member.getMemberId());
 	}
+
+	@RequestMapping("/index2")
+	public String index2(Model model) {
+		return "/test1/ClearTemplateIndex";
+	}
+	
+	@RequestMapping("/index3")
+	public String index3(Model model) {
+		return "/test1/ClearTemplateChipIndex";
+	}
+
+	@RequestMapping("/list")
+	public String list(Model model) {
+		return "/test1/ClearTemplateList";
+	}
+	
+	
+	@RequestMapping("/listtest")
+	public String listtest(Model model) {
+		return "/test1/ClearTemplateListwintimerank";
+	}
+	
+	
+	
+	@RequestMapping("/insert1")
+	@ResponseBody
+	public String insert1(
+			@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
+			@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
+			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+			@RequestParam(value = "moneyRecordChiptype", defaultValue = "0") String moneyRecordChiptype,
+			@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = "0") String chipType,
+			@RequestParam(value = "time", defaultValue = "0") Integer round,
+			@RequestParam(value = "win", defaultValue = "0") Integer win) {
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+
+		MoneyRecord moneyRecord = new MoneyRecord();
+		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+		moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
+		moneyRecord.setMoneyRecordChip(moneyRecordChip);
+		moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
+
+		moneyRecordService.insertMoney(moneyRecord);
+		chipService.save(chip);
+		return "/MoneyRecord/member-list";
+	}
+
+	@RequestMapping("/insert2")
+	@ResponseBody
+	public AjaxResponse<String> insert2(
+			@RequestParam(value = "moneyRecordMemberNum", defaultValue = " ") Integer moneyRecordMemberNum,
+			@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
+			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+			@RequestParam(value = "moneyRecordChiptype", defaultValue = " ") String moneyRecordChiptype,
+			@RequestParam(value = "chipMemberNum", defaultValue = " ") Integer chipMemberNum,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = " ") String chipType,
+			@RequestParam(value = "time", defaultValue = "0") Integer round,
+			@RequestParam(value = "win", defaultValue = "0") Integer win) {
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+
+		MoneyRecord moneyRecord = new MoneyRecord();
+		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+		moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
+		moneyRecord.setMoneyRecordChip(moneyRecordChip);
+		moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
+		AjaxResponse<String> res = new AjaxResponse<>();
+//		if (result.hasErrors()) {
+//			res.setType(AjaxResponseType.ERROR);
+//			System.out.println(result.getAllErrors());
+//			return res;
+//		}
+
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
+//		res.setData(chipService.save(chip).toString());
+		return res;
+	}
+
+	@RequestMapping("/insert3")
+	@ResponseBody
+	public AjaxResponse<String> insert3(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = "") String chipType,
+			@RequestParam(value = "win", defaultValue = "0") Integer win,
+			@RequestParam(value = "round", defaultValue = "0") Integer round,
+			@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
+			@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
+			@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
+			@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
+			@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+		
+		
+		ChipRecord chiprecord = new ChipRecord();
+		chiprecord.setChipRecordMemberNum(chipRecordMemberNum);
+		chiprecord.setChipRecordChip(chipRecordChip);
+		chiprecord.setChipRecordChipType(chipRecordChipType);
+		chiprecord.setChipRecordWin(chipRecordWin);
+		chiprecord.setChipRecordRound(chipRecordRound);
+		AjaxResponse<String> res = new AjaxResponse<>();
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(chipService.save(chip).toString()+ chipRecordService.save(chiprecord).toString());
+		
+		return res;
+	}
+
+	@PostMapping("/query")
+	@ResponseBody // 轉JSON
+	public List<MoneyRecord> query(Integer moneyRecordNum) {
+		System.out.println(moneyRecordNum);
+		return moneyRecordService.getAll();
+	}
+
+	@RequestMapping("/top3cash")
+	@ResponseBody
+	public List<Object> top3() {
+//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+		System.out.println(moneyRecordService.findBestSeller());
+		return moneyRecordService.findBestSeller();
+	}
+	
+	
+	@RequestMapping("/topwinner")
+	@ResponseBody
+	public List<Object> topwinner() {
+//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+		System.out.println(chipDao.findTheBestWinner());
+		return chipDao.findTheBestWinner();
+	}
+
 
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
@@ -81,7 +301,7 @@ public class MemberController {
 		member1.setLastName(member.getLastName());
 		member1.setMemberEmail(member.getMemberEmail());
 		member1.setLocation(member.getLocation());
-		member1.setNickName(member.getNickName());
+		member1.setMemberNickName(member.getMemberNickName());
 		service.update(member1);
 		return "/main/setting/SettingIndex";
 	}
@@ -93,10 +313,10 @@ public class MemberController {
 		model.addAttribute("ErrorMsg", errorMessage);
 		model.addAttribute("registerResult", "1");
 		String memberId = member.getMemberId();
-//		System.out.println(memberId);
 		String memberPwd = member.getMemberPassword();
 		String memberPwdCon = member.getMemberPasswordComfirm();
-		String memberNickName = member.getNickName();
+		String memberNickName=member.getMemberNickName();
+		System.out.println(memberNickName);
 		String memberEmail = member.getMemberEmail();
 		String memberPhonenum = member.getMemberPhonenum();
 		String registerResult1 = "success";
@@ -163,7 +383,7 @@ public class MemberController {
 
 		// 暱稱驗證
 		String chknickname = "^[\\u4E00-\\u9FFF]{2,8}$";
-
+		
 		if (memberNickName != "") {
 			if (memberNickName.length() >= 2 && memberNickName.length() <= 8) {
 				if (memberNickName.matches(chknickname)) {
@@ -260,4 +480,81 @@ public class MemberController {
 		System.out.println("ss0" + service.findFriendsByMemberId(findmemberid));
 		return service.findFriendsByMemberId(findmemberid);
 	}
+	
+	//存圖片
+		@RequestMapping("/gogo/{membernum}")
+		@Transactional
+		public String openupload(@RequestParam("memberPhoto") MultipartFile m,@PathVariable("membernum") Integer num, Model model) throws SerialException, SQLException, IOException {
+	//玩家上傳圖片
+			Member mem = em.find(Member.class, num);
+			MultipartFile productImage = m;
+			byte[] b = productImage.getBytes();
+			Blob blob = new SerialBlob(b);
+			mem.setMemberPhoto(blob);
+			em.persist(mem);
+			System.out.println("OK");
+			return "/test/testupload";
+		}
+	//顯示圖片
+		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET)
+		public ResponseEntity<byte[]> getPicture(@PathVariable("membernum") Integer num,HttpServletResponse resp ) throws SerialException, SQLException, IOException{
+			String filename2="src/main/webapp/resources/img/default-picture.png";
+		    Path pathToFile = Paths.get(filename2);
+		    String filePath = pathToFile.toAbsolutePath().toString();
+
+			byte[] media = null;
+			HttpHeaders headers = new HttpHeaders();
+			String filename = "default-picture.png";
+			int len = 0 ;
+			Member mem = em.find(Member.class, num);
+			if (mem != null) {
+				Blob blob = mem.getMemberPhoto();
+				System.out.println("2 step");
+				if (blob != null) {
+					try {
+						System.out.println("3 step");
+						len = (int) blob.length();
+						System.out.println(len);
+						media = blob.getBytes(1, len);
+					} catch (SQLException e) {
+						throw new RuntimeException ("ProductController的getPicture()發生SQLException:"+ e.getMessage());
+					}	
+				} else {
+					media = Files.readAllBytes(Paths.get(filePath));
+					System.out.println("hehehe");
+					filename = filePath;
+				}
+			} else {
+				media = toByteArray(filePath);
+				System.out.println(media);
+				filename = filePath;
+				System.out.println("no image");
+			}
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			String mimeType = context.getMimeType(filename);
+			MediaType mediaType = MediaType.valueOf(mimeType);
+			System.out.println("mediaType="+mediaType);
+			headers.setContentType(mediaType);
+			ResponseEntity<byte[]> responseEntity = 
+					new ResponseEntity<>(media,headers,HttpStatus.OK);
+			
+			return responseEntity;
+		}
+		private byte[] toByteArray(String filepath) {
+			
+			byte[] b = null;
+			try {
+				File file = new File(filepath);
+				long size = file.length();
+				System.out.println(size);
+				b = new byte[(int) size];
+				InputStream fis = context.getResourceAsStream(filepath);
+				fis.read(b);
+			} catch (FileNotFoundException e ) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return b;
+		}
 }

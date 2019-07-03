@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -175,7 +176,7 @@ $(".search_icon").click(function(){
 					text +=	"<div class=\"well well-sm\">";
 					text += "  <div class=\"media\">";
 					text +=    "  <a class=\"thumbnail pull-left\" href=\"#\">";
-					text +=       "   <img class=\"media-object\" src=\"http://placehold.it/80\">";
+					text +=       "   <img class=\"media-object\" src=\"<c:url value='/admin/memberBeans/getPicture/"+Jdata[i]["memberNum"]+"' />\">";
 					text +=    " </a>";
 					text +=    "  <div class=\"media-body\">";
 					text +=       "   <h4 class=\"media-heading\">"+Jdata[i]["memberId"] +"</h4>";
@@ -246,6 +247,12 @@ function talktofromclickbutton(id){
 }
 </script>
 <style>
+.media-object{
+width: 80px;
+border-radius: 50px;
+height: 80px;
+margin-right: 15px;
+}
 .searchbar {
 	margin-bottom: auto;
 	margin-top: auto;
