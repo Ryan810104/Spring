@@ -12,6 +12,7 @@
          <article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
+		<h1>測試上傳圖片</h1>
 		<form action="/admin/memberBeans/gogo/${sessionScope.member.memberNum}" method="POST" enctype="multipart/form-data">
 		<Input Type="File" name="memberPhoto"  accept="image/png, image/jpeg">
 		<input type="submit">

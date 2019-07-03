@@ -28,9 +28,9 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-gamepad"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/games">遊戲列表</a></li>
-			<li class="sidebar-nav-item moe"><i
-				class="sidebar-nav-item-icon fa fa-envira"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/deposit">儲值金幣</a></li>
+<!-- 			<li class="sidebar-nav-item moe"><i -->
+<!-- 				class="sidebar-nav-item-icon fa fa-envira"></i> <a -->
+<!-- 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/deposit">儲值金幣</a></li> -->
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-cart-arrow-down"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/shop">購物商城</a></li>

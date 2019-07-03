@@ -24,10 +24,10 @@ public class FrontendSidebarController {
 		return "/main/games/GameIndex";
 	}
 // Sidebar 儲值中心
-	@RequestMapping("/deposit")
-	public String toDeposit(Model model) {
-		return "/main/deposit/DepositIndex";
-	}
+//	@RequestMapping("/deposit")
+//	public String toDeposit(Model model) {
+//		return "/main/deposit/DepositIndex";
+//	}
 // Sidebar 購物中心
 	@RequestMapping("/shop")
 	public String toShop(Model model) {
