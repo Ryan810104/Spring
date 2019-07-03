@@ -6,33 +6,31 @@
 	<div class="row">
 		<div id="Smallchat">
 			<div class="Layout Layout-open Layout-expand Layout-right"
-				id="Layout0"
-				style="background-color: #3F51B5; color: rgb(255, 255, 255); opacity: 5; border-radius: 10px;">
+				id="Friendlist" style="background-color: #3F51B5; color: rgb(255, 255, 255); opacity: 5; border-radius: 10px;">
 				<div class="Messenger_messenger">
-					<div class="Messenger_header"
-						style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
+					<div class="Messenger_header" style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
 						<h4 class="Messenger_prompt">好友列表</h4>
-						<span class="chat_close_icon"><i class="fas fa-times"></i></span>
+						<span class="friendlist_close_icon"><i class="fas fa-times"></i></span>
 					</div>
 					<div class="Messenger_content">
 						<div class="Messages" style="background-image:url(/resources/img/friendsearchbg.png);">
 							<div class="Messages_list" id="myfriends">
 								<div class="row">
-									<div class="col-sm-12">
-										<div class="well well-sm">
-											<div class="media">
-												<a class="thumbnail pull-left" href="#"> <img
-													class="media-object" src="http://placehold.it/80">
-												</a>
-												<div class="media-body">
-													<h4 class="media-heading">user</h4>
-													<a class="btn btn-lg btn-default btn-success btn-round"><span
-														class="glyphicon glyphicon-comment"></span><i
-														class="fas fa-comment-dots"></i> </a>
-												</div>
-											</div>
-										</div>
-									</div>
+<!-- 									<div class="col-sm-12"> -->
+<!-- 										<div class="well well-sm"> -->
+<!-- 											<div class="media"> -->
+<!-- 												<a class="thumbnail pull-left" href="#"> <img -->
+<!-- 													class="media-object" src="http://placehold.it/80"> -->
+<!-- 												</a> -->
+<!-- 												<div class="media-body"> -->
+<!-- 													<h4 class="media-heading">user</h4> -->
+<!-- 													<a class="btn btn-lg btn-default btn-success btn-round"><span -->
+<!-- 														class="glyphicon glyphicon-comment"></span><i -->
+<!-- 														class="fas fa-comment-dots"></i> </a> -->
+<!-- 												</div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
 									<br>
 								</div>
 							</div>
@@ -49,15 +47,16 @@
 					</div>
 				</div>
 			</div>
-			<!-- chat_room_1 -->
+			<!-- chat_room_1_icon -->
 			<div class="Layout Layout-open Layout-expand Layout-right"
-				id="Layout1"
+				id="chat_room1_layout"
 				style="background-color: #3F51B5; color: rgb(255, 255, 255); opacity: 5; border-radius: 10px;">
 				<div class="Messenger_messenger">
 					<div class="Messenger_header"
 						style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
-						<h4 class="Messenger_prompt" id="chat_room_1_id">userid
+						<h4 class="Messenger_prompt" id="chat_room_1_icon_id">userid
 							position</h4>
+							<span  class="chat_min_icon"><i class="fas fa-minus"></i></span>
 						<span class="chat_close_icon"><i class="fas fa-times"></i></span>
 					</div>
 					<div class="Messenger_content">
@@ -76,18 +75,19 @@
 							<button class="Input_button Input_button-send"
 								id="input_send_button">
 								<div class="Icon" style="width: 18px; height: 18px;">
-									<svg width="57px" height="54px" viewBox="1496 193 57 54"
-										version="1.1" xmlns="http://www.w3.org/2000/svg"
-										xmlns:xlink="http://www.w3.org/1999/xlink"
-										style="width: 18px; height: 18px;">
-                  <g id="Group-9-Copy-3" stroke="none" stroke-width="1"
-											fill="none" fill-rule="evenodd"
-											transform="translate(1523.000000, 220.000000) rotate(-270.000000) translate(-1523.000000, -220.000000) translate(1499.000000, 193.000000)">
-                    <path
-											d="M5.42994667,44.5306122 L16.5955554,44.5306122 L21.049938,20.423658 C21.6518463,17.1661523 26.3121212,17.1441362 26.9447801,20.3958097 L31.6405465,44.5306122 L42.5313185,44.5306122 L23.9806326,7.0871633 L5.42994667,44.5306122 Z M22.0420732,48.0757124 C21.779222,49.4982538 20.5386331,50.5306122 19.0920112,50.5306122 L1.59009899,50.5306122 C-1.20169244,50.5306122 -2.87079654,47.7697069 -1.64625638,45.2980459 L20.8461928,-0.101616237 C22.1967178,-2.8275701 25.7710778,-2.81438868 27.1150723,-0.101616237 L49.6075215,45.2980459 C50.8414042,47.7885641 49.1422456,50.5306122 46.3613062,50.5306122 L29.1679835,50.5306122 C27.7320366,50.5306122 26.4974445,49.5130766 26.2232033,48.1035608 L24.0760553,37.0678766 L22.0420732,48.0757124 Z"
-											id="sendicon" fill="#96AAB4" fill-rule="nonzero"></path>
-                  </g>
-                </svg>
+								<i class="fas fa-share" style="color: cornflowerblue;"></i>
+<!-- 									<svg width="57px" height="54px" viewBox="1496 193 57 54" -->
+<!-- 										version="1.1" xmlns="http://www.w3.org/2000/svg" -->
+<!-- 										xmlns:xlink="http://www.w3.org/1999/xlink" -->
+<!-- 										style="width: 18px; height: 18px;"> -->
+<!--                   <g id="Group-9-Copy-3" stroke="none" stroke-width="1" -->
+<!-- 											fill="none" fill-rule="evenodd" -->
+<!-- 											transform="translate(1523.000000, 220.000000) rotate(-270.000000) translate(-1523.000000, -220.000000) translate(1499.000000, 193.000000)"> -->
+<!--                     <path -->
+<!-- 											d="M5.42994667,44.5306122 L16.5955554,44.5306122 L21.049938,20.423658 C21.6518463,17.1661523 26.3121212,17.1441362 26.9447801,20.3958097 L31.6405465,44.5306122 L42.5313185,44.5306122 L23.9806326,7.0871633 L5.42994667,44.5306122 Z M22.0420732,48.0757124 C21.779222,49.4982538 20.5386331,50.5306122 19.0920112,50.5306122 L1.59009899,50.5306122 C-1.20169244,50.5306122 -2.87079654,47.7697069 -1.64625638,45.2980459 L20.8461928,-0.101616237 C22.1967178,-2.8275701 25.7710778,-2.81438868 27.1150723,-0.101616237 L49.6075215,45.2980459 C50.8414042,47.7885641 49.1422456,50.5306122 46.3613062,50.5306122 L29.1679835,50.5306122 C27.7320366,50.5306122 26.4974445,49.5130766 26.2232033,48.1035608 L24.0760553,37.0678766 L22.0420732,48.0757124 Z" -->
+<!-- 											id="sendicon" fill="#96AAB4" fill-rule="nonzero"></path> -->
+<!--                   </g> -->
+<!--                 </svg> -->
 								</div>
 							</button>
 						</div>
@@ -114,17 +114,20 @@
 						class="fa fa-comments fa-xs" aria-hidden="true"></i></span>
 				</div>
 				<br>
-				<!-- chat_room_1 -->
-				<div class="chat_on" id="chat_room_1" style="visibility: hidden">
-					<span class="chat_on_icon" style="line-height: 0.8rem;"> <i
-						class="fa fa-comments fa-xs" aria-hidden="true"></i></span>
+				<!-- chat_room_1_icon -->
+				<div class="" id="chat_room_1_icon_icon" style="visibility: hidden">
+<!-- 					<span class="chat_on_icon" style="line-height: 0.8rem;"> <i -->
+<!-- 						class="fa fa-comments fa-xs" aria-hidden="true"></i></span> -->
+				<img class="media-object-chat-icon" src="<c:url value='/admin/memberBeans/getPicture/2' />">
 				</div>
 				<br>
 				<!-- chat_room_public -->
-				<div class="search_friend" id="chat_room_0"
+				
+				<div class="search_friend" id="search_friend_icon"
 					style="min-height: 44.4px;">
 					<span class="chat_on_icon" style="line-height: 1.8rem;"> <!--     <i class="fa fa-comments fa-xs" aria-hidden="true"></i>	 -->
 						<i class="fas fa-user-friends fa-xs" aria-hidden="true"></i>
+
 					</span>
 				</div>
 			</div>
@@ -141,36 +144,31 @@
 
 	//1. link sender and receiver 
 	function opencontact(sender, receiver) {
-
-		localStorage.setItem("chatroom", "true")
-		$("#chat_room_1").css("visibility", "visible");
+	//1-1. 儲存使用者資料和聊天視窗狀態
+		localStorage.setItem("Connection",true);
+		localStorage.setItem("layout_chatroom_status", true);
+		localStorage.setItem("sendersession", sender);
+		localStorage.setItem("receiversession", receiver);
+		
+		$("#chat_room_1_icon").css("visibility", "visible");
 		$.get("/friend/list/getreceiversid?memberid=" + receiver, function(
 				Jdata) {
-			$("#chat_room_1_id").html((Jdata[0][1]));
+			$("#chat_room_1_icon_id").html((Jdata[0][1]));
 		});
-		$("#Layout1").toggle();
-		$("#chat_room_1").hide(300);
+		$("#chat_room1_layout").toggle();
+
 		//2. keep Local variable into Global variable
 		sender0 = sender;
-		localStorage.setItem("sendersession", sender);
 		receiver0 = receiver;
-		localStorage.setItem("receiversession", receiver);
 		//3. use long polling to fetch the message 
 		readmessageInterval();
 		setTimeout(function() {
 			clicksendbutton();
 		}, 3050);
 	};
-	if (localStorage.getItem("chatroom")) {
-		opencontact(localStorage.getItem("sendersession"), localStorage
-				.getItem("receiversession"));
-		readmessage();
-		setTimeout(function() {
-			clicksendbutton();
-		}, 50);
-	}
+	
 	// if (localStorage.getItem("chatroomopen")){
-	// 	$("#chat_room_1").css("visibility","visible");
+	// 	$("#chat_room_1_icon").css("visibility","visible");
 	// 	opencontact(localStorage.getItem("sendersession"),localStorage.getItem("receiversession"));
 	// }
 	function readmessage() {
@@ -253,26 +251,53 @@
 </script>
 <script>
 	//CHAT BOOT MESSENGER////////////////////////
+//跳轉頁面且視窗打開時，下一個頁面視窗仍開著
+if (localStorage.getItem("layout_chatroom_status")) {
+		opencontact(localStorage.getItem("sendersession"), localStorage
+				.getItem("receiversession"));
+		readmessage();
+		setTimeout(function() {
+			clicksendbutton();
+		}, 50);
+	} else if (localStorage.getItem("Connection")){
+		$("#chat_room_1_icon").css("visibility", "visible");
+	}
 
 	$(document).ready(function() {
-		$("#chat_room_1").click(function() {
+		$("#chat_room_1_icon").click(function() {
 			localStorage.setItem("chatroomopen", "true");
-			$("#Layout1").toggle();
-			$("#chat_room_1").hide(300);
+			$("#chat_room_1_icon").css("visibility", "visible");
+			opencontact(localStorage.getItem("sendersession"), localStorage
+					.getItem("receiversession"));
 		});
-		$("#chat_room_0").click(function() {
+		$("#search_friend_icon").click(function() {
 			
-			$("#Layout0").toggle();
-			$("#chat_room_0").hide(300);
+			$("#Friendlist").toggle();
+			$("#search_friend_icon").hide(300);
+			$("#search_friend_icon").show(300);
 			$("#search_friend").click();
 		});
-		$(".chat_close_icon").click(function() {
-			$("#Layout0").hide();
-			$("#chat_room_0").show(300);
-			$("#Layout1").hide();
-			$("#chat_room_1").show(300);
-			localStorage.removeItem("chatroom");
+		$(".chat_min_icon").click(function() {
+			$("#Friendlist").hide();
+			$("#search_friend_icon").show(300);
+			$("#chat_room1_layout").hide();
+			$("#chat_room_1_icon").show(300);
+			localStorage.removeItem("layout_chatroom_status");
 
+		});
+		$(".chat_close_icon").click(function() {
+			$("#Friendlist").hide();
+			$("#search_friend_icon").show(300);
+			$("#chat_room1_layout").hide();
+			$("#chat_room_1_icon").css("visibility", "hidden");
+			localStorage.removeItem("layout_chatroom_status");
+			localStorage.removeItem("Connection");
+			localStorage.removeItem("sendersession");
+			localStorage.removeItem("receiversession");
+		});
+		$(".friendlist_close_icon").click(function(){
+			$("#Friendlist").hide();
+			$("#chat_room1_layout").hide();
 		});
 
 	});
