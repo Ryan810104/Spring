@@ -304,23 +304,20 @@ if (localStorage.getItem("layout_chatroom_status")) {
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var ws = sessionStorage.getItem("websocketexist");
-	if (!ws){
 		var ws = null ;
 		var urlPrefix = "ws://localhost:80/websocket/";
-		var username = '${sessionScope.member.memberNum}'
+		var username = '${sessionScope.member.memberId}'
 		var url = urlPrefix + username ; 
 		ws = new WebSocket(url);
 		ws.onopen = function (){
 			console.log("建立webSocket連線");
 			sessionStorage.setItem("websocketexist",ws);
 		}
-	} else {
-		console.log("已經在線上囉!");
-	}
+	
 	ws.onmessage = function(event){
-		alert(event.data)
+		$("#public_Input_field").val(event.data);
 	};
+	
 });
 	//websocket
 	//     $(document).ready(function(){
