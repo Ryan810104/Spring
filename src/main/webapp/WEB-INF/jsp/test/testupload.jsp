@@ -13,7 +13,7 @@
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<form action="/admin/memberBeans/gogo/${sessionScope.member.memberNum}" method="POST" enctype="multipart/form-data">
-		<Input Type="File" name="memberPhoto">
+		<Input Type="File" name="memberPhoto"  accept="image/png, image/jpeg">
 		<input type="submit">
 		</form>
 			<img width='100' height='200' 
