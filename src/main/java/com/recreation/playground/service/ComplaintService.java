@@ -51,20 +51,20 @@ public class ComplaintService {
 		return dao.findByComplaintMessagetimeLike(cp.getComplaintMessagetime());
 	}
 
-	public String findByComplaintTitle(Complaint cp) {
-		return dao.findByComplaintTitle(cp.getComplaintTitle());
+	public String findByComplaintType(Complaint cp) {
+		return dao.findByComplaintType(cp.getComplaintType());
 	}
 
 	public String fileComplaints(Complaint cp) {
 		Complaint insertData = new Complaint();
 		insertData.setMemberId(cp.getMemberId());
-		insertData.setComplaintTitle(cp.getComplaintTitle());
+		insertData.setComplaintType(cp.getComplaintType());
 		insertData.setComplaintMessage(cp.getComplaintMessage());
 		insertData.setComplaintStatus(cp.getComplaintStatus());
 		java.util.Date date = new java.util.Date();
 		insertData.setComplaintMessagetime(date);
 //		insertData.setComplaintResponse(cp.getComplaintResponse());
-		insertData.setViolator(cp.getViolator());
+		
 		dao.save(insertData);
 		return "complain";
 	}
