@@ -510,35 +510,34 @@ public class MemberController {
 			Member mem = em.find(Member.class, num);
 			if (mem != null) {
 				Blob blob = mem.getMemberPhoto();
-				System.out.println("2 step");
+//				System.out.println("2 step");
 				if (blob != null) {
 					try {
-						System.out.println("3 step");
+//						System.out.println("3 step");
 						len = (int) blob.length();
-						System.out.println(len);
+//						System.out.println(len);
 						media = blob.getBytes(1, len);
 					} catch (SQLException e) {
 						throw new RuntimeException ("ProductController的getPicture()發生SQLException:"+ e.getMessage());
 					}	
 				} else {
 					media = Files.readAllBytes(Paths.get(filePath));
-					System.out.println("hehehe");
+//					System.out.println("hehehe");
 					filename = filePath;
 				}
 			} else {
 				media = toByteArray(filePath);
-				System.out.println(media);
+//				System.out.println(media);
 				filename = filePath;
-				System.out.println("no image");
+//				System.out.println("no image");
 			}
 			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 			String mimeType = context.getMimeType(filename);
 			MediaType mediaType = MediaType.valueOf(mimeType);
-			System.out.println("mediaType="+mediaType);
+//			System.out.println("mediaType="+mediaType);
 			headers.setContentType(mediaType);
 			ResponseEntity<byte[]> responseEntity = 
 					new ResponseEntity<>(media,headers,HttpStatus.OK);
-			
 			return responseEntity;
 		}
 		private byte[] toByteArray(String filepath) {
@@ -557,5 +556,41 @@ public class MemberController {
 				e.printStackTrace();
 			}
 			return b;
+		}
+		
+		@PostMapping("/uploadImage/{membernum}")
+		public String uploadImage(@PathVariable("membernum") Integer num,@RequestParam("imageFile")MultipartFile imageFile) {
+			String returnValue	="/test/testupload";
+			try {
+				Member mem = em.find(Member.class, num);
+				if (mem != null) {
+					String imagePathString=service.saveImage(imageFile);
+					
+					mem.setMemberPhotoURL(imagePathString);
+					service.update(mem);
+				}else {
+					System.out.println("member not excist");
+					returnValue="/test/testupload";
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				returnValue="error";
+			}
+			return returnValue;
+		}
+		
+		@RequestMapping(value="/getServerPicture/{membernum}",method= RequestMethod.GET)
+		public String getServerImage(@PathVariable("membernum") Integer num) {
+			String imagePath="/resources/img/default-picture.png";
+			Member mem = em.find(Member.class, num);
+			if (mem != null) {
+				String memberImgPath=mem.getMemberPhotoURL();
+				if(memberImgPath!=null) {
+					imagePath=memberImgPath;
+				}
+				System.out.println("imagePath="+imagePath);
+			}
+			
+			return imagePath;
 		}
 }
