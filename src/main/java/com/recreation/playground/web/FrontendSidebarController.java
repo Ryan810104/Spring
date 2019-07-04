@@ -1,5 +1,7 @@
 package com.recreation.playground.web;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +26,10 @@ public class FrontendSidebarController {
 		return "/main/games/GameIndex";
 	}
 // Sidebar 儲值中心
-	@RequestMapping("/deposit")
-	public String toDeposit(Model model) {
-		return "/main/deposit/DepositIndex";
-	}
+//	@RequestMapping("/deposit")
+//	public String toDeposit(Model model) {
+//		return "/main/deposit/DepositIndex";
+//	}
 // Sidebar 購物中心
 	@RequestMapping("/shop")
 	public String toShop(Model model) {
@@ -53,12 +55,27 @@ public class FrontendSidebarController {
 	public String toEmojiGame(Model model) {
 		return "/main/games/Mineweeper";
 		}
+	@RequestMapping("/logout")
+	public String logout(Model model,HttpSession session) {
+		session.removeAttribute("UID");
+		session.removeAttribute("member");
+		return "/main/Index";
+		}
 //Game俄羅斯輪盤
 	@RequestMapping("/Circlegame")
 	public String tocirlegame(Model model) {
 		
 		return"/main/games/circlegame";
 	}
-
+//測試上傳圖片
+	@RequestMapping("/testing")
+	public String totesting(Model model) {
+		return"/test/testupload";
+	}
+//投訴箱
+	@RequestMapping("/complain")
+	public String toComplain(Model model) {
+		return"/main/complain/complainIndex";
+	}
 	
 }

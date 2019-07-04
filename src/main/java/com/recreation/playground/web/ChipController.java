@@ -2,23 +2,34 @@ package com.recreation.playground.web;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.common.AjaxResponse;
 import com.recreation.playground.common.AjaxResponseType;
+import com.recreation.playground.common.GridResponse;
 import com.recreation.playground.entity.Chip;
-import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.ChipService;
 
 @Controller
@@ -46,16 +57,32 @@ public class ChipController {
 	}
 	
 	
-	@PostMapping("/query")
+	@RequestMapping("/query")
 	@ResponseBody//轉JSON
-	public List<Chip> query(String chipMemberid){
+	public GridResponse<Chip> query(String chipMemberid, @RequestParam(name="page", defaultValue="1") Integer page, @RequestParam(name="rows", defaultValue="10") Integer size){
 		System.out.println(chipMemberid);
-		return service.getAll();
+		 GridResponse<Chip> gridReponse = new GridResponse<Chip>();
+		Pageable pageable = PageRequest.of(page - 1, size);
+		Specification<Chip> specification= new Specification<Chip>() {
+
+			@Override
+			public Predicate toPredicate(Root<Chip> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+//				Predicate where = cb.conjunction();
+//				if(!StringUtils.isEmpty(str))
+				return null;
+			}
+			
+		};
+		Page<Chip> result = service.getAll(specification,pageable);
+		gridReponse.setPage(page);
+		gridReponse.setTotal(result.getTotalPages());
+		gridReponse.setRows(result.getContent());
+		return gridReponse;
 	}
 	
 	@DeleteMapping("/delete")
 	public String delete(@ModelAttribute("form1") Chip chip, Model model){
-		System.out.println(service.getByChipMemberid(chip.getChipMemberid()));
+		System.out.println(service.getByChipMemberNum(chip.getChipMemberNum()));
 		service.delete(chip);
 		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/Chip/member-list";

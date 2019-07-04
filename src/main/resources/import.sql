@@ -1,26 +1,64 @@
 
+INSERT INTO Chip(chip_member_num,chip_balanced,chip_type,win,play_round)values
+(1,200,'a',1,1),
+(2,-1000,'b',0,1),
+(1,200,'b',1,1),
+(1,-200,'b',0,1),
+(3,400,'c',1,1),
+(3,-200,'a',0,1),
+(1,200,'a',1,1);
 
 
+INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_point,money_record_chip,money_record_chiptype)values
+(1,getdate(),10000,10000,'a'),
+(3,getdate(),1000,1000,'b'),
+(2,getdate(),20000,20000,'c'),
+(2,getdate(),70000,70000,'a'),
+(2,getdate(),14500,14500,'b'),
+(1,getdate(),12220,12220,'a'),
+(3,getdate(),2500,2500,'c');
 
-INSERT INTO chip(chip_memberid,chip_balanced)values
-('mary1024',10000),
-('Jason0924',-1000),
-('king2024',20000),
-('GGGG7124',70000),
-('QQQQ3624',14500),
-('MMNH9574',12220),
-('Liiy9924',2500);
+INSERT INTO Chiprecord(chip_record_member_num,chip_record_chip,chip_record_time,chip_record_chiptype,play_round,win) values
+(2,10000,getdate(),'a',1,1),
+(3,-1000,getdate(),'b',1,0),
+(1,20000,getdate(),'c',1,1),
+(2,70000,getdate(),'a',1,1),
+(1,-14500,getdate(),'c',1,0),
+(3,12220,getdate(),'b',1,1),
+(2,2500,getdate(),'a',1,1);
+
+IF Object_ID('dbo.summary') IS NOT NULL
+    DROP VIEW dbo.summary;
 
 
-INSERT INTO chipRecord values
-('mary1024',10000,getdate()),
-('Jason0924',-1000,getdate()),
-('king2024',20000,getdate()),
-('GGGG7124',70000,getdate()),
-('QQQQ3624',14500,getdate()),
-('MMNH9574',12220,getdate()),
-('Liiy9924',2500,getdate());
+create view summary
+  as
+  select money_record_member_num,
+         sum(money_record_point) as total_point
+  from moneyrecord
+  group by money_record_member_num;
+  
+  
+  
+  
+  IF Object_ID('dbo.wintimerank') IS NOT NULL
+    DROP VIEW dbo.wintimerank;
 
+  create view wintimerank
+  as
+  select chip_member_num,chip_type,sum(win) as total_win 
+  from chip 
+  group by chip_member_num,chip_type;
+  
+  IF Object_ID('dbo.summary1') IS NOT NULL
+    DROP VIEW dbo.summary1;
+  create view summary1 
+  as 
+  select chip_member_num,sum(chip_balanced) as summary 
+  from chip 
+  group by chip_member_num;
+  
+  
 
  INSERT INTO vip_level values
 (1.0,1,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
@@ -31,6 +69,10 @@ INSERT INTO chipRecord values
 (0.49,6,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
 
 
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,789);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('admin','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,56799);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('admin2','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,78999);
 
 
 

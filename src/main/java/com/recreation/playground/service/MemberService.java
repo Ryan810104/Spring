@@ -15,7 +15,10 @@ public class MemberService {
 	@Autowired
 	private MemberDao dao;
 	
-	
+	public Member update(Member member) {
+//		System.out.println("dao");
+		return dao.save(member);
+	}
 	public Member finById(String memberId) {
 		return dao.findByMemberId(memberId);
 	}
@@ -39,7 +42,6 @@ public class MemberService {
 
 	public String login(String memberId, String memberPwd) {
 		String result = "false";
-
 		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
 
 

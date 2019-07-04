@@ -26,7 +26,7 @@ import static  com.recreation.playground.websocket.WebSocketUtils.sendMessageAll
  * @since 2018/6/26 0026
  */
 @RestController
-@ServerEndpoint("/chat-room/{username}")
+@ServerEndpoint("/websocket/{username}")
 public class ChatRoomServerEndpoint {
 
     private static final Logger log = LoggerFactory.getLogger(ChatRoomServerEndpoint.class);
@@ -34,16 +34,17 @@ public class ChatRoomServerEndpoint {
     @OnOpen
     public void openSession(@PathParam("username") String username, Session session) {
         LIVING_SESSIONS_CACHE.put(username, session);
-        String message = "欢迎用户[" + username + "] 来到聊天室！";
-        log.info(message);
-        sendMessageAll(message);
+//        String message = "欢迎用户[" + username + "] 来到聊天室！";
+//        log.info(message);
+//        System.out.println(LIVING_SESSIONS_CACHE.keySet());
+        sendMessageAll(LIVING_SESSIONS_CACHE.keySet().toString());
 
     }
 
     @OnMessage
     public void onMessage(@PathParam("username") String username, String message) {
-        log.info(message);
-        sendMessageAll("用户[" + username + "] : " + message);
+//        log.info(message);
+//        sendMessageAll("用户[" + username + "] : " + message);
     }
 
     @OnClose
