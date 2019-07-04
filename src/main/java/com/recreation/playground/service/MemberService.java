@@ -15,9 +15,16 @@ public class MemberService {
 	@Autowired
 	private MemberDao dao;
 	
-	
+	public Member update(Member member) {
+//		System.out.println("dao");
+		return dao.save(member);
+	}
 	public Member finById(String memberId) {
 		return dao.findByMemberId(memberId);
+	}
+	
+	public List<Member> findAll() {
+		return dao.findAll();
 	}
 	
 	public String register(Member member) {		
@@ -25,6 +32,7 @@ public class MemberService {
 		insertData.setMemberId(member.getMemberId());
 		insertData.setMemberPassword(member.getMemberPassword());
 		insertData.setMemberEmail(member.getMemberEmail());
+		insertData.setMemberNickName(member.getMemberNickName());
 		insertData.setMemberPhonenum(member.getMemberPhonenum());
 		insertData.setMemberPermission(0);
 		insertData.setMemberViplevel(0);
@@ -34,7 +42,6 @@ public class MemberService {
 
 	public String login(String memberId, String memberPwd) {
 		String result = "false";
-
 		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
 
 
@@ -72,4 +79,8 @@ public class MemberService {
 	public List<Member> findFriendsByMemberId (String memberid) {
 		return dao.findByMemberIdContaining(memberid);
 	}
+	
+	
+	
+	
 }

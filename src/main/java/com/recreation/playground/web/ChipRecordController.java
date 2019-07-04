@@ -55,7 +55,7 @@ public class ChipRecordController {
 	
 	@DeleteMapping("/delete")
 	public String delete(@ModelAttribute("form1") ChipRecord chipRecord, Model model){
-		System.out.println(service.getByChipMemberid(chipRecord.getChipRecordMemberid()));
+		System.out.println(service.getByChipRecordMemberNum(chipRecord.getChipRecordMemberNum()));
 		service.delete(chipRecord);
 		model.addAttribute("deletesucceed", "資料刪除成功");
 		return "/ChipRecord/member-list";

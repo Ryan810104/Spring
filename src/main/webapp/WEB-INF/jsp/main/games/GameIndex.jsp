@@ -30,7 +30,7 @@
 							《俄羅斯方塊》具有數學性、動態性與知名度，也經常被用來作為遊戲程式設計的練習題材。按照金氏世界紀錄，俄羅斯方塊現時一共有9個世界紀錄，例如手提電話下載次數最多的遊戲等。</p>
 						<hr>
 						<div style="text-align: center; line-height: 4rem;">
-							<a href="#" class="btn btn-info ">進入遊戲</a>
+							<a href="/main/Circlegame" class="btn btn-info ">進入遊戲</a>
 						</div>
 					</div>
 				</div>

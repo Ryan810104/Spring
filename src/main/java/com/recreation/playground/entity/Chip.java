@@ -20,10 +20,20 @@ public class Chip {
 	@Column(name="chipNum")
 	private Integer chipNum;
 	
-	@Column(name="chipMemberid")
-	private String chipMemberid;
+	@Column(name="chipMemberNum")
+	private Integer chipMemberNum;
 	
 	@Column(name="chipBalanced")
-	private Integer chipBalanced;
+	private Long chipBalanced;
+	
+	@Column(name="chipType")
+	private String chipType;
+	
+	@Column(name="win")
+	private Integer win;
+	
+	@Column(name="playRound")
+	private Integer round;
+	
 
 }

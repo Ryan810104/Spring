@@ -20,19 +20,19 @@ public class Complaint {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private int ComplaintNum ; 
+	private Integer complaintNum ; 
 	@Column
-	private String MemberId ; 
+	private String memberId ; 
 	@Column
-	private String ComplaintTitle ; 
+	private String complaintType ; 
 	@Column
-	private String ComplaintMessage ; 
+	private String complaintMessage ; 
 	@Column
 	@CreatedDate
-	private java.util.Date ComplaintMessagetime ;
+	private java.util.Date complaintMessagetime ;
 	@Column
-	private String ComplaintStatus ;
+	private String complaintStatus ;
 	@Column
-	private String ComplaintResponse ;
+	private String complaintResponse ;
 
 }

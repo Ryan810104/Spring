@@ -104,6 +104,20 @@ public class ItemListController {
 			Model model) {
 		return "/test/ItemListForm";
 	}
+	@RequestMapping("/fbtest")
+	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
+	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
+	public String fbtest(@Valid @ModelAttribute("userupdate") Member member, BindingResult result,
+			Model model) {
+		return "/test/FBTest2";
+	}
+	@RequestMapping("/googletest")
+	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
+	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
+	public String googletest(@Valid @ModelAttribute("userupdate") Member member, BindingResult result,
+			Model model) {
+		return "/test/GoogleTest";
+	}
 //	@RequestMapping(value="/getPicture/{memberId}",method=RequestMethod.GET)
 //	public ResponseEntity<byte[]> getPicture(HttpServletResponse response,@PathVariable String itemName){
 //		String filePath="/resources/img/01.jpg";

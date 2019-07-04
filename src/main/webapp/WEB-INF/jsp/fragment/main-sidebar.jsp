@@ -1,60 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <aside class="sidebar moe">
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
-			<img class="sidebar-avatar-in"
-				src="http://vignette1.wikia.nocookie.net/adventuretimewithfinnandjake/images/e/ec/Princess_Bubblegum_7.png/revision/latest?cb=20130206231030" />
+
+			<a href="/main/setting"> <img class="sidebar-avatar-in"
+				src="<c:url value='/admin/memberBeans/getPicture/${sessionScope.member.memberNum}' />" />
+			</a> 
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
 
-		<div class="sidebar-title moe username-line-height">${sessionScope.member.memberId}</div>
-		<div class="sidebar-title moe">${sessionScope.member.moneyBalance} p</div>
+		<div class="sidebar-title moe username-line-height">
+			<a href="/main/setting">${sessionScope.member.memberId}</a>
+		</div>
+		<div class="sidebar-title moe">${sessionScope.member.moneyBalance}
+			p</div>
 
 	</header>
 
 	<nav class="sidebar-nav" role="navigation">
 		<ul>
 			<li class="sidebar-nav-item moe  active"><i
-				class="sidebar-nav-item-icon fa fa-th-large"></i> <a 
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/index">回到首頁</a></li>
+				class="sidebar-nav-item-icon fa fa-th-large"></i> <a
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/index">回到首頁</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-newspaper"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/news">活動訊息</a>
-			</li>
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/news">活動訊息</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-gamepad"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/games">遊戲列表</a></li>
-			<li class="sidebar-nav-item moe"><i
-				class="sidebar-nav-item-icon fa fa-envira"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/deposit">儲值金幣</a></li>
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/games">遊戲列表</a></li>
+			<!-- 			<li class="sidebar-nav-item moe"><i -->
+			<!-- 				class="sidebar-nav-item-icon fa fa-envira"></i> <a -->
+			<!-- 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/deposit">儲值金幣</a></li> -->
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-cart-arrow-down"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/shop">購物商城</a></li>
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/shop">購物商城</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-user-friends"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/friend">好友系統</a></li>
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/friend">好友系統</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-area-chart"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/gamesrank">遊戲排行</a></li>
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/gamesrank">遊戲排行</a></li>
 			<li class="sidebar-nav-item moe"><i
-				class="sidebar-nav-item-icon fa fa-cog"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" href="/main/setting">使用者設定</a></li>
+				class="sidebar-nav-item-icon fas fa-vial"></i> <a
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/testing">測試</a></li>
+			<li class="sidebar-nav-item moe"><i
+				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/complain">投訴箱</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height">登出</a></li>
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/logout">登出</a></li>
 		</ul>
-	</nav>
 
-	<footer class="sidebar-footer">
-		<span class="sidebar-footer-icon moe">···</span> <span
-			class="sidebar-footer-label moe">· · ·</span>
-	</footer>
+
+		<footer class="sidebar-footer">
+			<span class="sidebar-footer-icon moe">···</span> <span
+				class="sidebar-footer-label moe">· · ·</span>
+		</footer>
 </aside>
-<main class="main moe"> 
-<header class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+<main class="main moe"> <header
+	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
 	<span class="toggle"> <!-- fa-angle-double-left fa-bars fa-th-list -->
 		<i class="fa fa-bars"></i>
 	</span>
@@ -74,11 +91,12 @@
 	</ul>
 </header>
 <hr>
-	
+
 <style>
-.navbarontop{
-/* position:fixed; */
-/* background-color:red; */
+.navbarontop {
+	/* position:fixed; */
+	/* background-color:red; */
+	
 }
 /*  Estilos Generales  */
 *, *:before, *:after {
@@ -128,8 +146,7 @@ img {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
-	    position: fixed;
-
+	position: fixed;
 	font-size: 1.4rem;
 	width: 100%;
 	color: #b0b0b0;
@@ -296,8 +313,8 @@ Inicio Primer Estado: Colapsado (Default:MOE)
 .sidebar.moe {
 	grid-column: 1/2;
 	grid-row: 1/2;
-		    height: inherit;
-	        width: initial;
+	height: inherit;
+	width: initial;
 }
 
 .sidebar-header.moe {
@@ -353,10 +370,8 @@ Inicio Segundo Estado: Expandido (EX)
 .sidebar.ex {
 	grid-column: 1/3;
 	grid-row: 1/2;
-		    height: inherit;
-	        width: initial;
-	    
-	
+	height: inherit;
+	width: initial;
 }
 
 .sidebar-header.ex {
@@ -368,8 +383,8 @@ Inicio Segundo Estado: Expandido (EX)
 .sidebar-avatar.ex {
 	height: 50%;
 	width: 50%;
-	transition-timing-function: cubic-bezier(0.1, 0.1, 0.5, 0.5); 
- 	transition: 0.1s ; 
+	transition-timing-function: cubic-bezier(0.1, 0.1, 0.5, 0.5);
+	transition: 0.1s;
 }
 
 .sidebar-avatar-logo.ex {
@@ -384,7 +399,6 @@ Inicio Segundo Estado: Expandido (EX)
 .sidebar-nav-item.ex {
 	padding: 1rem 0 2.8rem 4.5rem;
 	transition: 0.1s ease;
-
 }
 
 .sidebar-nav-item-zelda.ex {
@@ -469,7 +483,6 @@ Inicio Tercer Estado: Oculto (OK)
 </style>
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
 <script>
-
 	var hamburguesa = document.querySelector('.toggle');
 	hamburguesa
 			.addEventListener(
@@ -589,13 +602,13 @@ Inicio Tercer Estado: Oculto (OK)
 					})
 
 	var nav = document.querySelectorAll('.sidebar-nav-item');
-	$(document).ready(function(){
-		for(i = 0 ; i < 9 ; i++){		
-		if(localStorage.getItem("nav["+i+"]")) {
-			$("nav["+i+"]").click();
-			
-			localStorage.removeItem("nav["+i+"]");
-			a(i);
+	$(document).ready(function() {
+		for (i = 0; i < 9; i++) {
+			if (localStorage.getItem("nav[" + i + "]")) {
+				$("nav[" + i + "]").click();
+
+				localStorage.removeItem("nav[" + i + "]");
+				a(i);
 			}
 		}
 	});
@@ -613,14 +626,14 @@ Inicio Tercer Estado: Oculto (OK)
 			console.log("nulo");
 		}
 	})
-function a(i){
+	function a(i) {
 
 		var clica = nav[i];
 		var activo = document.querySelector('.active');
 		if (clica !== activo) {
 			activo.classList.remove('active');
 			clica.classList.add('active');
-			console.log(i+"2 activado");
+			console.log(i + "2 activado");
 		} else {
 			console.log("nulo");
 		}
@@ -659,27 +672,27 @@ function a(i){
 		a(7);
 	})
 
-	nav[8].addEventListener('click', function() {
-		localStorage.setItem("nav[8]", "true");
-		a(8);
-	})
+// 	nav[8].addEventListener('click', function() {
+// 		localStorage.setItem("nav[8]", "true");
+// 		a(8);
+// 	})
 
 	//# sourceURL=pen.js
 </script> <script>
-					window.onscroll = function() {
-						scrollFunction()
-					};
-					function scrollFunction() {
-						if (document.body.scrollTop > 20
-								|| document.documentElement.scrollTop > 20) {
-							document.getElementById("footbtn").style.display = "block";
-						} else {
-							document.getElementById("footbtn").style.display = "none";
-						}
-					}
-					// When the user clicks on the button, scroll to the top of the document
-					function topFunction() {
-						document.body.scrollTop = 0;
-						document.documentElement.scrollTop = 0;
-					}
-				</script>
+	window.onscroll = function() {
+		scrollFunction()
+	};
+	function scrollFunction() {
+		if (document.body.scrollTop > 20
+				|| document.documentElement.scrollTop > 20) {
+			document.getElementById("footbtn").style.display = "block";
+		} else {
+			document.getElementById("footbtn").style.display = "none";
+		}
+	}
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	}
+</script>
