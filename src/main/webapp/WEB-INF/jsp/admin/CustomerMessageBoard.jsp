@@ -25,7 +25,7 @@
 		</div>
 		<div>
 		<textarea cols="95" rows="3" name="CustomermessageboardMessage" placeholder="輸入你想要寫的內容..." ></textarea>
-		<span><input type="submit" value="送出"></span>
+		<span><input type="button" value="送出" id="messageboardsubmit"></span>
 		</div>
 		
 	</form>
