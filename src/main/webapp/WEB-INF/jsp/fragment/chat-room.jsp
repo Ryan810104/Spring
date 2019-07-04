@@ -303,6 +303,7 @@ if (localStorage.getItem("layout_chatroom_status")) {
 	});
 </script>
 <script type="text/javascript">
+var userlist = null;
 $(document).ready(function(){
 		var ws = null ;
 		var urlPrefix = "ws://localhost:80/websocket/";
@@ -315,7 +316,9 @@ $(document).ready(function(){
 		}
 	
 	ws.onmessage = function(event){
-		$("#public_Input_field").val(event.data);
+		userlist = event.data;
+		$("#search_friend").click();
+		console.log(event.data);
 	};
 	
 });
@@ -369,14 +372,37 @@ $(document).ready(function(){
 	//     })
 	$("#search_friend").click(function() {
 		var myfriends = "";
+		var list = userlist.replace("[","").replace("]","").split(",");
+		var online = "";
 		$.ajax({
 			url : "/friend/list/findmyfriend?memberid=" + '${sessionScope.member.memberNum}',
 			type : "GET",
 			success : function(Jdata) {
 			var NumOfJData = Jdata.length;
 			for (var i = 0; i < NumOfJData; i++) {
+				
+				for (var j = 0 ; j < list.length ; j++){
+// 					alert(list[j]);
+					if (Jdata[i][1] == list[j].trim()){
+						online = "online_border";
+						break;
+					} else {
+						online = "offline_border";
+					}
+				}
+				
+// 				list.forEach(function(element){
+// 					if(Jdata[i][1] == element.trim()){
+// 						online = "online_border";
+// 						break;
+// 					} else{
+// 						online = "offline_border";
+// 						alert("not ok");
+// 					}
+// 				});
+				
 			myfriends += "<div class=\"row\">"
-			myfriends += "<div class=\"col-sm-12\">"
+			myfriends += "<div class=\"col-sm-12 "+online+"\" >"
 			myfriends += "<div class=\"well well-sm\">"
 			myfriends += "<div class=\"media\">"
 			myfriends += "<a class=\"thumbnail pull-left\" href=\"#\"> <img"
@@ -387,7 +413,7 @@ $(document).ready(function(){
 							+ Jdata[i][1] + "</h4>"
 			myfriends += "<a onclick=\"talktofromclickbutton("
 							+ Jdata[i][0]
-							+ ")\" class=\"btn btn-lg btn-default btn-success btn-round\"><span"
+							+ ")\" class=\"btn btn-lg btn-default btn-primary btn-round\"><span"
 			myfriends += " class=\"glyphicon glyphicon-comment\"></span><i"
 			myfriends +=	" class=\"fas fa-comment-dots\"></i> </a>"
 			myfriends += "</div></div></div></div></div><hr>"

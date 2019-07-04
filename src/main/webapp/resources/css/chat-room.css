@@ -1,4 +1,18 @@
 /*===========================
+     	online - status
+   ===========================*/
+.online_border{
+	border-left: 12px solid #00ffff;
+	
+
+}
+.offline_border{
+	border-left: 12px solid black;
+}
+
+
+
+/*===========================
      	Message CSS
    ===========================*/
 .media-object1 {
