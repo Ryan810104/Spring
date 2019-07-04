@@ -75,7 +75,7 @@ public class MemberController {
 		return "/admin/userupdate";
 	}
 	@RequestMapping("/registerForm")
-	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result,
+	public String register(@Valid @ModelAttribute("savegame") Member member, BindingResult result,
 			Model model) {
 
 		Map<String, String> errorMessage = new HashMap<>();
