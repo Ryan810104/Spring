@@ -18,7 +18,7 @@ import com.recreation.playground.entity.Complaint;
 import com.recreation.playground.service.ComplaintService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/main/complain")
 public class ComplaintController {
 	
 	@Autowired
@@ -27,18 +27,18 @@ public class ComplaintController {
 	@PersistenceContext
 	EntityManager em;
 	
-	@RequestMapping("/indexComplaint")
-	public String toIndex(Model model) {
-		return "/";
-	}
+//	@RequestMapping("/indexComplaint")
+//	public String toIndex(Model model) {
+//		return "/";
+//	}
 	
 	@RequestMapping("/insertComplaint")
-	public String insertComplaint(@Valid @ModelAttribute("form01") Complaint cp, BindingResult result, Model model) {
+	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model) {
 		if(result.hasErrors()) {
-			return "/";
+			return "/main/complain/complainIndex";
 		}
 		service.fileComplaints(cp);
-		return "/";
+		return "/main/complain/complainIndex";
 	}
 	
 	@RequestMapping("/responseComplaint")

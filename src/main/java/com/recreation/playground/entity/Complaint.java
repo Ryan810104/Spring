@@ -31,7 +31,7 @@ public class Complaint {
 	@CreatedDate
 	private java.util.Date complaintMessagetime ;
 	@Column
-	private String complaintStatus ;
+	private Integer complaintStatus ;
 	@Column
 	private String complaintResponse ;
 

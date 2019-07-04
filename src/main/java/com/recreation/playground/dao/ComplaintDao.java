@@ -12,7 +12,7 @@ public interface ComplaintDao extends JpaRepository<Complaint, Integer>{
 	public Complaint findByMemberId(@Param("name") String memberid); 
 
 	@Select("SELECT complaint_type FROM Complaint WHERE member_status=#{name}")
-	public Complaint findByComplaintStatus(@Param("name") String status);
+	public Complaint findByComplaintStatus(@Param("name") Integer status);
 
 //	@Select("SELECT complaint_status FROM Complaint WHERE member_title=#{name}")
 //	public Complaint findByComplaintTitle(@Param("name") String title);
