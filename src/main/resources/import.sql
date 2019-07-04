@@ -76,4 +76,13 @@ insert into member(member_id,member_password,member_permission,member_email,memb
 
 
 
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (1,'user','測試1',getdate(),0,1,'測試內容1');
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (2,'user','測試2',getdate(),0,1,'測試內容2');
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (3,'user','測試3',getdate(),0,1,'測試內容3');
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (4,'user','測試4',getdate(),0,1,'測試內容4');
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (5,'user','測試5',getdate(),0,1,'測試內容5');
+
+
+
+
 

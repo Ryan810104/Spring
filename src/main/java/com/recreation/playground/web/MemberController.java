@@ -308,7 +308,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("/registerForm")
+
 	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result, Model model) {
+
 
 		Map<String, String> errorMessage = new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);
@@ -478,7 +480,7 @@ public class MemberController {
 	@RequestMapping("/findfriend")
 	public List<Member> friendsfind(String findmemberid) {
 		service.findFriendsByMemberId(findmemberid);
-		System.out.println("ss0" + service.findFriendsByMemberId(findmemberid));
+//		System.out.println("ss0" + service.findFriendsByMemberId(findmemberid));
 		return service.findFriendsByMemberId(findmemberid);
 	}
 	
@@ -493,11 +495,11 @@ public class MemberController {
 			Blob blob = new SerialBlob(b);
 			mem.setMemberPhoto(blob);
 			em.persist(mem);
-			System.out.println("OK");
+//			System.out.println("OK");
 			return "/test/testupload";
 		}
-	//顯示圖片
-		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET)
+		//顯示圖片
+		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
 		public ResponseEntity<byte[]> getPicture(@PathVariable("membernum") Integer num,HttpServletResponse resp ) throws SerialException, SQLException, IOException{
 			String filename2="src/main/webapp/resources/img/default-picture.png";
 		    Path pathToFile = Paths.get(filename2);
@@ -546,7 +548,7 @@ public class MemberController {
 			try {
 				File file = new File(filepath);
 				long size = file.length();
-				System.out.println(size);
+//				System.out.println(size);
 				b = new byte[(int) size];
 				InputStream fis = context.getResourceAsStream(filepath);
 				fis.read(b);

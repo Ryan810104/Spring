@@ -55,6 +55,10 @@
 				class="sidebar-nav-item-zelda moe text-line-height"
 				href="/main/testing">測試</a></li>
 			<li class="sidebar-nav-item moe"><i
+				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
+				class="sidebar-nav-item-zelda moe text-line-height"
+				href="/main/complain">投訴箱</a></li>
+			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
 				href="/main/logout">登出</a></li>
@@ -668,10 +672,10 @@ Inicio Tercer Estado: Oculto (OK)
 		a(7);
 	})
 
-	nav[8].addEventListener('click', function() {
-		localStorage.setItem("nav[8]", "true");
-		a(8);
-	})
+// 	nav[8].addEventListener('click', function() {
+// 		localStorage.setItem("nav[8]", "true");
+// 		a(8);
+// 	})
 
 	//# sourceURL=pen.js
 </script> <script>

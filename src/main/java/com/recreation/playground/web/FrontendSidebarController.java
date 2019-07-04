@@ -67,9 +67,15 @@ public class FrontendSidebarController {
 		
 		return"/main/games/circlegame";
 	}
+//測試上傳圖片
 	@RequestMapping("/testing")
 	public String totesting(Model model) {
 		return"/test/testupload";
+	}
+//投訴箱
+	@RequestMapping("/complain")
+	public String toComplain(Model model) {
+		return"/main/complain/complainIndex";
 	}
 	
 }

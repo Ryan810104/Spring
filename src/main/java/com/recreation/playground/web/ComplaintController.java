@@ -58,7 +58,7 @@ public class ComplaintController {
 	@ResponseBody
 	@RequestMapping("/findSomeonesComplaint")
 	public List<Object[]> complaintListOfUser(String fromwho, Model model){
-		String sql = "SELECT complaint_title FROM Complaint WHERE member_id = " + fromwho ;
+		String sql = "SELECT complaint_type FROM Complaint WHERE member_id = " + fromwho ;
 		return em.createNamedQuery(sql).getResultList();
 	}
 	
@@ -66,7 +66,7 @@ public class ComplaintController {
 	@ResponseBody
 	@RequestMapping("/findStatusComplaint")
 	public List<Object[]> complaintListOfStatus(String status, Model model){
-		String sql = "SELECT complaint_title FROM Complaint WHERE complaint_status = " + status ;
+		String sql = "SELECT complaint_type FROM Complaint WHERE complaint_status = " + status ;
 		return em.createNamedQuery(sql).getResultList();
 	}
 	
@@ -74,28 +74,28 @@ public class ComplaintController {
 	@ResponseBody
 	@RequestMapping("/findTimeLikeComplaint")
 	public List<Object[]> complaintListOfTimeLike(String timelike, Model model){
-		String sql = "SELECT complaint_title FROM Complaint WHERE complaint_messagetime = %" + timelike + "%"  ;
+		String sql = "SELECT complaint_type FROM Complaint WHERE complaint_messagetime = %" + timelike + "%"  ;
 		return em.createNamedQuery(sql).getResultList();
 	}
 	
 	@RequestMapping("/ComplaintContentOfUser")
 	public String ComplaintContentOfUser(Complaint cp) {
 		Complaint cp2 = service.findBymemberId(cp);
-		return service.findByComplaintTitle(cp2);
+		return service.findByComplaintType(cp2);
 	}
 	
 	@RequestMapping("/ComplaintContentOfStatus")
 	public String ComplaintContentOfStatus(Complaint cp) {
 		Complaint cp2 = service.findByComplaintStatus(cp);
-		return service.findByComplaintTitle(cp2);
+		return service.findByComplaintType(cp2);
 	}
 	
 	@RequestMapping("/ComplaintContentOfTimeLike")
 	public String ComplaintContentOfTimeLike(Complaint cp) {
 		Complaint cp2 = service.findByComplaintMessageTimeLike(cp);
-		return service.findByComplaintTitle(cp2);
+		return service.findByComplaintType(cp2);
 	}
-	
+
 	
 	
 	

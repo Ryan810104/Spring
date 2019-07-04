@@ -240,11 +240,11 @@ $(document).ready(function(){
 		}
 	});
 });
-function talktofromclickbutton(id){
-	var sender = '${sessionScope.member.memberNum}';
-	var receiver = id;
-	opencontact(sender,receiver);
-}
+// function talktofromclickbutton(id){
+// 	var sender = '${sessionScope.member.memberNum}';
+// 	var receiver = id;
+// 	opencontact(sender,receiver);
+// }
 </script>
 <style>
 .media-object{
