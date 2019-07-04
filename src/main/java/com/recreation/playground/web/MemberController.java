@@ -498,8 +498,8 @@ public class MemberController {
 //			System.out.println("OK");
 			return "/test/testupload";
 		}
-	//顯示圖片
-		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET)
+		//顯示圖片
+		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
 		public ResponseEntity<byte[]> getPicture(@PathVariable("membernum") Integer num,HttpServletResponse resp ) throws SerialException, SQLException, IOException{
 			String filename2="src/main/webapp/resources/img/default-picture.png";
 		    Path pathToFile = Paths.get(filename2);
