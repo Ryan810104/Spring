@@ -308,7 +308,9 @@ public class MemberController {
 	}
 
 	@RequestMapping("/registerForm")
+
 	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result, Model model) {
+
 
 		Map<String, String> errorMessage = new HashMap<>();
 		model.addAttribute("ErrorMsg", errorMessage);

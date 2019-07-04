@@ -19,6 +19,32 @@
 	rel='stylesheet' type='text/css'>
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/resources/css/CustomAfterIndex.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<style>
+button {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #AAAAAA;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  transition-duration: 0.4s;
+}
+
+button:hover {background-color: #888888}
+
+button:active {
+  background-color: #666666;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
 </head>
 <body>
 	<!--NavBar-->
@@ -121,35 +147,46 @@
 				</div>
 			</div>
 
-			
-			<div class="container">
-				<div class="col-sm-10" style="margin: 0 auto;">
-					<div class="panel panel-white post panel-shadow">
-						<div class="post-heading">
-							<div class="pull-left image">
-								<img
-									src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-									class="img-circle avatar" alt="user profile image">
-							</div>
-							<div class="pull-left meta">
-								<div>
-									<textarea cols="95" rows="1" placeholder="標題..." ></textarea>
+			<form name="CMBtextarea">
+				<div class="container">
+					<div class="col-sm-10" style="margin: 0 auto;">
+						<div class="panel panel-white post panel-shadow">
+							<div class="post-heading">
+								<div class="pull-left image">
+									<img
+										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
+										class="img-circle avatar" alt="user profile image">
 								</div>
-								<div>
-									<textarea cols="95" rows="3" placeholder="輸入你想要寫的內容..." ></textarea>
+								<div class="pull-left meta">
+									<div>
+										<input type="text" id="CustomermessageboardMemberid"
+											name="CustomermessageboardMemberid" placeholder="此欄為隱藏抓取ID格"
+											style="display: none" value="${sessionScope.member.memberId}" />
+										<input type="text" id="customermessageboardArticleFloor"
+											name="customermessageboardArticleFloor" style="display: none">
+										<textarea class="form-control" cols="95" rows="1"
+											placeholder="標題..." name="customermessageboardTitle"
+											id="CustomermessageboardTitle"></textarea>
+									</div>
+									<div>
+										<textarea class="form-control" cols="95" rows="3"
+											placeholder="輸入你想要寫的內容..." name="CustomermessageboardMessage"
+											id="CustomermessageboardMessage"></textarea>
+
+									</div>
+									<!-- 								<h6 class="text-muted time">1 minute ago</h6> -->
 
 								</div>
-								<!-- 								<h6 class="text-muted time">1 minute ago</h6> -->
-
+								<span class="input-group-addon"><input type="button"
+									class="btn btn-success btn-lg" value="送出"
+									id="messageboardsubmit"> </span>
 							</div>
-							<div class="pull-left meta" style="all: inherit;">
-								<input type="button" class="btn btn-success btn-lg" style="margin: 1.5px" value="送出">
-							</div>
+							<div class="post-description"></div>
 						</div>
-						<div class="post-description"></div>
 					</div>
 				</div>
-			</div>
+			</form>
+			<input type="text" id="customermessageboardResponseFloor" style="display: none">
 			<br>
 			<div class="container">
 				<div class="col-sm-10" style="margin: 0 auto;">
@@ -167,24 +204,29 @@
 								<!-- 								<h6 class="text-muted time">1 minute ago</h6> -->
 							</div>
 						</div>
-						<div class="post-description">
+						<div class="post-description" >
 							<p>Bootdey is a gallery of free snippets resources templates
 								and utilities for bootstrap css hmtl js framework. Codes for
 								developers and web designers</p>
 							<div class="stats">
-								<a href="#" class="btn btn-default stat-item"> <i
-									class="fa fa-thumbs-up icon"></i>2
-								</a>
+<!-- 								<a href="#" class="btn btn-default stat-item"> <i -->
+<!-- 									class="fa fa-thumbs-up icon"></i>2 -->
+<!-- 								</a> -->
+								<button><i class="fa fa-thumbs-up icon" style="font-size: 17px"></i><span style="font-size: 17px">2</span></button><span>&nbsp&nbsp&nbsp&nbsp</span>
+<!-- 								<a href="#" class="btn btn-default stat-item" ><i class="fas fa-comment-dots" id="messageorder" ><span style="font-size: 15px" >&nbsp&nbsp留言</span></i></a> -->
+								<button><i class="fas fa-comment-dots" id="messageorder" style="font-size: 20px"><span style="font-size: 20px">&nbsp&nbsp留言</span></i></button>
 							</div>
 						</div>
-						<div class="post-footer">
-							<div class="input-group">
+						<div class="post-footer" id="messageorder1">
+							<div class="input-group" id="messageorder11" >
 								<input class="form-control" placeholder="Add a comment"
-									type="text"> <span class="input-group-addon"> <a
-									href="#"><i class="fa fa-edit"></i></a>
+									type="text" id="commentcontent"> <span class="input-group-addon" > 
+									<button id="comment"><i class="fa fa-edit"></i></button>
+									<input type="text" id="articlefloor" style="display: none" value="1">
 								</span>
 							</div>
-							<ul class="comments-list">
+							<div id="test">
+							<ul class="comments-list" >
 								<li class="comment"><a class="pull-left" href="#"> <img
 										class="avatar"
 										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
@@ -198,92 +240,29 @@
 										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
 									</div></li>
 							</ul>
+							<ul class="comments-list" >
+								<li class="comment"><a class="pull-left" href="#"> <img
+										class="avatar"
+										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
+										alt="avatar">
+								</a>
+									<div class="comment-body">
+										<div class="comment-heading">
+											<h4 class="user">Gavino Free</h4>
+
+										</div>
+										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+									</div></li>
+							</ul>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<br>
-						<div class="container">
-				<div class="col-sm-10" style="margin: 0 auto;">
-					<div class="panel panel-white post panel-shadow">
-						<div class="post-heading">
-							<div class="pull-left image">
-								<img
-									src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-									class="img-circle avatar" alt="user profile image">
-							</div>
-							<div class="pull-left meta">
-								<div class="title h2">
-									<a href="#"><b>Ryan Haywood</b></a> made a post.
-								</div>
-								<!-- 								<h6 class="text-muted time">1 minute ago</h6> -->
-							</div>
-						</div>
-						<div class="post-description">
-							<p>Bootdey is a gallery of free snippets resources templates
-								and utilities for bootstrap css hmtl js framework. Codes for
-								developers and web designers</p>
-							<div class="stats">
-								<a href="#" class="btn btn-default stat-item"> <i
-									class="fa fa-thumbs-up icon"></i>9995
-								</a>
-							</div>
-						</div>
-						<div class="post-footer">
-							<div class="input-group">
-								<input class="form-control" placeholder="Add a comment"
-									type="text"> <span class="input-group-addon"> <a
-									href="#"><i class="fa fa-edit"></i></a>
-								</span>
-							</div>
-							<ul class="comments-list">
-								<li class="comment"><a class="pull-left" href="#"> <img
-										class="avatar"
-										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-										alt="avatar">
-								</a>
-									<div class="comment-body">
-										<div class="comment-heading">
-											<h4 class="user">Gavino Free</h4>
-
-										</div>
-										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-									</div></li>
-							</ul>
-														<ul class="comments-list">
-								<li class="comment"><a class="pull-left" href="#"> <img
-										class="avatar"
-										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-										alt="avatar">
-								</a>
-									<div class="comment-body">
-										<div class="comment-heading">
-											<h4 class="user">Gavino Free</h4>
-
-										</div>
-										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-									</div></li>
-							</ul>
-														<ul class="comments-list">
-								<li class="comment"><a class="pull-left" href="#"> <img
-										class="avatar"
-										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-										alt="avatar">
-								</a>
-									<div class="comment-body">
-										<div class="comment-heading">
-											<h4 class="user">Gavino Free</h4>
-
-										</div>
-										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-									</div></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- 			ajax 網頁啟動會填入留言區域的div -->
+			<div id="messageboard"></div>
 		</div>
-
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
@@ -300,4 +279,143 @@
 	font-family: 'Noto Sans TC', sans-serif;
 }
 </style>
+<script>
+	$("#messageorder").click(function(){
+		$("#"+this.id+"1").toggle(1000);
+// 		$("#messageorder1").hide();
+	})
+		
+// 	$("#comment").mousedown(function(){
+// 		$.ajax({
+// 			url : "/main/searchthelastofcomment/",
+// 			type : "POST",
+// 			data : { CustomermessageboardArticleFloor : $("#articlefloor").val()},
+// 			success : function(data) {
+// 				$("#customermessageboardResponseFloor").val(data[0]["customermessageboardResponseFloor"] + 1);
+// 			}
+// 		})
+// 	})
+	
+// 	$("#comment").mouseup(function() {
+// 				$.ajax({
+// 					url : "/main/public/",
+// 					type : "POST",
+// 					data : {
+// 						CustomermessageboardMessage : $(
+// 								"#commentcontent").val(),
+// 						CustomermessageboardResponseFloor : $(
+// 								"#customermessageboardResponseFloor").val(),
+// 						CustomermessageboardArticleFloor : $(
+// 									"#articlefloor").val(),
+// 						CustomermessageboardMemberid : $(
+// 								"#CustomermessageboardMemberid").val(),
+// 						CustomermessageboardStatus : 1,
+// 					},
+// 					success : function() {
+// 						$("#customermessageboardResponseFloor").val('');
+// 						alert("已傳送成功");
+// 					}
+// 				})
+// 			});
+
+// 	$("#messageboardsubmit").mousedown(function() {
+// 						$.ajax({
+// 							url : "/main/searchthelastofmessage/",
+// 							type : "POST",
+// 							success : function(data) {
+// 							$("#customermessageboardArticleFloor").val(data[0]["customermessageboardArticleFloor"] + 1);
+// 								}
+// 								})
+// 					});
+// 	$("#messageboardsubmit").mouseup(function() {
+// 				$.ajax({
+// 					url : "/main/public/",
+// 					type : "POST",
+// 					data : {
+// 						CustomermessageboardTitle : $(
+// 								"#CustomermessageboardTitle").val(),
+// 						CustomermessageboardMessage : $(
+// 								"#CustomermessageboardMessage").val(),
+// 						CustomermessageboardArticleFloor : $(
+// 								"#customermessageboardArticleFloor").val(),
+// 						CustomermessageboardMemberid : $(
+// 								"#CustomermessageboardMemberid").val(),
+// 						CustomermessageboardStatus : 1,
+// 					},
+// 					success : function() {
+// 						$("#CustomermessageboardTitle").val('');
+// 						$("#CustomermessageboardMessage").val('');
+// 						alert("已傳送成功");
+// 					}
+// 				})
+// 			});
+
+	$(document).ready(function() {
+			$.ajax({
+				url : "/main/searchall/",
+				type : "POST",
+				success : function(data) {
+					var txt = "";
+					for (var i = 0; i < data.length; i++) {
+					txt += "<div class=\"container\">";
+					txt += "<div class=\"col-sm-10\" style=\"margin: 0 auto;\">";
+					txt += "<div class=\"panel panel-white post panel-shadow\">";
+					txt += "<div class=\"post-heading\">";
+					txt += "<div class=\"pull-left image\">";
+					txt += "<img src=\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
+					txt += "<div class=\"pull-left meta\">";
+					txt += "<div class=\"title h2\">";
+					txt += "<a href=\"#\"><b>"
+							+ data[i]["customermessageboardMemberid"]
+							+ "</b></a> "
+							+ data[i]["customermessageboardTitle"]
+							+ "</div></div></div>";
+					txt += "<div class=\"post-description\">";
+					txt += "<p>"
+							+ data[i]["customermessageboardMessage"]
+							+ "</p>";
+					txt += "<div class=\"stats\">";
+					// 留言button id = floor + i  ex:floor0, floor1
+					txt += "<button><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
+					//留言區域 id = floor + i + 1  ex: floor01 , floor11
+					txt += "<div class=\"post-footer\" id=\"floor"+i+"1\">";
+					txt += "<div class=\"input-group\">";
+					// 輸入留言區域給予id = leavecontentarea +i
+					txt += "<input class=\"form-control\" placeholder=\"Add a comment\" type=\"text\" id=\"leavecontentarea"+i+"\">";
+					// 放置ajax抓取該articlefloor最大樓數+1的位置  id= customermessageboardResponseFloor + i 
+					txt += "<input type=\"text\" id=\"customermessageboardResponseFloor"+i+"\" style=\"display: none\">"
+					// 送出留言button  id=articlefloor+i  
+					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+i+"\"><i class=\"fa fa-edit\"></i></button>"
+					// id=articlefloor+i+1    放置該樓層的真實articlefloor
+					txt += "<input type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></div>"									
+					txt += "<div id=\"floor"+i+"11\"></div>"
+					txt += "</div></div></div></div></div><br>";
+					//  隱藏留言  
+					txt += "<script>"
+					txt += "$(\"#floor"+i+"\").click(function(){$(\"#\"+this.id+\"1\").toggle(1000);})"
+					txt += "<\/script>"
+					//  取出articlefloor 並放置該article的最大樓數+1
+					txt += "<script>"
+					txt += "$(\"#articlefloor"+i+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+i+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
+					txt += "<\/script>"
+					//  送出留言 抓取articlefloor&responsefloor +1後送出
+					txt += "<script>"
+					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,},success : function() {$(\"#leavecontentarea"+i+"\").val('');alert(\"已傳送成功\");}})});"
+					
+					txt += "<\/script>"	
+						// 按下留言按鈕搜尋該articlefloor的留言並寫入
+					txt += "<script>"
+					txt += "$(\"#floor"+i+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);}})})"
+					txt += "<\/script>"					
+				}
+	
+					
+
+					
+				$("#messageboard").html(txt);
+			}
+		})
+		
+});
+</script>
 </html>
