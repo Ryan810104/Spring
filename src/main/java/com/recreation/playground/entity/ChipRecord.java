@@ -24,6 +24,12 @@ public class ChipRecord {
 	@Column(name="chipRecordMemberNum")
 	private Integer chipRecordMemberNum;
 	
+	@Column(name="chipRecordNickName")
+	private String chipRecordNickName;
+	
+	@Column(name="chipRecordFirstName")
+	private String chipRecordFirstName;
+	
 	@Column(name="chipRecordTime")
 	@CreatedDate
 	private Date chipRecordTime=new Date();

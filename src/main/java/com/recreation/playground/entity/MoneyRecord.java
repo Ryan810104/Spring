@@ -28,6 +28,12 @@ public class MoneyRecord implements Serializable{
 	@Column(name="moneyRecordMemberNum")
 	private Integer moneyRecordMemberNum;
 	
+	@Column(name="moneyRecordFirstName")
+    private String moneyRecordFirstName;
+	
+	@Column(name="moneyRecordNickName")
+	private String moneyRecordNickName;
+	
 	@Column(name="moneyRecordTime")
 	@CreatedDate
 	private Date moneyRecordTime=new Date();

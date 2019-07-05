@@ -1,31 +1,43 @@
+INSERT INTO Chip(chip_member_num,chip_balanced,chip_type,win,play_round,chip_first_name,chip_nick_name)values
+(1,200,'a',1,1.0,'Jack','kk'),
+(2,-1000,'b',0,1.0,'Thomas','TT'),
+(1,200,'b',1,1.0,'Jack','kk'),
+(1,-200,'b',0,1.0,'Jack','kk'),
+(3,400,'c',1,1.0,'Judy','JJ'),
+(3,200,'a',1,1.0,'Judy','JJ'),
+(3,600,'b',1,1.0,'Judy','JJ'),
+(2,800,'b',1,1.0,'Thomas','TT'),
+(1,1000,'c',1,1.0,'Jack','kk'),
+(1,2000,'a',1,1.0,'Jack','kk'),
+(3,1400,'b',1,1.0,'Judy','JJ'),
+(2,1400,'a',1,1.0,'Thomas','TT'),
+(1,-200,'a',0,1.0,'Jack','kk'),
+(1,200,'b',1,1.0,'Jack','kk'),
+(2,200,'c',1,1.0,'Thomas','TT'),
+(4,600,'a',1,1.0,'York','YY'),
+(4,600,'c',1,1.0,'York','YY'),
+(4,600,'b',1,1.0,'York','YY'),
+(4,-200,'c',0,1.0,'York','YY'),
+(1,200,'b',1,1.0,'Jack','kk');
 
-INSERT INTO Chip(chip_member_num,chip_balanced,chip_type,win,play_round)values
-(1,200,'a',1,1),
-(2,-1000,'b',0,1),
-(1,200,'b',1,1),
-(1,-200,'b',0,1),
-(3,400,'c',1,1),
-(3,-200,'a',0,1),
-(1,200,'a',1,1);
 
+INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_point,money_record_chip,money_record_chiptype,money_record_first_name,money_record_nick_name)values
+(1,getdate(),10000,10000,'a','Jack','kk'),
+(3,getdate(),1000,1000,'b','Judy','JJ'),
+(2,getdate(),20000,20000,'c','Thomas','TT'),
+(2,getdate(),70000,70000,'a','Thomas','TT'),
+(2,getdate(),14500,14500,'b','Thomas','TT'),
+(1,getdate(),12220,12220,'a','Jack','kk'),
+(3,getdate(),2500,2500,'c','Judy','JJ');
 
-INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_point,money_record_chip,money_record_chiptype)values
-(1,getdate(),10000,10000,'a'),
-(3,getdate(),1000,1000,'b'),
-(2,getdate(),20000,20000,'c'),
-(2,getdate(),70000,70000,'a'),
-(2,getdate(),14500,14500,'b'),
-(1,getdate(),12220,12220,'a'),
-(3,getdate(),2500,2500,'c');
-
-INSERT INTO Chiprecord(chip_record_member_num,chip_record_chip,chip_record_time,chip_record_chiptype,play_round,win) values
-(2,10000,getdate(),'a',1,1),
-(3,-1000,getdate(),'b',1,0),
-(1,20000,getdate(),'c',1,1),
-(2,70000,getdate(),'a',1,1),
-(1,-14500,getdate(),'c',1,0),
-(3,12220,getdate(),'b',1,1),
-(2,2500,getdate(),'a',1,1);
+INSERT INTO Chiprecord(chip_record_member_num,chip_record_chip,chip_record_time,chip_record_chiptype,play_round,win,chip_record_first_name,chip_record_nick_name) values
+(2,10000,getdate(),'a',1,1,'Thomas','TT'),
+(3,-1000,getdate(),'b',1,0,'Judy','JJ'),
+(1,20000,getdate(),'c',1,1,'Jack','JJ'),
+(2,70000,getdate(),'a',1,1,'Thomas','TT'),
+(1,-14500,getdate(),'c',1,0,'Jack','kk'),
+(3,12220,getdate(),'b',1,1,'Judy','JJ'),
+(2,2500,getdate(),'a',1,1,'Thomas','TT');
 
 IF Object_ID('dbo.summary') IS NOT NULL
     DROP VIEW dbo.summary;
@@ -58,6 +70,42 @@ create view summary
   from chip 
   group by chip_member_num;
   
+  
+  
+  IF Object_ID('dbo.totalround') IS NOT NULL
+    DROP VIEW dbo.totalround;
+  create view totalround 
+  as 
+  select chip_member_num,chip_type,sum(play_round) as total_round 
+  from chip 
+  group by chip_member_num,chip_type;
+  
+  
+  
+  IF Object_ID('dbo.bonusrank') IS NOT NULL
+    DROP VIEW dbo.bonusrank;
+  create view bonusrank
+  as
+  select chip_nick_name,sum(chip_balanced) as total_balanced,win 
+  from chip 
+  group by chip_nick_name,win;
+  
+
+  IF Object_ID('dbo.wintotal') IS NOT NULL
+    DROP VIEW dbo.wintotal;
+  create view wintotal 
+  as
+  select chip_nick_name,sum(win) as totalwin from chip group by chip_nick_name;
+  
+  
+  IF Object_ID('dbo.wincalculate') IS NOT NULL
+    DROP VIEW dbo.wincalculate;
+    
+    create view wincalculate 
+  as
+  select chip_type,sum(win) as totalwin,sum(play_round) as totalround,sum(win)/sum(play_round) as rate from chip group by chip_type;
+  
+ 
   
 
  INSERT INTO vip_level values

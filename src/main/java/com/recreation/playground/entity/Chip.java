@@ -23,6 +23,12 @@ public class Chip {
 	@Column(name="chipMemberNum")
 	private Integer chipMemberNum;
 	
+	@Column(name="chipNickName")
+	private String chipNickName;
+	
+	@Column(name="chipFirstName")
+	private String chipFirstName;
+	
 	@Column(name="chipBalanced")
 	private Long chipBalanced;
 	
@@ -33,7 +39,7 @@ public class Chip {
 	private Integer win;
 	
 	@Column(name="playRound")
-	private Integer round;
+	private Float round;
 	
 
 }
