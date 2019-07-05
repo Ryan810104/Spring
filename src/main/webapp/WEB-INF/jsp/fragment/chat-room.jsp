@@ -300,7 +300,7 @@ if (localStorage.getItem("layout_chatroom_status")) {
 			$("#Friendlist").hide();
 // 			$("#chat_room1_layout").hide();
 		});
-		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getPicture/"+ localStorage.getItem("receiversession") );
+		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getServerPicture/"+ localStorage.getItem("receiversession") );
 	});
 </script>
 <script type="text/javascript">
