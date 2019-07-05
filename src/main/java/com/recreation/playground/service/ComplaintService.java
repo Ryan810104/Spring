@@ -16,11 +16,7 @@ public class ComplaintService {
 	private ComplaintDao dao;
 
 	@Transactional(readOnly = true)
-
-//	public void insert(Complaint beans) {
-//		dao.save(beans);
-//	}
-
+	
 	public void update(Complaint cp) {
 		if (cp.getComplaintNum() != null) {
 			dao.save(cp);
@@ -43,10 +39,6 @@ public class ComplaintService {
 		return dao.findByComplaintStatus(cp.getComplaintStatus());
 	}
 
-//	public Complaint findByComplaintTitle(Complaint cp) {
-//		return dao.findByComplaintTitle(cp.getComplaintTitle());
-//	}
-
 	public Complaint findByComplaintMessageTimeLike(Complaint cp) {
 		return dao.findByComplaintMessagetimeLike(cp.getComplaintMessagetime());
 	}
@@ -56,16 +48,7 @@ public class ComplaintService {
 	}
 
 	public String fileComplaints(Complaint cp) {
-		Complaint insertData = new Complaint();
-		insertData.setMemberId(cp.getMemberId());
-		insertData.setComplaintType(cp.getComplaintType());
-		insertData.setComplaintMessage(cp.getComplaintMessage());
-		insertData.setComplaintStatus(cp.getComplaintStatus());
-		java.util.Date date = new java.util.Date();
-		insertData.setComplaintMessagetime(date);
-//		insertData.setComplaintResponse(cp.getComplaintResponse());
-		
-		dao.save(insertData);
+		dao.save(cp);
 		return "complain";
 	}
 

@@ -27,24 +27,22 @@ public class ComplaintController {
 	@PersistenceContext
 	EntityManager em;
 	
-//	@RequestMapping("/indexComplaint")
-//	public String toIndex(Model model) {
-//		return "/";
-//	}
-	
 	@RequestMapping("/insertComplaint")
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model) {
+		
 		if(result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
 		service.fileComplaints(cp);
-		return "/main/complain/complainIndex";
+		model.addAttribute("insertComplaint", "1");
+		return "/main/Index";
+		
 	}
 	
 	@RequestMapping("/responseComplaint")
-	public String update(@ModelAttribute("form01") Complaint cp) {
+	public String update(@ModelAttribute("formCR") Complaint cp) {
 		service.update(cp);
-		return "/";
+		return "/main/complain/complainIndex";
 	}
 	
 	@RequestMapping("/deleteComplaint")
