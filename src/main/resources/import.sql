@@ -69,10 +69,10 @@ create view summary
 (0.49,6,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
 
 
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567);
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,789);
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('admin','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,56799);
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance) values('admin2','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,78999);
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,789,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('admin','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,56799,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('admin2','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,78999,'/resources/img/default-picture.png');
 
 
 

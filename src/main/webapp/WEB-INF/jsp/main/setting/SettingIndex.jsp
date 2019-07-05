@@ -19,7 +19,8 @@
 						<h1>User name</h1>
 					</div>
 					<div class="col-sm-2">
-						<a href="/users" class="pull-right"><img title="profile image"
+						<a href="/users" class="pull-right">
+						<img title="profile image"
 							class="img-circle img-responsive"
 							src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
 					</div>
@@ -31,24 +32,17 @@
 
 
 						<div class="text-center">
-
-
-
-
-						
-
-							
-
 						</div>
 						<!--/col-3-->
 						<div class="col-sm-9">
 							
 							<img
-								src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+								src="${sessionScope.member.memberPhotoURL}"
 								class="avatar img-circle img-thumbnail" alt="avatar">
-							<h6>Upload a different photo...</h6>
-							<input type="file" class="text-center center-block file-upload"
-								id="memberPhotoURL" name="memberPhotoURL">
+								<input type="file" id="progressbarTWInput"
+				accept="image/gif, image/jpeg, image/png" class="text-center center-block file-upload"> <img
+				id="preview_progressbarTW_img" width='0' height='0' src="" />
+								
 							<hr>
 
 
@@ -195,12 +189,13 @@
 			});
 		}
 		function updatefunc() {
+// 			alert($("#memberFitstName").val());
 			$.ajax({
 				url : "/admin/memberBeans/update",
 				data : {
 					memberPhotoURL : $("memberPhotoURL").val(),
 					memberId : $("#memberId").val(),
-					memberFitstName : $("#memberFirstName").val(),
+					memberFitstName : $("#memberFitstName").val(),
 					memberLastName : $("#memberLastName").val(),
 					memberNickName : $("#memberNickName").val(),
 					memberPhonenum : $("#memberPhonenum").val(),
@@ -213,6 +208,58 @@
 				}
 			});
 		}
+		$("#progressbarTWInput").change(function(){
+
+			  readURL(this);
+
+			});
+
+			 
+
+			function readURL(input){
+
+			  if(input.files && input.files[0]){
+
+			    var reader = new FileReader();
+
+			    reader.onload = function (e) {
+
+			       $("#preview_progressbarTW_img").attr('src', e.target.result);
+
+			    }
+
+			    reader.readAsDataURL(input.files[0]);
+
+			  }
+
+			}
+			$("#progressbarTWInput").change(function(){
+
+				  readURL(this);
+
+				});
+
+				 
+
+				function readURL(input){
+
+				  if(input.files && input.files[0]){
+
+				    var reader = new FileReader();
+
+				    reader.onload = function (e) {
+
+				       $("#preview_progressbarTW_img").attr('src', e.target.result);
+				       $("#preview_progressbarTW_img").attr('width', '200');
+				       $("#preview_progressbarTW_img").attr('height', '200');
+
+				    }
+
+				    reader.readAsDataURL(input.files[0]);
+
+				  }
+
+				}
 	</script>
 
 
