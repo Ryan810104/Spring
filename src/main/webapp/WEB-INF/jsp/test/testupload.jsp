@@ -29,7 +29,7 @@
 		<input type="submit" value="上傳">
 		</form>
 		<div id="result"></div>
-<!-- 		<img width='200' height='200' src="../webapp/resources/img/01.jpg"> -->
+<!-- 		<img width='200' height='200' src="/resources/img/01.jpg"> -->
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
          </article>
@@ -49,7 +49,7 @@ function showImageBymemberId() {
 		type : "POST",
 		success : function(data) {
 			if(data["memberPhotoURL"]==null){
-				text="<tr><td><img width='200' height='200' src="+ "\\resources\\img\\default-picture.PNG" + "></td></tr>";
+				text="<tr><td><img width='200' height='200' src="+ "/resources/img/default-picture.png" + "></td></tr>";
 			}else{
 				text="<tr><td><img width='200' height='200' src="+ data["memberPhotoURL"] + "></td></tr>";
 			}

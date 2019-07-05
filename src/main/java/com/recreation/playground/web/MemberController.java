@@ -583,16 +583,16 @@ public class MemberController {
 		
 		@RequestMapping(value="/getServerPicture/{membernum}",method= RequestMethod.GET)
 		public String getServerImage(@PathVariable("membernum") Integer num) {
-			String imagePath="/resources/img/default-picture.png";
+			String imagePath="/resources/img/01.jpg";
 			Member mem = em.find(Member.class, num);
 			if (mem != null) {
 				String memberImgPath=mem.getMemberPhotoURL();
 				if(memberImgPath!=null) {
 					imagePath=memberImgPath;
 				}
-				System.out.println("imagePath="+imagePath);
+				
 			}
-			
+			System.out.println("imagePath="+imagePath);
 			return imagePath;
 		}
 }
