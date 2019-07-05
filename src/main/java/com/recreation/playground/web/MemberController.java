@@ -498,8 +498,8 @@ public class MemberController {
 //			System.out.println("OK");
 			return "/test/testupload";
 		}
-	//顯示圖片
-		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET)
+		//顯示圖片
+		@RequestMapping(value="/getPicture/{membernum}",method= RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
 		public ResponseEntity<byte[]> getPicture(@PathVariable("membernum") Integer num,HttpServletResponse resp ) throws SerialException, SQLException, IOException{
 			String filename2="src/main/webapp/resources/img/default-picture.png";
 		    Path pathToFile = Paths.get(filename2);
@@ -540,7 +540,6 @@ public class MemberController {
 			headers.setContentType(mediaType);
 			ResponseEntity<byte[]> responseEntity = 
 					new ResponseEntity<>(media,headers,HttpStatus.OK);
-			
 			return responseEntity;
 		}
 		private byte[] toByteArray(String filepath) {
@@ -559,5 +558,41 @@ public class MemberController {
 				e.printStackTrace();
 			}
 			return b;
+		}
+		
+		@PostMapping("/uploadImage/{membernum}")
+		public String uploadImage(@PathVariable("membernum") Integer num,@RequestParam("imageFile")MultipartFile imageFile) {
+			String returnValue	="/test/testupload";
+			try {
+				Member mem = em.find(Member.class, num);
+				if (mem != null) {
+					String imagePathString=service.saveImage(imageFile);
+					
+					mem.setMemberPhotoURL(imagePathString);
+					service.update(mem);
+				}else {
+					System.out.println("member not excist");
+					returnValue="/test/testupload";
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				returnValue="error";
+			}
+			return returnValue;
+		}
+		
+		@RequestMapping(value="/getServerPicture/{membernum}",method= RequestMethod.GET)
+		public String getServerImage(@PathVariable("membernum") Integer num) {
+			String imagePath="/resources/img/default-picture.png";
+			Member mem = em.find(Member.class, num);
+			if (mem != null) {
+				String memberImgPath=mem.getMemberPhotoURL();
+				if(memberImgPath!=null) {
+					imagePath=memberImgPath;
+				}
+				System.out.println("imagePath="+imagePath);
+			}
+			
+			return imagePath;
 		}
 }

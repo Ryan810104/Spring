@@ -5,7 +5,7 @@
 <div class="container">
 	<div class="row">
 		<div id="Smallchat">
-			<div class="Layout Layout-open Layout-expand Layout-right"
+			<div class="FLLayout FLLayout-open FLLayout-expand FLLayout-right"
 				id="Friendlist" style="background-color: #3F51B5; color: rgb(255, 255, 255); opacity: 5; border-radius: 10px;">
 				<div class="Messenger_messenger">
 					<div class="Messenger_header" style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
@@ -52,12 +52,12 @@
 				id="chat_room1_layout"
 				style="background-color: #3F51B5; color: rgb(255, 255, 255); opacity: 5; border-radius: 10px;">
 				<div class="Messenger_messenger">
-					<div class="Messenger_header"
+					<div class="Messenger_header" id="Messenger_chat_room_header"
 						style="background-color: rgb(22, 46, 98); color: rgb(255, 255, 255);">
 						<h4 class="Messenger_prompt" id="chat_room_1_icon_id">userid
 							position</h4>
-							<span  class="chat_min_icon"><i class="fas fa-minus"></i></span>
-						<span class="chat_close_icon"><i class="fas fa-times"></i></span>
+							<span  class="chat_min_icon" id="chat_min_icon_room1"><i class="fas fa-minus"></i></span>
+						<span class="chat_close_icon" id="chat_close_icon_room1"><i class="fas fa-times"></i></span>
 					</div>
 					<div class="Messenger_content">
 
@@ -115,10 +115,12 @@
 				</div>
 				<br>
 				<!-- chat_room_1_icon -->
+				
 				<div class="" id="chat_room_1_icon" style="visibility: hidden">
 <!-- 					<span class="chat_on_icon" style="line-height: 0.8rem;"> <i -->
 <!-- 						class="fa fa-comments fa-xs" aria-hidden="true"></i></span> -->
-				<img class="media-object-chat-icon" src="<c:url value='/admin/memberBeans/getPicture/2' />">
+				<img class="media-object-chat-icon" src="">
+				<!-- <c:url value='/admin/memberBeans/getPicture/2' /> -->
 				</div>
 				<br>
 				<!-- chat_room_public -->
@@ -149,7 +151,7 @@
 		localStorage.setItem("layout_chatroom_status", true);
 		localStorage.setItem("sendersession", sender);
 		localStorage.setItem("receiversession", receiver);
-		
+		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getPicture/"+ localStorage.getItem("receiversession") );
 		$("#chat_room_1_icon").css("visibility", "visible");
 		$.get("/friend/list/getreceiversid?memberid=" + receiver, function(
 				Jdata) {
@@ -167,10 +169,6 @@
 		}, 3050);
 	};
 	
-	// if (localStorage.getItem("chatroomopen")){
-	// 	$("#chat_room_1_icon").css("visibility","visible");
-	// 	opencontact(localStorage.getItem("sendersession"),localStorage.getItem("receiversession"));
-	// }
 	function readmessage() {
 		$.ajax({
 			url : "/chatroom/querymessage?sender=" + sender0 + "&receiver="
@@ -250,8 +248,12 @@
 	};
 </script>
 <script>
-//CHAT BOOT MESSENGER////////////////////////
-//跳轉頁面且視窗打開時，下一個頁面視窗仍開著
+//////////////////////////
+//	用localstorage判斷
+//   跳轉頁面且視窗打開時
+//       呈現的畫面
+//////////////////////////
+
 if (localStorage.getItem("layout_chatroom_status")) {
 		opencontact(localStorage.getItem("sendersession"), localStorage
 				.getItem("receiversession"));
@@ -277,16 +279,15 @@ if (localStorage.getItem("layout_chatroom_status")) {
 			$("#search_friend_icon").show(300);
 			$("#search_friend").click();
 		});
-		$(".chat_min_icon").click(function() {
-			$("#Friendlist").hide();
+		$("#chat_min_icon_room1").click(function() {
+// 			$("#Friendlist").hide();
 			$("#search_friend_icon").show(300);
 			$("#chat_room1_layout").hide();
 			$("#chat_room_1_icon").show(300);
 			localStorage.removeItem("layout_chatroom_status");
-
+			
 		});
-		$(".chat_close_icon").click(function() {
-			$("#Friendlist").hide();
+		$("#chat_close_icon_room1").click(function() {
 			$("#search_friend_icon").show(300);
 			$("#chat_room1_layout").hide();
 			$("#chat_room_1_icon").css("visibility", "hidden");
@@ -297,12 +298,17 @@ if (localStorage.getItem("layout_chatroom_status")) {
 		});
 		$(".friendlist_close_icon").click(function(){
 			$("#Friendlist").hide();
-			$("#chat_room1_layout").hide();
+// 			$("#chat_room1_layout").hide();
 		});
-
+		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getPicture/"+ localStorage.getItem("receiversession") );
 	});
 </script>
 <script type="text/javascript">
+/////////////////////////////////
+//
+//  開啟websocket得取使用者有沒有在線
+//
+////////////////////////////////
 var userlist = null;
 $(document).ready(function(){
 		var ws = null ;
@@ -412,8 +418,14 @@ $(document).ready(function(){
 			myfriends += "<h4 class=\"media-heading\">"
 							+ Jdata[i][1] + "</h4>"
 			myfriends += "<a onclick=\"talktofromclickbutton("
+						+ Jdata[i][0]
+						+ ")\" class=\"btn btn-md btn-default btn-success btn-round\"><span"
+			myfriends += " class=\"glyphicon glyphicon-comment\"></span>"
+			myfriends +=	" <i class=\"fas fa-home\"></i> </a>";
+							
+			myfriends += "<a onclick=\"talktofromclickbutton("
 							+ Jdata[i][0]
-							+ ")\" class=\"btn btn-lg btn-default btn-primary btn-round\"><span"
+							+ ")\" class=\"btn btn-md btn-default btn-primary btn-round\"><span"
 			myfriends += " class=\"glyphicon glyphicon-comment\"></span><i"
 			myfriends +=	" class=\"fas fa-comment-dots\"></i> </a>"
 			myfriends += "</div></div></div></div></div><hr>"
@@ -427,5 +439,36 @@ $(document).ready(function(){
 		var receiver = id;
 		opencontact(sender, receiver);
 	}
+////////////////////////
+//
+//		移動聊天室一
+//
+////////////////////////
+	vbool = null;
+	$("#Messenger_chat_room_header").mousedown(function (e) {
+		vbool = true;
+		vHeight = e.pageY;
+		vWidth = e.pageX;
+		cWdith = vWidth - $("#chat_room1_layout").offset().left;
+		//alert("divshow"   $("#show").offset().top   " divvHeight"   vHeight);
+// 		alert("高" +  cHeight  + " 寬"  + cWdith);
+		});
+	$(document).mouseup(function () {
+		vbool = false;
+		})
+		var showWidth = $("#chat_room1_layout").width();
+		var documentWidth = $(document).width();
+		$(document).mousemove(function (e) {
+		if (vbool) {
+		var divwidth = e.pageX - cWdith;//視窗要移動到的位置
+		if (divwidth < 0) {
+		divwidth = 0;
+		}
+		if (divwidth > documentWidth - showWidth) {
+		divwidth = documentWidth - showWidth - 5;
+		}
+		$("#chat_room1_layout").css({"left": divwidth,});
+		}
+		})
 </script>
 </html>
