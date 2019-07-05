@@ -499,15 +499,9 @@
 						</div>
 
 						<div class="mb-3">
-<<<<<<< HEAD
-							<label for="nickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
-							<input type="text" class="form-control" id="nickName"
-								name="nickName"> <span id="nnsp" style="color: red">${ErrorMsg.memberNickName}</span>
-=======
 							<label for="memberNickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
 							<input type="text" class="form-control" id="memberNickName"
 								name="memberNickName"> <span id="nnsp" style="color:red">${ErrorMsg.memberNickName}</span>
->>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 						</div>
 
 						<div class="mb-3">
