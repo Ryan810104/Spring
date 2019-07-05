@@ -322,9 +322,13 @@ $(document).ready(function(){
 		}
 	
 	ws.onmessage = function(event){
-		userlist = event.data;
-		$("#search_friend").click();
-		console.log(event.data);
+		if (event.data.startsWith("用戶上線列表")){
+			var users = event.data.replace("用戶上線列表"	,"");
+			userlist = users;
+			$("#search_friend").click();
+			console.log(event.data);
+		}
+
 	};
 	
 });

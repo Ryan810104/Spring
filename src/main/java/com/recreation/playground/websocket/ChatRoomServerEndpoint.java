@@ -37,7 +37,7 @@ public class ChatRoomServerEndpoint {
 //        String message = "欢迎用户[" + username + "] 来到聊天室！";
 //        log.info(message);
 //        System.out.println(LIVING_SESSIONS_CACHE.keySet());
-        sendMessageAll(LIVING_SESSIONS_CACHE.keySet().toString());
+        sendMessageAll("用戶上線列表"+LIVING_SESSIONS_CACHE.keySet().toString());
 
     }
 
@@ -51,8 +51,7 @@ public class ChatRoomServerEndpoint {
     public void onClose(@PathParam("username") String username, Session session) {
         //当前的Session 移除
         LIVING_SESSIONS_CACHE.remove(username);
-        //并且通知其他人当前用户已经离开聊天室了
-        sendMessageAll("用户[" + username + "] 已经离开聊天室了！");
+        sendMessageAll("用戶上線列表"+ LIVING_SESSIONS_CACHE.keySet().toString());
         try {
             session.close();
         } catch (IOException e) {
