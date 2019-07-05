@@ -35,13 +35,14 @@
 						</div>
 						<!--/col-3-->
 						<div class="col-sm-9">
-							
-							<img
-								src="${sessionScope.member.memberPhotoURL}"
-								class="avatar img-circle img-thumbnail" alt="avatar">
+								<img class="avatar img-circle img-thumbnail"
+				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
 								<input type="file" id="progressbarTWInput"
-				accept="image/gif, image/jpeg, image/png" class="text-center center-block file-upload"> <img
-				id="preview_progressbarTW_img" width='0' height='0' src="" />
+				accept="image/gif, image/jpeg, image/png" class="text-center center-block file-upload"> 
+				<hr>
+				<h3>預覽圖</h3>
+				<img
+				id="preview_progressbarTW_img" class="" width='0' height='0' src="" />
 								
 							<hr>
 
@@ -250,9 +251,9 @@
 				    reader.onload = function (e) {
 
 				       $("#preview_progressbarTW_img").attr('src', e.target.result);
-				       $("#preview_progressbarTW_img").attr('width', '200');
-				       $("#preview_progressbarTW_img").attr('height', '200');
-
+				       $("#preview_progressbarTW_img").attr('width', '');
+				       $("#preview_progressbarTW_img").attr('height', '');
+				       $("#preview_progressbarTW_img").attr('class', 'avatar img-circle img-thumbnail');
 				    }
 
 				    reader.readAsDataURL(input.files[0]);
