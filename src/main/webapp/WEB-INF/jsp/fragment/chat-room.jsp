@@ -314,7 +314,8 @@ $(document).ready(function(){
 		var ws = null ;
 		var urlPrefix = "ws://localhost:80/websocket/";
 		var username = '${sessionScope.member.memberId}'
-		var url = urlPrefix + username ; 
+		var usernum = '${sessionScope.member.memberNum}'
+		var url = urlPrefix + username +"/"+ usernum ; 
 		ws = new WebSocket(url);
 		ws.onopen = function (){
 			console.log("建立webSocket連線");
@@ -327,6 +328,8 @@ $(document).ready(function(){
 			userlist = users;
 			$("#search_friend").click();
 			console.log(event.data);
+		} else{
+ 			console.log(event.data);
 		}
 
 	};
