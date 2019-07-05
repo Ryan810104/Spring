@@ -499,9 +499,11 @@
 						</div>
 
 						<div class="mb-3">
+
 							<label for="memberNickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
-							<input type="text" class="form-control" id="memberNickName"
-								name="memberNickName"> <span id="nnsp" style="color:red">${ErrorMsg.memberNickName}</span>
+							<input type="text" class="form-control" id="memberNickName" name="memberNickName"> <span id="nnsp"
+								style="color: red">${ErrorMsg.memberNickName}</span>
+
 						</div>
 
 						<div class="mb-3">

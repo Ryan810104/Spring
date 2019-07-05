@@ -581,18 +581,38 @@ public class MemberController {
 			return returnValue;
 		}
 		
-//		@RequestMapping(value="/getServerPicture/{membernum}",method= RequestMethod.GET)
-//		public String getServerImage(@PathVariable("membernum") Integer num) {
-//			String imagePath="/resources/img/01.jpg";
-//			Member mem = em.find(Member.class, num);
-//			if (mem != null) {
-//				String memberImgPath=mem.getMemberPhotoURL();
-//				if(memberImgPath!=null) {
-//					imagePath=memberImgPath;
-//				}
-//				
-//			}
-//			System.out.println("imagePath="+imagePath);
-//			return imagePath;
-//		}
+		@RequestMapping(value="/getServerPicture/{membernum}",method= RequestMethod.GET,produces = MediaType.IMAGE_JPEG_VALUE)
+		public ResponseEntity<byte[]> getServerImage(@PathVariable("membernum") Integer num) throws IOException {
+			
+			String filenamedefault="src/main/webapp/resources/img/default-picture.png";
+		    Path pathToFile = Paths.get(filenamedefault);
+		    String filePath = pathToFile.toAbsolutePath().toString();
+			byte[] media = null;
+			HttpHeaders headers = new HttpHeaders();
+			String filename = "default-picture.png";
+			
+			Member mem = em.find(Member.class, num);
+		    
+			if (mem != null) {
+				String memberImgPath=mem.getMemberPhotoURL();
+				if(memberImgPath!=null) {
+					String filenamemember = "src/main/webapp"+memberImgPath;
+					pathToFile = Paths.get(filenamemember);
+					filePath = pathToFile.toAbsolutePath().toString();
+					media = Files.readAllBytes(Paths.get(filePath));
+				}else {
+					media = Files.readAllBytes(Paths.get(filePath));
+				}
+			} else {
+				media = Files.readAllBytes(Paths.get(filePath));
+			}
+			headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+			String mimeType = context.getMimeType(filename);
+			MediaType mediaType = MediaType.valueOf(mimeType);
+//			System.out.println("mediaType="+mediaType);
+			headers.setContentType(mediaType);
+			ResponseEntity<byte[]> responseEntity = 
+					new ResponseEntity<>(media,headers,HttpStatus.OK);
+			return responseEntity;
+		}
 }
