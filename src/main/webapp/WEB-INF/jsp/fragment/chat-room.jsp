@@ -151,7 +151,7 @@
 		localStorage.setItem("layout_chatroom_status", true);
 		localStorage.setItem("sendersession", sender);
 		localStorage.setItem("receiversession", receiver);
-		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getPicture/"+ localStorage.getItem("receiversession") );
+		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getServerPicture/"+ localStorage.getItem("receiversession") );
 		$("#chat_room_1_icon").css("visibility", "visible");
 		$.get("/friend/list/getreceiversid?memberid=" + receiver, function(
 				Jdata) {
@@ -300,7 +300,7 @@ if (localStorage.getItem("layout_chatroom_status")) {
 			$("#Friendlist").hide();
 // 			$("#chat_room1_layout").hide();
 		});
-		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getPicture/"+ localStorage.getItem("receiversession") );
+		$(".media-object-chat-icon").attr("src","/admin/memberBeans/getServerPicture/"+ localStorage.getItem("receiversession") );
 	});
 </script>
 <script type="text/javascript">
@@ -322,9 +322,13 @@ $(document).ready(function(){
 		}
 	
 	ws.onmessage = function(event){
-		userlist = event.data;
-		$("#search_friend").click();
-		console.log(event.data);
+		if (event.data.startsWith("用戶上線列表")){
+			var users = event.data.replace("用戶上線列表"	,"");
+			userlist = users;
+			$("#search_friend").click();
+			console.log(event.data);
+		}
+
 	};
 	
 });
@@ -412,7 +416,7 @@ $(document).ready(function(){
 			myfriends += "<div class=\"well well-sm\">"
 			myfriends += "<div class=\"media\">"
 			myfriends += "<a class=\"thumbnail pull-left\" href=\"#\"> <img"
-			myfriends += "	class=\"media-object1\" src=\"<c:url value='/admin/memberBeans/getPicture/"+Jdata[i][0]+"' />\">";
+			myfriends += "	class=\"media-object1\" src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i][0]+"' />\">";
 			myfriends += "</a>"
 			myfriends += "<div class=\"media-body\">"
 			myfriends += "<h4 class=\"media-heading\">"
