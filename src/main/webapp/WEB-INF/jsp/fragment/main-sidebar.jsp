@@ -7,7 +7,7 @@
 		<figure class="sidebar-avatar moe">
 
 			<a href="/main/setting"> <img class="sidebar-avatar-in"
-				src="<c:url value='/admin/memberBeans/getPicture/${sessionScope.member.memberNum}' />" />
+				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
 			</a> 
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
