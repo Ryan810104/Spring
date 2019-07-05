@@ -20,81 +20,39 @@ import com.recreation.playground.service.ComplaintService;
 @Controller
 @RequestMapping("/main/complain")
 public class ComplaintController {
-	
+
 	@Autowired
 	private ComplaintService service;
-	
-	@PersistenceContext
-	EntityManager em;
-	
+
 	@RequestMapping("/insertComplaint")
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model) {
-		
-		if(result.hasErrors()) {
+
+		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
 		service.fileComplaints(cp);
 		model.addAttribute("insertComplaint", "1");
 		return "/main/Index";
-		
+
 	}
 	
+	@ResponseBody
+	@RequestMapping("/query")
+	public List<Complaint> complainList() {
+		return service.chooseUndealEvent();	
+	}
+		
+
 	@RequestMapping("/responseComplaint")
-	public String update(@ModelAttribute("formCR") Complaint cp) {
+	public String update( @ModelAttribute("formCR") Complaint cp) {
 		service.update(cp);
 		return "/main/complain/complainIndex";
 	}
 	
-	@RequestMapping("/deleteComplaint")
-	public String delete(@ModelAttribute("form01") Complaint cp) {
-		
-		service.delete(cp);
-		return "/";
-	}
 	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping("/findSomeonesComplaint")
-	public List<Object[]> complaintListOfUser(String fromwho, Model model){
-		String sql = "SELECT complaint_type FROM Complaint WHERE member_id = " + fromwho ;
-		return em.createNamedQuery(sql).getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping("/findStatusComplaint")
-	public List<Object[]> complaintListOfStatus(String status, Model model){
-		String sql = "SELECT complaint_type FROM Complaint WHERE complaint_status = " + status ;
-		return em.createNamedQuery(sql).getResultList();
-	}
-	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping("/findTimeLikeComplaint")
-	public List<Object[]> complaintListOfTimeLike(String timelike, Model model){
-		String sql = "SELECT complaint_type FROM Complaint WHERE complaint_messagetime = %" + timelike + "%"  ;
-		return em.createNamedQuery(sql).getResultList();
-	}
-	
-	@RequestMapping("/ComplaintContentOfUser")
-	public String ComplaintContentOfUser(Complaint cp) {
-		Complaint cp2 = service.findBymemberId(cp);
-		return service.findByComplaintType(cp2);
-	}
-	
-	@RequestMapping("/ComplaintContentOfStatus")
-	public String ComplaintContentOfStatus(Complaint cp) {
-		Complaint cp2 = service.findByComplaintStatus(cp);
-		return service.findByComplaintType(cp2);
-	}
-	
-	@RequestMapping("/ComplaintContentOfTimeLike")
-	public String ComplaintContentOfTimeLike(Complaint cp) {
-		Complaint cp2 = service.findByComplaintMessageTimeLike(cp);
-		return service.findByComplaintType(cp2);
-	}
+
 
 	
 	
-	
+
 }

@@ -16,7 +16,7 @@
 	<article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
-		
+
 		<div class="container">
 			<form action="/main/complain/insertComplaint" name="formCI"
 				method="POST" class="" style="display: on">
@@ -28,22 +28,24 @@
 							value="${sessionScope.member.memberId}" readonly>
 					</div>
 				</div>
-				<div class="col-md-2 mb-5">
-					<h4 class="mb-3">問題類別</h4>
-					<div class="custom-control custom-radio">
-						<input id="complaintType1" name="complaintType" type="radio"
-							class="custom-control-input" value="game" checked> <label
-							for="complaintType1" class="custom-control-label">遊戲問題</label>
-					</div>
-					<div class="custom-control custom-radio">
-						<input id="complaintType2" name="complaintType" type="radio"
-							class="custom-control-input" value="system"> <label
-							for="complaintType2" class="custom-control-label">網頁問題</label>
-					</div>
-					<div class="custom-control custom-radio">
-						<input id="complaintType3" name="complaintType" type="radio"
-							class="custom-control-input" value="payment"> <label
-							for="complaintType3" class="custom-control-label">儲值問題</label>
+				<div class="row">
+					<div class="col-md-2 mb-5">
+						<h4 class="mb-3">問題類別</h4>
+						<div class="custom-control custom-radio">
+							<input id="complaintType1" name="complaintType" type="radio"
+								class="custom-control-input" value="遊戲問題" checked> <label
+								for="complaintType1" class="custom-control-label">遊戲問題</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input id="complaintType2" name="complaintType" type="radio"
+								class="custom-control-input" value="網頁問題"> <label
+								for="complaintType2" class="custom-control-label">網頁問題</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input id="complaintType3" name="complaintType" type="radio"
+								class="custom-control-input" value="儲值問題"> <label
+								for="complaintType3" class="custom-control-label">儲值問題</label>
+						</div>
 					</div>
 				</div>
 				<div class="row">
@@ -79,11 +81,45 @@
 
 			<form action="/main/complain/responseComplaint" name="formCR"
 				method="POST" class="" style="display: on">
+
 				<div class="row">
 					<div class="col-md-6 mb-5">
-						<label for="complaintMessage">回覆</label>
-						<textarea class="form-control" id="complaintMessage"
-							name="complaintMessage" rows="3"></textarea>
+						<h4 class="mb-3">選擇會員案件</h4>
+						<select id="showBymemberId"></select>
+						<span id="showByMessage"></span>
+						<script>
+							$.ajax({
+								url : "/main/complain/query",
+								type : "POST",
+								success : function(data) {
+									showBymemberId(data);
+								}
+							});
+							function showBymemberId(data) {
+// 								alert(data);
+								var opt = "";
+								for (i in data) {
+									opt += "<option>" + " 會員 " + data[i]["memberId"] + " / " + data[i]["complaintType"]
+											+ "</option>";						
+								}
+// 								alert(opt);
+								$("#showBymemberId").append(opt);								
+							}
+							
+							
+								
+														
+						</script>
+
+
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-6 mb-5">
+						<label for="complaintResponse">回覆</label>
+						<textarea class="form-control" id="complaintResponse"
+							name="complaintResponse" rows="3"></textarea>
 					</div>
 				</div>
 
@@ -94,6 +130,19 @@
 					</div>
 				</div>
 
+				<div class="col-md-2 mb-5" style="display: none">
+					<h4 class="mb-3">狀態</h4>
+					<div class="custom-control custom-radio">
+						<input id="RcomplaintStatus0" name="complaintStatus" type="radio"
+							class="custom-control-input" value="0" > <label
+							for="RcomplaintStatus0" class="custom-control-label">未處理</label>
+					</div>
+					<div class="custom-control custom-radio">
+						<input id="RcomplaintStatus1" name="complaintStatus" type="radio"
+							class="custom-control-input" value="1" checked> <label
+							for="RcomplaintStatus1" class="custom-control-label">已處理</label>
+					</div>
+				</div>
 
 
 

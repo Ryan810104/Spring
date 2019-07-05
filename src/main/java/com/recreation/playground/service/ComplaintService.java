@@ -23,34 +23,15 @@ public class ComplaintService {
 		}
 	}
 
-	public List<Complaint> getAll() {
-		return dao.findAll();
+	public List<Complaint> chooseUndealEvent() {
+		return dao.findTop10ByComplaintStatusOrderByComplaintNumDesc(0);
 	}
 
-	public Complaint findById(Integer ComplaintNum) {
-		return dao.findById(ComplaintNum).orElse(null);
-	}
-
-	public Complaint findBymemberId(Complaint cp) {
-		return dao.findByMemberId(cp.getMemberId());
-	}
-
-	public Complaint findByComplaintStatus(Complaint cp) {
-		return dao.findByComplaintStatus(cp.getComplaintStatus());
-	}
-
-	public Complaint findByComplaintMessageTimeLike(Complaint cp) {
-		return dao.findByComplaintMessagetimeLike(cp.getComplaintMessagetime());
-	}
-
-	public String findByComplaintType(Complaint cp) {
-		return dao.findByComplaintType(cp.getComplaintType());
-	}
-
-	public String fileComplaints(Complaint cp) {
+	public void fileComplaints(Complaint cp) {
 		dao.save(cp);
-		return "complain";
 	}
+	
+	
 
 	public void delete(Complaint cp) {
 		if (cp.getComplaintNum() != null) {
