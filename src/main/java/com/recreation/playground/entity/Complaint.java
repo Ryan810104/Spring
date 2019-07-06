@@ -2,18 +2,21 @@ package com.recreation.playground.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Data;
 
 @Entity
 @Data
 @Table(name="Complaint")
+@EntityListeners(AuditingEntityListener.class)
 public class Complaint {
 	
 	
@@ -31,8 +34,8 @@ public class Complaint {
 	@CreatedDate
 	private java.util.Date complaintMessagetime ;
 	@Column
-	private String complaintStatus ;
-	@Column
+	private Integer complaintStatus ;
+	@Column(nullable=true)
 	private String complaintResponse ;
 
 }
