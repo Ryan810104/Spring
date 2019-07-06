@@ -7,9 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name="SaveGameData")
-public class SaveGameData {
+public class SaveGameData{
 	@Id
 	@Column
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
