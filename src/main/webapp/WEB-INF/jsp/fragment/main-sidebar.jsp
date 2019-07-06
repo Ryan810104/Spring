@@ -8,7 +8,7 @@
 
 			<a href="/main/setting"> <img class="sidebar-avatar-in"
 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
-			</a> 
+			</a>
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
@@ -71,7 +71,7 @@
 		</footer>
 </aside>
 <main class="main moe"> <header
-	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" style="padding:0px">
 	<span class="toggle"> <!-- fa-angle-double-left fa-bars fa-th-list -->
 		<i class="fa fa-bars"></i>
 	</span>
@@ -86,13 +86,81 @@
 				<a class="dropdown-item" href="/docs/4.3/">Latest (4.3.x)</a> <a
 					class="dropdown-item" href="https://getbootstrap.com/docs/4.2/">v4.2.1</a>
 				<a class="dropdown-item" href="/docs/versions/">All versions</a>
-			</div></li>
+			</div></li></ul>
+		<nav id="sidebar">
+		
+  <ul class="dots drop-down-menu" style="  display: flex;">
+      <li>
+      <a href="#">
+        <span class="glyphicon glyphicon-user"><mark class="pink tada">23</mark></span>
+<!--              <ul> -->
+<!--                 <li><a href="#">服務據點</a> -->
+<!--                 </li> -->
+<!--                 <li><a href="#">服務客戶</a> -->
+<!--                 </li> -->
+<!--                 <li><a href="#">服務地區</a> -->
+<!--                 </li> -->
+<!--                 <li><a href="#">徵才資訊</a> -->
+<!--                 </li> -->
+<!--             </ul> -->
+      </a>  
+    </li>
+      <li>
+      <a href="#">
+      <span class="glyphicon glyphicon-envelope"><mark class="pink tada">13</mark></span>
+      </a>
+      </li>    
+       <li>
+      <a href="#">
+      <span class="glyphicon glyphicon-envelope"><mark class="pink tada">13</mark>
+      
+      
+      
+      </span>
+      </a>
+      </li>     
+  </ul> 
+</nav>
 
-	</ul>
+
 </header>
-<hr>
-
+<hr style="margin-top:0px">
+<link rel="stylesheet" href="/resources/css/main-sidebar.css">
 <style>
+/*   ul.drop-down-menu ul { /*隱藏次選單*/ */
+/*         display: none; */
+/*     } */
+
+/*     ul.drop-down-menu li:hover > ul { /* 滑鼠滑入展開次選單*/ */
+/*         display: block; */
+/*     } */
+/*     ul.drop-down-menu li:active > ul { /* 滑鼠滑入展開次選單*/ */
+/*         display: block; */
+/*     } */
+/*   ul.drop-down-menu ul { */
+/*         border: #ccc 1px solid; */
+/*         position: absolute; */
+/*         z-index: 99; */
+/*         left: -1px; */
+/*         top: 100%; */
+/*        min-width: 180px; */
+/*     } */
+
+/*     ul.drop-down-menu ul li { */
+/*         border-bottom: #ccc 1px solid; */
+/*     } */
+
+/*     ul.drop-down-menu ul li:last-child { */
+/*         border-bottom: none; */
+/*     } */
+
+/*     ul.drop-down-menu ul ul { /*第三層以後的選單出現位置與第二層不同*/ */
+/*         z-index: 999; */
+/*         top: 10px; */
+/*         left: 90%; */
+/*     } */
+/*
+*/
 .navbarontop {
 	/* position:fixed; */
 	/* background-color:red; */
@@ -672,10 +740,10 @@ Inicio Tercer Estado: Oculto (OK)
 		a(7);
 	})
 
-// 	nav[8].addEventListener('click', function() {
-// 		localStorage.setItem("nav[8]", "true");
-// 		a(8);
-// 	})
+	// 	nav[8].addEventListener('click', function() {
+	// 		localStorage.setItem("nav[8]", "true");
+	// 		a(8);
+	// 	})
 
 	//# sourceURL=pen.js
 </script> <script>
