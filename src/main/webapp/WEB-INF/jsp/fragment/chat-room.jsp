@@ -427,13 +427,13 @@ $(document).ready(function(){
 			myfriends += "<a onclick=\"talktofromclickbutton("
 						+ Jdata[i][0]
 						+ ")\" class=\"btn btn-md btn-default btn-success btn-round\"><span"
-			myfriends += " class=\"glyphicon glyphicon-comment\"></span>"
+			myfriends += " ></span>"
 			myfriends +=	" <i class=\"fas fa-home\"></i> </a>";
 							
 			myfriends += "<a onclick=\"talktofromclickbutton("
 							+ Jdata[i][0]
 							+ ")\" class=\"btn btn-md btn-default btn-primary btn-round\"><span"
-			myfriends += " class=\"glyphicon glyphicon-comment\"></span><i"
+			myfriends += " ></span><i"
 			myfriends +=	" class=\"fas fa-comment-dots\"></i> </a>"
 			myfriends += "</div></div></div></div></div><hr>"
 					}

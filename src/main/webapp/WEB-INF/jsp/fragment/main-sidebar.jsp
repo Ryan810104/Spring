@@ -8,7 +8,7 @@
 
 			<a href="/main/setting"> <img class="sidebar-avatar-in"
 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
-			</a> 
+			</a>
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
@@ -71,28 +71,51 @@
 		</footer>
 </aside>
 <main class="main moe"> <header
-	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
+	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
+	style="padding: 0px">
 	<span class="toggle"> <!-- fa-angle-double-left fa-bars fa-th-list -->
 		<i class="fa fa-bars"></i>
 	</span>
-	<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-		<li class="nav-item dropdown"><a
-			class="nav-item nav-link mr-md-5" href="#" id="bd-versions"
-			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="far fa-envelope fa-2x	text-dark"></i>
-		</a>
-			<div class="dropdown-menu dropdown-menu-right"
-				aria-labelledby="bd-versions">
-				<a class="dropdown-item" href="/docs/4.3/">Latest (4.3.x)</a> <a
-					class="dropdown-item" href="https://getbootstrap.com/docs/4.2/">v4.2.1</a>
-				<a class="dropdown-item" href="/docs/versions/">All versions</a>
-			</div></li>
+	<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"></ul>
 
-	</ul>
+	<div class="d-flex justify-content-center h-100">
+		<div class="searchbar">
+			<input class="search_input" type="text" name="findmemberid"
+				placeholder="Search..."> <a class="search_icon"><i
+				class="fas fa-search" style="color: white;"></i></a>
+		</div>
+	</div>
+	<nav id="sidebar">
+
+		<ul class="dots drop-down-menu" style="display: flex;">
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-user"><mark
+							class="pink tada">23</mark></span>
+					<ul class="dropdown-menu">
+						<li><a href="#">jmeter</a></li>
+						<li><a href="#">EJB</a></li>
+					</ul>
+			</a></li>
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-envelope"><mark
+							class="pink tada">13</mark></span>
+					<ul class="dropdown-menu">
+						<li><a href="#">jmeter</a></li>
+						<li><a href="#">EJB123</a></li>
+					</ul>
+			</a></li>
+		</ul>
+	</nav>
+
+
 </header>
-<hr>
-
+<hr style="margin-top: 0px">
+<link rel="stylesheet" href="/resources/css/main-sidebar.css">
 <style>
+.dropdown-toggle::after {
+	display: none;
+}
+
 .navbarontop {
 	/* position:fixed; */
 	/* background-color:red; */
@@ -480,6 +503,37 @@ Inicio Tercer Estado: Oculto (OK)
 .username-line-height {
 	line-height: 7rem;
 }
+/* ========================= */
+.searchbar {
+	margin-right: 15px;
+	margin-bottom: auto;
+	margin-top: auto;
+	height: 40px;
+	background-color: #353b48;
+	border-radius: 30px;
+}
+
+.search_input {
+	color: white;
+	border: 0;
+	outline: 0;
+	background: none;
+	line-height: 40px;
+	transition: width 0.4s linear;
+	padding: 0 20px;
+	width: 190px;
+	caret-color: red;
+}
+
+.search_icon {
+	height: 40px;
+	width: 40px;
+	float: right;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+}
 </style>
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
 <script>
@@ -672,10 +726,10 @@ Inicio Tercer Estado: Oculto (OK)
 		a(7);
 	})
 
-// 	nav[8].addEventListener('click', function() {
-// 		localStorage.setItem("nav[8]", "true");
-// 		a(8);
-// 	})
+	// 	nav[8].addEventListener('click', function() {
+	// 		localStorage.setItem("nav[8]", "true");
+	// 		a(8);
+	// 	})
 
 	//# sourceURL=pen.js
 </script> <script>
