@@ -37,17 +37,33 @@ public class ComplaintController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/query")
-	public List<Complaint> complainList() {
-		return service.chooseUndealEvent();	
+	@RequestMapping("/query1")
+	public List<Complaint> complainListGame() {
+		return service.chooseUndealEventGame();	
+	}
+	@ResponseBody
+	@RequestMapping("/query2")
+	public List<Complaint> complainListWeb() {
+		return service.chooseUndealEventWeb();	
+	}
+	@ResponseBody
+	@RequestMapping("/query3")
+	public List<Complaint> complainListPay() {
+		return service.chooseUndealEventPay();	
 	}
 		
 
 	@RequestMapping("/responseComplaint")
-	public String update( @ModelAttribute("formCR") Complaint cp) {
+	public String update(@Valid @ModelAttribute("formCR") Complaint cp, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "/main/complain/complainDeal";
+		}	
 		service.update(cp);
-		return "/main/complain/complainIndex";
+		model.addAttribute("responseComplaint", "1");
+		return "/main/complain/complainDeal";
 	}
+	
+	
 	
 	
 

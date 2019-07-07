@@ -57,7 +57,7 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/complain">投訴箱</a></li>
+				href="/main/complain">投訴箱</a></li>				
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"

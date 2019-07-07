@@ -18,13 +18,19 @@ public class ComplaintService {
 	@Transactional(readOnly = true)
 	
 	public void update(Complaint cp) {
-		if (cp.getComplaintNum() != null) {
+		if (cp.getComplaintNum() != null ) {
 			dao.save(cp);
 		}
 	}
 
-	public List<Complaint> chooseUndealEvent() {
-		return dao.findTop10ByComplaintStatusOrderByComplaintNumDesc(0);
+	public List<Complaint> chooseUndealEventGame() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(1, 0);
+	}
+	public List<Complaint> chooseUndealEventWeb() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(2, 0);
+	}
+	public List<Complaint> chooseUndealEventPay() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(3, 0);
 	}
 
 	public void fileComplaints(Complaint cp) {
