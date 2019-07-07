@@ -310,11 +310,13 @@ if (localStorage.getItem("layout_chatroom_status")) {
 //
 ////////////////////////////////
 var userlist = null;
+var whoaddmedata = null;
 $(document).ready(function(){
 		var ws = null ;
 		var urlPrefix = "ws://localhost:80/websocket/";
 		var username = '${sessionScope.member.memberId}'
-		var url = urlPrefix + username ; 
+		var usernum = '${sessionScope.member.memberNum}'
+		var url = urlPrefix + username +"/"+ usernum ; 
 		ws = new WebSocket(url);
 		ws.onopen = function (){
 			console.log("建立webSocket連線");
@@ -327,10 +329,14 @@ $(document).ready(function(){
 			userlist = users;
 			$("#search_friend").click();
 			console.log(event.data);
-		}
+		} else if (event.data.startsWith("加好友訊息")){
+ 			var whoaddme = event.data.replace("加好友訊息","");
+			whoaddmedata = whoaddme.split("/");
+			showwhoaddme(whoaddmedata[1]);
 
 	};
 	
+};
 });
 	//websocket
 	//     $(document).ready(function(){
@@ -380,6 +386,25 @@ $(document).ready(function(){
 	//         })
 
 	//     })
+	function showwhoaddme(data){
+
+// data = {1=abcdefgh, 3=admin, 4=admin2}
+	var text = "";
+	var list = data.replace("{","").replace("}","").split(",");
+	for (var i = 0 ; i < list.length ; i++){
+		var finaldata = list[i].split("=");
+		text += "<li>"
+		text +="<a href=\"#\">"
+		text +=	"<div class=\"col-sm-12 size-adjust\">"
+		text +=	"<a  style=\"color:red ; font-size:14px;\">"+finaldata[1]+"</a>"
+		text +=	"<a  style=\" font-size:14px;\">向你發出好友邀請</a>"
+		text +=	"</div>"
+		text +="</a>"
+		text +="</li>"
+	}
+	$("#whoaddme").html(text);
+	$("#friendcount").html(list.length);
+	}
 	$("#search_friend").click(function() {
 		var myfriends = "";
 		var list = userlist.replace("[","").replace("]","").split(",");
@@ -424,13 +449,13 @@ $(document).ready(function(){
 			myfriends += "<a onclick=\"talktofromclickbutton("
 						+ Jdata[i][0]
 						+ ")\" class=\"btn btn-md btn-default btn-success btn-round\"><span"
-			myfriends += " class=\"glyphicon glyphicon-comment\"></span>"
+			myfriends += " ></span>"
 			myfriends +=	" <i class=\"fas fa-home\"></i> </a>";
 							
 			myfriends += "<a onclick=\"talktofromclickbutton("
 							+ Jdata[i][0]
 							+ ")\" class=\"btn btn-md btn-default btn-primary btn-round\"><span"
-			myfriends += " class=\"glyphicon glyphicon-comment\"></span><i"
+			myfriends += " ></span><i"
 			myfriends +=	" class=\"fas fa-comment-dots\"></i> </a>"
 			myfriends += "</div></div></div></div></div><hr>"
 					}

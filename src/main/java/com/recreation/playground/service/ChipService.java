@@ -44,5 +44,9 @@ public class ChipService {
 	public Chip findByChipNum(Integer chipNum) {
 		return dao.findById(chipNum).orElse(null);
 	}
+	
+//	public List<Object> findTheBestWinner(Specification<Object> specification, Pageable pageable){
+//		return dao.findTheBestWinner(specification,pageable);
+//	}
 
 }

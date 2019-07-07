@@ -143,154 +143,249 @@ public class MemberController {
 		return service.finById(member.getMemberId());
 	}
 
-	@RequestMapping("/index2")
-	public String index2(Model model) {
-		return "/test1/ClearTemplateIndex";
-	}
 	
-	@RequestMapping("/index3")
-	public String index3(Model model) {
-		return "/test1/ClearTemplateChipIndex";
-	}
-
-	@RequestMapping("/list")
-	public String list(Model model) {
-		return "/test1/ClearTemplateList";
-	}
-	
-	
-	@RequestMapping("/listtest")
-	public String listtest(Model model) {
-		return "/test1/ClearTemplateListwintimerank";
-	}
-	
-	
-	
-	@RequestMapping("/insert1")
 	@ResponseBody
-	public String insert1(
-			@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
-			@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
-			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
-			@RequestParam(value = "moneyRecordChiptype", defaultValue = "0") String moneyRecordChiptype,
-			@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = "0") String chipType,
-			@RequestParam(value = "time", defaultValue = "0") Integer round,
-			@RequestParam(value = "win", defaultValue = "0") Integer win) {
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(round);
-
-		MoneyRecord moneyRecord = new MoneyRecord();
-		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
-		moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
-		moneyRecord.setMoneyRecordChip(moneyRecordChip);
-		moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
-
-		moneyRecordService.insertMoney(moneyRecord);
-		chipService.save(chip);
-		return "/MoneyRecord/member-list";
+	@RequestMapping("/findBymemberEmail")
+	public Member findBymemberEmail(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
+		System.out.println(member);
+		return service.findBymemberEmail(member.getMemberEmail());
 	}
+	//測試同時將兌換遊戲幣的資料insert到Moneyrecord&chip兩個table
 
-	@RequestMapping("/insert2")
-	@ResponseBody
-	public AjaxResponse<String> insert2(
-			@RequestParam(value = "moneyRecordMemberNum", defaultValue = " ") Integer moneyRecordMemberNum,
-			@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
-			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
-			@RequestParam(value = "moneyRecordChiptype", defaultValue = " ") String moneyRecordChiptype,
-			@RequestParam(value = "chipMemberNum", defaultValue = " ") Integer chipMemberNum,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = " ") String chipType,
-			@RequestParam(value = "time", defaultValue = "0") Integer round,
-			@RequestParam(value = "win", defaultValue = "0") Integer win) {
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(round);
+	
+			@RequestMapping("/index2")
+			public String index2(Model model) {
+				return "/test1/ClearTemplateIndex";
+			}
+			//將一筆遊戲結果insert到chip&chiprecord兩個table
+			@RequestMapping("/index3")
+			public String index3(Model model) {
+				return "/test1/ClearTemplateChipIndex";
+			}
 
-		MoneyRecord moneyRecord = new MoneyRecord();
-		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
-		moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
-		moneyRecord.setMoneyRecordChip(moneyRecordChip);
-		moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
-		AjaxResponse<String> res = new AjaxResponse<>();
-//		if (result.hasErrors()) {
-//			res.setType(AjaxResponseType.ERROR);
-//			System.out.println(result.getAllErrors());
-//			return res;
-//		}
-
-		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
-//		res.setData(chipService.save(chip).toString());
-		return res;
-	}
-
-	@RequestMapping("/insert3")
-	@ResponseBody
-	public AjaxResponse<String> insert3(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = "") String chipType,
-			@RequestParam(value = "win", defaultValue = "0") Integer win,
-			@RequestParam(value = "round", defaultValue = "0") Integer round,
-			@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
-			@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
-			@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
-			@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
-			@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(round);
+			@RequestMapping("/list")
+			public String list(Model model) {
+				return "/test1/ClearTemplateList";
+			}
+			
+			@RequestMapping("/list0")
+			public String list0(Model model) {
+				return "/test1/member-list";
+			}
+			
+			@RequestMapping("/listtest")
+			public String listtest(Model model) {
+				return "/test1/ClearTemplateListwintimerank";
+			}
 		
-		
-		ChipRecord chiprecord = new ChipRecord();
-		chiprecord.setChipRecordMemberNum(chipRecordMemberNum);
-		chiprecord.setChipRecordChip(chipRecordChip);
-		chiprecord.setChipRecordChipType(chipRecordChipType);
-		chiprecord.setChipRecordWin(chipRecordWin);
-		chiprecord.setChipRecordRound(chipRecordRound);
-		AjaxResponse<String> res = new AjaxResponse<>();
-		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(chipService.save(chip).toString()+ chipRecordService.save(chiprecord).toString());
-		
-		return res;
-	}
+			@RequestMapping("/insert1")
+			@ResponseBody
+			public String insert1(
+					@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
+					@RequestParam(value = "moneyRecordFirstName", defaultValue = "") String moneyRecordFirstName,
+					@RequestParam(value = "moneyRecordNickName", defaultValue = "") String moneyRecordNickName,
+					@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
+					@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+					@RequestParam(value = "moneyRecordChiptype", defaultValue = "0") String moneyRecordChiptype,
+					@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+					@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
+					@RequestParam(value = "chipNickName", defaultValue = "0") String chipNickName,
+					@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+					@RequestParam(value = "chipType", defaultValue = "0") String chipType,
+					@RequestParam(value = "time", defaultValue = "0") Float round,
+					@RequestParam(value = "win", defaultValue = "0") Integer win) {
+				Chip chip = new Chip();
+				chip.setChipMemberNum(chipMemberNum);
+				chip.setChipFirstName(chipFirstName);
+				chip.setChipNickName(chipNickName);
+				chip.setChipBalanced(chipBalanced);
+				chip.setChipType(chipType);
+				chip.setWin(win);
+				chip.setRound(round);
 
-	@PostMapping("/query")
-	@ResponseBody // 轉JSON
-	public List<MoneyRecord> query(Integer moneyRecordNum) {
-		System.out.println(moneyRecordNum);
-		return moneyRecordService.getAll();
-	}
+				MoneyRecord moneyRecord = new MoneyRecord();
+				moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+				moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
+				moneyRecord.setMoneyRecordNickName(moneyRecordNickName);
+				moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
+				moneyRecord.setMoneyRecordChip(moneyRecordChip);
+				moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
 
-	@RequestMapping("/top3cash")
-	@ResponseBody
-	public List<Object> top3() {
-//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
-//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
-		System.out.println(moneyRecordService.findBestSeller());
-		return moneyRecordService.findBestSeller();
-	}
-	
-	
-	@RequestMapping("/topwinner")
-	@ResponseBody
-	public List<Object> topwinner() {
-//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
-//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
-		System.out.println(chipDao.findTheBestWinner());
-		return chipDao.findTheBestWinner();
-	}
+				moneyRecordService.insertMoney(moneyRecord);
+				chipService.save(chip);
+				return "/MoneyRecord/member-list";
+			}
+		//同時將兌換遊戲幣的資料insert到Moneyrecord&chip兩個table
+			@RequestMapping("/insert2")
+			@ResponseBody
+			public AjaxResponse<String> insert2(
+					@RequestParam(value = "moneyRecordMemberNum", defaultValue = " ") Integer moneyRecordMemberNum,
+					@RequestParam(value = "moneyRecordFirstName", defaultValue = "") String moneyRecordFirstName,
+					@RequestParam(value = "moneyRecordNickName", defaultValue = "") String moneyRecordNickName,
+					@RequestParam(value = "moneyRecordPoint", defaultValue = "0") Long moneyRecordPoint,
+					@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+					@RequestParam(value = "moneyRecordChiptype", defaultValue = " ") String moneyRecordChiptype,
+					@RequestParam(value = "chipMemberNum", defaultValue = " ") Integer chipMemberNum,
+					@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
+					@RequestParam(value = "chipNickName", defaultValue = "0") String chipNickName,
+					@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+					@RequestParam(value = "chipType", defaultValue = " ") String chipType,
+					@RequestParam(value = "time", defaultValue = "0") Float round,
+					@RequestParam(value = "win", defaultValue = "0") Integer win) {
+				Chip chip = new Chip();
+				chip.setChipMemberNum(chipMemberNum);
+				chip.setChipFirstName(chipFirstName);
+				chip.setChipNickName(chipNickName);
+				chip.setChipBalanced(chipBalanced);
+				chip.setChipType(chipType);
+				chip.setWin(win);
+				chip.setRound(round);
+
+				MoneyRecord moneyRecord = new MoneyRecord();
+				moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+				moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
+				moneyRecord.setMoneyRecordNickName(moneyRecordNickName);
+				moneyRecord.setMoneyRecordPoint(moneyRecordPoint);
+				moneyRecord.setMoneyRecordChip(moneyRecordChip);
+				moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
+				AjaxResponse<String> res = new AjaxResponse<>();
+//				if (result.hasErrors()) {
+//					res.setType(AjaxResponseType.ERROR);
+//					System.out.println(result.getAllErrors());
+//					return res;
+//				}
+
+				res.setType(AjaxResponseType.SUCCESS);
+				res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
+//				res.setData(chipService.save(chip).toString());
+				return res;
+			}
+		//同時將一筆遊戲結果insert到chip&chiprecord兩個table
+			@RequestMapping("/insert3")
+			@ResponseBody
+			public AjaxResponse<String> insert3(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+					@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+					@RequestParam(value = "chipType", defaultValue = "") String chipType,
+					@RequestParam(value = "win", defaultValue = "0") Integer win,
+					@RequestParam(value = "round", defaultValue = "0") Float round,
+					@RequestParam(value = "chipFirstName", defaultValue = "") String chipFirstName,
+					@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
+					@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
+					@RequestParam(value = "chipRecordFirstName", defaultValue = "") String chipRecordFirstName,
+					@RequestParam(value = "chipRecordNickName", defaultValue = "") String chipRecordNickName,
+					@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
+					@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
+					@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
+					@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
+				Chip chip = new Chip();
+				chip.setChipMemberNum(chipMemberNum);
+				chip.setChipFirstName(chipFirstName);
+				chip.setChipNickName(chipNickName);
+				chip.setChipBalanced(chipBalanced);
+				chip.setChipType(chipType);
+				chip.setWin(win);
+				chip.setRound(round);
+				
+				
+				ChipRecord chiprecord = new ChipRecord();
+				chiprecord.setChipRecordMemberNum(chipRecordMemberNum);
+				chiprecord.setChipRecordFirstName(chipRecordFirstName);
+				chiprecord.setChipRecordNickName(chipRecordNickName);
+				chiprecord.setChipRecordChip(chipRecordChip);
+				chiprecord.setChipRecordChipType(chipRecordChipType);
+				chiprecord.setChipRecordWin(chipRecordWin);
+				chiprecord.setChipRecordRound(chipRecordRound);
+				AjaxResponse<String> res = new AjaxResponse<>();
+				res.setType(AjaxResponseType.SUCCESS);
+				res.setData(chipService.save(chip).toString()+ chipRecordService.save(chiprecord).toString());
+				
+				return res;
+			}
+			@PostMapping("/query")
+			@ResponseBody // 轉JSON
+			public List<MoneyRecord> query(Integer moneyRecordNum) {
+				System.out.println(moneyRecordNum);
+				return moneyRecordService.getAll();
+			}
+
+			@RequestMapping("/top3cash")
+			@ResponseBody
+			public List<Object> top3() {
+//				s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//				String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+//				System.out.println(moneyRecordService.findBestSeller());
+				return moneyRecordService.findBestSeller();
+			}
+
+			@RequestMapping("/top4cash")
+			@ResponseBody
+			public List<Object[]> top4() {
+//				s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//				String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+				System.out.println(moneyRecordService.findBestSeller1());
+				return moneyRecordService.findBestSeller1();
+			}
+
+			
+			
+			//遊戲至今玩家勝利次數排行榜
+			@RequestMapping("/topwinner")
+			@ResponseBody
+			public List<Object> topwinner() {
+//				s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//				String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+//				System.out.println(chipDao.findTheBestWinner());
+				return chipDao.findTheBestWinner();
+			}
+			
+
+			//累積金額排行榜
+			@RequestMapping("/therichest")
+			@ResponseBody
+			public List<Object> therichest(){
+				System.out.println(chipDao.findTheRichest());
+				return chipDao.findTheRichest();
+			}
+			
+			//遊戲A的遊玩次數排行
+			@RequestMapping("/gamea")
+			@ResponseBody
+			public List<Object> gamea(){
+				return chipDao.findTheGameAMostWin();
+			}
+			
+
+			//遊戲B的遊玩次數排行
+			@RequestMapping("/gameb")
+			@ResponseBody
+			public List<Object> gameb(){
+				return chipDao.findTheGameBMostWin();
+			}
+			//遊戲C的遊玩次數排行
+			@RequestMapping("/gamec")
+			@ResponseBody
+			public List<Object> gamec(){
+				return chipDao.findTheGameCMostWin();
+			}
+			//玩家贏錢排行榜
+			@RequestMapping("/mostbouns")
+			@ResponseBody
+			public List<Object> mostbonus(){
+				return chipDao.findTheMostBonus();
+			}
+			//玩家勝場數
+			@RequestMapping("/totalwin")
+			@ResponseBody
+			public List<Object> totalwin(){
+				return chipDao.findTotalWin();
+			}
+			
+			//各遊戲獲勝率
+			@RequestMapping("/winrate")
+			@ResponseBody
+			public List<Object>winrate(){
+				return chipDao.findTheGameWinRate();
+			}
 
 
 	@RequestMapping("/update")

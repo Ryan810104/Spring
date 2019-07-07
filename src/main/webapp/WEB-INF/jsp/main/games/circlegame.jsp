@@ -77,9 +77,10 @@ $(function (){
 			});
 //遊戲開始按鈕跟一些需要處理的事件
 	$('.pointer').click(function (){
+		document.getElementById('gameType').value='Roulette';
+		document.getElementById('round').value='1';
 		
 		
-		document.getElementById('gametype').value='Roulette';
 		if(bRotate)return;
 		var item = rnd(0,7);
 
@@ -89,52 +90,82 @@ $(function (){
 				
 				rotateFn(0, 337, '可惜了!下一次就會中大獎');
 				document.getElementById('money').value=0;
-				document.getElementById('lastmoney').value=-200;
+				document.getElementById('balance').value=-200;
 				break;
 			case 1:
 				//var angle = [88, 137, 185, 235, 287];
 				rotateFn(1, 26, '贏了800元');
 				document.getElementById('money').value=800;
-				document.getElementById('lastmoney').value=600;
+				document.getElementById('balance').value=600;
 				break;
 			case 2:
 				//var angle = [137, 185, 235, 287];
 				rotateFn(2, 88, '輸了1000');
 				document.getElementById('money').value=-1000;
-				document.getElementById('lastmoney').value=-1200;
+				document.getElementById('balance').value=-1200;
 				break;
 			case 3:
 				//var angle = [137, 185, 235, 287];
 				rotateFn(3, 137, '恭喜你!中大獎8888');
 				document.getElementById('money').value=8888;
-				document.getElementById('lastmoney').value=8688;
+				document.getElementById('balance').value=8688;
 				break;
 			case 4:
 				//var angle = [185, 235, 287];
 				rotateFn(4, 185, '贏了1600元');
 				document.getElementById('money').value=1600;
-				document.getElementById('lastmoney').value=1400;
+				document.getElementById('balance').value=1400;
 				break;
 			case 5:
 				//var angle = [185, 235, 287];
 				rotateFn(5, 185, '贏了1600元');
 				document.getElementById('money').value=1600;
-				document.getElementById('lastmoney').value=1400;
+				document.getElementById('balance').value=1400;
 				break;
 			case 6:
 				//var angle = [235, 287];
 				rotateFn(6, 235, '輸了800元');
 				document.getElementById('money').value=-800;
-				document.getElementById('lastmoney').value=-1000;
+				document.getElementById('balance').value=-1000;
 				break;
 			case 7:
 				//var angle = [287];
 				rotateFn(7, 287, '輸了500');
 				document.getElementById('money').value=-500;
-				document.getElementById('lastmoney').value=-700;
+				document.getElementById('balance').value=-700;
 				break;
 		}
+		
+		//ajax丟資料
+		var insert = $("#savegame").serializeArray();
+			//alert(insert);
+			//alert(JSON.stringify(insert));
+			JSON.stringify(insert)
+			var i = {};
+			$.each(insert, function(index, value1) {
+				i[value1.name] = value1.value;
+			});
+			var ant = JSON.stringify(i);
+			//alert(ant);
+			$.ajax({
+				url : '/save/SaveGameData?balance='
+					+ $("#balance").val()
+					+ "&gameType="
+					+ $("#gameType").val()
+					+ "&memberId="
+					+ $("#memberId").val()
+					+ "&round="
+					+ $("#round").val(),
+					
+				method : 'POST',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : ant,
+				
+			});
 
+			
+			
 		console.log(item);
 	});
 });
@@ -152,38 +183,39 @@ function rnd(n, m){
 
 <script type="text/javascript" src="/resources/js/awardRotate.js"></script>
 
-<form class="form-signin" name=savegame id="savegame" action="/save/SaveGameData"
+<form class="form-signin" name=savegame id="savegame" action=""
 		method="POST">	
 			<h2>輸贏</h2>
 			
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='money' name="'money'" type="text" value="${memberP.chipMemberid}"
+					<input id='money' name='money'  type="text" value="${memberP.chipMemberid}"
 						placeholder="取輪盤結果:" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='lastmoney' name=balance type="text" value="${memberP.chipBalanced}"
+					<input id='balance' name='balance' type="text" value="${memberP.chipBalanced}"
 						placeholder="送進後台的結果" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='gametype' name="gameType" type="text" value="${memberP.chipBalanced}"
+					<input id='gameType' name="gameType" type="text" value="${memberP.chipBalanced}"
 						placeholder="遊戲種類" class="form-control">
 				</div>
 			</div>
+			
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='datetime' name="chipBalanced" type="text" value="${memberP.chipBalanced}"
-						placeholder="送進後台的結果" class="form-control">
+					<input id='memberId' name="memberId" type="text" value="${sessionScope.member.memberId}"
+						placeholder="玩家" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-12">
-					<input id='playerId' name="memberId" type="text" value="${sessionScope.member.memberId}"
-						placeholder="玩家" class="form-control">
+					<input id='round' name="round" type="text" value=""
+						placeholder="局數" class="form-control">
 				</div>
 			</div>
 			
@@ -203,7 +235,6 @@ Russian roulette </h1>
 </div>
 <a href="/main/games">
 <h1 class="bounce" id="bounce" style="text-align:center">結束遊戲回選單</h1>
-
 </a>
 		
 		

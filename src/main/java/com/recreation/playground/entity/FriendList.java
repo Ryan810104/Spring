@@ -24,4 +24,7 @@ public class FriendList {
 	
 	@Column(name="friendListFriendid")
 	private Integer friendlistfriendid;
+	
+	@Column(name="friendIdIsRead", columnDefinition = "bit default 0")
+	private boolean friendidisread;
 }
