@@ -1,13 +1,16 @@
 package com.recreation.playground.websocket;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -72,32 +75,30 @@ public class ChatRoomServerEndpoint {
 // 有人加使用者好友時，發出通知給使用者
 //
 ////////////////////////////////
-		
+
 		final Session mysession = session;
 		this.running = true;
 		this.thread = new Thread(() -> {
 			while (running) {
 				if (mysession.isOpen()) {
 					try {
-//						EntityManager em =   ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
-//						Object a = em.createNativeQuery("select * from member where member_num="+ usernumber).getSingleResult();
-//						System.out.println(a);
-//						mysession.getBasicRemote().sendText("");
-						
-//						MemberDao dao =  ApplicationContextRegister.getApplicationContext().getBean(MemberDao.class);
-//						Member member = dao.findByMemberId(username);
-//						System.out.println(member.toString());
-//						mysession.getBasicRemote().sendText(member.toString());
 						FriendListDao friendlistdao =  ApplicationContextRegister.getApplicationContext().getBean(FriendListDao.class);
-						List<Object> list = friendlistdao.findCurrentId(usernumber);
+						List<Object> list = friendlistdao.findCurrentIdunRead(usernumber);
 						if (list.size() !=0) {
-							System.out.println(Arrays.deepToString(list.toArray()));
-							String data = Arrays.deepToString(list.toArray());
-							String[] data1 = data.split(",");
-							int a = Integer.valueOf(data1[0].replace("[", "").replace("]", ""));
-							System.out.println(showIDfromUsername(a));
-							mysession.getBasicRemote().sendText(showIDfromUsername(a) + "   加你好友喔!");
-							break;
+							Map<Integer,String> map = new HashMap<>();
+							for (int i = 0 ; i < list.size() ; i++) {
+								Object[] tempObj = (Object[]) list.get(i);
+								int membernum =  (int) tempObj[0];
+								map.put(membernum, showIDfromUsername(membernum));
+							}
+							mysession.getBasicRemote().sendText("加好友訊息"+"/"+map);
+//							System.out.println(Arrays.deepToString(list.toArray()));
+//							String data = Arrays.deepToString(list.toArray());
+//							String[] data1 = data.split(",");
+//							int a = Integer.valueOf(data1[0].replace("[", "").replace("]", ""));
+//							System.out.println(showIDfromUsername(a));
+//							mysession.getBasicRemote().sendText("加好友訊息"+"/"+a+"/"+showIDfromUsername(a) + "/");
+
 						}
 //						System.out.println(list.isEmpty());
 //						mysession.getBasicRemote().sendText(String.valueOf(list.get(1)));
