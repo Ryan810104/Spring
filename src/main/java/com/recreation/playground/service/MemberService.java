@@ -19,7 +19,9 @@ import com.recreation.playground.entity.Member;
 public class MemberService {
 	@Autowired
 	private MemberDao dao;
-
+	public Member findBymemberEmail(String memberEmail) {
+		return dao.findByMemberEmail(memberEmail);
+	}
 	public Member update(Member member) {
 //		System.out.println("dao");
 		return dao.save(member);

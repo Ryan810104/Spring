@@ -17,5 +17,6 @@ public interface MemberDao extends JpaRepository<Member, Integer>{
 	
 	//好友功能需要的搜尋功能
 	public List<Member> findByMemberIdContaining(String memberid);
-
+	
+	public Member findByMemberEmail(String email);
 }
