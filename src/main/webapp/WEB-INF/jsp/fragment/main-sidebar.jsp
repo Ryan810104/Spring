@@ -71,96 +71,51 @@
 		</footer>
 </aside>
 <main class="main moe"> <header
-	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" style="padding:0px">
+	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
+	style="padding: 0px">
 	<span class="toggle"> <!-- fa-angle-double-left fa-bars fa-th-list -->
 		<i class="fa fa-bars"></i>
 	</span>
-	<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-		<li class="nav-item dropdown"><a
-			class="nav-item nav-link mr-md-5" href="#" id="bd-versions"
-			data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<i class="far fa-envelope fa-2x	text-dark"></i>
-		</a>
-			<div class="dropdown-menu dropdown-menu-right"
-				aria-labelledby="bd-versions">
-				<a class="dropdown-item" href="/docs/4.3/">Latest (4.3.x)</a> <a
-					class="dropdown-item" href="https://getbootstrap.com/docs/4.2/">v4.2.1</a>
-				<a class="dropdown-item" href="/docs/versions/">All versions</a>
-			</div></li></ul>
-		<nav id="sidebar">
-		
-  <ul class="dots drop-down-menu" style="  display: flex;">
-      <li>
-      <a href="#">
-        <span class="glyphicon glyphicon-user"><mark class="pink tada">23</mark></span>
-<!--              <ul> -->
-<!--                 <li><a href="#">服務據點</a> -->
-<!--                 </li> -->
-<!--                 <li><a href="#">服務客戶</a> -->
-<!--                 </li> -->
-<!--                 <li><a href="#">服務地區</a> -->
-<!--                 </li> -->
-<!--                 <li><a href="#">徵才資訊</a> -->
-<!--                 </li> -->
-<!--             </ul> -->
-      </a>  
-    </li>
-      <li>
-      <a href="#">
-      <span class="glyphicon glyphicon-envelope"><mark class="pink tada">13</mark></span>
-      </a>
-      </li>    
-       <li>
-      <a href="#">
-      <span class="glyphicon glyphicon-envelope"><mark class="pink tada">13</mark>
-      
-      
-      
-      </span>
-      </a>
-      </li>     
-  </ul> 
-</nav>
+	<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"></ul>
+
+	<div class="d-flex justify-content-center h-100">
+		<div class="searchbar">
+			<input class="search_input" type="text" name="findmemberid"
+				placeholder="Search..."> <a class="search_icon"><i
+				class="fas fa-search" style="color: white;"></i></a>
+		</div>
+	</div>
+	<nav id="sidebar">
+
+		<ul class="dots drop-down-menu" style="display: flex;">
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-user"><mark
+							class="pink tada">23</mark></span>
+					<ul class="dropdown-menu">
+						<li><a href="#">jmeter</a></li>
+						<li><a href="#">EJB</a></li>
+					</ul>
+			</a></li>
+			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<span class="glyphicon glyphicon-envelope"><mark
+							class="pink tada">13</mark></span>
+					<ul class="dropdown-menu">
+						<li><a href="#">jmeter</a></li>
+						<li><a href="#">EJB123</a></li>
+					</ul>
+			</a></li>
+		</ul>
+	</nav>
 
 
 </header>
-<hr style="margin-top:0px">
+<hr style="margin-top: 0px">
 <link rel="stylesheet" href="/resources/css/main-sidebar.css">
 <style>
-/*   ul.drop-down-menu ul { /*隱藏次選單*/ */
-/*         display: none; */
-/*     } */
+.dropdown-toggle::after {
+	display: none;
+}
 
-/*     ul.drop-down-menu li:hover > ul { /* 滑鼠滑入展開次選單*/ */
-/*         display: block; */
-/*     } */
-/*     ul.drop-down-menu li:active > ul { /* 滑鼠滑入展開次選單*/ */
-/*         display: block; */
-/*     } */
-/*   ul.drop-down-menu ul { */
-/*         border: #ccc 1px solid; */
-/*         position: absolute; */
-/*         z-index: 99; */
-/*         left: -1px; */
-/*         top: 100%; */
-/*        min-width: 180px; */
-/*     } */
-
-/*     ul.drop-down-menu ul li { */
-/*         border-bottom: #ccc 1px solid; */
-/*     } */
-
-/*     ul.drop-down-menu ul li:last-child { */
-/*         border-bottom: none; */
-/*     } */
-
-/*     ul.drop-down-menu ul ul { /*第三層以後的選單出現位置與第二層不同*/ */
-/*         z-index: 999; */
-/*         top: 10px; */
-/*         left: 90%; */
-/*     } */
-/*
-*/
 .navbarontop {
 	/* position:fixed; */
 	/* background-color:red; */
@@ -547,6 +502,37 @@ Inicio Tercer Estado: Oculto (OK)
 
 .username-line-height {
 	line-height: 7rem;
+}
+/* ========================= */
+.searchbar {
+	margin-right: 15px;
+	margin-bottom: auto;
+	margin-top: auto;
+	height: 40px;
+	background-color: #353b48;
+	border-radius: 30px;
+}
+
+.search_input {
+	color: white;
+	border: 0;
+	outline: 0;
+	background: none;
+	line-height: 40px;
+	transition: width 0.4s linear;
+	padding: 0 20px;
+	width: 190px;
+	caret-color: red;
+}
+
+.search_icon {
+	height: 40px;
+	width: 40px;
+	float: right;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
 }
 </style>
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
