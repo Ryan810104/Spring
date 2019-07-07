@@ -90,10 +90,28 @@
 		<ul class="dots drop-down-menu" style="display: flex;">
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-user"><mark
-							class="pink tada">23</mark></span>
-					<ul class="dropdown-menu">
-						<li><a href="#">jmeter</a></li>
-						<li><a href="#">EJB</a></li>
+							class="pink tada" id="friendcount">0</mark></span>
+					<ul class="dropdown-menu dropdownmenuCSSoverride" id="whoaddme">
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
 					</ul>
 			</a></li>
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">

@@ -1,14 +1,23 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,700");
 @import url("https://fonts.googleapis.com/css?family=Merriweather+Sans:400,400italic");
 @import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+/* 通知欄 */
 
+.dropdownmenuCSSoverride {
+    left: -16rem;
+    min-width: 30rem;
+    border-radius: 1.25rem;
+	
+}
 
+.listhr{
+margin:0px;
+padding:0px;	
+}
 ul.dots * {
   /* disable border-box from bootstrap */
   box-sizing: content-box;
   list-style-type: none;  
-
-  
 }
 ul.dots a {
   text-decoration: none;
@@ -518,5 +527,4 @@ code {
             transform: none;
   }
 }
-
 
