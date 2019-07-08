@@ -57,12 +57,11 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/complain">投訴箱</a></li>
+				href="/main/complain">投訴箱</a></li>				
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height" id="logout"
+				class="sidebar-nav-item-zelda moe text-line-height"
 				href="/main/logout">登出</a></li>
-
 		</ul>
 
 
@@ -91,34 +90,35 @@
 		<ul class="dots drop-down-menu" style="display: flex;">
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-user"><mark
-							class="pink tada" id="friendcount" style="display: none"></mark></span>
+							class="pink tada" id="friendcount" style="display:none"></mark></span>
 					<ul class="dropdown-menu dropdownmenuCSSoverride" id="whoaddme">
-						<!-- 						<li> -->
-						<!-- 						<a href="#"> -->
-						<!-- 							<div class="col-sm-12 size-adjust"> -->
-						<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
-						<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
-						<!-- 							</div> -->
-						<!-- 						</a> -->
-						<!-- 						</li> -->
-						<!-- 						<hr class="listhr"> -->
-
-						<!-- 						<li> -->
-						<!-- 						<a href="#"> -->
-						<!-- 							<div class="col-sm-12 size-adjust"> -->
-						<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
-						<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
-						<!-- 							</div> -->
-						<!-- 						</a> -->
-						<!-- 						</li> -->
-						<!-- 						<hr class="listhr"> -->
-
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
 					</ul>
-			</a></li>
+			</a>
+			</li>
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-envelope"><mark
 							class="pink tada">13</mark></span>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu dropdownmenuCSSoverridenotify" id="notifystatus">
 						<li><a href="#">jmeter</a></li>
 						<li><a href="#">EJB123</a></li>
 					</ul>
@@ -556,15 +556,6 @@ Inicio Tercer Estado: Oculto (OK)
 </style>
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
 <script>
-	$("#logout").click(function() {
-		googleLogout();
-	});
-	function googleLogout() {
-		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function() {
-		});
-		auth2.disconnect();
-	}
 	var hamburguesa = document.querySelector('.toggle');
 	hamburguesa
 			.addEventListener(
@@ -761,6 +752,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	//# sourceURL=pen.js
 </script> <script>
+
 	window.onscroll = function() {
 		scrollFunction()
 	};

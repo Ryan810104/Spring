@@ -52,26 +52,34 @@ public class FriendListController {
 	@RequestMapping("/addnRead")
 	@Transactional
 	public void addnRead (Integer memberid, Integer friendid, Integer listnum){
-		System.out.println(memberid);
-		System.out.println(friendid);
-		System.out.println(listnum);
 		FriendList add = new FriendList();
 		add.setFriendlistmemberid(memberid);
 		add.setFriendlistfriendid(friendid);
 		add.setFriendidisread(true);
+		add.setFriendnotify(0);
 		friendlistservice.save(add);
 		FriendList list = em.find(FriendList.class, listnum);
 		list.setFriendidisread(true);
+		list.setFriendnotify(0);
 		em.persist(list);
 	}
 	
+	@ResponseBody
+	@RequestMapping("/naddnRead")
+	@Transactional
+	public void naddnRead (Integer memberid, Integer friendid, Integer listnum){
+		FriendList list = em.find(FriendList.class, listnum);
+		list.setFriendidisread(true);
+		em.remove(list);
+	}
 	
 	
+// 找friendlist 彼此的isread欄位都是1的為好友	
 	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping("/findmyfriend")
 	public List<Object[]> findmyfriend(Integer memberid , Model model) { 
-		String sql = "SELECT f.friend_list_friendid , m.member_id , m.member_email , m.member_viplevel FROM friend_list f ,member m  WHERE f.friend_list_memberid = "+memberid+" AND  f.friend_list_friendid = m.member_num";
+		String sql = "SELECT  f1.friend_list_friendid , m1.member_id FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "+memberid+" and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1";
 		return em.createNativeQuery(sql)
 				.getResultList();
 	}

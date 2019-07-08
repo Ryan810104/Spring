@@ -54,6 +54,9 @@ public class ChatRoomServerEndpoint {
 
 	Thread thread;
 	boolean running = false;
+	
+	Thread threadfriendnotice ; 
+	boolean runningnotice = false;
 
 	private static final Logger log = LoggerFactory.getLogger(ChatRoomServerEndpoint.class);
 	
@@ -69,14 +72,14 @@ public class ChatRoomServerEndpoint {
 		LIVING_SESSIONS_CACHE.put(username, session);
 		sendMessageAll("用戶上線列表" + LIVING_SESSIONS_CACHE.keySet().toString());
 		
-
+		final Session mysession = session;
 ////////////////////////////////
 //
 // 有人加使用者好友時，發出通知給使用者
 //
 ////////////////////////////////
 
-		final Session mysession = session;
+		
 		this.running = true;
 		this.thread = new Thread(() -> {
 			while (running) {
@@ -97,18 +100,9 @@ public class ChatRoomServerEndpoint {
 
 							}
 							mysession.getBasicRemote().sendText("加好友訊息"+"/"+map);
-//							System.out.println(Arrays.deepToString(list.toArray()));
-//							String data = Arrays.deepToString(list.toArray());
-//							String[] data1 = data.split(",");
-//							int a = Integer.valueOf(data1[0].replace("[", "").replace("]", ""));
-//							System.out.println(showIDfromUsername(a));
-//							mysession.getBasicRemote().sendText("加好友訊息"+"/"+a+"/"+showIDfromUsername(a) + "/");
-
 						} else {
 							mysession.getBasicRemote().sendText("你沒朋友"+"/");
 						}
-//						System.out.println(list.isEmpty());
-//						mysession.getBasicRemote().sendText(String.valueOf(list.get(1)));
 						thread.sleep(1000);
 					} catch (IOException | InterruptedException e) {
 						running = false;
@@ -120,6 +114,35 @@ public class ChatRoomServerEndpoint {
 			}
 		});
 		this.thread.start();
+//number 2 thread
+		this.runningnotice = true;
+		this.threadfriendnotice = new Thread(() -> {
+			while (runningnotice) {
+				if (mysession.isOpen()) {
+					EntityManager em = ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
+					String sql = "SELECT  f1.friend_list_friendid , m1.member_id FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "+usernumber+" and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1 and f1.friend_notify = 0";
+					List<Object[]> list = em.createNativeQuery(sql).getResultList();
+					if (list.size() !=0) {
+//						System.out.println(Arrays.deepToString(list.toArray()));
+						try {
+							mysession.getBasicRemote().sendText("測試"+"/"+Arrays.deepToString(list.toArray()));
+						} catch (IOException e) {
+							runningnotice = false;
+							e.printStackTrace();
+						}
+						try {
+							threadfriendnotice.sleep(1000);
+						} catch (InterruptedException e) {
+							runningnotice = false;
+							e.printStackTrace();
+						}
+					};
+					
+					}
+				}
+			
+		});
+		this.threadfriendnotice.start();
 	}
 
 	@OnMessage
