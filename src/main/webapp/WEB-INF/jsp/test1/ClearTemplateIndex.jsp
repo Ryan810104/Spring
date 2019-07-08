@@ -38,7 +38,6 @@
 	// 	}
 </script>
 
-
 </head>
 
 <body>
@@ -342,8 +341,8 @@
 					error : function(ajaxres) {
 						alert("資料新增失敗");
 					}
-				})
-			})
+				});
+			});
 		</script>
 
 		<script>
@@ -368,8 +367,8 @@
 							error : function(data) {
 								alert("資料搜尋失敗");
 							}
-						})
-					})
+						});
+					});
 		</script>
 
 

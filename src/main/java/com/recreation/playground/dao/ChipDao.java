@@ -36,4 +36,8 @@ public interface ChipDao extends JpaRepository<Chip, Integer>,JpaSpecificationEx
 	
 	@Query(value="select chip_type,rate from wincalculate order by rate desc",nativeQuery = true)
 	List<Object>findTheGameWinRate();
+	
+	@Query(value="select chip_member_num,summary from summary1 where chip_member_num = ?1",nativeQuery = true)
+	public Object findPlayerSummary(Integer chipMemberNum);
+	
 }

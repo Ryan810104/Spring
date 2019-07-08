@@ -12,7 +12,7 @@ public interface CustomerMessageBoardDao extends JpaRepository<CustomerMessageBo
 	
 	public List<CustomerMessageBoardBean> findTop1ByCustomermessageboardArticleFloorOrderByCustomermessageboardResponseFloorDesc(int floor);
 	
-	public List<CustomerMessageBoardBean> findByCustomermessageboardResponseFloorEquals(int i);
-	
-	public List<CustomerMessageBoardBean> findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorGreaterThan(int i , int j);
+	public List<CustomerMessageBoardBean> findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEquals(int i, int j , int k);
+		
+	public List<CustomerMessageBoardBean> findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorGreaterThanOrderByCustomermessageboardResponseFloorDesc(int i , int j);
 }

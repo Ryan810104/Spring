@@ -596,7 +596,7 @@
 
 						for (var i = 0; i < data.length; i++) {
 							sta.push(data[i][0]);
-							stb.push(data[i][1]);
+							stb.push(data[i][1]).toFixed(2);
 // 							sat.push(data[i][2]);
 						}
 // 						$("#id").append(str);

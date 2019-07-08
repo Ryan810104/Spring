@@ -19,6 +19,9 @@
 	crossorigin="anonymous">
 
 
+
+
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -52,6 +55,18 @@
 	border-color: #999;
 	background: #fff;
 }
+
+
+
+/* 顯示金錢欄位的CSS */
+.card-detail-badge {      
+        background: #f2d900;
+        text-align: center;
+        border-radius: 30px 30px 30px 30px;
+        color: #000;
+        padding: 5px 10px;
+        font-size: 14px;        
+    }
 </style>
 
 
@@ -74,7 +89,10 @@
 		</form>
 	</nav>
 	<!-- search end-->
-
+<div class="col-md-2">
+	
+	<div id="QQ" class="card-detail-badge"></div>
+</div>
 
 	<div class="table-responsive-xl">
 		<form action="" id="form1">
@@ -92,7 +110,7 @@
 	</div>
 	<div class="table-responsive-xl">
 		<form action="" id="form1">
-			<div id="id1" ></div>
+			<div id="id1"></div>
 		</form>
 	</div>
 
@@ -139,6 +157,24 @@
 		});
 	</script>
 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			setInterval(function() {
+				$.ajax({
+
+					url : "/admin/memberBeans/playersummarymoney?chipMemberNum="+${sessionScope.member.memberNum},
+					type : "POST",
+					success : function(data) {
+							$("#QQ").html("餘額:"+"$"+data[1]);
+					}
+
+				});
+
+			}, 3000); 
+
+		});
+	</script>
+
 
 
 
@@ -148,11 +184,12 @@
 
 
 	<script type="text/javascript">
-		
 		var str = new Array();
 		var sti = new Array();
 		var json = {};
 		$(document).ready(function() {
+			
+	
 
 			$.ajax({
 
@@ -166,10 +203,9 @@
 					}
 					$("#id").append(str);
 					$("#id1").append(sti);
-					alert(str);
-					alert(sti);
-				
-					
+// 					alert(str);
+// 					alert(sti);
+
 					var chart = {
 						type : "column"
 					};
@@ -194,19 +230,15 @@
 					json.xAxis = xAxis;
 					json.yAxis = yAxis;
 					json.series = series;
-					
-					
+
 					$("#dd").highcharts(json);
 					// 					};
 
 				}
 
 			});
-
-			
-
-		});
 		
+		});
 	</script>
 
 
@@ -235,6 +267,7 @@
 	<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 	<script src="/resources/highcharts/code/modules/drilldown.js"></script>
 
+	
 
 
 </body>

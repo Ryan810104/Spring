@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +48,24 @@ public class FriendListController {
 		friendlistservice.save(friendlist);
 		return "/main/friend/FriendIndex";
 	}
+	@ResponseBody
+	@RequestMapping("/addnRead")
+	@Transactional
+	public void addnRead (Integer memberid, Integer friendid, Integer listnum){
+		System.out.println(memberid);
+		System.out.println(friendid);
+		System.out.println(listnum);
+		FriendList add = new FriendList();
+		add.setFriendlistmemberid(memberid);
+		add.setFriendlistfriendid(friendid);
+		add.setFriendidisread(true);
+		friendlistservice.save(add);
+		FriendList list = em.find(FriendList.class, listnum);
+		list.setFriendidisread(true);
+		em.persist(list);
+	}
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	@ResponseBody
@@ -57,6 +76,7 @@ public class FriendListController {
 				.getResultList();
 	}
 	
+
 	@SuppressWarnings("unchecked")
 	@RequestMapping("/getreceiversid")
 	@ResponseBody

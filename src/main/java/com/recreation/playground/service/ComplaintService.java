@@ -10,18 +10,21 @@ import com.recreation.playground.dao.ComplaintDao;
 import com.recreation.playground.entity.Complaint;
 
 @Service
+@Transactional(readOnly = true)
 public class ComplaintService {
 
 	@Autowired
 	private ComplaintDao dao;
 
-	@Transactional(readOnly = true)
 	
-	public void update(Complaint cp) {
-		if (cp.getComplaintNum() != null ) {
-			dao.save(cp);
-		}
-	}
+	
+//	public void update(Complaint cp) {
+//		if (cp.getComplaintNum() != null ) {
+//			System.out.println("aa");
+//			dao.save(cp);
+//			System.out.println("bb");
+//		}
+//	}
 
 	public List<Complaint> chooseUndealEventGame() {
 		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(1, 0);
@@ -39,10 +42,10 @@ public class ComplaintService {
 	
 	
 
-	public void delete(Complaint cp) {
-		if (cp.getComplaintNum() != null) {
-			dao.delete(cp);
-		}
-	}
+//	public void delete(Complaint cp) {
+//		if (cp.getComplaintNum() != null) {
+//			dao.delete(cp);
+//		}
+//	}
 
 }

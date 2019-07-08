@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
+
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -15,7 +15,7 @@ table {
 	margin-bottom: 30px;
 }
 </style>
-
+<jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
 </head>
 <script>
 	$.ajax({
@@ -27,16 +27,17 @@ table {
 	});
 	function showByGame(data) {
 		//alert(data);
-		var opt = "";
-		for (i in data) {
-			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-					+ data[i]["memberId"] + "</td>" + "<td>"
-					+ data[i]["complaintMessage"] + "</td>" + "<td>"
-					+ data[i]["complaintMessagetime"] + "</td><tr>";
-
-		}
-		//alert(opt);
-		$("#showByGame").append(opt);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+						+ data[i]["complaintMessagetime"] + "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByGame").append(opt);
+		}, 4);	
 	}
 
 	$.ajax({
@@ -48,16 +49,17 @@ table {
 	});
 	function showByWeb(data) {
 		//alert(data);
+		setTimeout(() => {
 		var opt = "";
-		for (i in data) {
+		for (i in data) {	
 			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
 					+ data[i]["memberId"] + "</td>" + "<td>"
 					+ data[i]["complaintMessage"] + "</td>" + "<td>"
 					+ data[i]["complaintMessagetime"] + "</td><tr>";
-
 		}
 		//alert(opt);
 		$("#showByWeb").append(opt);
+		}, 4);
 	}
 
 	$.ajax({
@@ -69,42 +71,26 @@ table {
 	});
 	function showByPay(data) {
 		//alert(data);
-		var opt = "";
-		for (i in data) {
-			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-					+ data[i]["memberId"] + "</td>" + "<td>"
-					+ data[i]["complaintMessage"] + "</td>" + "<td>"
-					+ data[i]["complaintMessagetime"] + "</td><tr>";
-
-		}
-		//alert(opt);
-		$("#showByPay").append(opt);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+						+ data[i]["complaintMessagetime"] + "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByPay").append(opt);
+			}, 4);	
 	}
+	
+	
 </script>
 <body>
-<c:choose>
-		<c:when test="${responseComplaint==1}">
-			<script>
-				alert("回覆成功");
-			</script>
-		</c:when>
-	</c:choose>
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 	<article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-			crossorigin="anonymous"></script>
-
 
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -174,7 +160,7 @@ table {
 						<table>
 							<thead style="font-size: 120%">
 								<tr>
-									<th>投訴編號</th>
+									<th>編號</th>
 									<th>會員ID</th>
 									<th>投訴內容</th>
 									<th>投訴時間</th>
@@ -195,35 +181,36 @@ table {
 				method="POST" class="">
 				<div class="row">
 					<div class="col-md-1 mb-2">
-						<label style="font-size: 120%" for="complaintNum">編號</label> <input type="text"
-							style="font-size: 120%" class="form-control" id="complaintNum" name="complaintNum">
+						<label style="font-size: 120%" for="complaintNum">編號</label> <input
+							type="text" style="font-size: 120%" class="form-control"
+							id="complaintNum" name="complaintNum">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6 mb-2">
 						<label style="font-size: 120%" for="complaintResponse">回覆</label>
-						<textarea style="font-size: 120%" class="form-control" id="complaintResponse"
-							name="complaintResponse" rows="3"></textarea>
+						<textarea style="font-size: 120%" class="form-control"
+							id="complaintResponse" name="complaintResponse" rows="3"></textarea>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-2 mb-2" style="display: none">
-						<h4 class="mb-3">狀態</h4>
-						<div class="custom-control custom-radio">
-							<input id="RcomplaintStatus0" name="complaintStatus" type="radio"
-								class="custom-control-input" value="0"> <label
-								for="RcomplaintStatus0" class="custom-control-label">未處理</label>
-						</div>
-						<div class="custom-control custom-radio">
-							<input id="RcomplaintStatus1" name="complaintStatus" type="radio"
-								class="custom-control-input" value="1" checked> <label
-								for="RcomplaintStatus1" class="custom-control-label">已處理</label>
-						</div>
-					</div>
-				</div>
+				<!-- 				<div class="row"> -->
+				<!-- 					<div class="col-md-2 mb-2" style="display: none"> -->
+				<!-- 						<h4 class="mb-3">狀態</h4> -->
+				<!-- 						<div class="custom-control custom-radio"> -->
+				<!-- 							<input id="RcomplaintStatus0" name="complaintStatus" type="radio" -->
+				<!-- 								class="custom-control-input" value="0"> <label -->
+				<!-- 								for="RcomplaintStatus0" class="custom-control-label">未處理</label> -->
+				<!-- 						</div> -->
+				<!-- 						<div class="custom-control custom-radio"> -->
+				<!-- 							<input id="RcomplaintStatus1" name="complaintStatus" type="radio" -->
+				<!-- 								class="custom-control-input" value="1" checked> <label -->
+				<!-- 								for="RcomplaintStatus1" class="custom-control-label">已處理</label> -->
+				<!-- 						</div> -->
+				<!-- 					</div> -->
+				<!-- 				</div> -->
 				<div class="row">
 					<div class="col-md-6 mb-5">
-						<button type="submit" class="btn btn-outline-info"
+						<button type="button" class="btn btn-outline-info" id="sendout"
 							style="font-size: 150%; margin-left: 480px">送出</button>
 					</div>
 				</div>
@@ -234,4 +221,29 @@ table {
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 </body>
+<script>
+$("#sendout").click(function(){
+	response();
+});
+function response(){
+	  $.ajax({
+		  	url : "/main/complain/responseComplaint?complaintNum="+$("#complaintNum").val()+"&complaintResponse="+$("#complaintResponse").val(),
+			type : "GET", 
+			success : function(data) {
+				if(data==1){
+				alert("回覆成功");
+				}else{
+					alert("回覆失敗,先前已回覆");
+				}
+				window.location.reload();			
+				
+			},
+			error : function(data){
+				alert("回覆失敗,編號不存在");
+				window.location.reload();
+			}
+			});
+		};
+
+</script>
 </html>
