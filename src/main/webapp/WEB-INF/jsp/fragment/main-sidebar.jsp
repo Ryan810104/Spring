@@ -751,14 +751,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	//# sourceURL=pen.js
 </script> <script>
-	$(document).ready(function(){
-		setTimeout(function(){
-		if (!$('#friendcount').is(':empty')){
-			$("#friendcount").css("display","block");
-			} 
-		},300);	
-	});
-	
+
 	window.onscroll = function() {
 		scrollFunction()
 	};
