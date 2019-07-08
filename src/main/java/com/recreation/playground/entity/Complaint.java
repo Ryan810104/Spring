@@ -27,7 +27,7 @@ public class Complaint {
 	@Column
 	private String memberId ; 
 	@Column
-	private String complaintType ; 
+	private Integer complaintType ; 
 	@Column
 	private String complaintMessage ; 
 	@Column
@@ -35,7 +35,7 @@ public class Complaint {
 	private java.util.Date complaintMessagetime ;
 	@Column
 	private Integer complaintStatus ;
-	@Column(nullable=true)
+	@Column
 	private String complaintResponse ;
 
 }

@@ -6,6 +6,10 @@
 <html lang="en">
 
 <head>
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-client_id"
+	content="1068776495873-an2tmha807vsvcqc7f6gg7vpjcrlqerh.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <meta charset="UTF-8">
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
 <link href="/resources/css/CustomBeforeIndex.css" rel="stylesheet">
@@ -294,6 +298,20 @@
 	</section>
 
 	<script>
+		function onSignIn(googleUser) {
+			// Useful data for your client-side scripts:
+			var profile = googleUser.getBasicProfile();
+			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+			console.log('Full Name: ' + profile.getName());
+			console.log('Given Name: ' + profile.getGivenName());
+			console.log('Family Name: ' + profile.getFamilyName());
+			console.log("Image URL: " + profile.getImageUrl());
+			console.log("Email: " + profile.getEmail());
+
+			// The ID token you need to pass to your backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log("ID Token: " + id_token);
+		}
 		function chkId() {
 			let theId = document.getElementById("memberRId").value;
 			let theIdLen = theId.length;
@@ -501,7 +519,8 @@
 						<div class="mb-3">
 
 							<label for="memberNickName">暱稱<span class="text-muted">(非必要)須為2-8個中文字</span></label>
-							<input type="text" class="form-control" id="memberNickName" name="memberNickName"> <span id="nnsp"
+							<input type="text" class="form-control" id="memberNickName"
+								name="memberNickName"> <span id="nnsp"
 								style="color: red">${ErrorMsg.memberNickName}</span>
 
 						</div>
@@ -570,7 +589,10 @@
 							<div class="fb-login-button" data-width="" data-size="large"
 								data-button-type="login_with" data-auto-logout-link="true"
 								data-use-continue-as="true"></div>
+							
 						</div>
+						<div class="g-signin2" data-onsuccess="onSignIn"
+								data-theme="dark"></div>
 						<p style="color: red">${ErrorMsg.loginError}</p>
 					</form>
 				</div>

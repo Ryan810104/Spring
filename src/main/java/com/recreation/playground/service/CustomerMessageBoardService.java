@@ -24,7 +24,7 @@ public class CustomerMessageBoardService {
 	
 	public List<CustomerMessageBoardBean> searchall() {
 //		System.out.println(dao.findAll());
-		return dao.findByCustomermessageboardResponseFloorEquals(0);
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEquals(1,3,0);
 	}
 	
 	public List<CustomerMessageBoardBean> searchthelastofmessage(){
@@ -37,9 +37,12 @@ public class CustomerMessageBoardService {
 	}
 	
 	public List<CustomerMessageBoardBean> searchthecomment(int articlefloor){
-		return dao.findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorGreaterThan(articlefloor, 0);
+		return dao.findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorGreaterThanOrderByCustomermessageboardResponseFloorDesc(articlefloor, 0);
 	}
 
+	public List<CustomerMessageBoardBean> searchcontinue(int i , int j ){
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEquals(i, j, 0) ;
+	}
 	
 }
 

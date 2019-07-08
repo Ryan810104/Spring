@@ -8,7 +8,6 @@ import com.recreation.playground.entity.Complaint;
 
 public interface ComplaintDao extends JpaRepository<Complaint, Integer>{
 	
-	public List<Complaint> findTop10ByComplaintStatusOrderByComplaintNumDesc(int status);
-
+	public List<Complaint> findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(int type,int status);
 
 }

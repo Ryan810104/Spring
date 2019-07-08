@@ -143,6 +143,13 @@ public class MemberController {
 		return service.finById(member.getMemberId());
 	}
 
+	
+	@ResponseBody
+	@RequestMapping("/findBymemberEmail")
+	public Member findBymemberEmail(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
+		System.out.println(member);
+		return service.findBymemberEmail(member.getMemberEmail());
+	}
 	//測試同時將兌換遊戲幣的資料insert到Moneyrecord&chip兩個table
 
 	
