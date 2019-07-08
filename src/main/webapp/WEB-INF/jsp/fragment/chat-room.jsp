@@ -403,7 +403,13 @@ $(document).ready(function(){
 		text +="</li>"
 	}
 	$("#whoaddme").html(text);
-	$("#friendcount").html(list.length);
+	if (list.length !=0){
+		$("#friendcount").css("display","block");
+		$("#friendcount").html(list.length);
+	} else {
+		$("#friendcount").css("display","none");
+	}
+	
 	}
 	$("#search_friend").click(function() {
 		var myfriends = "";

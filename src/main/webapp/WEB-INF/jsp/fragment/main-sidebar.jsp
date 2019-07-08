@@ -90,7 +90,7 @@
 		<ul class="dots drop-down-menu" style="display: flex;">
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-user"><mark
-							class="pink tada" id="friendcount">0</mark></span>
+							class="pink tada" id="friendcount" style="display:none"></mark></span>
 					<ul class="dropdown-menu dropdownmenuCSSoverride" id="whoaddme">
 <!-- 						<li> -->
 <!-- 						<a href="#"> -->
@@ -751,6 +751,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	//# sourceURL=pen.js
 </script> <script>
+
 	window.onscroll = function() {
 		scrollFunction()
 	};
