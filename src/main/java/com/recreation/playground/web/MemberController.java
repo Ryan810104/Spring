@@ -402,6 +402,31 @@ public class MemberController {
 		return "/main/setting/SettingIndex";
 	}
 
+	@RequestMapping("/googlelogin")
+	public String googlelogin(String memberId,String memberEmail,String memberPhotoUrl,HttpSession session) {
+		String returnResult="redirect:/main/index";
+		if(service.findById(memberId)) {
+			session.setAttribute("UID", memberId);
+			session.setAttribute("member", service.finById(memberId));
+		}else {
+			registerGoogle(memberId,memberEmail,memberPhotoUrl,session);
+		}
+		
+		
+		return returnResult;
+	}
+	
+	@RequestMapping("/registergoogle")
+	public String registerGoogle(String memberId,String memberEmail,String memberPhotoUrl,HttpSession session) {
+		service.registerGoogle(memberId, memberEmail, memberPhotoUrl);
+		session.setAttribute("UID", memberId);
+		session.setAttribute("member", service.finById(memberId));
+		return "redirect:/main/index";
+		
+	}
+	
+	
+	
 	@RequestMapping("/registerForm")
 
 	public String register(@Valid @ModelAttribute("registerForm") Member member, BindingResult result, Model model) {

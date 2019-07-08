@@ -48,6 +48,13 @@ public class MemberService {
 		return "okSignup";
 	}
 
+	public void registerGoogle(String memberId,String memberEmail,String memebrPhotoUrl) {
+		Member member=new Member();
+		member.setMemberId(memberId);
+		member.setMemberEmail(memberEmail);
+		member.setMemberPhotoURL(memebrPhotoUrl);
+		dao.save(member);
+	}
 	public String login(String memberId, String memberPwd) {
 		String result = "false";
 		Member beans = dao.findByMemberId(memberId);// 查詢資料庫有無此帳戶
