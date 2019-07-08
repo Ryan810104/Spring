@@ -386,7 +386,12 @@ public class MemberController {
 			public List<Object>winrate(){
 				return chipDao.findTheGameWinRate();
 			}
-
+			//抓玩家總金額即時更新
+			@RequestMapping("/playersummarymoney")
+			@ResponseBody
+			public Object findPlayerSummary(Integer chipMemberNum) {
+				return chipDao.findPlayerSummary(chipMemberNum);
+			}
 
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {

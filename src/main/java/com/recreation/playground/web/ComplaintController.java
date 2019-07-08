@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class ComplaintController {
 	@Autowired
 	private ComplaintService service;
 
+	@PersistenceContext
+	EntityManager em;
+
 	@RequestMapping("/insertComplaint")
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model) {
 
@@ -35,40 +39,42 @@ public class ComplaintController {
 		return "/main/Index";
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/query1")
 	public List<Complaint> complainListGame() {
-		return service.chooseUndealEventGame();	
+		return service.chooseUndealEventGame();
 	}
+
 	@ResponseBody
 	@RequestMapping("/query2")
 	public List<Complaint> complainListWeb() {
-		return service.chooseUndealEventWeb();	
+		return service.chooseUndealEventWeb();
 	}
+
 	@ResponseBody
 	@RequestMapping("/query3")
 	public List<Complaint> complainListPay() {
-		return service.chooseUndealEventPay();	
+		return service.chooseUndealEventPay();
 	}
-		
 
+	@Transactional
+	@ResponseBody
 	@RequestMapping("/responseComplaint")
-	public String update(@Valid @ModelAttribute("formCR") Complaint cp, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			return "/main/complain/complainDeal";
-		}	
-		service.update(cp);
-		model.addAttribute("responseComplaint", "1");
-		return "/main/complain/complainDeal";
+	public String update(Integer complaintNum, String complaintResponse, Model model) {
+//		if (result.hasErrors()) {
+//			return "/main/complain/complainDeal";
+//		}
+		Complaint cpp = em.find(Complaint.class, complaintNum);
+//		System.out.println(cpp.toString());
+		if (cpp.getComplaintStatus() != 1) {
+			cpp.setComplaintResponse(complaintResponse);
+			cpp.setComplaintStatus(1);
+//		System.out.println(cpp.toString());
+			em.persist(cpp);
+//		service.update(cpp);	
+		}
+		return "/main/complain/complainDeal";	
 	}
-	
-	
-	
-	
-
-
-	
-	
 
 }

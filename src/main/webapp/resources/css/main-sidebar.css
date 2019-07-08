@@ -9,7 +9,9 @@
     border-radius: 1.25rem;
 	
 }
-
+.size-adjust{
+	width:90%;
+}
 .listhr{
 margin:0px;
 padding:0px;	

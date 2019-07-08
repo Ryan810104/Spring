@@ -62,11 +62,11 @@ create view summary
   from chip 
   group by chip_member_num,chip_type;
   
-  IF Object_ID('dbo.summary1') IS NOT NULL
+ IF Object_ID('dbo.summary1') IS NOT NULL
     DROP VIEW dbo.summary1;
   create view summary1 
   as 
-  select chip_member_num,sum(chip_balanced) as summary 
+  select chip_member_num,FORMAT(sum(chip_balanced), 'N0') as summary 
   from chip 
   group by chip_member_num;
   
@@ -97,15 +97,12 @@ create view summary
   as
   select chip_nick_name,sum(win) as totalwin from chip group by chip_nick_name;
   
-  
-  IF Object_ID('dbo.wincalculate') IS NOT NULL
+   IF Object_ID('dbo.wincalculate') IS NOT NULL
     DROP VIEW dbo.wincalculate;
     
     create view wincalculate 
   as
-  select chip_type,sum(win) as totalwin,sum(play_round) as totalround,sum(win)/sum(play_round) as rate from chip group by chip_type;
-  
- 
+  select chip_type,sum(win) as totalwin,sum(play_round) as totalround,convert(numeric(3,2),sum(win)/sum(play_round)) as rate from chip group by chip_type;
   
 
  INSERT INTO vip_level values
