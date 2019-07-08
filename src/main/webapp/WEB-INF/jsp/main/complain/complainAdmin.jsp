@@ -18,6 +18,10 @@ table {
 form{
 	margin-left:40px;
 }
+td{
+	border-right:1px solid;
+	padding:6px;
+}
 </style>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
 </head>
