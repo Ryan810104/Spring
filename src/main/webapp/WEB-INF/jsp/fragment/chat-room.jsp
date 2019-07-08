@@ -328,15 +328,17 @@ $(document).ready(function(){
 			var users = event.data.replace("用戶上線列表"	,"");
 			userlist = users;
 			$("#search_friend").click();
-			console.log(event.data);
+// 			console.log(event.data);
 		} else if (event.data.startsWith("加好友訊息")){
-			console.log(event.data);
+// 			console.log(event.data);
  			var whoaddme = event.data.replace("加好友訊息/","");
 			showwhoaddme(whoaddme);
 
 		}else if (event.data.startsWith("你沒朋友")){
 			$("#friendcount").css("display","none");
 			$("#whoaddme").html("你沒有好友邀請唷");
+		} else if (event.data.startsWith("測試")){
+			console.log(event.data);
 		};
 	
 };
@@ -403,7 +405,7 @@ $(document).ready(function(){
 	var list = data.replace("{",",").replace("}","").replace("[","").replace("[","").split("]");
 	for (var i = 0 ; i < list.length -1 ; i++){
 		var number = list[i].replace("[","").replace("=",",").split(",");
-		console.log (number);
+// 		console.log (number);
 		// number[1] = 好友表格流水號
 		// number[2] = 誰加你好友 (id)
 		// number[3] = 誰加你好友 (username)
@@ -428,19 +430,31 @@ $(document).ready(function(){
 	// friendnum = 加你的好友number
 	// 
 	function readnaccept(listnum,friendnum){
-		alert(listnum);
-		alert('${sessionScope.member.memberNum}');
+// 		alert(listnum);
+// 		alert('${sessionScope.member.memberNum}');
 		$.ajax({
 			url : "/friend/list/addnRead?memberid="+'${sessionScope.member.memberNum}'+"&friendid="+friendnum+"&listnum="+listnum,
 			type: "GET",
 			success : function(data){
-				alert("ss");
+// 				alert("ss");
 			},
 			error : function(data){
-				alert("aaa");
+				alert("errrrrrooooorrrrrrrrrrr");
 			},
 		})
 	}
+	function readndecline(listnum,friendnum){
+		$.ajax({
+			url : "/friend/list/naddnRead?memberid="+'${sessionScope.member.memberNum}'+"&friendid="+friendnum+"&listnum="+listnum,
+			type: "GET",
+			success : function(data){
+// 				alert("ss");
+			},
+			error : function(data){
+				alert("errrrrrooooorrrrrrrrrrr");
+			},
+		})
+	};
 	$("#search_friend").click(function() {
 		var myfriends = "";
 		var list = userlist.replace("[","").replace("]","").split(",");

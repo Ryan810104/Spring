@@ -298,19 +298,57 @@
 	</section>
 
 	<script>
+		window.onbeforeunload = function(e) {
+			gapi.auth2.getAuthInstance().signOut();
+		};
+		function signOut() {
+			var auth2 = gapi.auth2.getAuthInstance();
+			auth2.signOut().then(function() {
+				console.log('User signed out.');
+			});
+		}
+		var memberEmail = "";
+		var memberId = "";
+		var memberPhotoUrl = "";
 		function onSignIn(googleUser) {
 			// Useful data for your client-side scripts:
 			var profile = googleUser.getBasicProfile();
+			//      $("#memberEmail").val(profile.getEmail());
 			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
 			console.log('Full Name: ' + profile.getName());
 			console.log('Given Name: ' + profile.getGivenName());
 			console.log('Family Name: ' + profile.getFamilyName());
 			console.log("Image URL: " + profile.getImageUrl());
 			console.log("Email: " + profile.getEmail());
-
+			memberEmail = profile.getEmail();
+			memberId = profile.getId();
+			memberPhotoUrl = profile.getImageUrl();
+			googleLogin(memberEmail);
 			// The ID token you need to pass to your backend:
 			var id_token = googleUser.getAuthResponse().id_token;
 			console.log("ID Token: " + id_token);
+		};
+		$("#logout").click(function() {
+			googleLogout();
+		});
+		function googleLogout() {
+			var auth2 = gapi.auth2.getAuthInstance();
+			auth2.signOut().then(function() {
+			});
+			auth2.disconnect();
+		}
+		function googleLogin(email) {
+
+			$.ajax({
+				url : "/admin/memberBeans/googlelogin",
+				data : {
+					memberId : memberId,
+					memberEmail : memberEmail,
+					memberPhotoUrl : memberPhotoUrl,
+				},
+				type : "POST",
+
+			})
 		}
 		function chkId() {
 			let theId = document.getElementById("memberRId").value;
@@ -585,14 +623,13 @@
 						<hr>
 						<button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
 						<hr>
-						<div id="fb-root">
-							<div class="fb-login-button" data-width="" data-size="large"
-								data-button-type="login_with" data-auto-logout-link="true"
-								data-use-continue-as="true"></div>
-							
-						</div>
-						<div class="g-signin2" data-onsuccess="onSignIn"
-								data-theme="dark"></div>
+<!-- 						<div id="fb-root"> -->
+<!-- 							<div class="fb-login-button" data-width="" data-size="large" -->
+<!-- 								data-button-type="login_with" data-auto-logout-link="true" -->
+<!-- 								data-use-continue-as="true"></div> -->
+
+<!-- 						</div> -->
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark" id="signin"></div>
 						<p style="color: red">${ErrorMsg.loginError}</p>
 					</form>
 				</div>

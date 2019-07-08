@@ -27,4 +27,9 @@ public class FriendList {
 	
 	@Column(name="friendIdIsRead", columnDefinition = "bit default 0")
 	private boolean friendidisread;
+	
+	@Column(name="friendNotify")
+	private Integer friendnotify;
+	
+	
 }

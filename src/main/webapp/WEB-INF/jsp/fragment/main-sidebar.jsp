@@ -113,11 +113,12 @@
 <!-- 						<hr class="listhr"> -->
 						
 					</ul>
-			</a></li>
+			</a>
+			</li>
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-envelope"><mark
 							class="pink tada">13</mark></span>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu dropdownmenuCSSoverridenotify" id="notifystatus">
 						<li><a href="#">jmeter</a></li>
 						<li><a href="#">EJB123</a></li>
 					</ul>
