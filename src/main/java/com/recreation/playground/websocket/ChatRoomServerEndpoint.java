@@ -85,11 +85,16 @@ public class ChatRoomServerEndpoint {
 						FriendListDao friendlistdao =  ApplicationContextRegister.getApplicationContext().getBean(FriendListDao.class);
 						List<Object> list = friendlistdao.findCurrentIdunRead(usernumber);
 						if (list.size() !=0) {
-							Map<Integer,String> map = new HashMap<>();
+							Map<Integer,List<String>> map = new HashMap<>();
 							for (int i = 0 ; i < list.size() ; i++) {
+								List<String> friendinfo = new ArrayList<>();
 								Object[] tempObj = (Object[]) list.get(i);
 								int membernum =  (int) tempObj[0];
-								map.put(membernum, showIDfromUsername(membernum));
+								int memberlist = (int) tempObj[2];
+								friendinfo.add(String.valueOf(membernum));
+								friendinfo.add(showIDfromUsername(membernum));
+								map.put(memberlist, friendinfo);
+
 							}
 							mysession.getBasicRemote().sendText("加好友訊息"+"/"+map);
 //							System.out.println(Arrays.deepToString(list.toArray()));
@@ -99,10 +104,12 @@ public class ChatRoomServerEndpoint {
 //							System.out.println(showIDfromUsername(a));
 //							mysession.getBasicRemote().sendText("加好友訊息"+"/"+a+"/"+showIDfromUsername(a) + "/");
 
+						} else {
+							mysession.getBasicRemote().sendText("你沒朋友"+"/");
 						}
 //						System.out.println(list.isEmpty());
 //						mysession.getBasicRemote().sendText(String.valueOf(list.get(1)));
-						thread.sleep(3000);
+						thread.sleep(1000);
 					} catch (IOException | InterruptedException e) {
 						running = false;
 						e.printStackTrace();

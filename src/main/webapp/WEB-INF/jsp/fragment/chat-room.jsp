@@ -330,11 +330,14 @@ $(document).ready(function(){
 			$("#search_friend").click();
 			console.log(event.data);
 		} else if (event.data.startsWith("加好友訊息")){
- 			var whoaddme = event.data.replace("加好友訊息","");
-			whoaddmedata = whoaddme.split("/");
-			showwhoaddme(whoaddmedata[1]);
+			console.log(event.data);
+ 			var whoaddme = event.data.replace("加好友訊息/","");
+			showwhoaddme(whoaddme);
 
-	};
+		}else if (event.data.startsWith("你沒朋友")){
+			$("#friendcount").css("display","none");
+			$("#whoaddme").html("你沒有好友邀請唷");
+		};
 	
 };
 });
@@ -387,17 +390,30 @@ $(document).ready(function(){
 
 	//     })
 	function showwhoaddme(data){
-
+// {1=[3, admin], 2=[4, admin2], 3=[1, abcdefgh]}
+//  1=3, admin], 2=4, admin2], 3=1, abcdefgh]
+// 1	=	3, admin, 2 = 4, admin2, 3 = 1, abcdefgh
+// 1,3, admin,  2,4, admin2,  3,1, abcdefgh
 // data = {1=abcdefgh, 3=admin, 4=admin2}
+//,1=3, admin,, 2=[4, admin2,, 3=[1, abcdefgh,
+// ,1,3, admin,, 2,4, admin2,, 3,1, abcdefgh,
+// 	VAR LIST1 = "," + LIST[0];
+// 		var finaldata = list[i].split("=");
 	var text = "";
-	var list = data.replace("{","").replace("}","").split(",");
-	for (var i = 0 ; i < list.length ; i++){
-		var finaldata = list[i].split("=");
+	var list = data.replace("{",",").replace("}","").replace("[","").replace("[","").split("]");
+	for (var i = 0 ; i < list.length -1 ; i++){
+		var number = list[i].replace("[","").replace("=",",").split(",");
+		console.log (number);
+		// number[1] = 好友表格流水號
+		// number[2] = 誰加你好友 (id)
+		// number[3] = 誰加你好友 (username)
 		text += "<li>"
 		text +="<a href=\"#\">"
 		text +=	"<div class=\"col-sm-12 size-adjust\">"
-		text +=	"<a  style=\"color:red ; font-size:14px;\">"+finaldata[1]+"</a>"
+		text +=	"<a  style=\"color:red ; font-size:14px;\">"+number[3]+"</a>"
 		text +=	"<a  style=\" font-size:14px;\">向你發出好友邀請</a>"
+		text += "<input type=\"button\" class=\"btn btn-danger\" value=\"Decline\" onclick=\"readndecline("+number[1]+","+number[2]+")\" style=\"float: right;\">"
+		text += "<input type=\"button\" class=\"btn btn-success\" value=\"Accept\" onclick=\"readnaccept("+number[1]+","+number[2]+")\" style=\"float: right;\">"
 		text +=	"</div>"
 		text +="</a>"
 		text +="</li>"
@@ -405,11 +421,25 @@ $(document).ready(function(){
 	$("#whoaddme").html(text);
 	if (list.length !=0){
 		$("#friendcount").css("display","block");
-		$("#friendcount").html(list.length);
-	} else {
-		$("#friendcount").css("display","none");
+		$("#friendcount").html(list.length -1 );
+	} ;
 	}
-	
+	// listnum = 好友列表的流水號
+	// friendnum = 加你的好友number
+	// 
+	function readnaccept(listnum,friendnum){
+		alert(listnum);
+		alert('${sessionScope.member.memberNum}');
+		$.ajax({
+			url : "/friend/list/addnRead?memberid="+'${sessionScope.member.memberNum}'+"&friendid="+friendnum+"&listnum="+listnum,
+			type: "GET",
+			success : function(data){
+				alert("ss");
+			},
+			error : function(data){
+				alert("aaa");
+			},
+		})
 	}
 	$("#search_friend").click(function() {
 		var myfriends = "";

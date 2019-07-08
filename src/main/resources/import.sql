@@ -62,11 +62,11 @@ create view summary
   from chip 
   group by chip_member_num,chip_type;
   
-  IF Object_ID('dbo.summary1') IS NOT NULL
+ IF Object_ID('dbo.summary1') IS NOT NULL
     DROP VIEW dbo.summary1;
   create view summary1 
   as 
-  select chip_member_num,sum(chip_balanced) as summary 
+  select chip_member_num,FORMAT(sum(chip_balanced), 'N0') as summary 
   from chip 
   group by chip_member_num;
   
@@ -97,15 +97,12 @@ create view summary
   as
   select chip_nick_name,sum(win) as totalwin from chip group by chip_nick_name;
   
-  
-  IF Object_ID('dbo.wincalculate') IS NOT NULL
+   IF Object_ID('dbo.wincalculate') IS NOT NULL
     DROP VIEW dbo.wincalculate;
     
     create view wincalculate 
   as
-  select chip_type,sum(win) as totalwin,sum(play_round) as totalround,sum(win)/sum(play_round) as rate from chip group by chip_type;
-  
- 
+  select chip_type,sum(win) as totalwin,sum(play_round) as totalround,convert(numeric(3,2),sum(win)/sum(play_round)) as rate from chip group by chip_type;
   
 
  INSERT INTO vip_level values
@@ -124,11 +121,11 @@ insert into member(member_id,member_password,member_permission,member_email,memb
 
 
 
-insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (1,'user','測試1',getdate(),0,1,'測試內容1');
-insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (2,'user','測試2',getdate(),0,1,'測試內容2');
-insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (3,'user','測試3',getdate(),0,1,'測試內容3');
-insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (4,'user','測試4',getdate(),0,1,'測試內容4');
-insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title) values (5,'user','測試5',getdate(),0,1,'測試內容5');
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (1,'user','測試1',getdate(),0,1,'測試內容1',2);
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (2,'user','測試2',getdate(),0,1,'測試內容2',2);
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (3,'user','測試3',getdate(),0,1,'測試內容3',2);
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (4,'user','測試4',getdate(),0,1,'測試內容4',2);
+insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (5,'user','測試5',getdate(),0,1,'測試內容5',2);
 
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('錢被吃還我錢',getdate(),null,0,3,'user1');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('網頁跳轉失敗',getdate(),null,0,2,'user2');
