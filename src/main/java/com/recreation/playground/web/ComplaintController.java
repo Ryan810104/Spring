@@ -45,17 +45,32 @@ public class ComplaintController {
 	public List<Complaint> complainListGame() {
 		return service.chooseUndealEventGame();
 	}
+	@ResponseBody
+	@RequestMapping("/query4")
+	public List<Complaint> complainListGameR() {
+		return service.chooseDealEventGame();
+	}
 
 	@ResponseBody
 	@RequestMapping("/query2")
 	public List<Complaint> complainListWeb() {
 		return service.chooseUndealEventWeb();
 	}
+	@ResponseBody
+	@RequestMapping("/query5")
+	public List<Complaint> complainListWebR() {
+		return service.chooseDealEventWeb();
+	}
 
 	@ResponseBody
 	@RequestMapping("/query3")
 	public List<Complaint> complainListPay() {
 		return service.chooseUndealEventPay();
+	}
+	@ResponseBody
+	@RequestMapping("/query6")
+	public List<Complaint> complainListPayR() {
+		return service.chooseDealEventPay();
 	}
 
 	@Transactional
@@ -67,16 +82,18 @@ public class ComplaintController {
 //		}
 		Complaint cpp = em.find(Complaint.class, complaintNum);
 //		System.out.println(cpp.toString());
-		if (cpp.getComplaintStatus() != 1 ) {
+//		if (cpp.getComplaintStatus() != 1 ) {
 			cpp.setComplaintResponse(complaintResponse);
 			cpp.setComplaintStatus(1);
+			java.util.Date date = new java.util.Date();
+			cpp.setComplaintResponsetime(date);
 //		System.out.println(cpp.toString());
 			em.persist(cpp);
 //		service.update(cpp);
 			return 1;
-		}else {
-			return 0;
-		}	
+//		}else {
+//			return 0;
+//		}	
 			
 	}
 

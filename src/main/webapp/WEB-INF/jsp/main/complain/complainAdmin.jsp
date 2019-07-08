@@ -12,7 +12,11 @@
 <style type="text/css">
 table {
 	margin-top: 20px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+	margin-left:60px;
+}
+form{
+	margin-left:40px;
 }
 </style>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
@@ -39,6 +43,27 @@ table {
 			$("#showByGame").append(opt);
 		}, 4);	
 	}
+	$.ajax({
+		url : "/main/complain/query4",
+		type : "POST",
+		success : function(data) {
+			showByGameR(data);
+		}
+	});
+	function showByGameR(data) {
+		//alert(data);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintResponse"] + "</td>" + "<td>"
+						+ data[i]["complaintResponsetime"] + "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByGameR").append(opt);
+		}, 4);	
+	}
 
 	$.ajax({
 		url : "/main/complain/query2",
@@ -61,6 +86,27 @@ table {
 		$("#showByWeb").append(opt);
 		}, 4);
 	}
+	$.ajax({
+		url : "/main/complain/query5",
+		type : "POST",
+		success : function(data) {
+			showByWebR(data);
+		}
+	});
+	function showByWebR(data) {
+		//alert(data);
+		setTimeout(() => {
+		var opt = "";
+		for (i in data) {	
+			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+					+ data[i]["memberId"] + "</td>" + "<td>"
+					+ data[i]["complaintResponse"] + "</td>" + "<td>"
+					+ data[i]["complaintResponsetime"] + "</td><tr>";
+		}
+		//alert(opt);
+		$("#showByWebR").append(opt);
+		}, 4);
+	}
 
 	$.ajax({
 		url : "/main/complain/query3",
@@ -81,6 +127,27 @@ table {
 			}
 			//alert(opt);
 			$("#showByPay").append(opt);
+			}, 4);	
+	}
+	$.ajax({
+		url : "/main/complain/query6",
+		type : "POST",
+		success : function(data) {
+			showByPayR(data);
+		}
+	});
+	function showByPayR(data) {
+		//alert(data);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintResponse"] + "</td>" + "<td>"
+						+ data[i]["complaintResponsetime"] + "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByPayR").append(opt);
 			}, 4);	
 	}
 	
@@ -114,8 +181,10 @@ table {
 
 				<div class="container">
 					<div class="row">
+
 						<table>
-							<thead style="font-size: 120%">
+							<thead style="font-size: 120%;color:#0066FF;">
+								<tr><th>未處理:</th></tr>
 								<tr>
 									<th>編號</th>
 									<th>會員ID</th>
@@ -127,17 +196,34 @@ table {
 							<tbody style="font-size: 120%" id="showByGame"></tbody>
 
 						</table>
-					</div>
+						
+						<table>
+							<thead style="font-size: 120%;color:#00AA55;">
+								<tr><th>已處理:</th></tr>
+								<tr>
+									<th>編號</th>
+									<th>會員ID</th>
+									<th>回覆內容</th>
+									<th>回覆時間</th>
+								</tr>
+							</thead>
 
+							<tbody style="font-size: 120%" id="showByGameR"></tbody>
+
+						</table>
+					</div>
+					<hr>
 				</div>
 			</div>
-
+			
+			
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
 				aria-labelledby="nav-profile-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
 						<table>
-							<thead style="font-size: 120%">
+							<thead style="font-size: 120%;color:#0066FF;">
+								<tr><th>未處理:</th></tr>
 								<tr>
 									<th>編號</th>
 									<th>會員ID</th>
@@ -149,16 +235,33 @@ table {
 							<tbody style="font-size: 120%" id="showByWeb"></tbody>
 
 						</table>
+						<table>
+							<thead style="font-size: 120%;color:#00AA55;">
+								<tr><th>已處理:</th></tr>
+								<tr>
+									<th>編號</th>
+									<th>會員ID</th>
+									<th>回覆內容</th>
+									<th>回覆時間</th>
+								</tr>
+							</thead>
+
+							<tbody style="font-size: 120%" id="showByWebR"></tbody>
+
+						</table>
 					</div>
+					<hr>
 				</div>
 			</div>
+			
 
 			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
 				aria-labelledby="nav-contact-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
 						<table>
-							<thead style="font-size: 120%">
+							<thead style="font-size: 120%;color:#0066FF;">
+								<tr><th>未處理:</th></tr>
 								<tr>
 									<th>編號</th>
 									<th>會員ID</th>
@@ -170,11 +273,27 @@ table {
 							<tbody style="font-size: 120%" id="showByPay"></tbody>
 
 						</table>
+						<table>
+							<thead style="font-size: 120%;color:#00AA55;">
+								<tr><th>已處理:</th></tr>
+								<tr>
+									<th>編號</th>
+									<th>會員ID</th>
+									<th>回覆內容</th>
+									<th>回覆時間</th>
+								</tr>
+							</thead>
+
+							<tbody style="font-size: 120%" id="showByPayR"></tbody>
+
+						</table>
 					</div>
+					<hr>
 				</div>
 			</div>
-
+			
 		</div>
+		
 
 		<div class="container">
 			<form action="/main/complain/responseComplaint" name="formCR"
@@ -211,7 +330,7 @@ table {
 				<div class="row">
 					<div class="col-md-6 mb-5">
 						<button type="button" class="btn btn-outline-info" id="sendout"
-							style="font-size: 150%; margin-left: 480px">送出</button>
+							style="font-size: 150%; margin-left: 460px">送出</button>
 					</div>
 				</div>
 			</form>
@@ -230,11 +349,12 @@ function response(){
 		  	url : "/main/complain/responseComplaint?complaintNum="+$("#complaintNum").val()+"&complaintResponse="+$("#complaintResponse").val(),
 			type : "GET", 
 			success : function(data) {
-				if(data==1){
+// 				if(data==1){
+// 				alert("回覆成功");
+// 				}else{
+// 					alert("回覆失敗,先前已回覆");
+// 				}
 				alert("回覆成功");
-				}else{
-					alert("回覆失敗,先前已回覆");
-				}
 				window.location.reload();			
 				
 			},

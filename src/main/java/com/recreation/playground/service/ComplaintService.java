@@ -29,11 +29,20 @@ public class ComplaintService {
 	public List<Complaint> chooseUndealEventGame() {
 		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(1, 0);
 	}
+	public List<Complaint> chooseDealEventGame() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(1, 1);
+	}
 	public List<Complaint> chooseUndealEventWeb() {
 		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(2, 0);
 	}
+	public List<Complaint> chooseDealEventWeb() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(2, 1);
+	}
 	public List<Complaint> chooseUndealEventPay() {
 		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(3, 0);
+	}
+	public List<Complaint> chooseDealEventPay() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(3, 1);
 	}
 
 	public void fileComplaints(Complaint cp) {
