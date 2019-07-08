@@ -75,7 +75,7 @@ public class FrontendSidebarController {
 //投訴箱
 	@RequestMapping("/complain")
 	public String toComplain(Model model) {
-		return"/main/complain/complainDeal";
+		return"/main/complain/complainIndex";
 	}
 
 	

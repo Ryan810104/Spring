@@ -61,20 +61,23 @@ public class ComplaintController {
 	@Transactional
 	@ResponseBody
 	@RequestMapping("/responseComplaint")
-	public String update(Integer complaintNum, String complaintResponse, Model model) {
+	public int update(Integer complaintNum, String complaintResponse, Model model) {
 //		if (result.hasErrors()) {
 //			return "/main/complain/complainDeal";
 //		}
 		Complaint cpp = em.find(Complaint.class, complaintNum);
 //		System.out.println(cpp.toString());
-		if (cpp.getComplaintStatus() != 1) {
+		if (cpp.getComplaintStatus() != 1 ) {
 			cpp.setComplaintResponse(complaintResponse);
 			cpp.setComplaintStatus(1);
 //		System.out.println(cpp.toString());
 			em.persist(cpp);
-//		service.update(cpp);	
-		}
-		return "/main/complain/complainDeal";	
+//		service.update(cpp);
+			return 1;
+		}else {
+			return 0;
+		}	
+			
 	}
 
 }

@@ -91,6 +91,7 @@ table {
 	<article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
+
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link active" id="nav-home-tab"
@@ -159,7 +160,7 @@ table {
 						<table>
 							<thead style="font-size: 120%">
 								<tr>
-									<th>投訴編號</th>
+									<th>編號</th>
 									<th>會員ID</th>
 									<th>投訴內容</th>
 									<th>投訴時間</th>
@@ -229,12 +230,16 @@ function response(){
 		  	url : "/main/complain/responseComplaint?complaintNum="+$("#complaintNum").val()+"&complaintResponse="+$("#complaintResponse").val(),
 			type : "GET", 
 			success : function(data) {
+				if(data==1){
 				alert("回覆成功");
+				}else{
+					alert("回覆失敗,先前已回覆");
+				}
 				window.location.reload();			
 				
 			},
 			error : function(data){
-				alert("回覆失敗");
+				alert("回覆失敗,編號不存在");
 				window.location.reload();
 			}
 			});
