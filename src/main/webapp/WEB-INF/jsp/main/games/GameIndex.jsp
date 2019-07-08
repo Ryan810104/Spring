@@ -25,9 +25,10 @@
 				<div class="card" style="height: 42rem">
 					<img src="/resources/img/game5.jpg" class="card-img-top" alt="...">
 					<div class="card-body">
-						<h5 class="card-title">俄羅斯方塊</h5>
+						<h5 class="card-title">俄羅斯輪盤</h5>
 						<p class="card-text">
-							《俄羅斯方塊》具有數學性、動態性與知名度，也經常被用來作為遊戲程式設計的練習題材。按照金氏世界紀錄，俄羅斯方塊現時一共有9個世界紀錄，例如手提電話下載次數最多的遊戲等。</p>
+						好玩的輪盤遊戲
+							</p>
 						<hr>
 						<div style="text-align: center; line-height: 4rem;">
 							<a href="/main/Circlegame" class="btn btn-info ">進入遊戲</a>
@@ -38,8 +39,8 @@
 					<img src="/resources/img/game4.jpg" class="card-img-top"
 						style="height: 40rem" alt="...">
 					<div class="card-body">
-						<h5 class="card-title">21點</h5>
-						<p class="card-text">使用撲克牌玩的賭博遊戲。亦是賭場中莊家優勢在概率中最低的一種賭博遊戲。</p>
+						<h5 class="card-title">賭球賽</h5>
+						<p class="card-text">賭球</p>
 						<hr>
 						<div style="text-align: center; line-height: 4rem;">
 							<a href="#" class="btn btn-info ">進入遊戲</a>
