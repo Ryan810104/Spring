@@ -171,6 +171,9 @@
 										<input type="text" id="CustomermessageboardMemberid"
 											name="CustomermessageboardMemberid" placeholder="此欄為隱藏抓取ID格"
 											style="display: none" value="${sessionScope.member.memberId}" />
+										<input type="text" id="CustomermessageboardMemberNum"
+											name="CustomermessageboardMemberNum" placeholder="此欄為隱藏抓取num格"
+											style="display: none" value="${sessionScope.member.memberNum}" />
 										<input type="text" id="customermessageboardArticleFloor"
 											name="customermessageboardArticleFloor" style="display: none">
 										<textarea class="form-control" cols="95" rows="1"
@@ -346,7 +349,7 @@
 					txt += "<div class=\"panel panel-white post panel-shadow\">";
 					txt += "<div class=\"post-heading\">";
 					txt += "<div class=\"pull-left image\">";
-					txt += "<img src=\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
+					txt += "<img src=\"<c:url value='/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"' />\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
 					txt += "<div class=\"pull-left meta\">";
 					txt += "<div class=\"title h2\">";
 					txt += "<a href=\"#\"><b>"
@@ -380,7 +383,7 @@
 					txt += "<\/script>"
 					txt += "<script>"
 					//寫入aftercomment傳出留言之後自動搜尋留言寫出
-					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
+					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
 				//  取出articlefloor 並放置該article的最大樓數+1
 					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
 					txt += "<\/script>"
@@ -390,8 +393,8 @@
 					
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
-					txt += "<script>"
-					txt += "$(\"#floor"+parseInt(i+floor)+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})})"
+					txt += "<script>"																																																																																																																																					
+					txt += "$(\"#floor"+parseInt(i+floor)+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})})"
 					txt += "<\/script>"					
 				}
 					floor = floor + 3 ;
@@ -467,6 +470,8 @@
 						CustomermessageboardMemberid : $(
 								"#CustomermessageboardMemberid").val(),
 						CustomermessageboardStatus : 1,
+						CustomermessageboardMemberNum : $(
+						"#CustomermessageboardMemberNum").val(),
 					},
 					success : function() {
 						$("#CustomermessageboardTitle").val('');
@@ -488,7 +493,7 @@
 					txt += "<div class=\"panel panel-white post panel-shadow\">";
 					txt += "<div class=\"post-heading\">";
 					txt += "<div class=\"pull-left image\">";
-					txt += "<img src=\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
+					txt += "<img src=\"<c:url value='/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"' />\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
 					txt += "<div class=\"pull-left meta\">";
 					txt += "<div class=\"title h2\">";
 					txt += "<a href=\"#\"><b>"
@@ -522,18 +527,18 @@
 					txt += "<\/script>"
 					txt += "<script>"
 					//寫入aftercomment傳出留言之後自動搜尋留言寫出
-					txt += "function aftercomment"+i+"(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);}})}"
+					txt += "function aftercomment"+i+"(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);}})}"
 				//  取出articlefloor 並放置該article的最大樓數+1
 					txt += "$(\"#articlefloor"+i+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+i+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
 					txt += "<\/script>"
 					//  送出留言 抓取articlefloor&responsefloor +1後送出
 					txt += "<script>"
-					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,},success : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})});"
+					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardmemberNum : $(\"#CustomermessageboardmemberNum\").val(),},success : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})});"
 					
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"
-					txt += "$(\"#floor"+i+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);}})})"
+					txt += "$(\"#floor"+i+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);}})})"
 					txt += "<\/script>"					
 				}
 					$("#messageboard").html(txt);
