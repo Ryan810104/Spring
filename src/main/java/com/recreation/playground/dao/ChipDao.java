@@ -16,4 +16,24 @@ public interface ChipDao extends JpaRepository<Chip, Integer>,JpaSpecificationEx
 	List<Object> findTheBestWinner();
 	
 	
+	@Query(value="select chip_nick_name,totalwin from wintotal order by chip_nick_name asc", nativeQuery = true)
+	List<Object> findTotalWin();
+	
+	@Query(value="select chip_member_num,summary from summary1 order by summary desc",nativeQuery = true)
+	List<Object> findTheRichest();
+	
+	@Query(value="select chip_member_num,chip_type,total_round from totalround where chip_type like '%a%' order by total_round desc",nativeQuery = true)
+	List<Object>findTheGameAMostWin();
+	
+	@Query(value="select chip_member_num,chip_type,total_round from totalround where chip_type like '%b%' order by total_round desc",nativeQuery = true)
+	List<Object>findTheGameBMostWin();
+	
+	@Query(value="select chip_member_num,chip_type,total_round from totalround where chip_type like '%c%' order by total_round desc",nativeQuery = true)
+	List<Object>findTheGameCMostWin();
+	
+	@Query(value="select chip_nick_name,total_balanced,win from bonusrank where win = 1 order by total_balanced desc",nativeQuery = true)
+	List<Object>findTheMostBonus();
+	
+	@Query(value="select chip_type,rate from wincalculate order by rate desc",nativeQuery = true)
+	List<Object>findTheGameWinRate();
 }

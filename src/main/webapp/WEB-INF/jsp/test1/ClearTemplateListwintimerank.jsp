@@ -77,47 +77,79 @@
 
 			</form>
 		</div>
-		
+
 		<div id="here"></div>
-		
+
 		<button onclick="location='/admin/test/index'">回index</button>
 		<script type="text/javascript">
-	$(function(){
-		var customer = new Array();
-		var point = new Array();
-		
-		
-		$.ajax({
-			url : "/admin/memberBeans/top3cash",
-			type : "POST",
-			success : function(data) {
-				$.each(data,function(key,value){
-					for(i in value){
-						customer[i]=value[i][0]
-						point[i]=value[i][1]
-					}
-				});
+		function CreateDynamicTable(data) {
+			var str = '<table><thead><tr><th>A</th><th>B</th></tr></thead><tbody>';
+			for (var i = 0; i < data.length; i++) {
+				str += '<tr>';
+				for ( var index in data[i]) {
+					str += '<td>' + data[i][index] + '</td>';
+				}
+				str += '</tr>';
 			}
+			str += '</tbody></table>'
+			return str;
+		}
 		
+			$(function() {
+				var customer = new Array();
+				var point = new Array();
+				var str;
+				$.ajax({
+
+					url : "/admin/memberBeans/top4cash",
+					type : "POST",
+					success : function(data) {
+// 							for (var i = 0; i < data.length; i++) {
+// 								str += '<tr>';
+// 								for ( var index in data[i]) {
+// 									str += '<td>' + data[i][index] + '</td>';
+// 								}
+// 								str += '</tr>';
+// 							}
+						$("#showdata").append(CreateDynamicTable(data));
+					}
+
+				});
+			});
+		</script>
+		
+		
+		<script>
+		$(function() {
+			var customer = new Array();
+			var point = new Array();
+			var str;
+			$.ajax({
+
+				url : "/admin/memberBeans/top3cash",
+				type : "POST",
+				success : function(data) {
+							for (var i = 0; i < data.length; i++) {
+								
+								for ( var index in data[i]) {
+									 var str=data[i][index][0];
+								}
+							}
+				$("#here").append(str);
+				}
+
+			});
 		});
-	});
-		
-		
-		
-		
-	
-		
 		
 		</script>
-
-
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-			crossorigin="anonymous"></script>
+		
+		
+		
+		<script src="/resources/js/all.min.js"></script>
+		<!-- jquery include ajax -->
 		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-			crossorigin="anonymous"></script>
+			src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- 	bootstrap 4.3.1 -->
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"

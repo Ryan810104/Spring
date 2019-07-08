@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.ChipRecordDao;
 import com.recreation.playground.dao.MoneyRecordDao;
-import com.recreation.playground.entity.Chip;
 import com.recreation.playground.entity.MoneyRecord;
 
 @Service
@@ -45,10 +44,15 @@ public class MoneyRecordService {
 		 return moneyRecordDao.findById(moneyRecordNum).orElse(null);
 	}
 	
-	
+//	
 	public List<Object> findBestSeller() {
 		return moneyRecordDao.findBestMoneyRecordid();
 	}
+	
+	public List<Object[]> findBestSeller1() {
+		return moneyRecordDao.findBestMoneyRecordid1();
+	}
+	
 	
 	
 }

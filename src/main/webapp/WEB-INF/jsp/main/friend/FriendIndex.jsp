@@ -183,7 +183,7 @@ $(".search_icon").click(function(){
 					text +=        "  <p><span class=\"label label-info\">VipLevel : </span> <span class=\"label label-primary\">"+Jdata[i]["memberViplevel"]+"</span><br>";
 					text +=  	"	<span class=\"label label-info\">Email: </span> <span class=\"label label-primary\">"+Jdata[i]["memberEmail"]+"</span></p>";
 					text +=      "     <p>";
-					text +=       " <a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-xs btn-default btn-primary btn-block\"><span class=\"glyphicon glyphicon-comment\"></span> 加入好友</a>";
+					text +=       " <a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-xs btn-default btn-primary btn-block\"><span ></span> 加入好友</a>";
 //		                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-heart"></span> Favorite</a>
 //		                            <a href="#" class="btn btn-xs btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Unfollow</a>
 	           	 text +=        "    </p>";
@@ -240,11 +240,11 @@ $(document).ready(function(){
 		}
 	});
 });
-function talktofromclickbutton(id){
-	var sender = '${sessionScope.member.memberNum}';
-	var receiver = id;
-	opencontact(sender,receiver);
-}
+// function talktofromclickbutton(id){
+// 	var sender = '${sessionScope.member.memberNum}';
+// 	var receiver = id;
+// 	opencontact(sender,receiver);
+// }
 </script>
 <style>
 .media-object{

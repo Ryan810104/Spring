@@ -16,58 +16,28 @@ public class ComplaintService {
 	private ComplaintDao dao;
 
 	@Transactional(readOnly = true)
-
-//	public void insert(Complaint beans) {
-//		dao.save(beans);
-//	}
-
+	
 	public void update(Complaint cp) {
-		if (cp.getComplaintNum() != null) {
+		if (cp.getComplaintNum() != null ) {
 			dao.save(cp);
 		}
 	}
 
-	public List<Complaint> getAll() {
-		return dao.findAll();
+	public List<Complaint> chooseUndealEventGame() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(1, 0);
+	}
+	public List<Complaint> chooseUndealEventWeb() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(2, 0);
+	}
+	public List<Complaint> chooseUndealEventPay() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(3, 0);
 	}
 
-	public Complaint findById(Integer ComplaintNum) {
-		return dao.findById(ComplaintNum).orElse(null);
+	public void fileComplaints(Complaint cp) {
+		dao.save(cp);
 	}
-
-	public Complaint findBymemberId(Complaint cp) {
-		return dao.findByMemberId(cp.getMemberId());
-	}
-
-	public Complaint findByComplaintStatus(Complaint cp) {
-		return dao.findByComplaintStatus(cp.getComplaintStatus());
-	}
-
-//	public Complaint findByComplaintTitle(Complaint cp) {
-//		return dao.findByComplaintTitle(cp.getComplaintTitle());
-//	}
-
-	public Complaint findByComplaintMessageTimeLike(Complaint cp) {
-		return dao.findByComplaintMessagetimeLike(cp.getComplaintMessagetime());
-	}
-
-	public String findByComplaintType(Complaint cp) {
-		return dao.findByComplaintType(cp.getComplaintType());
-	}
-
-	public String fileComplaints(Complaint cp) {
-		Complaint insertData = new Complaint();
-		insertData.setMemberId(cp.getMemberId());
-		insertData.setComplaintType(cp.getComplaintType());
-		insertData.setComplaintMessage(cp.getComplaintMessage());
-		insertData.setComplaintStatus(cp.getComplaintStatus());
-		java.util.Date date = new java.util.Date();
-		insertData.setComplaintMessagetime(date);
-//		insertData.setComplaintResponse(cp.getComplaintResponse());
-		
-		dao.save(insertData);
-		return "complain";
-	}
+	
+	
 
 	public void delete(Complaint cp) {
 		if (cp.getComplaintNum() != null) {

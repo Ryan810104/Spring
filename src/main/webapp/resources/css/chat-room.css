@@ -1,4 +1,78 @@
 /*===========================
+     	Friend - list
+   ===========================*/
+#Smallchat .FLLayout { 
+ pointer-events:auto;
+ box-sizing:content-box!important;
+ z-index:999999999;
+ position:fixed;
+ bottom:20px;
+ min-width:50px;
+ max-width:300px;
+ max-height:30px;
+ display:-webkit-box;
+ display:-webkit-flex;
+ display:-ms-flexbox;
+ display:flex;
+ -webkit-box-orient:vertical;
+ -webkit-box-direction:normal;
+ -webkit-flex-direction:column;
+ -ms-flex-direction:column;
+ flex-direction:column;
+ -webkit-box-pack:end;
+ -webkit-justify-content:flex-end;
+ -ms-flex-pack:end;
+ justify-content:flex-end;
+ border-radius:50px;
+ box-shadow:5px 0 20px 5px rgba(0,0,0,.1);
+ -webkit-animation:appear .15s cubic-bezier(.25,.25,.5,1.1);
+ animation:appear .15s cubic-bezier(.25,.25,.5,1.1);
+ -webkit-animation-fill-mode:forwards;
+ animation-fill-mode:forwards;
+ opacity:0;
+ -webkit-transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1),min-width .2s cubic-bezier(.25,.25,.5,1),max-width .2s cubic-bezier(.25,.25,.5,1),min-height .2s cubic-bezier(.25,.25,.5,1),max-height .2s cubic-bezier(.25,.25,.5,1),border-radius 50ms cubic-bezier(.25,.25,.5,1) .15s,background-color 50ms cubic-bezier(.25,.25,.5,1) .15s,color 50ms cubic-bezier(.25,.25,.5,1) .15s;
+ transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1),min-width .2s cubic-bezier(.25,.25,.5,1),max-width .2s cubic-bezier(.25,.25,.5,1),min-height .2s cubic-bezier(.25,.25,.5,1),max-height .2s cubic-bezier(.25,.25,.5,1),border-radius 50ms cubic-bezier(.25,.25,.5,1) .15s,background-color 50ms cubic-bezier(.25,.25,.5,1) .15s,color 50ms cubic-bezier(.25,.25,.5,1) .15s
+     
+}
+
+#Smallchat .FLLayout-right {
+ right:20px
+}
+
+#Smallchat .FLLayout-open {
+ overflow:hidden;
+ min-width:300px;
+ max-width:300px;
+ height:500px;
+ max-height:750px;
+ border-radius:10px;
+ color:black;
+ -webkit-transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1.1),min-width .2s cubic-bezier(.25,.25,.5,1.1),max-width .2s cubic-bezier(.25,.25,.5,1.1),max-height .2s cubic-bezier(.25,.25,.5,1.1),min-height .2s cubic-bezier(.25,.25,.5,1.1),border-radius 0ms cubic-bezier(.25,.25,.5,1.1),background-color 0ms cubic-bezier(.25,.25,.5,1.1),color 0ms cubic-bezier(.25,.25,.5,1.1);
+ transition:right .1s cubic-bezier(.25,.25,.5,1),bottom .1s cubic-bezier(.25,.25,.5,1.1),min-width .2s cubic-bezier(.25,.25,.5,1.1),max-width .2s cubic-bezier(.25,.25,.5,1.1),max-height .2s cubic-bezier(.25,.25,.5,1.1),min-height .2s cubic-bezier(.25,.25,.5,1.1),border-radius 0ms cubic-bezier(.25,.25,.5,1.1),background-color 0ms cubic-bezier(.25,.25,.5,1.1),color 0ms cubic-bezier(.25,.25,.5,1.1);
+}
+
+#Smallchat .FLLayout-expand {
+ height:60rem;
+ min-height:500px;
+      display:none;
+}
+#Smallchat .FLLayout-mobile {
+ bottom:10px
+}
+#Smallchat .FLLayout-mobile.Layout-open {
+ width:calc(100% - 20px);
+ min-width:calc(100% - 20px)
+}
+#Smallchat .FLLayout-mobile.Layout-expand {
+ bottom:0;
+ height:100%;
+ min-height:100%;
+ width:100%;
+ min-width:100%;
+ border-radius:0!important
+}
+
+/*===========================
      	online - status
    ===========================*/
 .online_border{
@@ -9,8 +83,6 @@
 .offline_border{
 	border-left: 12px solid black;
 }
-
-
 
 /*===========================
      	Message CSS
@@ -227,7 +299,7 @@ position: fixed;
     text-align:center;
 }
 .media-body .btn{
-	margin-left : 5px;
+	margin-left: 12px;
 	margin-top : 10px;
 }
 .media-body .btn-round{
@@ -280,7 +352,7 @@ position: fixed;
 }
 
 #Smallchat .Layout-right {
- right:20px
+ right:330px
 }
 
 #Smallchat .Layout-open {

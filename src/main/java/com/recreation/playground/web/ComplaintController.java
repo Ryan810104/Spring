@@ -18,85 +18,57 @@ import com.recreation.playground.entity.Complaint;
 import com.recreation.playground.service.ComplaintService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/main/complain")
 public class ComplaintController {
-	
+
 	@Autowired
 	private ComplaintService service;
-	
-	@PersistenceContext
-	EntityManager em;
-	
-	@RequestMapping("/indexComplaint")
-	public String toIndex(Model model) {
-		return "/";
-	}
-	
+
 	@RequestMapping("/insertComplaint")
-	public String insertComplaint(@Valid @ModelAttribute("form01") Complaint cp, BindingResult result, Model model) {
-		if(result.hasErrors()) {
-			return "/";
+	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model) {
+
+		if (result.hasErrors()) {
+			return "/main/complain/complainIndex";
 		}
 		service.fileComplaints(cp);
-		return "/";
+		model.addAttribute("insertComplaint", "1");
+		return "/main/Index";
+
 	}
 	
-	@RequestMapping("/responseComplaint")
-	public String update(@ModelAttribute("form01") Complaint cp) {
-		service.update(cp);
-		return "/";
+	@ResponseBody
+	@RequestMapping("/query1")
+	public List<Complaint> complainListGame() {
+		return service.chooseUndealEventGame();	
 	}
-	
-	@RequestMapping("/deleteComplaint")
-	public String delete(@ModelAttribute("form01") Complaint cp) {
+	@ResponseBody
+	@RequestMapping("/query2")
+	public List<Complaint> complainListWeb() {
+		return service.chooseUndealEventWeb();	
+	}
+	@ResponseBody
+	@RequestMapping("/query3")
+	public List<Complaint> complainListPay() {
+		return service.chooseUndealEventPay();	
+	}
 		
-		service.delete(cp);
-		return "/";
+
+	@RequestMapping("/responseComplaint")
+	public String update(@Valid @ModelAttribute("formCR") Complaint cp, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "/main/complain/complainDeal";
+		}	
+		service.update(cp);
+		model.addAttribute("responseComplaint", "1");
+		return "/main/complain/complainDeal";
 	}
 	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping("/findSomeonesComplaint")
-	public List<Object[]> complaintListOfUser(String fromwho, Model model){
-		String sql = "SELECT complaint_type FROM Complaint WHERE member_id = " + fromwho ;
-		return em.createNamedQuery(sql).getResultList();
-	}
 	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping("/findStatusComplaint")
-	public List<Object[]> complaintListOfStatus(String status, Model model){
-		String sql = "SELECT complaint_type FROM Complaint WHERE complaint_status = " + status ;
-		return em.createNamedQuery(sql).getResultList();
-	}
 	
-	@SuppressWarnings("unchecked")
-	@ResponseBody
-	@RequestMapping("/findTimeLikeComplaint")
-	public List<Object[]> complaintListOfTimeLike(String timelike, Model model){
-		String sql = "SELECT complaint_type FROM Complaint WHERE complaint_messagetime = %" + timelike + "%"  ;
-		return em.createNamedQuery(sql).getResultList();
-	}
 	
-	@RequestMapping("/ComplaintContentOfUser")
-	public String ComplaintContentOfUser(Complaint cp) {
-		Complaint cp2 = service.findBymemberId(cp);
-		return service.findByComplaintType(cp2);
-	}
-	
-	@RequestMapping("/ComplaintContentOfStatus")
-	public String ComplaintContentOfStatus(Complaint cp) {
-		Complaint cp2 = service.findByComplaintStatus(cp);
-		return service.findByComplaintType(cp2);
-	}
-	
-	@RequestMapping("/ComplaintContentOfTimeLike")
-	public String ComplaintContentOfTimeLike(Complaint cp) {
-		Complaint cp2 = service.findByComplaintMessageTimeLike(cp);
-		return service.findByComplaintType(cp2);
-	}
+
 
 	
 	
-	
+
 }
