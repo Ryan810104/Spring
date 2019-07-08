@@ -106,7 +106,7 @@ public class ChatRoomServerEndpoint {
 						}
 /////////////////////////////////找通知
 						EntityManager em = ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
-						String sql = "SELECT  f1.friend_list_friendid , m1.member_id FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "
+						String sql = "SELECT  f1.friend_list_friendid , m1.member_id , f1.friend_list_num  FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "
 								+ usernumber
 								+ " and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1 and f1.friend_notify = 0";
 						List<Object[]> list1 = em.createNativeQuery(sql).getResultList();
@@ -117,7 +117,7 @@ public class ChatRoomServerEndpoint {
 								running = false;
 							}
 						} else {
-							mysession.getBasicRemote().sendText("測試" + "/");
+							mysession.getBasicRemote().sendText("沒有通知" + "/");
 						}
 						thread.sleep(3000);
 					} catch (IOException | InterruptedException e) {

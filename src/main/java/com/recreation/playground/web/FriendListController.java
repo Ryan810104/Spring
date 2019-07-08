@@ -64,6 +64,16 @@ public class FriendListController {
 		em.persist(list);
 	}
 	
+	
+	@ResponseBody
+	@RequestMapping("/friendRead")
+	@Transactional
+	public void friendRead ( Integer listnum){
+		FriendList list = em.find(FriendList.class, listnum);
+		list.setFriendnotify(1);
+		em.persist(list);
+	}
+	
 	@ResponseBody
 	@RequestMapping("/naddnRead")
 	@Transactional

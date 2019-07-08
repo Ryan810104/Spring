@@ -338,7 +338,10 @@ $(document).ready(function(){
 			$("#friendcount").css("display","none");
 			$("#whoaddme").html("你沒有好友邀請唷");
 		} else if (event.data.startsWith("測試")){
-			console.log(event.data);
+// 			console.log(event.data);
+			showinformation(event.data);
+		} else if (event.data.startsWith("沒有通知")){
+			$("#notifycount").css("display","none");
 		};
 	
 };
@@ -391,16 +394,54 @@ $(document).ready(function(){
 	//         })
 
 	//     })
+	////[[3, admin], [3, admin], [3, admin], [3, admin]]
+	////測試/[2, user, [2, user], [2, user], [2, user]]
+	////測試/2, user], [2, user], [2, user], [2, user]]
+	////2, user], [2, user], [2, user], [2, user]]
+	////2, user], [2, user], [2, user], [2, user]]
+	////3, admin], [3, admin], [3, admin], [3, admin]
+	function showinformation(data){
+		var showinfor = "";
+		var tempdata = data.replace("[","").replace("[","").replace("測試/","")
+		var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+// 		console.log(tempdata1[0]);
+		tempdata1[0] = ","+tempdata1[0];
+		for (var i = 0 ; i < tempdata1.length -1 ; i++){
+			var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+// 			console.log(onerowdata);
+			//onerowdata[1] == 加你的人的NUM
+			//onerowdata[2] == 加你的人的ID
+			//onerowdata[3] == 好友表格流水號
+// 			console.log(onerowdata);
+			showinfor += "<li>"
+			showinfor +="<a href=\"#\">"
+			showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+			showinfor +=	"<a  style=\"color:red ; font-size:14px;\">"+onerowdata[2]+"</a>"
+			showinfor +=	"<a  style=\" font-size:14px;\">與你成為好友</a>"
+			showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"fri_notice_check("+onerowdata[3].trim()+")\" style=\"float: right;\">"
+			showinfor +=	"</div>"
+			showinfor +="</a>"
+			showinfor +="</li>"
+		};
+		$("#notifystatus").html(showinfor);
+		if (tempdata1.length != 0){
+			$("#notifycount").css("display","block");
+			$("#notifycount").html(tempdata1.length -1 );
+		};
+	};
+	function fri_notice_check(data){
+		$.ajax({
+			url : "/friend/list/friendRead?listnum="+data,
+			type: "GET",
+			success : function(data){
+// 				alert("ss");
+			},
+			error : function(data){
+				alert("errrrrrooooorrrrrrrrrrr");
+			},
+		});
+	}
 	function showwhoaddme(data){
-// {1=[3, admin], 2=[4, admin2], 3=[1, abcdefgh]}
-//  1=3, admin], 2=4, admin2], 3=1, abcdefgh]
-// 1	=	3, admin, 2 = 4, admin2, 3 = 1, abcdefgh
-// 1,3, admin,  2,4, admin2,  3,1, abcdefgh
-// data = {1=abcdefgh, 3=admin, 4=admin2}
-//,1=3, admin,, 2=[4, admin2,, 3=[1, abcdefgh,
-// ,1,3, admin,, 2,4, admin2,, 3,1, abcdefgh,
-// 	VAR LIST1 = "," + LIST[0];
-// 		var finaldata = list[i].split("=");
 	var text = "";
 	var list = data.replace("{",",").replace("}","").replace("[","").replace("[","").split("]");
 	for (var i = 0 ; i < list.length -1 ; i++){
