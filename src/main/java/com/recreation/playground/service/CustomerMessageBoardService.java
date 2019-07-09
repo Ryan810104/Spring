@@ -1,5 +1,6 @@
 package com.recreation.playground.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class CustomerMessageBoardService {
 		return dao.findTop1ByCustomermessageboardArticleFloorOrderByCustomermessageboardResponseFloorDesc(floor);
 	}
 	
-	public List<CustomerMessageBoardBean> searchthecomment(int articlefloor){
+	public ArrayList<CustomerMessageBoardBean> searchthecomment(int articlefloor){
 		return dao.findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorGreaterThanOrderByCustomermessageboardResponseFloorDesc(articlefloor, 0);
 	}
 

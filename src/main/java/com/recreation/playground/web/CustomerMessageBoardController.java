@@ -1,5 +1,6 @@
 package com.recreation.playground.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.CustomerMessageBoardBean;
-import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.CustomerMessageBoardService;
 
 @Controller
@@ -31,7 +31,7 @@ public class CustomerMessageBoardController {
 	@RequestMapping("/public")
 	public String topublic(@Valid @ModelAttribute("CMBtextarea") CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-		System.out.println(bean);
+//		System.out.println(bean);
 		service.insert(bean);
 		return "redirect:/main/CMBIndex";
 	}
@@ -64,7 +64,9 @@ public class CustomerMessageBoardController {
 	
 	@ResponseBody
 	@RequestMapping("/searchcomment")
-	public List<CustomerMessageBoardBean> searchcomment(CustomerMessageBoardBean bean) {
+	public ArrayList<CustomerMessageBoardBean> searchcomment(CustomerMessageBoardBean bean) {
+		System.out.println(bean.getCustomermessageboardArticleFloor());
+		System.out.println(service.searchthecomment(bean.getCustomermessageboardArticleFloor()));
 		return service.searchthecomment(bean.getCustomermessageboardArticleFloor());
 	}
 
