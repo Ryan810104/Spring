@@ -85,8 +85,7 @@ public class ChatRoomServerEndpoint {
 			while (running) {
 				if (mysession.isOpen()) {
 					try {
-						FriendListDao friendlistdao = ApplicationContextRegister.getApplicationContext()
-								.getBean(FriendListDao.class);
+						FriendListDao friendlistdao = ApplicationContextRegister.getApplicationContext().getBean(FriendListDao.class);
 						List<Object> list = friendlistdao.findCurrentIdunRead(usernumber);
 						if (list.size() != 0) {
 							Map<Integer, List<String>> map = new HashMap<>();
@@ -106,7 +105,7 @@ public class ChatRoomServerEndpoint {
 						}
 /////////////////////////////////找通知
 						EntityManager em = ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
-						String sql = "SELECT  f1.friend_list_friendid , m1.member_id , f1.friend_list_num  FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "
+						String sql = "SELECT distinct  f1.friend_list_friendid , m1.member_id , f1.friend_list_num  FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "
 								+ usernumber
 								+ " and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1 and f1.friend_notify = 0";
 						List<Object[]> list1 = em.createNativeQuery(sql).getResultList();
@@ -119,7 +118,7 @@ public class ChatRoomServerEndpoint {
 						} else {
 							mysession.getBasicRemote().sendText("沒有通知" + "/");
 						}
-						thread.sleep(3000);
+						thread.sleep(3000); //thread結束，睡X秒後從new Thread開始跑
 					} catch (IOException | InterruptedException e) {
 						running = false;
 						e.printStackTrace();
@@ -127,38 +126,9 @@ public class ChatRoomServerEndpoint {
 				} else {
 					running = false;
 				}
-			}
+			} //running 結尾
 		});
 		this.thread.start();
-//number 2 thread
-//		this.runningnotice = true;
-//		this.threadfriendnotice = new Thread(() -> {
-//			while (runningnotice) {
-//				if (mysession.isOpen()) {
-//					EntityManager em = ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
-//					String sql = "SELECT  f1.friend_list_friendid , m1.member_id FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "+usernumber+" and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1 and f1.friend_notify = 0";
-//					List<Object[]> list = em.createNativeQuery(sql).getResultList();
-//					if (list.size() !=0) {
-////						System.out.println(Arrays.deepToString(list.toArray()));
-//						try {
-//							mysession.getBasicRemote().sendText("測試"+"/"+Arrays.deepToString(list.toArray()));
-//						} catch (IOException e) {
-//							runningnotice = false;
-//							e.printStackTrace();
-//						}
-//						try {
-//							threadfriendnotice.sleep(1000);
-//						} catch (InterruptedException e) {
-//							runningnotice = false;
-//							e.printStackTrace();
-//						}
-//					};
-//					
-//					}
-//				}
-//			
-//		});
-//		this.threadfriendnotice.start();
 	}
 
 	@OnMessage
