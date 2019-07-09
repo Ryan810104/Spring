@@ -172,6 +172,6 @@
 		<!-- WRITE YOUR CONTEXT HERE -->
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
-	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/jsp/fragment/chat-room-update.jsp"></jsp:include>
 </body>
 </html>
