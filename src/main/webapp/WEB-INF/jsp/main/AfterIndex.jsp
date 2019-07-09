@@ -124,7 +124,6 @@
 
 							<strong class="d-block text-danger">公告</strong> 系統將於 <strong
 								class="text-danger">2019-05-30 09:00 ~ 12:00</strong>進行維護，如有不便請見諒。
-
 						</p>
 					</div>
 					<div class="media text-muted pt-3">
