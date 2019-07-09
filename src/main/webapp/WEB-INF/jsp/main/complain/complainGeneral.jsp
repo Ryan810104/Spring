@@ -19,7 +19,8 @@
 
 		<div class="container">
 			<form action="/main/complain/insertComplaint" name="formCI"
-				method="POST" class="" style="display: on">
+				method="POST" class="" style="display: on"
+				enctype="multipart/form-data">
 				<div class="row">
 					<div class="col-md-2 mb-5">
 						<h4 style="font-size: 120%; color: #FF44AA;" class="mb-3">親愛的會員</h4>
@@ -52,6 +53,17 @@
 					</div>
 				</div>
 				<div class="row">
+					<div class="col-md-6 mb-5">
+						<h4 style="font-size: 120%; color: green;">請提供截圖以利投訴案件處理:</h4>
+						<input type="text" id="complaintPicURL" name="complaintPicURL"
+							style="display: none"> <input type="file"
+							name="complaintPic" id="complaintPic"
+							accept="image/gif, image/jpeg, image/png"> <img
+							id="preview_imageFile" width='50' height='50'
+							src="/resources/img/default-picture.png" /> 預覽
+					</div>
+				</div>
+				<div class="row">
 					<div class="col-md-6 mb-2">
 						<label style="font-size: 120%; color: green;"
 							for="complaintMessage">請輸入投訴內容:</label> <span id="complaintSp"
@@ -73,7 +85,6 @@
 							for="complaintStatus1" class="custom-control-label">已處理</label>
 					</div>
 				</div>
-				<!-- 			//嵌入驗證碼 -->
 
 				<div class="row">
 					<div class="col-md-6 mb-5">
@@ -84,34 +95,26 @@
 			</form>
 
 
-<!-- 			<div class="container"> -->
-<!-- 				<form -->
-<%-- 					action="/main/complain/uploadImage/${sessionScope.complaint.complaintNum}" --%>
-<!-- 					method="POST" enctype="multipart/form-data"> -->
-<!-- 					<input type="text" -->
-<%-- 						value="${sessionScope.complaint.complaintMessage}" --%>
-<!-- 						id="complaintMessage" style="display: none"> <input -->
-<!-- 						type="file" name="complaintPic" id="complaintPic" -->
-<!-- 						accept="image/gif, image/jpeg, image/png"> <img -->
-<!-- 						id="preview_imageFile" width='0' height='0' src="#" /> <input type="submit" -->
-<!-- 						value="上傳截圖"> -->
-<!-- 				</form> -->
-<!-- 			</div> -->
-			<script>
-// 				$("#complaintPic").change(function() {
-// 					readURL(this);
-// 				});
 
-// 				function readURL(input) {
-// 					if (input.files && input.files[0]) {
-// 						var reader = new FileReader();
-// 						reader.onload = function(e) {
-// 							$("#preview_imageFile")
-// 									.attr('src', e.target.result);
-// 						}
-// 						reader.readAsDataURL(input.files[0]);
-// 					}
-// 				}
+			<script>
+				$("#complaintPic").change(function() {
+					readURL(this);
+				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							if (e == null) {
+								$("#preview_imageFile").attr('src',
+										"/resources/img/default-picture.png");
+							} else
+								$("#preview_imageFile").attr('src',
+										e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
 			</script>
 
 

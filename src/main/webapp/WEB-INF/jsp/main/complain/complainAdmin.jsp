@@ -13,7 +13,7 @@
 table {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left:60px;
+ 	margin-left:60px; 
 }
 form{
 	margin-left:40px;
@@ -185,7 +185,7 @@ td{
 
 				<div class="container">
 					<div class="row">
-
+						
 						<table>
 							<thead style="font-size: 120%;color:#0066FF;">
 								<tr><th>未處理:</th></tr>
@@ -196,10 +196,10 @@ td{
 									<th>投訴時間</th>
 								</tr>
 							</thead>
-
 							<tbody style="font-size: 120%" id="showByGame"></tbody>
-
 						</table>
+						
+						
 						
 						<table>
 							<thead style="font-size: 120%;color:#00AA55;">
@@ -211,10 +211,10 @@ td{
 									<th>回覆時間</th>
 								</tr>
 							</thead>
-
 							<tbody style="font-size: 120%" id="showByGameR"></tbody>
-
 						</table>
+						
+						
 					</div>
 					<hr>
 				</div>
