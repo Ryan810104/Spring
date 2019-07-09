@@ -80,60 +80,53 @@
 
 	<div class="d-flex justify-content-center h-100">
 		<div class="searchbar">
-			<input class="search_input" type="text" name="findmemberid"
-				id="findmemberlist" placeholder="Search..."> <a
-				class="search_icon"> <i class="fas fa-search"
-				style="color: white;"></i></a>
 
-
-			<ul class="results" id="membersearch01" style="display: none;">
-				<li>
-					<div class="col-md-12">
-						<div class="well well-sm">
-							<div class="media">
-								<a class="thumbnail pull-left" href="#"> <img
-									class="media-object" style="width: 70%; margin-top: 6px;"
-									src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D">
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading">John Doe</h4>
-									<p style="margin-top: 0px;">
-										<a href="#" class="btn btn-success btn-sm"><i
-											class="fas fa-home"></i></a> <a href="#"
-											class="btn btn-primary btn-sm"><i
-											class="fas fa-user-friends"></i></a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<hr style="margin: 0px 20px 0px 20px;">
-					</div>
-				</li>
-				<li>
-					<div class="col-md-12">
-						<div class="well well-sm">
-							<div class="media">
-								<a class="thumbnail pull-left" href="#"> <img
-									class="media-object" style="width: 70%; margin-top: 6px;"
-									src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D">
-								</a>
-								<div class="media-body">
-									<h4 class="media-heading">John Doe</h4>
-									<p style="margin-top: 0px;">
-										<a href="#" class="btn btn-success btn-sm"><i
-											class="fas fa-home"></i></a> <a href="#"
-											class="btn btn-primary btn-sm"><i
-											class="fas fa-user-friends"></i></a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<hr style="margin: 0px 20px 0px 20px;">
-					</div>
-				</li>
-				<!-- 	 		<li>Search Result #3</li> -->
-				<!--          	<li>Search Result #4</li> -->
-			</ul>
+			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="Search..."> <a class="search_icon">
+			<i class="fas fa-search" style="color: white;"></i></a>
+			
+			
+		  <ul class="results" id="membersearch01" style="display:none;" >
+<!-- 			 <li> -->
+<!-- 			 <div class="col-md-12"> -->
+<!-- 					<div class="well well-sm"> -->
+<!-- 						<div class="media"> -->
+<!-- 							<a class="thumbnail pull-left" href="#"> <img -->
+<!-- 								class="media-object" style="width: 70%;margin-top: 6px;"  -->
+<!-- 								src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"> -->
+<!-- 							</a> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h4 class="media-heading">John Doe</h4> -->
+<!-- 								<p style="margin-top: 0px;"> -->
+<!-- 									<a href="#" class="btn btn-success btn-sm"><i class="fas fa-home"></i></a> -->
+<!-- 									<a href="#" class="btn btn-primary btn-sm"><i class="fas fa-user-friends"></i></a> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<hr style="    margin: 0px 20px 0px 20px;"> -->
+<!-- 				</div> -->
+<!-- 			</li> -->
+<!-- 			 <li>			 <div class="col-md-12"> -->
+<!-- 					<div class="well well-sm"> -->
+<!-- 						<div class="media"> -->
+<!-- 							<a class="thumbnail pull-left" href="#"> <img -->
+<!-- 								class="media-object" style="width: 70%;margin-top: 6px;"  -->
+<!-- 								src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"> -->
+<!-- 							</a> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h4 class="media-heading">John Doe</h4> -->
+<!-- 								<p style="margin-top: 0px;"> -->
+<!-- 									<a href="#" class="btn btn-success btn-sm"><i class="fas fa-home"></i></a> -->
+<!-- 									<a href="#" class="btn btn-primary btn-sm"><i class="fas fa-user-friends"></i></a> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<hr style="    margin: 0px 20px 0px 20px;"> -->
+<!-- 				</div></li> -->
+<!-- 	 		<li>Search Result #3</li> -->
+<!--          	<li>Search Result #4</li> -->
+		 </ul>
 		</div>
 		<br>
 	</div>
@@ -819,10 +812,89 @@ Inicio Tercer Estado: Oculto (OK)
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
 	}
+<<<<<<< HEAD
 </script> <script>
 	$(document).ready(function() {
 		$("#membersearch01").hide();
+=======
+</script> 
+<script>
+$(document).ready(function(){
+	$("#membersearch01").hide();
+});
+
+$("#findmemberlist").on("input",function(){
+	var text = "";
+	var friendlist = "";
+	$.ajax({
+		url : "/friend/list/findmyfriend?memberid=" + '${sessionScope.member.memberNum}',
+		type : "GET",
+		success : function(Jdata) {
+			var NumOfJData = Jdata.length;
+			for (var j = 0 ; j < NumOfJData ; j++){
+				friendlist += Jdata[j][0] + ",";
+			}
+			sessionStorage.setItem("friendlist",friendlist);
+			}
+		});
+	$.ajax({
+		url : "/admin/memberBeans/findfriend?findmemberid="+$("#findmemberlist").val(),
+		type : "GET",
+		success : function(Jdata) {
+			var NumOfJData = Jdata.length;
+			sessionStorage.setItem("length",Jdata.length);
+			for (var i = 0; i < NumOfJData; i++) {
+				if (Jdata[i]["memberNum"] == '${sessionScope.member.memberNum}'){
+					continue;
+				}
+				var friend2member = sessionStorage.getItem("friendlist").split(",");
+				for (var k  = 0 ; k < friend2member.length ; k++){
+					if (Jdata[i]["memberNum"] == friend2member[k]){
+						console.log ("myfriend");
+						var ismyfriendornot = "<a onclick=\"talktofromclickbutton("+Jdata[i]["memberNum"]+")\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
+						break;
+			//jdata <> ismyfriend <> ornot <> defination
+					} else {
+						var ismyfriendornot = "<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
+						console.log ("notmyfriend");
+					}
+				}
+				text +=	"<li>"
+				text += "<div class=\"col-md-12\">"
+				text += "<div class=\"well well-sm\">"
+				text +=	"<div class=\"media\">"
+				text +=	"<a class=\"thumbnail pull-left\" href=\"#\"> <img "
+				text +=	"class=\"media-object\" style=\"width: 60px;height: 60px;margin-top: 6px;\""
+				text +=	"src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i]["memberNum"]+"' />\">"
+				text +=	"</a>"
+				text +=	"<div class=\"media-body\">"
+				text +=	"<h4 class=\"media-heading\">"+Jdata[i]["memberId"]+"</h4>"
+				text +=	"<p style=\"margin-top: 0px;\">"
+				text +=	"<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-success btn-sm\"><i class=\"fas fa-home\"></i></a>"
+				text +=	 ismyfriendornot
+				text +=	"</p>"
+				text +=	"</div>"
+				text +=	"</div>"
+				text +=	"</div>"
+				text +=	"<hr style=\"margin: 0px 20px 0px 20px;\">"
+				text +=	"</div>"
+				text +=	"</li>"
+				
+			}
+			
+			$("#membersearch01").html(text);
+		}
+>>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 	});
+<<<<<<< HEAD
+=======
+	if ($("#findmemberlist").val().length > 1 ){
+// 		console.log(sessionStorage.getItem("length"));
+		$("#membersearch01").slideDown(1000);
+	};
+	
+});
+>>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 
 	$("#findmemberlist")
 			.on(

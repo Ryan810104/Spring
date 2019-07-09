@@ -11,7 +11,7 @@ public class ChatroomContorller {
 
 	@RequestMapping("/index")
 	public String openindex(Model model) {
-		return "/main/Mineweeper";
+		return "/fragment/test";
 	}
 	
 	@RequestMapping("/text")
