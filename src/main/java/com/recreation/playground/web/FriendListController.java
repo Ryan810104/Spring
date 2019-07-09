@@ -39,13 +39,12 @@ public class FriendListController {
 	}
 	
 	@RequestMapping("/add")
-	public String insert(FriendList friendlist, BindingResult result, Model model) {
-		System.out.println(friendlist);
-		if (result.hasErrors()) {
-			System.out.println(result.getAllErrors());
-			return "main/Index";
-		}
-		friendlistservice.save(friendlist);
+	public String insert(Integer yourid,Integer friendid, Model model) {
+//		System.out.println(friendlist);
+		FriendList friend = new FriendList();
+		friend.setFriendlistmemberid(yourid);
+		friend.setFriendlistfriendid(friendid);
+		friendlistservice.save(friend);
 		return "/main/friend/FriendIndex";
 	}
 	@ResponseBody

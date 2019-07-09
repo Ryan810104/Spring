@@ -299,14 +299,16 @@ position: fixed;
     text-align:center;
 }
 .media-body .btn{
-	margin-left: 12px;
-	margin-top : 10px;
+/* 	margin-left: 12px; */
+/* 	margin-top : 10px; */
 }
 .media-body .btn-round{
 	border-radius: 30px;
 }
 .media-heading {
-	margin-left: 10px;
+	margin-left: 0px;
+    margin-top: 8px;
+    
 	
 }
 /*
