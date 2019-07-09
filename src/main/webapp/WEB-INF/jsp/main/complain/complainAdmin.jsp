@@ -304,14 +304,15 @@ td{
 				method="POST" class="">
 				<div class="row">
 					<div class="col-md-1 mb-2">
-						<label style="font-size: 120%" for="complaintNum">編號</label> <input
+						<label style="font-size: 120%" for="complaintNum">編號:</label> <input
 							type="text" style="font-size: 120%" class="form-control"
 							id="complaintNum" name="complaintNum">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-6 mb-2">
-						<label style="font-size: 120%" for="complaintResponse">回覆</label>
+						<label style="font-size: 120%" for="complaintResponse">回覆:</label>
+						<span id="responseSp" style="color: red"></span>
 						<textarea style="font-size: 120%" class="form-control"
 							id="complaintResponse" name="complaintResponse" rows="3"></textarea>
 					</div>
@@ -345,8 +346,25 @@ td{
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 </body>
 <script>
+function responseChk(){
+	let theResponse = document.getElementById("complaintResponse").value;
+	if(theResponse==""){
+		document.getElementById("responseSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";		
+	}else{	
+		document.getElementById("responseSp").innerHTML = "";
+	}
+}
+document.addEventListener("DOMContentLoaded", function() {
+	document.getElementById("complaintResponse").addEventListener("blur",
+			responseChk);
+})
+
 $("#sendout").click(function(){
-	response();
+	let theResponse = document.getElementById("complaintResponse").value;
+	if(theResponse==""){
+		document.getElementById("responseSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";
+	}else
+		response();
 });
 function response(){
 	  $.ajax({
