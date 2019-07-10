@@ -13,6 +13,8 @@
 	crossorigin="anonymous">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	
+	<link href="/resources/css/signin.css" rel="stylesheet">
 <style>
 .pagination {
 	font-size: 80%;
@@ -49,26 +51,41 @@
 
 <body>
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
+	
+
 	<article class="content moe">
-		<h1>這是member.table目前有的內容</h1>
-		<div>${memberList}</div>
-		<div>${update}</div>
-		<div>${insert}</div>
-		<div>${deletesucceed}</div>
-		<div>${findById}</div>
-		<div>${get}</div>
-		<!-- search -->
-		<nav class="navbar navbar-light bg-light">
-			<form class="form-inline" action="/admin/test/query">
-				<input class="form-control mr-sm-2" type="text" id='search'
-					name="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="button"
-					onclick="send()">Search</button>
-			</form>
-		</nav>
-		<!-- search end-->
-
-
+	
+	
+		<h1>排行榜</h1>
+		
+		
+<!-- 選擇所要的圖表 -->
+		<form class="form-signin" name="form1" id="form1" >
+		<div class="form-group row">
+					<div class="col-sm-11">
+						<div class="btn-group">
+							<button class="btn btn-lg btn-primary" type="button" onclick="getwinrate();">遊戲獲勝比率</button>
+							<button class="btn btn-lg btn-primary" type="button" onclick="getbonusrank();">獲勝獎金排名</button>
+							<button class="btn btn-lg btn-primary" type="button" onclick="getplayerwinrate();">玩家獲勝率排名</button>
+							<button class="btn btn-lg btn-primary" type="button" onclick="getchargerank();">(課長)充值排名</button>
+						</div>
+					</div>
+		</div>
+		</form>
+		
+<!--遊戲獲勝率對比 -->
+		<div id="sd5" style="width: 900px; height: 600px; margin: 0 auto; display:none" ></div>
+		
+<!-- 玩家贏得獎金排行 -->
+		<div id="sd4-1" style="width: 900px; height: 600px; margin: 0 auto; display:none"></div>
+		
+<!--各玩家獲勝率百分比 -->
+		<div id="dd" style="width: 900px; height: 600px; margin: 0 auto; display:none"></div>
+				
+<!-- 課長排名 -->
+		<div id="sd6" style="width: 900px; height: 600px; margin: 0 auto;display:none"></div>
+		
+		
 		<div class="table-responsive-xl">
 			<form action="" id="form1">
 				<table id="showdata" class="table">
@@ -87,7 +104,7 @@
 			</form>
 		</div>
 
-		<div id="dd"></div>
+
 
 
 		<div class="table-responsive-xl">
@@ -115,11 +132,40 @@
 			</form>
 		</div>
 
-		<div id="sd4-1"></div>
-		<div id="sd5"></div>
+		
+<!-- 		<div id="sd5"></div> -->
 
 
-		<button onclick="location='/admin/test/index'">回index</button>
+<!-- 按鍵顯示各個圖表 -->
+<script>
+function getwinrate(){
+	document.getElementById("sd5").style.display="block";
+	document.getElementById("sd4-1").style.display="none";
+	document.getElementById("dd").style.display="none";
+	document.getElementById("sd6").style.display="none";
+}
+
+function getbonusrank(){
+	document.getElementById("sd4-1").style.display="block";
+	document.getElementById("sd5").style.display="none";
+	document.getElementById("dd").style.display="none";
+	document.getElementById("sd6").style.display="none";
+}
+
+function getplayerwinrate(){
+	document.getElementById("dd").style.display="block";
+	document.getElementById("sd4-1").style.display="none";
+	document.getElementById("sd5").style.display="none";
+	document.getElementById("sd6").style.display="none";
+}
+
+function getchargerank(){
+	document.getElementById("sd6").style.display="block";
+	document.getElementById("dd").style.display="none";
+	document.getElementById("sd4-1").style.display="none";
+	document.getElementById("sd5").style.display="none";
+}
+</script>
 
 
 		<script>
@@ -235,10 +281,9 @@
 			}
 		</script>
 
+
+<!-- 玩家勝場比分比 -->
 		<script>
-			var str = new Array();
-			var sti = new Array();
-			// 		var sta = new Array();
 			var json = {};
 			$(document)
 					.ready(
@@ -251,31 +296,6 @@
 											type : "POST",
 											success : function(data) {
 
-												for (var i = 0; i < data.length; i++) {
-													// 							str.push(data[i][0]);
-													// 							sti.push(data[i][1]);
-													// 						sta.push(data[i][2]);
-												}
-												// 					$("#id").append(str);
-												// 					$("#id1").append(sti);
-												alert(str);
-												alert(sti);
-												// 					alert(sta);
-												// 					$("dd").highcharts(json);	
-
-												// 					var options = {
-
-												// 						var chart = {
-												// 							type : 'column',
-												// 							margin : 75,
-												// 							options3d : {
-												// 								enabled : true,
-												// 								alpha : 10,
-												// 								beta : 25,
-												// 								depth : 70
-												// 							}
-												// 						};
-
 												var chart = {
 													type : 'pie',
 													options3d : {
@@ -285,7 +305,7 @@
 													}
 												};
 												var title = {
-													text : "玩家勝場數排行"
+													text : "玩家勝場百分比"
 												};
 
 												var tooltip = {
@@ -303,21 +323,7 @@
 														}
 													}
 												};
-												// 						var xAxis = {
-												// 							categories : str
-												// 						};
-
-												// 						var yAxis = {
-												// 							//min : 0,
-												// 							name:'勝場數',
-												// 							title : {
-												// // 							text : "point"
-												// 							}
-												// 						};
-												// 						var series = [ {
-												// 							name : "勝場數",
-												// 							data : sti
-												// 						} ];
+												
 
 												var series = [ {
 													type : 'pie',
@@ -329,13 +335,10 @@
 												json.tooltip = tooltip;
 												json.title = title;
 												json.plotOptions = plotOptions;
-												// 						json.xAxis = xAxis;
-												// 						json.yAxis = yAxis;
 												json.series = series;
 
 												$("#dd").highcharts(json);
-												// 					};
-
+										
 											}
 
 										});
@@ -498,6 +501,8 @@
 			}
 		</script>
 
+
+		<!-- 玩家總獲勝獎金排名 -->
 		<script type="text/javascript">
 			var str = new Array();
 			var sti = new Array();
@@ -547,7 +552,7 @@
 						    }
 						  };
 						var title = {
-							text : "獎金排名"
+							text : "玩家勝利獎金排名"
 						};
 						var xAxis = {
 							categories : str
@@ -581,6 +586,8 @@
 			});
 		</script>
 		
+		
+<!-- 遊戲獲勝率對比 -->
 		<script type="text/javascript">
 			var sta = new Array();
 			var stb = new Array();
@@ -659,6 +666,90 @@
 
 						$("#sd5").highcharts(json);
 						// 					};
+
+					}
+
+				});
+
+			});
+		</script>
+		
+		<script type="text/javascript">
+			var stc = new Array();
+			var std = new Array();
+			var json = {};
+			$(document).ready(function() {
+
+				$.ajax({
+
+					url : "/admin/memberBeans/top3cash",
+					type : "POST",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							stc.push(data[i][0]);
+							std.push(data[i][1]);
+// 							sat.push(data[i][2]);
+						}
+
+						alert(stc);
+						alert(std);
+// 						alert(sta);
+
+						var chart = {
+							renderTo : 'container',
+// 							type : 'cylinder',
+							 type : 'column',
+							margin : 75,
+							options3d : {
+								enabled : true,
+								alpha : 10,
+								beta : 20,
+								depth : 25,
+								viewDistance : 60
+							}
+						};
+
+						var plotOptions = {
+								column : {
+								depth : 25,
+								colorByPoint : true
+							}
+						};
+						
+// 						var plotOptions= {
+// 						    series: {
+// 						      depth: 25,
+// 						      colorByPoint: true
+// 						    }
+// 						  };
+						var title = {
+							text : "課長排名"
+						};
+						var xAxis = {
+							categories : stc
+						};
+						var yAxis = {
+							// 							min : 0,
+							title : {
+								text : null
+							}
+						};
+						var series = [ {
+							name : "金額",
+							data : std,
+							 name: '金額',
+							 showInLegend: false
+						} ];
+						json.chart = chart;
+						json.title = title;
+						json.xAxis = xAxis;
+						json.yAxis = yAxis;
+						json.plotOptions = plotOptions;
+						json.series = series;
+
+						$("#sd6").highcharts(json);
+
 
 					}
 

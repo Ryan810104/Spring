@@ -134,7 +134,12 @@ public class MemberController {
 	public String query1(Model model) {
 		return "/test1/index-member";
 	}
-
+	
+	
+	@RequestMapping("/aiocheckout")
+	public String aiocheckout(Model model) {
+		return "/test1/aioCheckOut";
+	}
 
 	@ResponseBody
 	@RequestMapping("/findBymemberId")
@@ -231,7 +236,7 @@ public class MemberController {
 					@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
 					@RequestParam(value = "chipType", defaultValue = " ") String chipType,
 					@RequestParam(value = "time", defaultValue = "0") Float round,
-					@RequestParam(value = "win", defaultValue = "0") Integer win) {
+					@RequestParam(value = "win", defaultValue = "0") Integer win,HttpSession session) {
 				Chip chip = new Chip();
 				chip.setChipMemberNum(chipMemberNum);
 				chip.setChipFirstName(chipFirstName);
@@ -240,7 +245,8 @@ public class MemberController {
 				chip.setChipType(chipType);
 				chip.setWin(win);
 				chip.setRound(round);
-
+				session.setAttribute("moneyRecordPoint", moneyRecordPoint);
+				session.setAttribute("moneyRecordFirstName", moneyRecordFirstName);
 				MoneyRecord moneyRecord = new MoneyRecord();
 				moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
 				moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
@@ -249,15 +255,15 @@ public class MemberController {
 				moneyRecord.setMoneyRecordChip(moneyRecordChip);
 				moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
 				AjaxResponse<String> res = new AjaxResponse<>();
-//				if (result.hasErrors()) {
-//					res.setType(AjaxResponseType.ERROR);
-//					System.out.println(result.getAllErrors());
-//					return res;
-//				}
+//						if (result.hasErrors()) {
+//							res.setType(AjaxResponseType.ERROR);
+//							System.out.println(result.getAllErrors());
+//							return res;
+//						}
 
 				res.setType(AjaxResponseType.SUCCESS);
 				res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
-//				res.setData(chipService.save(chip).toString());
+//						res.setData(chipService.save(chip).toString());
 				return res;
 			}
 		//同時將一筆遊戲結果insert到chip&chiprecord兩個table
