@@ -17,7 +17,7 @@
 		</figure>
 
 		<div class="sidebar-title moe username-line-height">
-			<a href="/main/setting">${sessionScope.member.memberId}</a>
+			<a href="/main/setting">${sessionScope.member.memberLastName}</a>
 		</div>
 		<div class="sidebar-title moe">${sessionScope.member.moneyBalance}
 			p</div>

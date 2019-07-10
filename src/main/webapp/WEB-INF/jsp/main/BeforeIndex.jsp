@@ -582,16 +582,14 @@
 							id="logintest1"></div>
 						<p style="color: red">${ErrorMsg.loginError}</p>
 					</form>
-					<input value="${sessionScope.UID}"> <input
-						value="${sessionScope.member}">
 					<form id="googleForm" name="googleForm"
 						action="/admin/memberBeans/googlelogin1" method="post">
-						<input id="googleEmail" name="googleEmail" type="text" value="">
+						<input id="googleEmail" name="googleEmail" type="text" value="" style="display:none">
 						<input id="googlePhotoUrl" name="googlePhotoUrl" type="text"
-							value=""> <input id="googleId" name="googleId"
-							type="text" value="">
+							value="" style="display:none"> <input id="googleId" name="googleId"
+							type="text" value="" style="display:none">
 						<button class="btn btn-lg btn-primary btn-block" type="submit"
-							id="googlefinallogin">google登入</button>
+							id="googlefinallogin" style="display:none">google登入</button>
 					</form>
 				</div>
 
@@ -601,7 +599,6 @@
 	</div>
 	<script>
 		
-		$("#logintest1").click();
 		var memberEmail = "";
 		var memberId = "";
 		var memberPhotoURL = "";
@@ -637,14 +634,14 @@
 					memberPhotoURL : memberPhotoURL,
 				},
 				type : "POST",
-				success : function (newState) {
-					setTimeout(function() {
-						if (newState == -1) 
-							$("#googlefinallogin").click();
-					}, 5000);
+				success : function () {
+					 googlelogin2();
 				}
 			})
 
+		}
+		function googlelogin2(){
+			setTimeout(function(){$("#googlefinallogin").click()},20000);
 		}
 	</script>
 	<script async defer crossorigin="anonymous"
