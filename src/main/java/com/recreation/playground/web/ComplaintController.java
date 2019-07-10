@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.recreation.playground.entity.Complaint;
+import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.ComplaintService;
 
 @Controller
@@ -73,6 +74,14 @@ public class ComplaintController {
 		model.addAttribute("insertComplaint", "1");
 		return "/main/Index";
 
+	}
+	
+	@ResponseBody
+	@RequestMapping("/findBycomplaintNum")
+	public Complaint findBycomplaintNum(int complaintNum) {
+		System.out.println(complaintNum);
+		
+		return service.findBycomplaintNum(complaintNum);
 	}
 
 	@ResponseBody

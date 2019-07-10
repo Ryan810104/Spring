@@ -60,7 +60,7 @@
 							name="complaintPic" id="complaintPic"
 							accept="image/gif, image/jpeg, image/png"> <img
 							id="preview_imageFile" width='50' height='50'
-							src="/resources/img/default-picture.png" /> 預覽
+							src="/resources/img/default-file.png" /> 預覽
 					</div>
 				</div>
 				<div class="row">
@@ -107,7 +107,7 @@
 						reader.onload = function(e) {
 							if (e == null) {
 								$("#preview_imageFile").attr('src',
-										"/resources/img/default-picture.png");
+										"/resources/img/default-file.png");
 							} else
 								$("#preview_imageFile").attr('src',
 										e.target.result);

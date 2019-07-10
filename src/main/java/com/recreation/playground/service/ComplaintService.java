@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.ComplaintDao;
 import com.recreation.playground.entity.Complaint;
+import com.recreation.playground.entity.Member;
 
 @Service
 @Transactional(readOnly = true)
@@ -47,6 +48,9 @@ public class ComplaintService {
 
 	public void fileComplaints(Complaint cp) {
 		dao.save(cp);
+	}
+	public Complaint findBycomplaintNum(int num) {
+		return dao.findByComplaintNum(num);
 	}
 	
 	

@@ -10,4 +10,6 @@ public interface ComplaintDao extends JpaRepository<Complaint, Integer>{
 	
 	public List<Complaint> findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(int type,int status);
 
+	public Complaint findByComplaintNum(int num);
+
 }
