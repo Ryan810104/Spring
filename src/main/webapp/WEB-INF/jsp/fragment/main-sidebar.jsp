@@ -60,11 +60,11 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/complain">投訴箱</a></li>
+				href="/main/complain">投訴箱</a></li>				
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/logout" onclick="signOut()">登出</a></li>
+				href="/main/logout">登出</a></li>
 		</ul>
 
 
@@ -83,7 +83,6 @@
 
 	<div class="d-flex justify-content-center h-100">
 		<div class="searchbar">
-
 			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="Search..."> <a class="search_icon">
 			<i class="fas fa-search" style="color: white;"></i></a>
 			
@@ -138,36 +137,36 @@
 		<ul class="dots drop-down-menu" style="display: flex;">
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-user"><mark
-							class="pink tada" id="friendcount" style="display: none"></mark></span>
+							class="pink tada" id="friendcount" style="display:none"></mark></span>
 					<ul class="dropdown-menu dropdownmenuCSSoverride" id="whoaddme">
-						<!-- 						<li> -->
-						<!-- 						<a href="#"> -->
-						<!-- 							<div class="col-sm-12 size-adjust"> -->
-						<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
-						<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
-						<!-- 							</div> -->
-						<!-- 						</a> -->
-						<!-- 						</li> -->
-						<!-- 						<hr class="listhr"> -->
-
-						<!-- 						<li> -->
-						<!-- 						<a href="#"> -->
-						<!-- 							<div class="col-sm-12 size-adjust"> -->
-						<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
-						<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
-						<!-- 							</div> -->
-						<!-- 						</a> -->
-						<!-- 						</li> -->
-						<!-- 						<hr class="listhr"> -->
-
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
 					</ul>
-			</a></li>
+			</a>
+			</li>
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-envelope"><mark
-							class="pink tada" style="display: none" id="notifycount"></mark></span>
-					<ul class="dropdown-menu dropdownmenuCSSoverridenotify"
-						id="notifystatus">
-
+							class="pink tada" style="display:none" id="notifycount"></mark></span>
+					<ul class="dropdown-menu dropdownmenuCSSoverridenotify" id="notifystatus">
+						
 					</ul>
 			</a></li>
 		</ul>
@@ -819,6 +818,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	//# sourceURL=pen.js
 </script> <script>
+
 	window.onscroll = function() {
 		scrollFunction()
 	};
@@ -905,81 +905,23 @@ $("#findmemberlist").on("input",function(){
 	});
 	if ($("#findmemberlist").val().length > 1 ){
 // 		console.log(sessionStorage.getItem("length"));
-		$("#membersearch01").slideDown(1000);
+		$("#membersearch01").show();
 	};
 	
 });
 
-	$("#findmemberlist")
-			.on(
-					"input",
-					function() {
-						var text = "";
-						$
-								.ajax({
-									url : "/admin/memberBeans/findfriend?findmemberid="
-											+ $("#findmemberlist").val(),
-									type : "GET",
-									success : function(Jdata) {
-										var NumOfJData = Jdata.length;
-										sessionStorage.setItem("length",
-												Jdata.length);
-										for (var i = 0; i < NumOfJData; i++) {
-											if (Jdata[i]["memberNum"] == '${sessionScope.member.memberNum}') {
-												continue;
-											}
-											text += "<li>"
-											text += "<div class=\"col-md-12\">"
-											text += "<div class=\"well well-sm\">"
-											text += "<div class=\"media\">"
-											text += "<a class=\"thumbnail pull-left\" href=\"#\"> <img "
-											text += "class=\"media-object\" style=\"width: 60px;height: 60px;margin-top: 6px;\""
-											text += "src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i]["memberNum"]+"' />\">"
-											text += "</a>"
-											text += "<div class=\"media-body\">"
-											text += "<h4 class=\"media-heading\">"
-													+ Jdata[i]["memberId"]
-													+ "</h4>"
-											text += "<p style=\"margin-top: 0px;\">"
-											text += "<a  onclick=\"addfunction("
-													+ Jdata[i]["memberNum"]
-													+ ")\" class=\"btn btn-success btn-sm\"><i class=\"fas fa-home\"></i></a>"
-											text += "<a  onclick=\"addfunction("
-													+ Jdata[i]["memberNum"]
-													+ ")\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
-											text += "</p>"
-											text += "</div>"
-											text += "</div>"
-											text += "</div>"
-											text += "<hr style=\"margin: 0px 20px 0px 20px;\">"
-											text += "</div>"
-											text += "</li>"
-
-										}
-
-										$("#membersearch01").html(text);
-									}
-								});
-						if (sessionStorage.getItem("length") != 0) {
-							$("#membersearch01").slideDown(1000);
-						}
-						;
-
-					});
-
-	$("#findmemberlist").blur(function() {
-		$("#membersearch01").slideUp();
-	});
-	function addfunction(num) {
-		$("#friendlistfriendid").val(num);
-		console.log($("#friendaddform").serialize());
-		$.ajax({
-			url : "/friend/list/add?yourid="
-					+ '${sessionScope.member.memberNum}' + "&friendid=" + num,
-			type : "GET"
-		})
-		confirm("已加入好友");
-		location.reload();
-
-	};
+$("#findmemberlist").blur(function(){
+	$("#membersearch01").slideUp();
+});
+function addfunction(num){
+	$("#friendlistfriendid").val(num);
+	console.log($("#friendaddform").serialize());
+	$.ajax({
+		url : "/friend/list/add?yourid="+'${sessionScope.member.memberNum}'+"&friendid="+num,
+		type: "GET"
+	})
+	confirm("已加入好友");
+	location.reload();
+	
+};
 </script>
