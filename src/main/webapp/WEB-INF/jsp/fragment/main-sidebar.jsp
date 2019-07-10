@@ -882,7 +882,7 @@ $("#findmemberlist").on("input",function(){
 	});
 	if ($("#findmemberlist").val().length > 1 ){
 // 		console.log(sessionStorage.getItem("length"));
-		$("#membersearch01").slideDown(1000);
+		$("#membersearch01").show();
 	};
 	
 });
