@@ -81,6 +81,12 @@ public class FrontendSidebarController {
 	public String toComplain(Model model) {
 		return"/main/complain/complainIndex";
 	}
+	
+	//賭球遊戲
+	@RequestMapping("/Gamebling")
+	public String toGamebling(Model model) {
+		return"/main/games/Gambling";
+	}
 
 	
 }

@@ -125,6 +125,7 @@ public class ComplaintController {
 		cpp.setComplaintStatus(1);
 		java.util.Date date = new java.util.Date();
 		cpp.setComplaintResponsetime(date);
+
 //		System.out.println(cpp.toString());
 		em.persist(cpp);
 //		service.update(cpp);
@@ -132,6 +133,7 @@ public class ComplaintController {
 //		}else {
 //			return 0;
 //		}	
+
 
 	}
 
