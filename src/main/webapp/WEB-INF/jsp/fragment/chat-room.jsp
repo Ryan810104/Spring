@@ -207,6 +207,13 @@ function whoismyfriend(){
 		type : "GET",
 		success : function(Jdata) {
 		var NumOfJData = Jdata.length;
+		console.log(NumOfJData);
+		if (NumOfJData == 0 ){
+			myfriends +=	"<div>"
+			myfriends +=	"<span>目前沒有朋友喔！</span>"
+			myfriends +=	"<span class= \" "+online+" \" ></span>"
+			myfriends +=	"</div>"
+		}
 		for (var i = 0; i < NumOfJData; i++) {
 			
 			for (var j = 0 ; j < list.length ; j++){
