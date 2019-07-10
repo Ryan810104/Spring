@@ -95,5 +95,8 @@ public class Member {
   
 	
 	private String memberLocation;
+	private String googleEmail;
+	private String googlePhotoUrl;
+	private String googleId;
 	
 }

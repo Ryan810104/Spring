@@ -21,8 +21,7 @@
 	<nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav"
 		style="background: #6d7fcc; max-height: 5.1rem;">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">EEIT107
-				Team2 Demo</a>
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">友錢來也</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -298,20 +297,6 @@
 	</section>
 
 	<script>
-		function onSignIn(googleUser) {
-			// Useful data for your client-side scripts:
-			var profile = googleUser.getBasicProfile();
-			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-			console.log('Full Name: ' + profile.getName());
-			console.log('Given Name: ' + profile.getGivenName());
-			console.log('Family Name: ' + profile.getFamilyName());
-			console.log("Image URL: " + profile.getImageUrl());
-			console.log("Email: " + profile.getEmail());
-
-			// The ID token you need to pass to your backend:
-			var id_token = googleUser.getAuthResponse().id_token;
-			console.log("ID Token: " + id_token);
-		}
 		function chkId() {
 			let theId = document.getElementById("memberRId").value;
 			let theIdLen = theId.length;
@@ -584,16 +569,29 @@
 						</div>
 						<hr>
 						<button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+
 						<hr>
-						<div id="fb-root">
-							<div class="fb-login-button" data-width="" data-size="large"
-								data-button-type="login_with" data-auto-logout-link="true"
-								data-use-continue-as="true"></div>
-							
-						</div>
-						<div class="g-signin2" data-onsuccess="onSignIn"
-								data-theme="dark"></div>
+						<!-- 						<div id="fb-root"> -->
+						<!-- 							<div class="fb-login-button" data-width="" data-size="large" -->
+						<!-- 								data-button-type="login_with" data-auto-logout-link="true" -->
+						<!-- 								data-use-continue-as="true"></div> -->
+
+						<!-- 						</div> -->
+
+						<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"
+							id="logintest1"></div>
 						<p style="color: red">${ErrorMsg.loginError}</p>
+					</form>
+					<input value="${sessionScope.UID}"> <input
+						value="${sessionScope.member}">
+					<form id="googleForm" name="googleForm"
+						action="/admin/memberBeans/googlelogin1" method="post">
+						<input id="googleEmail" name="googleEmail" type="text" value="">
+						<input id="googlePhotoUrl" name="googlePhotoUrl" type="text"
+							value=""> <input id="googleId" name="googleId"
+							type="text" value="">
+						<button class="btn btn-lg btn-primary btn-block" type="submit"
+							id="googlefinallogin">google登入</button>
 					</form>
 				</div>
 
@@ -601,6 +599,54 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		
+		$("#logintest1").click();
+		var memberEmail = "";
+		var memberId = "";
+		var memberPhotoURL = "";
+		function onSignIn(googleUser) {
+			// Useful data for your client-side scripts:
+			var profile = googleUser.getBasicProfile();
+			// 			     $("#memberEmail").val(profile.getEmail());
+			memberEmail = profile.getEmail();
+			memberId = profile.getId();
+			memberPhotoURL = profile.getImageUrl();
+			// 			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+			// 			console.log('Full Name: ' + profile.getName());
+			// 			console.log('Given Name: ' + profile.getGivenName());
+			// 			console.log('Family Name: ' + profile.getFamilyName());
+			// 			console.log("Image URL: " + profile.getImageUrl());
+			// 			console.log("Email: " + profile.getEmail());
+			googleLogin();
+			$('#googleId').val(memberId);
+			$('#googleEmail').val(memberEmail);
+			$('#googlePhotoUrl').val(memberPhotoURL);
+
+			// The ID token you need to pass to your backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			// 			console.log("ID Token: " + id_token);
+		};
+		function googleLogin() {
+
+			$.ajax({
+				url : "/admin/memberBeans/googlelogin",
+				data : {
+					memberId : memberId,
+					memberEmail : memberEmail,
+					memberPhotoURL : memberPhotoURL,
+				},
+				type : "POST",
+				success : function (newState) {
+					setTimeout(function() {
+						if (newState == -1) 
+							$("#googlefinallogin").click();
+					}, 5000);
+				}
+			})
+
+		}
+	</script>
 	<script async defer crossorigin="anonymous"
 		src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v3.3&appId=2314086598685939&autoLogAppEvents=1">
 		

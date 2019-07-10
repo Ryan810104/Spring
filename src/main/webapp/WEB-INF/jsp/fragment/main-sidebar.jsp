@@ -6,8 +6,11 @@
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
 
-			<a href="/main/setting"> <img class="sidebar-avatar-in"
-				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
+			<a href="/main/setting" id="result" > 
+			<input type="text" value="${sessionScope.member.memberId}"
+				id="memberId" style="display: none">
+<!-- 			<img class="sidebar-avatar-in" -->
+<%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
 			</a>
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
@@ -80,10 +83,54 @@
 
 	<div class="d-flex justify-content-center h-100">
 		<div class="searchbar">
-			<input class="search_input" type="text" name="findmemberid"
-				placeholder="Search..."> <a class="search_icon"><i
-				class="fas fa-search" style="color: white;"></i></a>
+			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="Search..."> <a class="search_icon">
+			<i class="fas fa-search" style="color: white;"></i></a>
+			
+			
+		  <ul class="results" id="membersearch01" style="display:none;" >
+<!-- 			 <li> -->
+<!-- 			 <div class="col-md-12"> -->
+<!-- 					<div class="well well-sm"> -->
+<!-- 						<div class="media"> -->
+<!-- 							<a class="thumbnail pull-left" href="#"> <img -->
+<!-- 								class="media-object" style="width: 70%;margin-top: 6px;"  -->
+<!-- 								src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"> -->
+<!-- 							</a> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h4 class="media-heading">John Doe</h4> -->
+<!-- 								<p style="margin-top: 0px;"> -->
+<!-- 									<a href="#" class="btn btn-success btn-sm"><i class="fas fa-home"></i></a> -->
+<!-- 									<a href="#" class="btn btn-primary btn-sm"><i class="fas fa-user-friends"></i></a> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<hr style="    margin: 0px 20px 0px 20px;"> -->
+<!-- 				</div> -->
+<!-- 			</li> -->
+<!-- 			 <li>			 <div class="col-md-12"> -->
+<!-- 					<div class="well well-sm"> -->
+<!-- 						<div class="media"> -->
+<!-- 							<a class="thumbnail pull-left" href="#"> <img -->
+<!-- 								class="media-object" style="width: 70%;margin-top: 6px;"  -->
+<!-- 								src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"> -->
+<!-- 							</a> -->
+<!-- 							<div class="media-body"> -->
+<!-- 								<h4 class="media-heading">John Doe</h4> -->
+<!-- 								<p style="margin-top: 0px;"> -->
+<!-- 									<a href="#" class="btn btn-success btn-sm"><i class="fas fa-home"></i></a> -->
+<!-- 									<a href="#" class="btn btn-primary btn-sm"><i class="fas fa-user-friends"></i></a> -->
+<!-- 								</p> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 					<hr style="    margin: 0px 20px 0px 20px;"> -->
+<!-- 				</div></li> -->
+<!-- 	 		<li>Search Result #3</li> -->
+<!--          	<li>Search Result #4</li> -->
+		 </ul>
 		</div>
+		<br>
 	</div>
 	<nav id="sidebar">
 
@@ -113,13 +160,13 @@
 <!-- 						<hr class="listhr"> -->
 						
 					</ul>
-			</a></li>
+			</a>
+			</li>
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-envelope"><mark
-							class="pink tada">13</mark></span>
-					<ul class="dropdown-menu">
-						<li><a href="#">jmeter</a></li>
-						<li><a href="#">EJB123</a></li>
+							class="pink tada" style="display:none" id="notifycount"></mark></span>
+					<ul class="dropdown-menu dropdownmenuCSSoverridenotify" id="notifystatus">
+						
 					</ul>
 			</a></li>
 		</ul>
@@ -523,7 +570,7 @@ Inicio Tercer Estado: Oculto (OK)
 }
 /* ========================= */
 .searchbar {
-	margin-right: 15px;
+	margin-right: 65px;
 	margin-bottom: auto;
 	margin-top: auto;
 	height: 40px;
@@ -675,6 +722,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	var nav = document.querySelectorAll('.sidebar-nav-item');
 	$(document).ready(function() {
+		showImageBymemberId();
 		for (i = 0; i < 9; i++) {
 			if (localStorage.getItem("nav[" + i + "]")) {
 				$("nav[" + i + "]").click();
@@ -682,9 +730,28 @@ Inicio Tercer Estado: Oculto (OK)
 				localStorage.removeItem("nav[" + i + "]");
 				a(i);
 			}
-		}
+		};
+		
 	});
+	function showImageBymemberId() {
+		$
+				.ajax({
+					url : "/admin/memberBeans/findBymemberId",
+					data : {
+						memberId : $("#memberId").val(),
+					},
+					type : "POST",
+					success : function(data) {
+						if (data["memberPhotoURL"] == null) {
+							text = "<img class=\"sidebar-avatar-in\" src="+ "/resources/img/default-picture.png" + ">";
+						} else {
+							text = "<img  class=\"sidebar-avatar-in\" src="+ data["memberPhotoURL"] + ">";
+						}
 
+						$("#result").html(text);
+					}
+				});
+	}
 	nav[0].addEventListener('click', function() {
 
 		var clica = nav[0];
@@ -768,4 +835,93 @@ Inicio Tercer Estado: Oculto (OK)
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
 	}
+</script> 
+<script>
+$(document).ready(function(){
+	$("#membersearch01").hide();
+});
+
+$("#findmemberlist").on("input",function(){
+	var text = "";
+	var friendlist = "";
+	$.ajax({
+		url : "/friend/list/findmyfriend?memberid=" + '${sessionScope.member.memberNum}',
+		type : "GET",
+		success : function(Jdata) {
+			var NumOfJData = Jdata.length;
+			for (var j = 0 ; j < NumOfJData ; j++){
+				friendlist += Jdata[j][0] + ",";
+			}
+			sessionStorage.setItem("friendlist",friendlist);
+			}
+		});
+	$.ajax({
+		url : "/admin/memberBeans/findfriend?findmemberid="+$("#findmemberlist").val(),
+		type : "GET",
+		success : function(Jdata) {
+			var NumOfJData = Jdata.length;
+			sessionStorage.setItem("length",Jdata.length);
+			for (var i = 0; i < NumOfJData; i++) {
+				if (Jdata[i]["memberNum"] == '${sessionScope.member.memberNum}'){
+					continue;
+				}
+				var friend2member = sessionStorage.getItem("friendlist").split(",");
+				for (var k  = 0 ; k < friend2member.length ; k++){
+					if (Jdata[i]["memberNum"] == friend2member[k]){
+						console.log ("myfriend");
+						var ismyfriendornot = "<a onclick=\"talktofromclickbutton("+Jdata[i]["memberNum"]+")\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
+						break;
+			//jdata <> ismyfriend <> ornot <> defination
+					} else {
+						var ismyfriendornot = "<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
+						console.log ("notmyfriend");
+					}
+				}
+				text +=	"<li>"
+				text += "<div class=\"col-md-12\">"
+				text += "<div class=\"well well-sm\">"
+				text +=	"<div class=\"media\">"
+				text +=	"<a class=\"thumbnail pull-left\" href=\"#\"> <img "
+				text +=	"class=\"media-object\" style=\"width: 60px;height: 60px;margin-top: 6px;\""
+				text +=	"src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i]["memberNum"]+"' />\">"
+				text +=	"</a>"
+				text +=	"<div class=\"media-body\">"
+				text +=	"<h4 class=\"media-heading\">"+Jdata[i]["memberId"]+"</h4>"
+				text +=	"<p style=\"margin-top: 0px;\">"
+				text +=	"<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-success btn-sm\"><i class=\"fas fa-home\"></i></a>"
+				text +=	 ismyfriendornot
+				text +=	"</p>"
+				text +=	"</div>"
+				text +=	"</div>"
+				text +=	"</div>"
+				text +=	"<hr style=\"margin: 0px 20px 0px 20px;\">"
+				text +=	"</div>"
+				text +=	"</li>"
+				
+			}
+			
+			$("#membersearch01").html(text);
+		}
+	});
+	if ($("#findmemberlist").val().length > 1 ){
+// 		console.log(sessionStorage.getItem("length"));
+		$("#membersearch01").show();
+	};
+	
+});
+
+$("#findmemberlist").blur(function(){
+	$("#membersearch01").slideUp();
+});
+function addfunction(num){
+	$("#friendlistfriendid").val(num);
+	console.log($("#friendaddform").serialize());
+	$.ajax({
+		url : "/friend/list/add?yourid="+'${sessionScope.member.memberNum}'+"&friendid="+num,
+		type: "GET"
+	})
+	confirm("已加入好友");
+	location.reload();
+	
+};
 </script>

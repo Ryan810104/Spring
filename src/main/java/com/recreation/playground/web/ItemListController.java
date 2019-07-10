@@ -118,6 +118,13 @@ public class ItemListController {
 			Model model) {
 		return "/test/GoogleTest";
 	}
+	@RequestMapping("/googletest2")
+	//modelAttribute  網頁表格名稱，接到的值放入對應memberBeans，BindingResult 
+	//將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
+	public String googletest2(@Valid @ModelAttribute("userupdate") Member member, BindingResult result,
+			Model model) {
+		return "/test/GoogleTest2";
+	}
 //	@RequestMapping(value="/getPicture/{memberId}",method=RequestMethod.GET)
 //	public ResponseEntity<byte[]> getPicture(HttpServletResponse response,@PathVariable String itemName){
 //		String filePath="/resources/img/01.jpg";

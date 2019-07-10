@@ -55,9 +55,12 @@ public class ChatRoomServerEndpoint {
 	Thread thread;
 	boolean running = false;
 
+	Thread threadfriendnotice;
+	boolean runningnotice = false;
+
 	private static final Logger log = LoggerFactory.getLogger(ChatRoomServerEndpoint.class);
-	
-	public String showIDfromUsername (int num) {
+
+	public String showIDfromUsername(int num) {
 		EntityManager em = ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
 		Member a = em.find(Member.class, num);
 		return a.getMemberId();
@@ -65,44 +68,57 @@ public class ChatRoomServerEndpoint {
 
 	@SuppressWarnings({ "static-access", "unchecked" })
 	@OnOpen
-	public void openSession(@PathParam("username") String username, Session session , @PathParam("usernumber") Integer usernumber) {
+	public void openSession(@PathParam("username") String username, Session session,
+			@PathParam("usernumber") Integer usernumber) {
 		LIVING_SESSIONS_CACHE.put(username, session);
 		sendMessageAll("用戶上線列表" + LIVING_SESSIONS_CACHE.keySet().toString());
-		
 
+		final Session mysession = session;
 ////////////////////////////////
 //
 // 有人加使用者好友時，發出通知給使用者
 //
 ////////////////////////////////
 
-		final Session mysession = session;
 		this.running = true;
 		this.thread = new Thread(() -> {
 			while (running) {
 				if (mysession.isOpen()) {
 					try {
-						FriendListDao friendlistdao =  ApplicationContextRegister.getApplicationContext().getBean(FriendListDao.class);
+						FriendListDao friendlistdao = ApplicationContextRegister.getApplicationContext().getBean(FriendListDao.class);
 						List<Object> list = friendlistdao.findCurrentIdunRead(usernumber);
-						if (list.size() !=0) {
-							Map<Integer,String> map = new HashMap<>();
-							for (int i = 0 ; i < list.size() ; i++) {
+						if (list.size() != 0) {
+							Map<Integer, List<String>> map = new HashMap<>();
+							for (int i = 0; i < list.size(); i++) {
+								List<String> friendinfo = new ArrayList<>();
 								Object[] tempObj = (Object[]) list.get(i);
-								int membernum =  (int) tempObj[0];
-								map.put(membernum, showIDfromUsername(membernum));
-							}
-							mysession.getBasicRemote().sendText("加好友訊息"+"/"+map);
-//							System.out.println(Arrays.deepToString(list.toArray()));
-//							String data = Arrays.deepToString(list.toArray());
-//							String[] data1 = data.split(",");
-//							int a = Integer.valueOf(data1[0].replace("[", "").replace("]", ""));
-//							System.out.println(showIDfromUsername(a));
-//							mysession.getBasicRemote().sendText("加好友訊息"+"/"+a+"/"+showIDfromUsername(a) + "/");
+								int membernum = (int) tempObj[0];
+								int memberlist = (int) tempObj[2];
+								friendinfo.add(String.valueOf(membernum));
+								friendinfo.add(showIDfromUsername(membernum));
+								map.put(memberlist, friendinfo);
 
+							}
+							mysession.getBasicRemote().sendText("加好友訊息" + "/" + map);
+						} else {
+							mysession.getBasicRemote().sendText("你沒朋友" + "/");
 						}
-//						System.out.println(list.isEmpty());
-//						mysession.getBasicRemote().sendText(String.valueOf(list.get(1)));
-						thread.sleep(3000);
+/////////////////////////////////找通知
+						EntityManager em = ApplicationContextRegister.getApplicationContext().getBean(EntityManager.class);
+						String sql = "SELECT distinct  f1.friend_list_friendid , m1.member_id , f1.friend_list_num  FROM friend_list f1   JOIN friend_list f2 ON f2.friend_list_memberid = f1.friend_list_friendid JOIN  member m1 ON m1.member_num = f1.friend_list_friendid  WHERE f1.friend_list_memberid = "
+								+ usernumber
+								+ " and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1 and f1.friend_notify = 0";
+						List<Object[]> list1 = em.createNativeQuery(sql).getResultList();
+						if (list1.size() != 0) {
+							try {
+								mysession.getBasicRemote().sendText("測試" + "/" + Arrays.deepToString(list1.toArray()));
+							} catch (IOException e) {
+								running = false;
+							}
+						} else {
+							mysession.getBasicRemote().sendText("沒有通知" + "/");
+						}
+						thread.sleep(3000); //thread結束，睡X秒後從new Thread開始跑
 					} catch (IOException | InterruptedException e) {
 						running = false;
 						e.printStackTrace();
@@ -110,7 +126,7 @@ public class ChatRoomServerEndpoint {
 				} else {
 					running = false;
 				}
-			}
+			} //running 結尾
 		});
 		this.thread.start();
 	}

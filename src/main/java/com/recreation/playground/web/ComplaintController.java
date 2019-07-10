@@ -125,9 +125,16 @@ public class ComplaintController {
 		cpp.setComplaintStatus(1);
 		java.util.Date date = new java.util.Date();
 		cpp.setComplaintResponsetime(date);
-			em.persist(cpp);
-		}
-		return "/main/complain/complainDeal";	
+
+//		System.out.println(cpp.toString());
+		em.persist(cpp);
+//		service.update(cpp);
+		return 1;
+//		}else {
+//			return 0;
+//		}	
+
+
 	}
 
 }

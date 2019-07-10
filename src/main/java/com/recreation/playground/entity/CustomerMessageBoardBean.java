@@ -32,6 +32,8 @@ public class CustomerMessageBoardBean {
 	@Column
 	private String customermessageboardMemberid ;
 	@Column
+	private int customermessageboardMemberNum ;
+	@Column
 	private String customermessageboardTitle ; 
 	@Column
 	private String customermessageboardMessage ; 

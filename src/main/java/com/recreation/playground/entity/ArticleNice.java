@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="FriendList")
+@Table(name="ArticleNice")
 public class ArticleNice {
 
 		@Id

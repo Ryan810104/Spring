@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>EEIT107 Team2</title>
+    <title>友錢來也</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
