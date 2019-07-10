@@ -330,13 +330,16 @@
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
 }
 .demo .chat__message.mine {
-  color: #2B2342;
+  color: black;
   border: 1px solid #DFDFDF;
+  background-color: skyblue;
+  border-radius: 15px;
 }
 .demo .chat__message.notMine {
   float: right;
-  color: #23244E;
-  background: #E9EAF3;
+  color: black;
+  background: chartreuse;
+  border-radius: 15px;
 }
 .demo .chat__input {
   position: absolute;
