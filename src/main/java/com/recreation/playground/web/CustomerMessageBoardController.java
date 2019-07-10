@@ -39,9 +39,11 @@ public class CustomerMessageBoardController {
 	@ResponseBody
 	@RequestMapping("/searchall")
 	public List<CustomerMessageBoardBean> searchall() {
-		List<CustomerMessageBoardBean> beans = service.searchall();
-//		System.out.println(beans);
-		return service.searchall();
+		List<CustomerMessageBoardBean> bean = service.searchthelastofmessage();
+		int i = bean.get(0).getCustomermessageboardArticleFloor();
+		List<CustomerMessageBoardBean> beans = service.searchall(i-2,i);
+		System.out.println(beans);
+		return beans;
 	}
 	
 	@ResponseBody

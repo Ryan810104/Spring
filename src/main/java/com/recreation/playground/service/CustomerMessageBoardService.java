@@ -23,9 +23,9 @@ public class CustomerMessageBoardService {
 		dao.save(beans);
 	}
 	
-	public List<CustomerMessageBoardBean> searchall() {
+	public List<CustomerMessageBoardBean> searchall(int i , int j) {
 //		System.out.println(dao.findAll());
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEquals(1,3,0);
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i,j,0);
 	}
 	
 	public List<CustomerMessageBoardBean> searchthelastofmessage(){
@@ -42,7 +42,8 @@ public class CustomerMessageBoardService {
 	}
 
 	public List<CustomerMessageBoardBean> searchcontinue(int i , int j ){
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEquals(i, j, 0) ;
+		System.out.println("i = "+ i + "j = "+j);
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i, j, 0) ;
 	}
 	
 }

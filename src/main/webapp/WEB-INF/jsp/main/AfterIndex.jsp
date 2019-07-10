@@ -124,7 +124,6 @@
 
 							<strong class="d-block text-danger">公告</strong> 系統將於 <strong
 								class="text-danger">2019-05-30 09:00 ~ 12:00</strong>進行維護，如有不便請見諒。
-
 						</p>
 					</div>
 					<div class="media text-muted pt-3">
@@ -163,7 +162,7 @@
 							<div class="post-heading">
 								<div class="pull-left image">
 									<img
-										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
+										src="/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}"
 										class="img-circle avatar" alt="user profile image">
 								</div>
 								<div class="pull-left meta">
@@ -176,6 +175,10 @@
 											style="display: none" value="${sessionScope.member.memberNum}" />
 										<input type="text" id="customermessageboardArticleFloor"
 											name="customermessageboardArticleFloor" style="display: none">
+										<input type="text" id="articlefloor" style="display: none" value="1">
+										<!--隱藏搜尋樓數位置 -->
+										<input type="text" id="searchstart" style="display: none" >
+										<input type="text" id="searchend" style="display: none" >
 										<textarea class="form-control" cols="95" rows="1"
 											placeholder="標題..." name="customermessageboardTitle"
 											id="CustomermessageboardTitle"></textarea>
@@ -199,84 +202,81 @@
 				</div>
 			</form>
 			<input type="text" id="customermessageboardResponseFloor" style="display: none">
-			<br>
-			<div class="container">
-				<div class="col-sm-10" style="margin: 0 auto;">
-					<div class="panel panel-white post panel-shadow">
-						<div class="post-heading">
-							<div class="pull-left image">
-								<img
-									src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-									class="img-circle avatar" alt="user profile image">
-							</div>
-							<div class="pull-left meta">
-								<div class="title h2">
-									<a href="#"><b>Ryan Haywood</b></a> made a post.
-								</div>
-								<!-- 								<h6 class="text-muted time">1 minute ago</h6> -->
-							</div>
-						</div>
-						<div class="post-description" >
-							<p>Bootdey is a gallery of free snippets resources templates
-								and utilities for bootstrap css hmtl js framework. Codes for
-								developers and web designers</p>
-							<div class="stats">
+<!-- 			<br> -->
+<!-- 			<div class="container"> -->
+<!-- 				<div class="col-sm-10" style="margin: 0 auto;"> -->
+<!-- 					<div class="panel panel-white post panel-shadow"> -->
+<!-- 						<div class="post-heading"> -->
+<!-- 							<div class="pull-left image"> -->
+<!-- 								<img -->
+<!-- 									src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D" -->
+<!-- 									class="img-circle avatar" alt="user profile image"> -->
+<!-- 							</div> -->
+<!-- 							<div class="pull-left meta"> -->
+<!-- 								<div class="title h2"> -->
+<!-- 									<a href="#"><b>Ryan Haywood</b></a> made a post. -->
+<!-- 								</div> -->
+<!-- 																<h6 class="text-muted time">1 minute ago</h6> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="post-description" > -->
+<!-- 							<p>Bootdey is a gallery of free snippets resources templates -->
+<!-- 								and utilities for bootstrap css hmtl js framework. Codes for -->
+<!-- 								developers and web designers</p> -->
+<!-- 							<div class="stats"> -->
 <!-- 								<a href="#" class="btn btn-default stat-item"> <i -->
 <!-- 									class="fa fa-thumbs-up icon"></i>2 -->
 <!-- 								</a> -->
-								<button><i class="fa fa-thumbs-up icon" style="font-size: 17px"></i><span style="font-size: 17px">2</span></button><span>&nbsp&nbsp&nbsp&nbsp</span>
+<!-- 								<button><i class="fa fa-thumbs-up icon" style="font-size: 17px"></i><span style="font-size: 17px">2</span></button><span>&nbsp&nbsp&nbsp&nbsp</span> -->
 <!-- 								<a href="#" class="btn btn-default stat-item" ><i class="fas fa-comment-dots" id="messageorder" ><span style="font-size: 15px" >&nbsp&nbsp留言</span></i></a> -->
-								<button><i class="fas fa-comment-dots" id="messageorder" style="font-size: 20px"><span style="font-size: 20px">&nbsp&nbsp留言</span></i></button>
-							</div>
-						</div>
-						<div class="post-footer" id="messageorder1">
-							<div class="input-group" id="messageorder11" >
-								<input class="form-control" placeholder="Add a comment"
-									type="text" id="commentcontent"> <span class="input-group-addon" > 
-									<button id="comment"><i class="fa fa-edit"></i></button>
-									<input type="text" id="articlefloor" style="display: none" value="1">
-										<!--隱藏搜尋樓數位置 -->
-									<input type="text" id="searchstart" style="display: none" value="1">
-									<input type="text" id="searchend" style="display: none" value="3">
-								</span>
-							</div>
-							<div id="test">
-							<ul class="comments-list" >
-								<li class="comment"><a class="pull-left" href="#"> <img
-										class="avatar"
-										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-										alt="avatar">
-								</a>
-									<div class="comment-body">
-										<div class="comment-heading">
-											<h4 class="user">Gavino Free</h4>
+<!-- 								<button><i class="fas fa-comment-dots" id="messageorder" style="font-size: 20px"><span style="font-size: 20px">&nbsp&nbsp留言</span></i></button> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 						<div class="post-footer" id="messageorder1"> -->
+<!-- 							<div class="input-group" id="messageorder11" > -->
+<!-- 								<input class="form-control" placeholder="Add a comment" -->
+<!-- 									type="text" id="commentcontent"> <span class="input-group-addon" >  -->
+<!-- 									<button id="comment"><i class="fa fa-edit"></i></button> -->
+									
+<!-- 								</span> -->
+<!-- 							</div> -->
+<!-- 							<div id="test"> -->
+<!-- 							<ul class="comments-list" > -->
+<!-- 								<li class="comment"><a class="pull-left" href="#"> <img -->
+<!-- 										class="avatar" -->
+<!-- 										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D" -->
+<!-- 										alt="avatar"> -->
+<!-- 								</a> -->
+<!-- 									<div class="comment-body"> -->
+<!-- 										<div class="comment-heading"> -->
+<!-- 											<h4 class="user">Gavino Free</h4> -->
 
-										</div>
-										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-									</div></li>
-							</ul>
-							<ul class="comments-list" >
-								<li class="comment"><a class="pull-left" href="#"> <img
-										class="avatar"
-										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D"
-										alt="avatar">
-								</a>
-									<div class="comment-body">
-										<div class="comment-heading">
-											<h4 class="user">Gavino Free</h4>
+<!-- 										</div> -->
+<!-- 										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p> -->
+<!-- 									</div></li> -->
+<!-- 							</ul> -->
+<!-- 							<ul class="comments-list" > -->
+<!-- 								<li class="comment"><a class="pull-left" href="#"> <img -->
+<!-- 										class="avatar" -->
+<!-- 										src="http://placehold.jp/7fbfff/003366/80x80.png?css=%7B%22border-radius%22%3A%2250%25%22%7D" -->
+<!-- 										alt="avatar"> -->
+<!-- 								</a> -->
+<!-- 									<div class="comment-body"> -->
+<!-- 										<div class="comment-heading"> -->
+<!-- 											<h4 class="user">Gavino Free</h4> -->
 
-										</div>
-										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
-									</div></li>
-							</ul>
-							<div class="post-footer" align="center">
-							<button><i class="far fa-caret-square-down"></i>&nbsp;&nbsp;查看更多&nbsp;&nbsp;<i class="far fa-caret-square-down"></i></button>
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+<!-- 										</div> -->
+<!-- 										<p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p> -->
+<!-- 									</div></li> -->
+<!-- 							</ul> -->
+<!-- 							<div class="post-footer" align="center"> -->
+<!-- 							<button><i class="far fa-caret-square-down"></i>&nbsp;&nbsp;查看更多&nbsp;&nbsp;<i class="far fa-caret-square-down"></i></button> -->
+<!-- 							</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<br>
 <!-- 			ajax 網頁啟動會填入留言區域的div -->
 			<div id="messageboard"></div>
@@ -286,8 +286,9 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 
-
-
+	<input type="radio" name="gender" value="male"> Male<br>
+<input type="radio" name="gender" value="female"> Female<br>
+<input type="radio" name="gender" value="other"> Other
 
 </body>
 <link
@@ -304,8 +305,8 @@
 	var times = 2
 
 	$("#more").mousedown(function() {
-		$("#searchstart").val(parseInt($("#searchstart").val())+3) ;
-	  	$("#searchend").val(parseInt($("#searchend").val())+3) ;
+		$("#searchstart").val(parseInt($("#searchstart").val())-3) ;
+	  	$("#searchend").val(parseInt($("#searchend").val())-3) ;
 	});
 	
 // 	$(window).scroll(function(){
@@ -363,7 +364,7 @@
 							+ "</p>";
 					txt += "<div class=\"stats\">";
 					// 留言button id = floor + i  ex:floor0, floor1
-					txt += "<button><i class=\"fas fa-comment-dots\" id=\"floor"+ parseInt(i+floor) +"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
+					txt += "<button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+ parseInt(i+floor) +"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
 					//留言區域 id = floor + i + 1  ex: floor01 , floor11
 					txt += "<div class=\"post-footer\" id=\"floor"+parseInt(i+floor)+"1\"  style=\"display: none\">";
 					txt += "<div class=\"input-group\">";
@@ -381,9 +382,9 @@
 					txt += "<script>"
 					txt += "$(\"#floor"+parseInt(i+floor)+"\").click(function(){$(\"#\"+this.id+\"1\").toggle(300);})"
 					txt += "<\/script>"
-					txt += "<script>"																																																																																																																				// 	src="/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]												
-					//寫入aftercomment傳出留言之後自動搜尋留言寫出																																																																																																															src=\"/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"/\"																						
-					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
+					txt += "<script>"																																																																																																																																
+					//寫入aftercomment傳出留言之後自動搜尋留言寫出																																																																																																																																					
+					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
 				//  取出articlefloor 並放置該article的最大樓數+1
 					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
 					txt += "<\/script>"
@@ -394,11 +395,10 @@
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"																																																																																																																																				
-					txt += "$(\"#floor"+parseInt(i+floor)+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})})"
+					txt += "$(\"#floor"+parseInt(i+floor)+"\").mousedown(function(){aftercomment"+parseInt(i+floor)+"()})"
 					txt += "<\/script>"					
 				}
 					floor = floor + 3 ;
-					times = times + 1 ;
 					$("#messageboard").append(txt);
 					}
 				}
@@ -514,7 +514,7 @@
 							+ "</p>";
 					txt += "<div class=\"stats\">";
 					// 留言button id = floor + i  ex:floor0, floor1
-					txt += "<button><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
+					txt += "<button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
 					//留言區域 id = floor + i + 1  ex: floor01 , floor11
 					txt += "<div class=\"post-footer\" id=\"floor"+i+"1\"  style=\"display: none\">";
 					txt += "<div class=\"input-group\">";
@@ -537,14 +537,14 @@
 					txt += "function aftercomment"+i+"(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();"
 					txt += "$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { "
 					txt += "CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },"
-					txt += "success : function(data) {result = data;"				
-					txt += "for (var i = 0; i < data.length; i++) { alert(result);"
+					txt += "success : function(data) {"				
+					txt += "for (var i = 0; i < data.length; i++) { "
 					txt += "txt1 += \"<ul class=\\\"comments-list\\\" >\";"
 					txt += "txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> "
 					txt += "<img class=\\\"avatar\\\" src=\\\""
-					txt += "/admin/memberBeans/getServerPicture/\"+i+\"\\\" "
+					txt += "/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\" "
 					txt += "alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\">"
-					txt += "<h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);alert(txt1)}})}"
+					txt += "<h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1)}})}"
 				//  取出articlefloor 並放置該article的最大樓數+1
 					txt += "$(\"#articlefloor"+i+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+i+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
 					txt += "<\/script>"
@@ -555,11 +555,15 @@
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"
-					txt += "$(\"#floor"+i+"\").mousedown(function(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"<c:url value='/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"' />\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1);}})})"
+					txt += "$(\"#floor"+i+"\").mousedown(function(){aftercomment"+i+"()})"
 					txt += "<\/script>"					
 				}
 					$("#messageboard").html(txt);
-				
+					var i = data[0]["customermessageboardArticleFloor"] ;
+					$("#searchstart").val(i-2);
+					$("#searchend").val(i);
+					alert($("#searchstart").val());
+					alert($("#searchend").val());
 			}
 		})
 		
