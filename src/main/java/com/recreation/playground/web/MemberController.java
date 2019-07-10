@@ -406,29 +406,39 @@ public class MemberController {
 		service.update(member1);
 		return "/main/setting/SettingIndex";
 	}
-
+	@RequestMapping("/registergoogle")
+	public String registerGoogle(String memberId,String memberEmail,String memberPhotoUrl,HttpSession session,BindingResult result, Model model) {
+		service.registerGoogle(memberId, memberEmail, memberPhotoUrl);
+		return "/main/Index";
+	}
+	@RequestMapping("/googlelogin1")
+	public String googlelogin1(@ModelAttribute("googleForm") Member member, Model model,
+			HttpSession session) {
+//		System.out.println(member.getMemberId());
+//		System.out.println(member.getMemberPassword());
+//		System.out.println(result);
+//		System.out.println(model);
+			session.setAttribute("UID", member.getGoogleId());
+			System.out.println("memberId="+member.getGoogleId());
+			session.setAttribute("member", service.finById(member.getGoogleId()));
+			System.out.println("member="+service.finById(member.getGoogleId()));
+			return "/main/Index";
+	}
 	@RequestMapping("/googlelogin")
-	public String googlelogin(String memberId,String memberEmail,String memberPhotoUrl,HttpSession session) {
-		String returnResult="redirect:/main/index";
-		if(service.findById(memberId)) {
-			session.setAttribute("UID", memberId);
-			session.setAttribute("member", service.finById(memberId));
+	public String googlelogin(@ModelAttribute("googleForm") Member member,HttpSession session,BindingResult result, Model model) {
+		
+		Member member1=service.finById(member.getMemberId());
+		if(member1!=null) {
+			
+			return "/main/Index";
 		}else {
-			registerGoogle(memberId,memberEmail,memberPhotoUrl,session);
+			return registerGoogle(member.getMemberId(),member.getMemberEmail(),member.getMemberPhotoURL(),session,result,model);
+			
 		}
 		
-		
-		return returnResult;
 	}
 	
-	@RequestMapping("/registergoogle")
-	public String registerGoogle(String memberId,String memberEmail,String memberPhotoUrl,HttpSession session) {
-		service.registerGoogle(memberId, memberEmail, memberPhotoUrl);
-		session.setAttribute("UID", memberId);
-		session.setAttribute("member", service.finById(memberId));
-		return "redirect:/main/index";
-		
-	}
+	
 	
 	
 	

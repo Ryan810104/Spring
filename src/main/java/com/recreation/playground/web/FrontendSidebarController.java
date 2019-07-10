@@ -15,6 +15,10 @@ public class FrontendSidebarController {
 	public String toIndex(Model model) {
 		return "/main/Index";
 	}
+	@RequestMapping("/AfterIndex")
+	public String toAfter(Model model) {
+		return "/main/AfterIndex";
+	}
 // Sidebar 活動消息
 	@RequestMapping("/news")
 	public String toNews(Model model) {
@@ -76,6 +80,12 @@ public class FrontendSidebarController {
 	@RequestMapping("/complain")
 	public String toComplain(Model model) {
 		return"/main/complain/complainIndex";
+	}
+	
+	//賭球遊戲
+	@RequestMapping("/Gamebling")
+	public String toGamebling(Model model) {
+		return"/main/games/Gambling";
 	}
 
 	
