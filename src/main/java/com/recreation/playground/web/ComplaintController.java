@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.recreation.playground.entity.Complaint;
-import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.ComplaintService;
 
 @Controller

@@ -582,8 +582,6 @@
 							id="logintest1"></div>
 						<p style="color: red">${ErrorMsg.loginError}</p>
 					</form>
-					<input value="${sessionScope.UID}"> <input
-						value="${sessionScope.member}">
 					<form id="googleForm" name="googleForm"
 						action="/admin/memberBeans/googlelogin1" method="post">
 						<input id="googleEmail" name="googleEmail" type="text" value="">
@@ -600,7 +598,6 @@
 		</div>
 	</div>
 	<script>
-		
 		$("#logintest1").click(function stateChange(newState) {
 			setTimeout(function() {
 				if (newState == -1) {
