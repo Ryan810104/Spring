@@ -148,6 +148,7 @@ function readmessage() {
 							+"</div></div>"; 
 				}
 				$(".chat__messages").append(text);
+
 			}
 		},
 		dataType : "json"
@@ -188,7 +189,16 @@ function preventreload(e) {
 function opencontact(sender, receiver) {
 	sender0 = sender;
 	receiver0 = receiver;
+
 	readmessage();
+
+setTimeout(function(){
+	var objDiv = document.getElementById("chat__messages");
+	objDiv.scrollTop = objDiv.scrollHeight;
+	console.log(objDiv.scrollTop);
+	console.log(objDiv.scrollHeight);
+},1500);
+
 	readmessageInterval();
 };
 
