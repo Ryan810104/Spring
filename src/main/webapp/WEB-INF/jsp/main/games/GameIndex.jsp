@@ -4,50 +4,123 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
+<link href="/resources/css/gameindex.css" rel="stylesheet">
+
+<style>
+article {
+　background-image:url( '/resources/img/game10.png' );
+　background-repeat:no-repeat;
+　background-color: 背景顏色;
+}
+
+
+
+</style>
 </head>
-<body>
+<body >
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 	<article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
-		<div class="container">
-			<div class="card-deck">
-				<div class="card" style="height: 35rem">
-					<img src="/resources/img/game1.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h3 class="card-title">Emoji踩地雷</h3>
-						<p class="card-text">踩地雷，是一款單人的電腦遊戲。遊戲目標是找出所有沒有地雷的方格，完成遊戲；要是按了有地雷的方格，遊戲失敗。遊戲以完成時間來評高低。</p>
-						<hr>
-						<div style="text-align: center; line-height: 4rem;">
-							<a href="/main/minesweeper" class="btn btn-info ">進入遊戲</a>
-						</div>
-					</div>
-				</div>
-				<div class="card" style="height: 42rem">
-					<img src="/resources/img/game5.jpg" class="card-img-top" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">俄羅斯方塊</h5>
-						<p class="card-text">
-							《俄羅斯方塊》具有數學性、動態性與知名度，也經常被用來作為遊戲程式設計的練習題材。按照金氏世界紀錄，俄羅斯方塊現時一共有9個世界紀錄，例如手提電話下載次數最多的遊戲等。</p>
-						<hr>
-						<div style="text-align: center; line-height: 4rem;">
-							<a href="/main/Circlegame" class="btn btn-info ">進入遊戲</a>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<img src="/resources/img/game4.jpg" class="card-img-top"
-						style="height: 40rem" alt="...">
-					<div class="card-body">
-						<h5 class="card-title">21點</h5>
-						<p class="card-text">使用撲克牌玩的賭博遊戲。亦是賭場中莊家優勢在概率中最低的一種賭博遊戲。</p>
-						<hr>
-						<div style="text-align: center; line-height: 4rem;">
-							<a href="#" class="btn btn-info ">進入遊戲</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+
+<h1 class="ml15" style="text-align:center ;color:white" >
+  <span class="word">遊戲</span>
+  <span class="word">選單</span>
+</h1>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+
+
+
+
+		<figure class="snip1584">
+			<img
+				style="height:300px;width:300px;"
+				src="/resources/img/game10.png"
+				alt="sample87" />
+			<figcaption>
+				<h3>踩地雷</h3>
+				<h5>進入遊戲</h5>
+			</figcaption>
+			<a href="/main/minesweeper"></a>
+		</figure>
+		<figure class="snip1584 ">
+			<img
+			style="height:300px;width:300px"
+				src="/resources/img/game3.png"
+				alt="sample119" />
+			<figcaption>
+				<h3>俄儸斯輪盤</h3>
+				<h5>進入遊戲</h5>
+			</figcaption>
+			<a href="/main/Circlegame"></a>
+		</figure>
+		<figure class="snip1584">
+			<img
+			style="height:300px;"
+				src="/resources/img/game13.png"
+				alt="sample120" />
+			<figcaption>
+				<h3>球賽賭盤</h3>
+				<h5>進入遊戲</h5>
+			</figcaption>
+			<a href="/main/Gamebling"></a>
+		</figure>
+
+
+
+
+
+
+
+
+
+		<script>
+			var snippet = [].slice.call(document.querySelectorAll('.hover'));
+			if (snippet.length) {
+				snippet.forEach(function(snippet) {
+					snippet.addEventListener('mouseout', function(event) {
+						if (event.target.parentNode.tagName === 'figure') {
+							event.target.parentNode.classList.remove('hover')
+						} else {
+							event.target.parentNode.classList.remove('hover')
+						}
+					});
+				});
+			}
+			
+			
+			anime.timeline({loop: true})
+			  .add({
+			    targets: '.ml15 .word',
+			    scale: [14,1],
+			    opacity: [0,1],
+			    easing: "easeOutCirc",
+			    duration: 800,
+			    delay: function(el, i) {
+			      return 800 * i;
+			    }
+			  }).add({
+			    targets: '.ml15',
+			    opacity: 0,
+			    duration: 1000,
+			    easing: "easeOutExpo",
+			    delay: 1000
+			  });
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
@@ -58,6 +131,7 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 </body>
 <style>
+
 .card {
 	border-radius: 2rem;
 }
@@ -72,4 +146,6 @@
 	letter-spacing: 1px;
 }
 </style>
+
+
 </html>

@@ -584,12 +584,12 @@
 					</form>
 					<form id="googleForm" name="googleForm"
 						action="/admin/memberBeans/googlelogin1" method="post">
-						<input id="googleEmail" name="googleEmail" type="text" value="">
+						<input id="googleEmail" name="googleEmail" type="text" value="" style="display:none">
 						<input id="googlePhotoUrl" name="googlePhotoUrl" type="text"
-							value=""> <input id="googleId" name="googleId"
-							type="text" value="">
+							value="" style="display:none"> <input id="googleId" name="googleId"
+							type="text" value="" style="display:none">
 						<button class="btn btn-lg btn-primary btn-block" type="submit"
-							id="googlefinallogin">google登入</button>
+							id="googlefinallogin" style="display:none">google登入</button>
 					</form>
 				</div>
 
@@ -598,6 +598,7 @@
 		</div>
 	</div>
 	<script>
+
 		var memberEmail = "";
 		var memberId = "";
 		var memberPhotoURL = "";
@@ -633,13 +634,15 @@
 					memberPhotoURL : memberPhotoURL,
 				},
 				type : "POST",
-				success : function() {
-				googlelogin2();
+				success : function () {
+					 googlelogin2();
+
 				}
 			})
 
 		}
-				function googlelogin2(){
+
+		function googlelogin2(){
 			setTimeout(function(){$("#googlefinallogin").click()},20000);
 		}
 	</script>

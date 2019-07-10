@@ -28,12 +28,14 @@
 			action="/admin/memberBeans/uploadImage/${sessionScope.member.memberNum}"
 			method="POST" enctype="multipart/form-data">
 			<input type="text" value="${sessionScope.member.memberId}"
-				id="memberId" style="display: none"> <input type="file"
+				id="memberId1" style="display: none"> <input type="file"
 				name="imageFile" id="progressbarTWInput" accept="image/gif, image/jpeg, image/png">
 			<input type="submit" value="上傳">
 		</form>
+		目前頭像：
+		<div id="result1"></div>
+		預覽圖：<br>
 		<img id="preview_progressbarTW_img" width='0' height='0' src="" />
-		<div id="result"></div>
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
 	</article>
@@ -41,15 +43,15 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 	<script>
 		$(document).ready(function() {
-			showImageBymemberId();
+			showImageBymemberId1();
 		});
 
-		function showImageBymemberId() {
+		function showImageBymemberId1() {
 			$
 					.ajax({
 						url : "/admin/memberBeans/findBymemberId",
 						data : {
-							memberId : $("#memberId").val(),
+							memberId : $("#memberId1").val(),
 						},
 						type : "POST",
 						success : function(data) {
@@ -59,7 +61,7 @@
 								text = "<tr><td><img width='200' height='200' src="+ data["memberPhotoURL"] + "></td></tr>";
 							}
 
-							$("#result").html(text);
+							$("#result1").html(text);
 						}
 					});
 		}

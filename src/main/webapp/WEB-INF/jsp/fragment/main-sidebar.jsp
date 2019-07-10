@@ -6,15 +6,18 @@
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
 
-			<a href="/main/setting"> <img class="sidebar-avatar-in"
-				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
+			<a href="/main/setting" id="result" > 
+			<input type="text" value="${sessionScope.member.memberId}"
+				id="memberId" style="display: none">
+<!-- 			<img class="sidebar-avatar-in" -->
+<%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
 			</a>
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
 
 		<div class="sidebar-title moe username-line-height">
-			<a href="/main/setting">${sessionScope.member.memberId}</a>
+			<a href="/main/setting">${sessionScope.member.memberLastName}</a>
 		</div>
 		<div class="sidebar-title moe">${sessionScope.member.moneyBalance}
 			p</div>
@@ -57,11 +60,11 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/complain">投訴箱</a></li>
+				href="/main/complain">投訴箱</a></li>				
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/logout" onclick="signOut()">登出</a></li>
+				href="/main/logout">登出</a></li>
 		</ul>
 
 
@@ -80,7 +83,6 @@
 
 	<div class="d-flex justify-content-center h-100">
 		<div class="searchbar">
-
 			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="Search..."> <a class="search_icon">
 			<i class="fas fa-search" style="color: white;"></i></a>
 			
@@ -135,36 +137,36 @@
 		<ul class="dots drop-down-menu" style="display: flex;">
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-user"><mark
-							class="pink tada" id="friendcount" style="display: none"></mark></span>
+							class="pink tada" id="friendcount" style="display:none"></mark></span>
 					<ul class="dropdown-menu dropdownmenuCSSoverride" id="whoaddme">
-						<!-- 						<li> -->
-						<!-- 						<a href="#"> -->
-						<!-- 							<div class="col-sm-12 size-adjust"> -->
-						<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
-						<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
-						<!-- 							</div> -->
-						<!-- 						</a> -->
-						<!-- 						</li> -->
-						<!-- 						<hr class="listhr"> -->
-
-						<!-- 						<li> -->
-						<!-- 						<a href="#"> -->
-						<!-- 							<div class="col-sm-12 size-adjust"> -->
-						<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
-						<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
-						<!-- 							</div> -->
-						<!-- 						</a> -->
-						<!-- 						</li> -->
-						<!-- 						<hr class="listhr"> -->
-
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
+<!-- 						<li> -->
+<!-- 						<a href="#"> -->
+<!-- 							<div class="col-sm-12 size-adjust"> -->
+<!-- 							<a  style="color:red ; font-size:14px;">user </a> -->
+<!-- 							<a  style=" font-size:14px;">向你發出好友邀請</a> -->
+<!-- 							</div> -->
+<!-- 						</a> -->
+<!-- 						</li> -->
+<!-- 						<hr class="listhr"> -->
+						
 					</ul>
-			</a></li>
+			</a>
+			</li>
 			<li><a href="#" class="dropdown-toggle" data-toggle="dropdown">
 					<span class="glyphicon glyphicon-envelope"><mark
-							class="pink tada" style="display: none" id="notifycount"></mark></span>
-					<ul class="dropdown-menu dropdownmenuCSSoverridenotify"
-						id="notifystatus">
-
+							class="pink tada" style="display:none" id="notifycount"></mark></span>
+					<ul class="dropdown-menu dropdownmenuCSSoverridenotify" id="notifystatus">
+						
 					</ul>
 			</a></li>
 		</ul>
@@ -720,6 +722,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	var nav = document.querySelectorAll('.sidebar-nav-item');
 	$(document).ready(function() {
+		showImageBymemberId();
 		for (i = 0; i < 9; i++) {
 			if (localStorage.getItem("nav[" + i + "]")) {
 				$("nav[" + i + "]").click();
@@ -727,9 +730,28 @@ Inicio Tercer Estado: Oculto (OK)
 				localStorage.removeItem("nav[" + i + "]");
 				a(i);
 			}
-		}
+		};
+		
 	});
+	function showImageBymemberId() {
+		$
+				.ajax({
+					url : "/admin/memberBeans/findBymemberId",
+					data : {
+						memberId : $("#memberId").val(),
+					},
+					type : "POST",
+					success : function(data) {
+						if (data["memberPhotoURL"] == null) {
+							text = "<img class=\"sidebar-avatar-in\" src="+ "/resources/img/default-picture.png" + ">";
+						} else {
+							text = "<img  class=\"sidebar-avatar-in\" src="+ data["memberPhotoURL"] + ">";
+						}
 
+						$("#result").html(text);
+					}
+				});
+	}
 	nav[0].addEventListener('click', function() {
 
 		var clica = nav[0];
@@ -796,6 +818,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	//# sourceURL=pen.js
 </script> <script>
+
 	window.onscroll = function() {
 		scrollFunction()
 	};
@@ -812,11 +835,6 @@ Inicio Tercer Estado: Oculto (OK)
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
 	}
-<<<<<<< HEAD
-</script> <script>
-	$(document).ready(function() {
-		$("#membersearch01").hide();
-=======
 </script> 
 <script>
 $(document).ready(function(){
@@ -884,88 +902,27 @@ $("#findmemberlist").on("input",function(){
 			
 			$("#membersearch01").html(text);
 		}
->>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 	});
-<<<<<<< HEAD
-=======
 	if ($("#findmemberlist").val().length > 1 ){
 // 		console.log(sessionStorage.getItem("length"));
-		$("#membersearch01").slideDown(1000);
+		$("#membersearch01").show();
 	};
 	
 });
->>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 
-	$("#findmemberlist")
-			.on(
-					"input",
-					function() {
-						var text = "";
-						$
-								.ajax({
-									url : "/admin/memberBeans/findfriend?findmemberid="
-											+ $("#findmemberlist").val(),
-									type : "GET",
-									success : function(Jdata) {
-										var NumOfJData = Jdata.length;
-										sessionStorage.setItem("length",
-												Jdata.length);
-										for (var i = 0; i < NumOfJData; i++) {
-											if (Jdata[i]["memberNum"] == '${sessionScope.member.memberNum}') {
-												continue;
-											}
-											text += "<li>"
-											text += "<div class=\"col-md-12\">"
-											text += "<div class=\"well well-sm\">"
-											text += "<div class=\"media\">"
-											text += "<a class=\"thumbnail pull-left\" href=\"#\"> <img "
-											text += "class=\"media-object\" style=\"width: 60px;height: 60px;margin-top: 6px;\""
-											text += "src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i]["memberNum"]+"' />\">"
-											text += "</a>"
-											text += "<div class=\"media-body\">"
-											text += "<h4 class=\"media-heading\">"
-													+ Jdata[i]["memberId"]
-													+ "</h4>"
-											text += "<p style=\"margin-top: 0px;\">"
-											text += "<a  onclick=\"addfunction("
-													+ Jdata[i]["memberNum"]
-													+ ")\" class=\"btn btn-success btn-sm\"><i class=\"fas fa-home\"></i></a>"
-											text += "<a  onclick=\"addfunction("
-													+ Jdata[i]["memberNum"]
-													+ ")\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
-											text += "</p>"
-											text += "</div>"
-											text += "</div>"
-											text += "</div>"
-											text += "<hr style=\"margin: 0px 20px 0px 20px;\">"
-											text += "</div>"
-											text += "</li>"
+$("#membersearch01").mousedown(function(){
+	$("#membersearch01").slideUp();
+});
 
-										}
-
-										$("#membersearch01").html(text);
-									}
-								});
-						if (sessionStorage.getItem("length") != 0) {
-							$("#membersearch01").slideDown(1000);
-						}
-						;
-
-					});
-
-	$("#findmemberlist").blur(function() {
-		$("#membersearch01").slideUp();
-	});
-	function addfunction(num) {
-		$("#friendlistfriendid").val(num);
-		console.log($("#friendaddform").serialize());
-		$.ajax({
-			url : "/friend/list/add?yourid="
-					+ '${sessionScope.member.memberNum}' + "&friendid=" + num,
-			type : "GET"
-		})
-		confirm("已加入好友");
-		location.reload();
-
-	};
+function addfunction(num){
+	$("#friendlistfriendid").val(num);
+	console.log($("#friendaddform").serialize());
+	$.ajax({
+		url : "/friend/list/add?yourid="+'${sessionScope.member.memberNum}'+"&friendid="+num,
+		type: "GET"
+	})
+	confirm("已加入好友");
+	location.reload();
+	
+};
 </script>

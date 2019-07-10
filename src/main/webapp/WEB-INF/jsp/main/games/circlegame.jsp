@@ -242,19 +242,7 @@ Russian roulette </h1>
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
          </article>
 <jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
