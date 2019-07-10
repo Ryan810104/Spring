@@ -601,13 +601,7 @@
 	</div>
 	<script>
 		
-		$("#logintest1").click(function stateChange(newState) {
-			setTimeout(function() {
-				if (newState == -1) {
-					$("#googlefinallogin").click();
-				}
-			}, 5000);
-		});
+		$("#logintest1").click();
 		var memberEmail = "";
 		var memberId = "";
 		var memberPhotoURL = "";
@@ -643,7 +637,11 @@
 					memberPhotoURL : memberPhotoURL,
 				},
 				type : "POST",
-				success : function() {
+				success : function (newState) {
+					setTimeout(function() {
+						if (newState == -1) 
+							$("#googlefinallogin").click();
+					}, 5000);
 				}
 			})
 

@@ -25,13 +25,6 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 	<script>
-		// 		window.onbeforeunload = function(e) {
-		// 			gapi.auth2.getAuthInstance().signOut();
-		// 		};
-		
-		var memberEmail = "";
-		var memberId = "";
-		var memberPhotoUrl = "";
 		function onSignIn(googleUser) {
 			// Useful data for your client-side scripts:
 			var profile = googleUser.getBasicProfile();
@@ -50,27 +43,17 @@
 			var id_token = googleUser.getAuthResponse().id_token;
 			console.log("ID Token: " + id_token);
 		};
-		function googleLogin(email) {
-
-			$.ajax({
-				url : "/admin/memberBeans/googlelogin",
-				data : {
-					memberId : memberId,
-					memberEmail : memberEmail,
-					memberPhotoUrl : memberPhotoUrl,
-				},
-				type : "POST",
-			});
-			function (){
-				location.reload();
-			}
-		}
-		// 		function signOut() {
-		// 			var auth2 = gapi.auth2.getAuthInstance();
-		// 			auth2.signOut().then(function() {
-		// 				console.log('User signed out.');
-		// 			});
-		// 		}
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', "http://localhost/googleLogin/idtoken");
+		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xhr.onload = function() {
+		  console.log('Signed in as: ' + xhr.responseText);
+		};
+		xhr.send('idtoken=' + id_token);
+		
+		
+		
+		
 	</script>
 
 </body>

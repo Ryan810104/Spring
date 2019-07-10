@@ -6,8 +6,11 @@
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
 
-			<a href="/main/setting"> <img class="sidebar-avatar-in"
-				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" />
+			<a href="/main/setting" id="result" > 
+			<input type="text" value="${sessionScope.member.memberId}"
+				id="memberId" style="display: none">
+<!-- 			<img class="sidebar-avatar-in" -->
+<%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
 			</a>
 			<img class="sidebar-avatar-logo moe"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
@@ -719,6 +722,7 @@ Inicio Tercer Estado: Oculto (OK)
 
 	var nav = document.querySelectorAll('.sidebar-nav-item');
 	$(document).ready(function() {
+		showImageBymemberId();
 		for (i = 0; i < 9; i++) {
 			if (localStorage.getItem("nav[" + i + "]")) {
 				$("nav[" + i + "]").click();
@@ -726,9 +730,28 @@ Inicio Tercer Estado: Oculto (OK)
 				localStorage.removeItem("nav[" + i + "]");
 				a(i);
 			}
-		}
+		};
+		
 	});
+	function showImageBymemberId() {
+		$
+				.ajax({
+					url : "/admin/memberBeans/findBymemberId",
+					data : {
+						memberId : $("#memberId").val(),
+					},
+					type : "POST",
+					success : function(data) {
+						if (data["memberPhotoURL"] == null) {
+							text = "<img class=\"sidebar-avatar-in\" src="+ "/resources/img/default-picture.png" + ">";
+						} else {
+							text = "<img  class=\"sidebar-avatar-in\" src="+ data["memberPhotoURL"] + ">";
+						}
 
+						$("#result").html(text);
+					}
+				});
+	}
 	nav[0].addEventListener('click', function() {
 
 		var clica = nav[0];
