@@ -598,13 +598,6 @@
 		</div>
 	</div>
 	<script>
-		$("#logintest1").click(function stateChange(newState) {
-			setTimeout(function() {
-				if (newState == -1) {
-					$("#googlefinallogin").click();
-				}
-			}, 5000);
-		});
 		var memberEmail = "";
 		var memberId = "";
 		var memberPhotoURL = "";
@@ -641,9 +634,13 @@
 				},
 				type : "POST",
 				success : function() {
+				googlelogin2();
 				}
 			})
 
+		}
+				function googlelogin2(){
+			setTimeout(function(){$("#googlefinallogin").click()},20000);
 		}
 	</script>
 	<script async defer crossorigin="anonymous"
