@@ -78,7 +78,7 @@ public class ComplaintController {
 	@ResponseBody
 	@RequestMapping("/findBycomplaintNum")
 	public Complaint findBycomplaintNum(int complaintNum) {
-		System.out.println(complaintNum);
+//		System.out.println(complaintNum);
 		
 		return service.findBycomplaintNum(complaintNum);
 	}

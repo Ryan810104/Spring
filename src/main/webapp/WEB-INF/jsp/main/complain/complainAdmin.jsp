@@ -25,6 +25,25 @@ td {
 	border-right: 1px solid;
 	padding: 6px;
 }
+
+tbody tr:hover{
+
+background-color: #CCEEFF;
+
+/* color:#FF0000; */
+
+}
+
+tbody td:hover{
+
+/* background-color: #DFE7F2; */
+
+color:#FF0000;
+border-right: 1px solid black;
+
+}
+
+
 </style>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
 </head>
