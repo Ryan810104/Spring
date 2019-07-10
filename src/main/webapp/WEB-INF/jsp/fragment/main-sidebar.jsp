@@ -910,9 +910,10 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
-$("#findmemberlist").blur(function(){
+$("#membersearch01").mousedown(function(){
 	$("#membersearch01").slideUp();
 });
+
 function addfunction(num){
 	$("#friendlistfriendid").val(num);
 	console.log($("#friendaddform").serialize());
