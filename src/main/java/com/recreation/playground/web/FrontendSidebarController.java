@@ -87,6 +87,12 @@ public class FrontendSidebarController {
 	public String toGamebling(Model model) {
 		return"/main/games/Gambling";
 	}
+	
+	//切水果
+	@RequestMapping("/fruit")
+	public String toFruit(Model model) {
+		return "/main/games/fruit";
+	}
 
 	
 }
