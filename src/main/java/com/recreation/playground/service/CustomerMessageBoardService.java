@@ -46,6 +46,10 @@ public class CustomerMessageBoardService {
 		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i, j, 0) ;
 	}
 	
+	public CustomerMessageBoardBean searchMessageByNum(int num) {
+		return dao.findByCustomermessageboardNum(num);
+	}
+	
 }
 
  

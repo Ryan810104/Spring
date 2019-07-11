@@ -27,7 +27,7 @@ public class CustomerMessageBoardController {
 	@RequestMapping("/report")
 	public String openindex(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-		model.addAttribute("AtricleNum", bean.getCustomermessageboardNum());
+		model.addAttribute("AtricleNum", "文章編號:"+bean.getCustomermessageboardNum());
 		System.out.println(bean.getCustomermessageboardNum());
 		return "/main/complain/complainIndex";
 	}

@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.recreation.playground.entity.Complaint;
+import com.recreation.playground.entity.CustomerMessageBoardBean;
 import com.recreation.playground.service.ComplaintService;
+import com.recreation.playground.service.CustomerMessageBoardService;
 
 @Controller
 @RequestMapping("/main/complain")
@@ -31,6 +33,9 @@ public class ComplaintController {
 
 	@Autowired
 	private ComplaintService service;
+	
+	@Autowired
+	private CustomerMessageBoardService service2;
 
 	@PersistenceContext
 	EntityManager em;
@@ -89,6 +94,15 @@ public class ComplaintController {
 
 		return service.findBycomplaintNum(complaintNum);
 	}
+	
+	@ResponseBody
+	@RequestMapping("/findByCMBnum")
+	public CustomerMessageBoardBean findByCMBnum(int CMBnum) {
+//		System.out.println(CMBnum);
+		return service2.searchMessageByNum(CMBnum);
+	}
+	
+	
 
 	@ResponseBody
 	@RequestMapping("/query1")

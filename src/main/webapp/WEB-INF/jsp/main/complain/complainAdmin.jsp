@@ -464,8 +464,8 @@ tbody td:hover {
 
 				<div class="col-6">
 
-					<div class="col-md-7 mb-2">
-
+					<div class="col-md-7 mb-3">
+						
 						<div class="input-group">
 							<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
 								type="text" class="form-control" id="articleNum"
@@ -475,11 +475,11 @@ tbody td:hover {
 									style="font-size: 120%;" id="search">搜尋</button>
 							</div>
 						</div>
-						<span id="searchSp"></span>
-					
+							<span id="searchSp"></span>
+
 					</div>
 
-					<div id="searchResult"></div>
+					<div class="col-md-7 mb-2" style="font-size: 150%">爭議內容:	<span style="color:#FF44AA" id="searchResult"></span></div>
 
 
 
@@ -491,25 +491,36 @@ tbody td:hover {
 		<script>
 $("#search").click(function(){
 	let theSearch = document.getElementById("articleNum").value;
-	if(theSearch==""){
-		document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>不可空白</n>";
- 	}
- 		searchArticle();
+	
+	if(theSearch!=""){	
+		searchArticle();
+	}else{
+		document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>請輸入文章編號</n>";
+		$("#searchResult").html("");
+	}	
+	
 });
 
 function searchArticle(){
 	  $.ajax({
-		  	url : "",
+		  	url : "/main/complain/findByCMBnum",
+		  	data : {
+		  		CMBnum : $("#articleNum").val(),
+			},
 			type : "POST", 
 			success : function(data) {
-				var opt = "";
-				opt = data["articleMessage"] 
-				$("#searchResult").html(opt);
+				if(data["customermessageboardMessage"]!=null){
+					document.getElementById("searchSp").innerHTML ="";
+					$("#searchResult").html(data["customermessageboardMessage"]);
+					
+				}else{
+					document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>搜尋失敗,文章編號不存在</n>";
+					$("#searchResult").html("");
+					
+				}
+				
 			},
-			error : function(data){
-				document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>搜尋失敗,文章編號不存在</n>";
 
-			}
 
 			});
 		};
