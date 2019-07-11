@@ -50,6 +50,13 @@
 								value="3"> <label for="complaintType3"
 								class="custom-control-label">儲值問題</label>
 						</div>
+						<div class="custom-control custom-radio">
+							<input style="font-size: 120%" id="complaintType4"
+								name="complaintType" type="radio" class="custom-control-input"
+								value="4"> <label for="complaintType4"
+								class="custom-control-label">社群問題</label>
+						</div>
+						
 					</div>
 				</div>
 				<div class="row">
