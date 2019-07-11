@@ -8,12 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.recreation.playground.service.MemberService;
 
 @Controller
-@RequestMapping("/admin/setting")
+@RequestMapping("/member")
 public class MemberSettingController {
 	
 	@Autowired
 	MemberService service;
 	
+	@RequestMapping("/userindex")
+	public String  usersetting() {	
+		return "/main/setting/UserIndex";
+	}
 	
 	@RequestMapping("/setting")
 	public String  opensetting() {	
