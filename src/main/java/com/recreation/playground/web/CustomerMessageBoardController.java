@@ -23,15 +23,19 @@ public class CustomerMessageBoardController {
 	@Autowired
 	private CustomerMessageBoardService service;
 
-	@RequestMapping("/CMBIndex")
-	public String openindex() {
-		return "/main/AfterIndex";
+	
+	@RequestMapping("/report")
+	public String openindex(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
+			Model model) {
+		model.addAttribute("AtricleNum", bean.getCustomermessageboardNum());
+		System.out.println(bean.getCustomermessageboardNum());
+		return "/main/complain/complainIndex";
 	}
 
 	@RequestMapping("/public")
 	public String topublic(@Valid @ModelAttribute("CMBtextarea") CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-//		System.out.println(bean);
+		System.out.println(bean);
 		service.insert(bean);
 		return "redirect:/main/CMBIndex";
 	}

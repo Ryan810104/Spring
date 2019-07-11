@@ -45,6 +45,30 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+.button1 {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #C63300;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  transition-duration: 0.4s;
+}
+
+.button1:hover {background-color: #A42D00}
+
+.button1:active {
+  background-color: #FF0000;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
 </style>
 </head>
 <body>
@@ -286,9 +310,6 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 
-	<input type="radio" name="gender" value="male"> Male<br>
-<input type="radio" name="gender" value="female"> Female<br>
-<input type="radio" name="gender" value="other"> Other
 
 </body>
 <link
@@ -302,7 +323,6 @@
 <script>
 	
 	var floor = 3 ;
-	var times = 2
 
 	$("#more").mousedown(function() {
 		$("#searchstart").val(parseInt($("#searchstart").val())-3) ;
@@ -364,7 +384,8 @@
 							+ "</p>";
 					txt += "<div class=\"stats\">";
 					// 留言button id = floor + i  ex:floor0, floor1
-					txt += "<button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+ parseInt(i+floor) +"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
+					txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+ parseInt(i+floor) +"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
+					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+parseInt(i+floor)+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
 					//留言區域 id = floor + i + 1  ex: floor01 , floor11
 					txt += "<div class=\"post-footer\" id=\"floor"+parseInt(i+floor)+"1\"  style=\"display: none\">";
 					txt += "<div class=\"input-group\">";
@@ -372,10 +393,12 @@
 					txt += "<input class=\"form-control\" placeholder=\"Add a comment\" type=\"text\" id=\"leavecontentarea"+parseInt(i+floor)+"\">";
 					// 放置ajax抓取該articlefloor最大樓數+1的位置  id= customermessageboardResponseFloor + i 
 					txt += "<input type=\"text\" id=\"customermessageboardResponseFloor"+parseInt(i+floor)+"\" style=\"display: none\">"
-					// 送出留言button  id=articlefloor+i  
-					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+parseInt(i+floor)+"\"><i class=\"fa fa-edit\"></i></button>"
+					// 送出留言button  id=articlefloor+i 
+					txt += "<form id=\"report"+parseInt(i+floor)+"2\" name=\"report\" action=\"/main/report\">"
+					txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
+					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+parseInt(i+floor)+"\" ><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
-					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></div>"									
+					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
 					txt += "<div id=\"floor"+parseInt(i+floor)+"11\"></div>"
 					txt += "</div></div></div></div></div><br>";
 					//  隱藏留言  
@@ -398,9 +421,14 @@
 					txt += "$(\"#floor"+parseInt(i+floor)+"\").mousedown(function(){aftercomment"+parseInt(i+floor)+"()})"
 					txt += "<\/script>"					
 				}
+					txt += "<script>"
+					txt += "$(\".button1\").click(function(){document.getElementById(this.id+\"2\").submit();})"
+					txt += "<\/script>"	
 					floor = floor + 3 ;
 					$("#messageboard").append(txt);
+// 					report();
 					}
+
 				}
 				})
 				
@@ -474,16 +502,15 @@
 						"#CustomermessageboardMemberNum").val(),
 					},
 					success : function() {
-// 						for(var i = 0 ; i<3 ; i++){
-// 							$("#putdisplaynone").append("<input type='text' id='floormembernum"+i+"' style='display: none' value="+data[i]['customermessageboardMemberNum']+">");
-// 							"<c:url value='/admin/memberBeans/getServerPicture/"+$("#floormembernum"+i).val()+"'/>"
-// 							<c:url value='/admin/memberBeans/getServerPicture/\"+$(\"#floormembernum\"+i+\"\").val()+\"'/>
-// 							"<c:url value='/admin/memberBeans/getServerPicture/"+$("#floormembernum1").val()+"'/>\\\"
-// 						}
 						$("#CustomermessageboardTitle").val('');
 						$("#CustomermessageboardMessage").val('');
-						alert("已傳送成功");
-					}
+// 						location.reload();
+					},
+					error: function(){
+						$("#CustomermessageboardTitle").val('');
+						$("#CustomermessageboardMessage").val('');
+						location.reload();
+		        }
 				})
 			});
 
@@ -493,7 +520,7 @@
 				type : "POST",
 				success : function(data) {
 					var txt = "";
-					var result = [{customermessageboardMemberNum:1},{customermessageboardMemberNum:2},{customermessageboardMemberNum:3},{customermessageboardMemberNum:4}] ;	
+					var result = new Array() ;	
 					for (var i = 0 ; i < data.length; i++) {
 					txt += "<div class=\"container\">";
 					txt += "<div class=\"col-sm-10\" style=\"margin: 0 auto;\">";
@@ -514,7 +541,9 @@
 							+ "</p>";
 					txt += "<div class=\"stats\">";
 					// 留言button id = floor + i  ex:floor0, floor1
-					txt += "<button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></div></div>";
+					txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
+					// 檢舉button id = floor + i + 2 ex:floor02 , floor12
+					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
 					//留言區域 id = floor + i + 1  ex: floor01 , floor11
 					txt += "<div class=\"post-footer\" id=\"floor"+i+"1\"  style=\"display: none\">";
 					txt += "<div class=\"input-group\">";
@@ -523,9 +552,11 @@
 					// 放置ajax抓取該articlefloor最大樓數+1的位置  id= customermessageboardResponseFloor + i 
 					txt += "<input type=\"text\" id=\"customermessageboardResponseFloor"+i+"\" style=\"display: none\">"
 					// 送出留言button  id=articlefloor+i  
+					txt += "<form id=\"report"+i+"2\" name=\"report\" action=\"/main/report\">"
+					txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
 					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+i+"\"><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
-					txt += "<input type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></div>"									
+					txt += "<input name=\"customermessageboardArticleFloor\" type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
 					txt += "<div id=\"floor"+i+"11\"></div>"
 					txt += "</div></div></div></div></div><br>";
 					//  隱藏留言  
@@ -558,14 +589,22 @@
 					txt += "$(\"#floor"+i+"\").mousedown(function(){aftercomment"+i+"()})"
 					txt += "<\/script>"					
 				}
+					txt += "<script>"
+					txt += "function report(){$(\".button1\").click(function(){document.getElementById(this.id+\"2\").submit();})}"
+					txt += "<\/script>"	
 					$("#messageboard").html(txt);
 					var i = data[0]["customermessageboardArticleFloor"] ;
 					$("#searchstart").val(i-2);
 					$("#searchend").val(i);
-					alert($("#searchstart").val());
-					alert($("#searchend").val());
+					report();
 			}
 		})
+		
+		function report(){
+		$(".button1").click(function(){
+			document.getElementById(this.id+"2").submit();
+		})
+			}
 		
 });
 	

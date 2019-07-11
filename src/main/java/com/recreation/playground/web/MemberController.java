@@ -134,7 +134,12 @@ public class MemberController {
 	public String query1(Model model) {
 		return "/test1/index-member";
 	}
-
+	
+	
+	@RequestMapping("/aiocheckout")
+	public String aiocheckout(Model model) {
+		return "/test1/aioCheckOut";
+	}
 
 	@ResponseBody
 	@RequestMapping("/findBymemberId")
@@ -231,7 +236,7 @@ public class MemberController {
 					@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
 					@RequestParam(value = "chipType", defaultValue = " ") String chipType,
 					@RequestParam(value = "time", defaultValue = "0") Float round,
-					@RequestParam(value = "win", defaultValue = "0") Integer win) {
+					@RequestParam(value = "win", defaultValue = "0") Integer win,HttpSession session) {
 				Chip chip = new Chip();
 				chip.setChipMemberNum(chipMemberNum);
 				chip.setChipFirstName(chipFirstName);
@@ -240,7 +245,8 @@ public class MemberController {
 				chip.setChipType(chipType);
 				chip.setWin(win);
 				chip.setRound(round);
-
+				session.setAttribute("moneyRecordPoint", moneyRecordPoint);
+				session.setAttribute("moneyRecordFirstName", moneyRecordFirstName);
 				MoneyRecord moneyRecord = new MoneyRecord();
 				moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
 				moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
@@ -249,15 +255,15 @@ public class MemberController {
 				moneyRecord.setMoneyRecordChip(moneyRecordChip);
 				moneyRecord.setMoneyRecordChiptype(moneyRecordChiptype);
 				AjaxResponse<String> res = new AjaxResponse<>();
-//				if (result.hasErrors()) {
-//					res.setType(AjaxResponseType.ERROR);
-//					System.out.println(result.getAllErrors());
-//					return res;
-//				}
+//						if (result.hasErrors()) {
+//							res.setType(AjaxResponseType.ERROR);
+//							System.out.println(result.getAllErrors());
+//							return res;
+//						}
 
 				res.setType(AjaxResponseType.SUCCESS);
 				res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
-//				res.setData(chipService.save(chip).toString());
+//						res.setData(chipService.save(chip).toString());
 				return res;
 			}
 		//同時將一筆遊戲結果insert到chip&chiprecord兩個table
@@ -588,26 +594,34 @@ public class MemberController {
 	}
 
 	@RequestMapping("/beforeupdate")
+	@ResponseBody
 	// modelAttribute 網頁表格名稱，接到的值放入對應memberBeans，BindingResult
 	// 將form資料轉型放入bean有錯誤產生則放入result(有加@Valid才會執行)，model功能與request相同
-	public String beforeupdate(@Valid @ModelAttribute("beforeupdate") Member member, BindingResult result,
+	public AjaxResponse<Member> beforeupdate(@Valid @ModelAttribute("beforeupdate") Member member, BindingResult result,
 			Model model) {
-
+			AjaxResponse<Member> res = new AjaxResponse<>();
 		if (result.hasErrors()) {
 			System.out.println(result.getAllErrors());
-			return "/admin/userupdate";
+			res.setType(AjaxResponseType.ERROR);
+			res.setData(member);
+			return res;
 		} else {
 //			System.out.println(member.getMemberId());
 //			System.out.println(member.getMemberPassword());
 			boolean result1 = service.checkpassword(member.getMemberId(), member.getMemberPassword());
-			if (result1) {
+			if (!result1) {
 				System.out.println("correct");
+				res.setData(member);
+				res.setType(AjaxResponseType.SUCCESS);
+				return res;
 			} else {
 				System.out.println("incorrect");
+				res.setData(member);
+				res.setType(AjaxResponseType.ERROR);
 			}
 		}
 
-		return "/admin/userupdate";
+		return res;
 
 	}
 
