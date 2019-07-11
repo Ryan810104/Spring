@@ -91,7 +91,7 @@
 	<!-- search end-->
 <div class="col-md-2">
 	
-	<div id="QQ" class="card-detail-badge"></div>
+	<div id="RR" class="card-detail-badge"></div>
 </div>
 
 	<div class="table-responsive-xl">
@@ -165,7 +165,7 @@
 					url : "/admin/memberBeans/playersummarymoney?chipMemberNum="+${sessionScope.member.memberNum},
 					type : "POST",
 					success : function(data) {
-							$("#QQ").html("餘額:"+"$"+data[1]);
+							$("#RR").html("餘額:"+"$"+data[1]);
 					}
 
 				});

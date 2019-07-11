@@ -13,19 +13,35 @@
 table {
 	margin-top: 20px;
 	margin-bottom: 20px;
- 	margin-left:60px; 
+	margin-left: 15px;
 }
-form{
-	margin-left:40px;
+
+form {
+	/* 	margin-left:10px; */
+	
 }
-td{
-	border-right:1px solid;
-	padding:6px;
+
+td {
+	border-right: 1px solid;
+	padding: 6px;
+}
+
+tbody tr:hover {
+	background-color: #CCEEFF;
+
+	/* color:#FF0000; */
+}
+
+tbody td:hover {
+	/* background-color: #DFE7F2; */
+	color: #FF0000;
+	border-right: 1px solid black;
 }
 </style>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
 </head>
 <script>
+
 	$.ajax({
 		url : "/main/complain/query1",
 		type : "POST",
@@ -38,10 +54,11 @@ td{
 		setTimeout(() => {
 			var opt = "";
 			for (i in data) {
-				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+				opt += "<tr><td>"+ data[i]["complaintNum"] + "</td>" + "<td>"
 						+ data[i]["memberId"] + "</td>" + "<td>"
 						+ data[i]["complaintMessage"] + "</td>" + "<td>"
-						+ data[i]["complaintMessagetime"] + "</td><tr>";
+						+ data[i]["complaintMessagetime"] + "</td>" + "<td style='text-align:center;'>"
+						+ "<button data-toggle='modal' data-target='#showComplaintPic' onclick='showImg("+data[i]["complaintNum"]+")'>"+"<img id='file_download' width='25' height='25' src='/resources/img/file-download.jpg' />"+"</button>"+ "</td><tr>";
 			}
 			//alert(opt);
 			$("#showByGame").append(opt);
@@ -60,7 +77,7 @@ td{
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
 			}
@@ -84,7 +101,8 @@ td{
 			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
 					+ data[i]["memberId"] + "</td>" + "<td>"
 					+ data[i]["complaintMessage"] + "</td>" + "<td>"
-					+ data[i]["complaintMessagetime"] + "</td><tr>";
+					+ data[i]["complaintMessagetime"] + "</td>" + "<td style='text-align:center;'>"
+					+ "<button data-toggle='modal' data-target='#showComplaintPic' onclick='showImg("+data[i]["complaintNum"]+")'>"+"<img id='file_download' width='25' height='25' src='/resources/img/file-download.jpg' />"+"</button>"+ "</td><tr>";
 		}
 		//alert(opt);
 		$("#showByWeb").append(opt);
@@ -103,7 +121,7 @@ td{
 		var opt = "";
 		for (i in data) {	
 			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-					+ data[i]["memberId"] + "</td>" + "<td>"
+					+ data[i]["complaintMessage"] + "</td>" + "<td>"
 					+ data[i]["complaintResponse"] + "</td>" + "<td>"
 					+ data[i]["complaintResponsetime"] + "</td><tr>";
 		}
@@ -127,7 +145,8 @@ td{
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
 						+ data[i]["memberId"] + "</td>" + "<td>"
 						+ data[i]["complaintMessage"] + "</td>" + "<td>"
-						+ data[i]["complaintMessagetime"] + "</td><tr>";
+						+ data[i]["complaintMessagetime"] + "</td>" + "<td style='text-align:center;'>"
+						+ "<button data-toggle='modal' data-target='#showComplaintPic' onclick='showImg("+data[i]["complaintNum"]+")'>"+"<img id='file_download' width='25' height='25' src='/resources/img/file-download.jpg' />"+"</button>"+ "</td><tr>";
 			}
 			//alert(opt);
 			$("#showByPay").append(opt);
@@ -146,7 +165,7 @@ td{
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
 			}
@@ -155,6 +174,49 @@ td{
 			}, 4);	
 	}
 	
+	$.ajax({
+		url : "/main/complain/query7",
+		type : "POST",
+		success : function(data) {
+			showByInteract(data);
+		}
+	});
+	function showByInteract(data) {
+		//alert(data);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+						+ data[i]["complaintMessagetime"] + "</td>" + "<td style='text-align:center;'>"
+						+ "<button data-toggle='modal' data-target='#showComplaintPic' onclick='showImg("+data[i]["complaintNum"]+")'>"+"<img id='file_download' width='25' height='25' src='/resources/img/file-download.jpg' />"+"</button>"+ "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByInteract").append(opt);
+			}, 4);	
+	}
+	$.ajax({
+		url : "/main/complain/query8",
+		type : "POST",
+		success : function(data) {
+			showByInteractR(data);
+		}
+	});
+	function showByInteractR(data) {
+		//alert(data);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+						+ data[i]["complaintResponse"] + "</td>" + "<td>"
+						+ data[i]["complaintResponsetime"] + "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByInteractR").append(opt);
+			}, 4);	
+	}
 	
 </script>
 <body>
@@ -177,6 +239,21 @@ td{
 					href="#nav-contact" role="tab" aria-controls="nav-contact"
 					aria-selected="false"
 					style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">儲值問題</a>
+
+
+				<a class="nav-item nav-link" id="nav-interact-tab" data-toggle="tab"
+					href="#nav-interact" role="tab" aria-controls="nav-interact"
+					aria-selected="false"
+					style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">社群問題</a>
+
+
+
+
+
+
+
+
+
 			</div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
@@ -185,161 +262,257 @@ td{
 
 				<div class="container">
 					<div class="row">
-						
-						<table>
-							<thead style="font-size: 120%;color:#0066FF;">
-								<tr><th>未處理:</th></tr>
-								<tr>
-									<th>編號</th>
-									<th>會員ID</th>
-									<th>投訴內容</th>
-									<th>投訴時間</th>
-								</tr>
-							</thead>
-							<tbody style="font-size: 120%" id="showByGame"></tbody>
-						</table>
-						
-						
-						
-						<table>
-							<thead style="font-size: 120%;color:#00AA55;">
-								<tr><th>已處理:</th></tr>
-								<tr>
-									<th>編號</th>
-									<th>會員ID</th>
-									<th>回覆內容</th>
-									<th>回覆時間</th>
-								</tr>
-							</thead>
-							<tbody style="font-size: 120%" id="showByGameR"></tbody>
-						</table>
-						
-						
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #0066FF;">
+									<tr>
+										<th>未處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>會員ID</th>
+										<th>投訴內容</th>
+										<th>投訴時間</th>
+										<th>截圖檔</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByGame"></tbody>
+							</table>
+						</div>
+
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #00AA55;">
+									<tr>
+										<th>已處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>投訴內容</th>
+										<th>回覆內容</th>
+										<th>回覆時間</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByGameR"></tbody>
+							</table>
+						</div>
+
 					</div>
 					<hr>
 				</div>
 			</div>
-			
-			
+
+
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
 				aria-labelledby="nav-profile-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
-						<table>
-							<thead style="font-size: 120%;color:#0066FF;">
-								<tr><th>未處理:</th></tr>
-								<tr>
-									<th>編號</th>
-									<th>會員ID</th>
-									<th>投訴內容</th>
-									<th>投訴時間</th>
-								</tr>
-							</thead>
-
-							<tbody style="font-size: 120%" id="showByWeb"></tbody>
-
-						</table>
-						<table>
-							<thead style="font-size: 120%;color:#00AA55;">
-								<tr><th>已處理:</th></tr>
-								<tr>
-									<th>編號</th>
-									<th>會員ID</th>
-									<th>回覆內容</th>
-									<th>回覆時間</th>
-								</tr>
-							</thead>
-
-							<tbody style="font-size: 120%" id="showByWebR"></tbody>
-
-						</table>
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #0066FF;">
+									<tr>
+										<th>未處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>會員ID</th>
+										<th>投訴內容</th>
+										<th>投訴時間</th>
+										<th>截圖檔</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByWeb"></tbody>
+							</table>
+						</div>
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #00AA55;">
+									<tr>
+										<th>已處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>投訴內容</th>
+										<th>回覆內容</th>
+										<th>回覆時間</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByWebR"></tbody>
+							</table>
+						</div>
 					</div>
 					<hr>
 				</div>
 			</div>
-			
+
 
 			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
 				aria-labelledby="nav-contact-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
-						<table>
-							<thead style="font-size: 120%;color:#0066FF;">
-								<tr><th>未處理:</th></tr>
-								<tr>
-									<th>編號</th>
-									<th>會員ID</th>
-									<th>投訴內容</th>
-									<th>投訴時間</th>
-								</tr>
-							</thead>
-
-							<tbody style="font-size: 120%" id="showByPay"></tbody>
-
-						</table>
-						<table>
-							<thead style="font-size: 120%;color:#00AA55;">
-								<tr><th>已處理:</th></tr>
-								<tr>
-									<th>編號</th>
-									<th>會員ID</th>
-									<th>回覆內容</th>
-									<th>回覆時間</th>
-								</tr>
-							</thead>
-
-							<tbody style="font-size: 120%" id="showByPayR"></tbody>
-
-						</table>
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #0066FF;">
+									<tr>
+										<th>未處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>會員ID</th>
+										<th>投訴內容</th>
+										<th>投訴時間</th>
+										<th>截圖檔</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByPay"></tbody>
+							</table>
+						</div>
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #00AA55;">
+									<tr>
+										<th>已處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>投訴內容</th>
+										<th>回覆內容</th>
+										<th>回覆時間</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByPayR"></tbody>
+							</table>
+						</div>
 					</div>
 					<hr>
 				</div>
 			</div>
-			
+
+			<div class="tab-pane fade" id="nav-interact" role="tabpanel"
+				aria-labelledby="nav-interact-tab" style="background-color:">
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #0066FF;">
+									<tr>
+										<th>未處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>會員ID</th>
+										<th>投訴內容</th>
+										<th>投訴時間</th>
+										<th>截圖檔</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByInteract"></tbody>
+							</table>
+						</div>
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #00AA55;">
+									<tr>
+										<th>已處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>投訴內容</th>
+										<th>回覆內容</th>
+										<th>回覆時間</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByInteractR"></tbody>
+							</table>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+
+
+
 		</div>
-		
+
 
 		<div class="container">
-			<form action="/main/complain/responseComplaint" name="formCR"
-				method="POST" class="">
-				<div class="row">
-					<div class="col-md-1 mb-2">
-						<label style="font-size: 120%" for="complaintNum">編號:</label> <input
-							type="text" style="font-size: 120%" class="form-control"
-							id="complaintNum" name="complaintNum">
-					</div>
+			<div class="row">
+				<div class="col-6">
+					<form action="/main/complain/responseComplaint" name="formCR"
+						method="POST" class="">
+
+						<div class="col-md-2 mb-2">
+							<label style="font-size: 120%" for="complaintNum">編號:</label> <input
+								type="text" style="font-size: 120%" class="form-control"
+								id="complaintNum" name="complaintNum">
+						</div>
+
+						<div class="col-md-11 mb-3">
+							<label style="font-size: 120%" for="complaintResponse">回覆:</label>
+							<span id="responseSp" style="color: red"></span>
+							<textarea style="font-size: 120%" class="form-control"
+								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
+						</div>
+
+						<div class="col-md-6 mb-5">
+							<button type="button" class="btn btn-outline-info" id="sendout"
+								style="font-size: 150%; margin-left: 405px">送出</button>
+						</div>
+
+					</form>
 				</div>
-				<div class="row">
-					<div class="col-md-6 mb-2">
-						<label style="font-size: 120%" for="complaintResponse">回覆:</label>
-						<span id="responseSp" style="color: red"></span>
-						<textarea style="font-size: 120%" class="form-control"
-							id="complaintResponse" name="complaintResponse" rows="3"></textarea>
-					</div>
-				</div>
-				<!-- 				<div class="row"> -->
-				<!-- 					<div class="col-md-2 mb-2" style="display: none"> -->
-				<!-- 						<h4 class="mb-3">狀態</h4> -->
-				<!-- 						<div class="custom-control custom-radio"> -->
-				<!-- 							<input id="RcomplaintStatus0" name="complaintStatus" type="radio" -->
-				<!-- 								class="custom-control-input" value="0"> <label -->
-				<!-- 								for="RcomplaintStatus0" class="custom-control-label">未處理</label> -->
-				<!-- 						</div> -->
-				<!-- 						<div class="custom-control custom-radio"> -->
-				<!-- 							<input id="RcomplaintStatus1" name="complaintStatus" type="radio" -->
-				<!-- 								class="custom-control-input" value="1" checked> <label -->
-				<!-- 								for="RcomplaintStatus1" class="custom-control-label">已處理</label> -->
-				<!-- 						</div> -->
-				<!-- 					</div> -->
-				<!-- 				</div> -->
-				<div class="row">
-					<div class="col-md-6 mb-5">
-						<button type="button" class="btn btn-outline-info" id="sendout"
-							style="font-size: 150%; margin-left: 460px">送出</button>
-					</div>
-				</div>
-			</form>
+			</div>
 		</div>
+
+
+
+		<div class="modal fade" id="showComplaintPic" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLongTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 150%">案件提供截圖</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" style="font-size: 200%">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div id="complaintResult"
+							style="text-align: center; margin-top: 20px; margin-bottom: 20px"></div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+
+		function showImg(complaintNum1){
+			$.ajax({
+						url : "/main/complain/findBycomplaintNum",
+						data : {
+							complaintNum : complaintNum1,
+						},
+						type : "POST",
+						success : function(data) {
+							if (data["complaintPicURL"] == null) {
+								text = "<img width='350' height='350' src="+ "/resources/img/file-notApply.png" + ">";
+							} else {
+								text = "<img width='350' height='350' src="+ data["complaintPicURL"] + ">";
+							}
+
+							$("#complaintResult").html(text);
+						}
+					});
+		}
+
+
+</script>
 
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>

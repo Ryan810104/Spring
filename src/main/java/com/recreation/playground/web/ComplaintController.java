@@ -53,9 +53,16 @@ public class ComplaintController {
 		File directory = new File(folderPath);
 		// 偵測目標資料夾是否存在，不存在則建立資料夾
 		if (!directory.exists()) {
-			directory.mkdir();}
-		String imagePathString = folderPath + imageFile.getOriginalFilename();
-		String dataBasePath = "\\resources\\complaintPhoto\\" + imageFile.getOriginalFilename();
+			directory.mkdir();
+		}
+		String fileName = imageFile.getOriginalFilename();
+		String imagePathString = folderPath + fileName;
+		String dataBasePath = "";
+		if (null == fileName || fileName.length() == 0) {
+			dataBasePath = null;
+		} else {
+			dataBasePath = "\\resources\\complaintPhoto\\" + fileName;
+		}
 		if (bytes != null) {
 			Path imagePath = Paths.get(imagePathString);
 //			System.out.println("serverPath=" + serverPath);
@@ -67,12 +74,20 @@ public class ComplaintController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}	
+		}
 		cpp.setComplaintPicURL(dataBasePath);
 		em.persist(cpp);
 		model.addAttribute("insertComplaint", "1");
 		return "/main/Index";
 
+	}
+
+	@ResponseBody
+	@RequestMapping("/findBycomplaintNum")
+	public Complaint findBycomplaintNum(int complaintNum) {
+//		System.out.println(complaintNum);
+
+		return service.findBycomplaintNum(complaintNum);
 	}
 
 	@ResponseBody
@@ -111,6 +126,18 @@ public class ComplaintController {
 		return service.chooseDealEventPay();
 	}
 
+	@ResponseBody
+	@RequestMapping("/query7")
+	public List<Complaint> complainListInteract() {
+		return service.chooseUndealEventInteract();
+	}
+
+	@ResponseBody
+	@RequestMapping("/query8")
+	public List<Complaint> complainListInteractR() {
+		return service.chooseDealEventInteract();
+	}
+
 	@Transactional
 	@ResponseBody
 	@RequestMapping("/responseComplaint")
@@ -133,7 +160,6 @@ public class ComplaintController {
 //		}else {
 //			return 0;
 //		}	
-
 
 	}
 

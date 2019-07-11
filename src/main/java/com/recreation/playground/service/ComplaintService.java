@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.ComplaintDao;
 import com.recreation.playground.entity.Complaint;
+import com.recreation.playground.entity.Member;
 
 @Service
 @Transactional(readOnly = true)
@@ -44,9 +45,18 @@ public class ComplaintService {
 	public List<Complaint> chooseDealEventPay() {
 		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(3, 1);
 	}
+	public List<Complaint> chooseUndealEventInteract() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(4, 0);
+	}
+	public List<Complaint> chooseDealEventInteract() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(4, 1);
+	}
 
 	public void fileComplaints(Complaint cp) {
 		dao.save(cp);
+	}
+	public Complaint findBycomplaintNum(int num) {
+		return dao.findByComplaintNum(num);
 	}
 	
 	

@@ -598,7 +598,7 @@
 		</div>
 	</div>
 	<script>
-		
+
 		var memberEmail = "";
 		var memberId = "";
 		var memberPhotoURL = "";
@@ -636,10 +636,12 @@
 				type : "POST",
 				success : function () {
 					 googlelogin2();
+
 				}
 			})
 
 		}
+
 		function googlelogin2(){
 			setTimeout(function(){$("#googlefinallogin").click()},20000);
 		}
