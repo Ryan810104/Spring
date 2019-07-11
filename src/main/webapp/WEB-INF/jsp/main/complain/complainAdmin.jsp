@@ -442,13 +442,13 @@ tbody td:hover {
 						method="POST" class="">
 
 						<div class="col-md-2 mb-2">
-							<label style="font-size: 120%" for="complaintNum">編號:</label> <input
+							<label style="font-size: 150%" for="complaintNum">編號:</label> <input
 								type="text" style="font-size: 120%" class="form-control"
 								id="complaintNum" name="complaintNum">
 						</div>
 
 						<div class="col-md-11 mb-3">
-							<label style="font-size: 120%" for="complaintResponse">回覆:</label>
+							<label style="font-size: 150%" for="complaintResponse">回覆:</label>
 							<span id="responseSp" style="color: red"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
@@ -461,9 +461,64 @@ tbody td:hover {
 
 					</form>
 				</div>
+
+				<div class="col-6">
+
+					<div class="col-md-7 mb-2">
+
+						<div class="input-group">
+							<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
+								type="text" class="form-control" id="articleNum"
+								name="articleNum" style="font-size: 120%">
+							<div class="input-group-append">
+								<button class="btn btn btn-danger" type="button"
+									style="font-size: 120%;" id="search">搜尋</button>
+							</div>
+						</div>
+						<span id="searchSp"></span>
+					
+					</div>
+
+					<div id="searchResult"></div>
+
+
+
+				</div>
+
 			</div>
 		</div>
 
+		<script>
+$("#search").click(function(){
+	let theSearch = document.getElementById("articleNum").value;
+	if(theSearch==""){
+		document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>不可空白</n>";
+ 	}
+ 		searchArticle();
+});
+
+function searchArticle(){
+	  $.ajax({
+		  	url : "",
+			type : "POST", 
+			success : function(data) {
+				var opt = "";
+				opt = data["articleMessage"] 
+				$("#searchResult").html(opt);
+			},
+			error : function(data){
+				document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>搜尋失敗,文章編號不存在</n>";
+
+			}
+
+			});
+		};
+
+
+
+
+
+</script>
 
 
 		<div class="modal fade" id="showComplaintPic" tabindex="-1"
@@ -522,7 +577,7 @@ tbody td:hover {
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";		
+		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -535,7 +590,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";
+		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";
 	}else
 		response();
 });
