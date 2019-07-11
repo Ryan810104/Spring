@@ -289,7 +289,7 @@
 												// 					data=JSON.stringify(data);
 												alert("新增成功"
 														+ ajaxres.data.chipRecordChip);
-												// 					$(location).attr("href", "/admin/moneyrecord/list");
+												$(location).attr("href", "/admin/memberBeans/aiocheckout");
 
 											},
 											error : function(ajaxres) {

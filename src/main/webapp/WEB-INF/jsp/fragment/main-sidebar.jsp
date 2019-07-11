@@ -17,10 +17,9 @@
 		</figure>
 
 		<div class="sidebar-title moe username-line-height">
-			<a href="/main/setting">${sessionScope.member.memberId}</a>
+			<a href="/main/setting">${sessionScope.member.memberLastName}</a>
 		</div>
-		<div class="sidebar-title moe">${sessionScope.member.moneyBalance}
-			p</div>
+		<div class="sidebar-title moe" id="QQ"></div>
 
 	</header>
 
@@ -910,9 +909,10 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
-$("#findmemberlist").blur(function(){
+$("#membersearch01").mousedown(function(){
 	$("#membersearch01").slideUp();
 });
+
 function addfunction(num){
 	$("#friendlistfriendid").val(num);
 	console.log($("#friendaddform").serialize());
@@ -925,3 +925,22 @@ function addfunction(num){
 	
 };
 </script>
+<!-- 顯示玩家餘額 -->
+<script type="text/javascript">
+		$(document).ready(function() {
+			setInterval(function() {
+				$.ajax({
+
+					url : "/admin/memberBeans/playersummarymoney?chipMemberNum="+${sessionScope.member.memberNum},
+					type : "POST",
+					success : function(data) {
+							$("#QQ").html("餘額:"+"$"+data[1]);
+					}
+
+				});
+
+			}, 3000); 
+
+		});
+	</script>
+

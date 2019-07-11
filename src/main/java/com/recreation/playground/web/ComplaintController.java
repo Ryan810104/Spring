@@ -74,6 +74,14 @@ public class ComplaintController {
 		return "/main/Index";
 
 	}
+	
+	@ResponseBody
+	@RequestMapping("/findBycomplaintNum")
+	public Complaint findBycomplaintNum(int complaintNum) {
+		System.out.println(complaintNum);
+		
+		return service.findBycomplaintNum(complaintNum);
+	}
 
 	@ResponseBody
 	@RequestMapping("/query1")
