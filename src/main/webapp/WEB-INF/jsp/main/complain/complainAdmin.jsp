@@ -13,7 +13,7 @@
 table {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 10px;
+	margin-left: 15px;
 }
 
 form {
@@ -24,6 +24,18 @@ form {
 td {
 	border-right: 1px solid;
 	padding: 6px;
+}
+
+tbody tr:hover {
+	background-color: #CCEEFF;
+
+	/* color:#FF0000; */
+}
+
+tbody td:hover {
+	/* background-color: #DFE7F2; */
+	color: #FF0000;
+	border-right: 1px solid black;
 }
 </style>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
@@ -162,6 +174,49 @@ td {
 			}, 4);	
 	}
 	
+	$.ajax({
+		url : "/main/complain/query7",
+		type : "POST",
+		success : function(data) {
+			showByInteract(data);
+		}
+	});
+	function showByInteract(data) {
+		//alert(data);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+						+ data[i]["complaintMessagetime"] + "</td>" + "<td style='text-align:center;'>"
+						+ "<button data-toggle='modal' data-target='#showComplaintPic' onclick='showImg("+data[i]["complaintNum"]+")'>"+"<img id='file_download' width='25' height='25' src='/resources/img/file-download.jpg' />"+"</button>"+ "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByInteract").append(opt);
+			}, 4);	
+	}
+	$.ajax({
+		url : "/main/complain/query8",
+		type : "POST",
+		success : function(data) {
+			showByInteractR(data);
+		}
+	});
+	function showByInteractR(data) {
+		//alert(data);
+		setTimeout(() => {
+			var opt = "";
+			for (i in data) {
+				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+						+ data[i]["complaintResponse"] + "</td>" + "<td>"
+						+ data[i]["complaintResponsetime"] + "</td><tr>";
+			}
+			//alert(opt);
+			$("#showByInteractR").append(opt);
+			}, 4);	
+	}
 	
 </script>
 <body>
@@ -184,6 +239,21 @@ td {
 					href="#nav-contact" role="tab" aria-controls="nav-contact"
 					aria-selected="false"
 					style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">儲值問題</a>
+
+
+				<a class="nav-item nav-link" id="nav-interact-tab" data-toggle="tab"
+					href="#nav-interact" role="tab" aria-controls="nav-interact"
+					aria-selected="false"
+					style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">社群問題</a>
+
+
+
+
+
+
+
+
+
 			</div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
@@ -318,37 +388,148 @@ td {
 				</div>
 			</div>
 
+			<div class="tab-pane fade" id="nav-interact" role="tabpanel"
+				aria-labelledby="nav-interact-tab" style="background-color:">
+				<div class="container">
+					<div class="row">
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #0066FF;">
+									<tr>
+										<th>未處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>會員ID</th>
+										<th>投訴內容</th>
+										<th>投訴時間</th>
+										<th>截圖檔</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByInteract"></tbody>
+							</table>
+						</div>
+						<div class="col-6">
+							<table>
+								<thead style="font-size: 120%; color: #00AA55;">
+									<tr>
+										<th>已處理:</th>
+									</tr>
+									<tr>
+										<th>編號</th>
+										<th>投訴內容</th>
+										<th>回覆內容</th>
+										<th>回覆時間</th>
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="showByInteractR"></tbody>
+							</table>
+						</div>
+					</div>
+					<hr>
+				</div>
+			</div>
+
+
+
 		</div>
 
 
 		<div class="container">
-			<form action="/main/complain/responseComplaint" name="formCR"
-				method="POST" class="">
-				<div class="row">
-					<div class="col-md-1 mb-2">
-						<label style="font-size: 120%" for="complaintNum">編號:</label> <input
-							type="text" style="font-size: 120%" class="form-control"
-							id="complaintNum" name="complaintNum">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6 mb-2">
-						<label style="font-size: 120%" for="complaintResponse">回覆:</label>
-						<span id="responseSp" style="color: red"></span>
-						<textarea style="font-size: 120%" class="form-control"
-							id="complaintResponse" name="complaintResponse" rows="3"></textarea>
-					</div>
+			<div class="row">
+				<div class="col-6">
+					<form action="/main/complain/responseComplaint" name="formCR"
+						method="POST" class="">
+
+						<div class="col-md-2 mb-2">
+							<label style="font-size: 150%" for="complaintNum">編號:</label> <input
+								type="text" style="font-size: 120%" class="form-control"
+								id="complaintNum" name="complaintNum">
+						</div>
+
+						<div class="col-md-11 mb-3">
+							<label style="font-size: 150%" for="complaintResponse">回覆:</label>
+							<span id="responseSp" style="color: red"></span>
+							<textarea style="font-size: 120%" class="form-control"
+								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
+						</div>
+
+						<div class="col-md-6 mb-5">
+							<button type="button" class="btn btn-outline-info" id="sendout"
+								style="font-size: 150%; margin-left: 405px">送出</button>
+						</div>
+
+					</form>
 				</div>
 
-				<div class="row">
-					<div class="col-md-6 mb-5">
-						<button type="button" class="btn btn-outline-info" id="sendout"
-							style="font-size: 150%; margin-left: 480px">送出</button>
+				<div class="col-6">
+
+					<div class="col-md-7 mb-3">
+						
+						<div class="input-group">
+							<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
+								type="text" class="form-control" id="articleNum"
+								name="articleNum" style="font-size: 120%">
+							<div class="input-group-append">
+								<button class="btn btn btn-danger" type="button"
+									style="font-size: 120%;" id="search">搜尋</button>
+							</div>
+						</div>
+							<span id="searchSp"></span>
+
 					</div>
+
+					<div class="col-md-7 mb-2" style="font-size: 150%">爭議內容:	<span style="color:#FF44AA" id="searchResult"></span></div>
+
+
+
 				</div>
-			</form>
+
+			</div>
 		</div>
 
+		<script>
+$("#search").click(function(){
+	let theSearch = document.getElementById("articleNum").value;
+	
+	if(theSearch!=""){	
+		searchArticle();
+	}else{
+		document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>請輸入文章編號</n>";
+		$("#searchResult").html("");
+	}	
+	
+});
+
+function searchArticle(){
+	  $.ajax({
+		  	url : "/main/complain/findByCMBnum",
+		  	data : {
+		  		CMBnum : $("#articleNum").val(),
+			},
+			type : "POST", 
+			success : function(data) {
+				if(data["customermessageboardMessage"]!=null){
+					document.getElementById("searchSp").innerHTML ="";
+					$("#searchResult").html(data["customermessageboardMessage"]);
+					
+				}else{
+					document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>搜尋失敗,文章編號不存在</n>";
+					$("#searchResult").html("");
+					
+				}
+				
+			},
+
+
+			});
+		};
+
+
+
+
+
+</script>
 
 
 		<div class="modal fade" id="showComplaintPic" tabindex="-1"
@@ -407,7 +588,7 @@ td {
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";		
+		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -420,7 +601,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";
+		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";
 	}else
 		response();
 });
