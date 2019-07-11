@@ -1,5 +1,6 @@
 package com.recreation.playground.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.recreation.playground.entity.CustomerMessageBoardBean;
-import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.CustomerMessageBoardService;
 
 @Controller
@@ -23,9 +23,13 @@ public class CustomerMessageBoardController {
 	@Autowired
 	private CustomerMessageBoardService service;
 
-	@RequestMapping("/CMBIndex")
-	public String openindex() {
-		return "/main/AfterIndex";
+	
+	@RequestMapping("/report")
+	public String openindex(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
+			Model model) {
+		model.addAttribute("AtricleNum", bean.getCustomermessageboardNum());
+		System.out.println(bean.getCustomermessageboardNum());
+		return "/main/complain/complainIndex";
 	}
 
 	@RequestMapping("/public")
@@ -39,9 +43,11 @@ public class CustomerMessageBoardController {
 	@ResponseBody
 	@RequestMapping("/searchall")
 	public List<CustomerMessageBoardBean> searchall() {
-		List<CustomerMessageBoardBean> beans = service.searchall();
-//		System.out.println(beans);
-		return service.searchall();
+		List<CustomerMessageBoardBean> bean = service.searchthelastofmessage();
+		int i = bean.get(0).getCustomermessageboardArticleFloor();
+		List<CustomerMessageBoardBean> beans = service.searchall(i-2,i);
+		System.out.println(beans);
+		return beans;
 	}
 	
 	@ResponseBody
@@ -64,7 +70,9 @@ public class CustomerMessageBoardController {
 	
 	@ResponseBody
 	@RequestMapping("/searchcomment")
-	public List<CustomerMessageBoardBean> searchcomment(CustomerMessageBoardBean bean) {
+	public ArrayList<CustomerMessageBoardBean> searchcomment(CustomerMessageBoardBean bean) {
+		System.out.println(bean.getCustomermessageboardArticleFloor());
+		System.out.println(service.searchthecomment(bean.getCustomermessageboardArticleFloor()));
 		return service.searchthecomment(bean.getCustomermessageboardArticleFloor());
 	}
 
