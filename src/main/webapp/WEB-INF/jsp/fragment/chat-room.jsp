@@ -367,6 +367,18 @@ if (dataresponse.replace("response","").length > 2 ){
 };
 
 
+function response_notice_check(num){
+	$.ajax({
+		url : "/main/complain/checknotice?num="+num,
+		type: "GET",
+		success : function(data){
+//				alert("ss");
+		},
+		error : function(data){
+			alert("errrrrrooooorrrrrrrrrrr");
+		},
+	})
+}
 //listnum = 好友列表的流水號
 // friendnum = 加你的好友number
 // 

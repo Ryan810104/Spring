@@ -178,5 +178,12 @@ public class ComplaintController {
 //		}	
 
 	}
-
+	@ResponseBody
+	@RequestMapping("/checknotice")
+	@Transactional
+	public void response_notice_check (int num) {
+		Complaint cp = em.find(Complaint.class, num);
+		cp.setResponseAnno(1);
+		em.persist(cp);
+	}
 }
