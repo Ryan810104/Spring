@@ -289,8 +289,24 @@ function fri_notice_check(data){
 	});
 }
 function showinformation(data){
+	//測試/[[3, admin, 2]]回復檢舉[]討論通知[] <<data
+	console.log(data);
+	var dataindex = data.indexOf("response");
+	var dataindex2 = data.indexOf("discuss");
+	var datafriend = data.substring(0,dataindex);
+	var dataresponse = data.substring(dataindex,dataindex2);
+	var datadiscuss = data.substring(dataindex2,data.length);
+	console.log(datafriend.replace("test/","").length);
+	console.log(dataresponse.replace("response","").length);
+	console.log(datadiscuss.replace("discuss","").length);
 	var showinfor = "";
-	var tempdata = data.replace("[","").replace("[","").replace("測試/","")
+	var inforlength = 0;
+
+	
+	
+if (datafriend.replace("test/","").length > 2 ){
+	
+	var tempdata = datafriend.replace("[","").replace("[","").replace("test/","")
 	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
 //		console.log(tempdata1[0]);
 	tempdata1[0] = ","+tempdata1[0];
@@ -310,13 +326,47 @@ function showinformation(data){
 		showinfor +=	"</div>"
 		showinfor +="</a>"
 		showinfor +="</li>"
-	};
-	$("#notifystatus").html(showinfor);
-	if (tempdata1.length != 0){
-		$("#notifycount").css("display","block");
-		$("#notifycount").html(tempdata1.length -1 );
+		inforlength ++;
 	};
 };
+
+if (dataresponse.replace("response","").length > 2 ){
+	var tempdata = dataresponse.replace("[","").replace("[","").replace("response","")
+	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+	tempdata1[0] = ","+tempdata1[0];
+	console.log(tempdata);
+	for (var i = 0 ; i < tempdata1.length -1 ; i++){
+		var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+			console.log(onerowdata);
+		//onerowdata[1] == 你的NUM
+		//onerowdata[2] == 你的檢舉內容
+		//onerowdata[3] == 管理員的回覆
+		//onerowdata[4] == 投訴表格流水號
+			console.log(onerowdata);
+		showinfor += "<li>"
+		showinfor +="<a href=\"#\">"
+		showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+		showinfor += 	"<a  style=\" font-size:14px;\">管理員已回復您的檢舉</a><br>"
+		showinfor +=	"<a  style=\"font-size:14px;\">申訴內容<br>"+onerowdata[2]+"</a><br>"
+		showinfor +="<a  style=\" font-size:14px;\">回覆內容</a><br>"
+		showinfor += "<a  style=\" font-size:14px; color:red  \">"+onerowdata[3]+"</a>"
+		showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"response_notice_check("+onerowdata[4].trim()+")\" style=\"float: right;\">"
+		showinfor +=	"</div>"
+		showinfor +="</a>"
+		showinfor +="</li>"
+		inforlength ++ ;
+	};
+	
+}
+	
+	$("#notifystatus").html(showinfor);
+	if (inforlength != 0){
+		$("#notifycount").css("display","block");
+		$("#notifycount").html(inforlength);
+	};
+};
+
+
 //listnum = 好友列表的流水號
 // friendnum = 加你的好友number
 // 
@@ -376,7 +426,7 @@ ws.onmessage = function(event){
 	}else if (event.data.startsWith("你沒朋友")){
 		$("#friendcount").css("display","none");
 		$("#whoaddme").html("你沒有好友邀請唷");
-	} else if (event.data.startsWith("測試")){
+	} else if (event.data.startsWith("test")){
 //			console.log(event.data);
 		showinformation(event.data);
 	} else if (event.data.startsWith("沒有通知")){
