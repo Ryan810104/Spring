@@ -490,7 +490,7 @@ tbody td:hover {
 
 		<script>
 $("#search").click(function(){
-	let theSearch = document.getElementById("articleNum").value;
+	let theSearch = document.getElementById("articleNum").value.trim();
 	
 	if(theSearch!=""){	
 		searchArticle();
