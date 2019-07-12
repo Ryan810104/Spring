@@ -147,6 +147,12 @@ public class MemberController {
 //		System.out.println(member);
 		return service.finById(member.getMemberId());
 	}
+	@ResponseBody
+	@RequestMapping("/findBymemberNum")
+	public Member findByCustomerMemberNum(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
+//		System.out.println(member);
+		return service.findByMemberNum(member.getMemberNum());
+	}
 
 	
 	@ResponseBody

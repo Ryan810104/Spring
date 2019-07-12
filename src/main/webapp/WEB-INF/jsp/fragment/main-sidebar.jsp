@@ -6,7 +6,7 @@
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
 
-			<a href="/main/setting" id="result" > 
+			<a href="/main/setting/${sessionScope.member.memberNum}" id="result" > 
 			<input type="text" value="${sessionScope.member.memberId}"
 				id="memberId" style="display: none">
 <!-- 			<img class="sidebar-avatar-in" -->
