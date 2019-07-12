@@ -498,6 +498,22 @@ tbody td:hover {
 		</div>
 
 		<script>
+		function addTimes(){
+			$.ajax({
+				url:"/admin/memberBeans/addIllegalTimes",
+				data:{
+					violator:$("#xxx").html(),
+				},
+				type : "POST",
+				success : function(data) {
+					alert("違規次數增加成功");							
+				},
+
+			});
+		};
+		
+		
+		
 $("#search").click(function(){
 	let theSearch = document.getElementById("articleNum").value.trim();
 	
@@ -545,7 +561,7 @@ function searchViolator(){
 			success : function(data) {
 				if(data["customermessageboardMemberid"]!=null){
 					
-					$("#searchViolator").html(data["customermessageboardMemberid"]);
+					$("#searchViolator").html("<span id='xxx'>"+data["customermessageboardMemberid"]+"</span>").append("	<button onclick='addTimes()'>處罰</button>");
 					
 				}else{
 					

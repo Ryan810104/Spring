@@ -770,4 +770,26 @@ public class MemberController {
 					new ResponseEntity<>(media,headers,HttpStatus.OK);
 			return responseEntity;
 		}
+		
+		@Transactional
+		@PostMapping("/addIllegalTimes")
+		public String addIllegalTimes(String violator) {
+			Member mb =service.finById(violator);
+			System.out.println(mb);
+			
+//			Member mb = em.find(Member.class, violator);
+			if(mb.getMemberIllegalTimes()==null) {
+				mb.setMemberIllegalTimes(1);
+			}else {
+				mb.setMemberIllegalTimes(mb.getMemberIllegalTimes()+1);
+			}
+//			em.persist(mb);
+			service.update(mb);
+			return "/main/complain/complainAdmin";
+		}
+		
+		
+		
+		
+		
 }

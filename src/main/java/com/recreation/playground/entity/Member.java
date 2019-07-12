@@ -93,6 +93,7 @@ public class Member {
 	@JsonIgnore
     private MultipartFile productImage;
   
+	private Integer memberIllegalTimes;
 	
 	private String memberLocation;
 	private String googleEmail;
