@@ -62,7 +62,7 @@
 
 				<div class="row">
 					<div class="col-md-3 mb-5">
-						<label for="violator" style="font-size: 120%; color: green;">檢舉對象:</label>
+						<label for="violator" style="font-size: 120%; color: green;">檢舉對象:(請由首頁留言區檢舉鈕)</label>
 							<input type="text" class="form-control-plaintext"
 							style="font-size: 120%;" id="complaintViolator"
 							name="complaintViolator" value="${Violater}" readOnly>
