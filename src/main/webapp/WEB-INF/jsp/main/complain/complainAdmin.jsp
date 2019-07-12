@@ -23,7 +23,7 @@ form {
 
 td {
 	word-wrap: break-word;
-	max-width:120px;
+	max-width: 120px;
 	border-right: 1px solid;
 	padding: 6px;
 }
@@ -467,7 +467,7 @@ tbody td:hover {
 				<div class="col-6">
 
 					<div class="col-md-7 mb-3">
-						
+
 						<div class="input-group">
 							<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
 								type="text" class="form-control" id="articleNum"
@@ -477,11 +477,14 @@ tbody td:hover {
 									style="font-size: 120%;" id="search">搜尋</button>
 							</div>
 						</div>
-							<span id="searchSp"></span>
+						<span id="searchSp"></span>
 
 					</div>
 
-					<div class="col-md-7 mb-2" style="font-size: 150%">爭議內容:	<span style="color:#FF44AA" id="searchResult"></span></div>
+					<div class="col-md-7 mb-2"
+						style="font-size: 150%; word-wrap: break-word; max-width: 450px;">
+						爭議內容: <span style="color: #FF44AA" id="searchResult"></span>
+					</div>
 
 
 
