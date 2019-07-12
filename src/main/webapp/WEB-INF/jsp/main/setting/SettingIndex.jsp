@@ -34,7 +34,8 @@
 					<div>
 						<input type="file" id="progressbarTWInput"
 							accept="image/gif, image/jpeg, image/png"
-							class="text-center center-block file-upload" name="imageFile" id="progressbarTWInput">
+							class="text-center center-block file-upload" name="imageFile"
+							id="progressbarTWInput">
 					</div>
 					<div class="modal-body">
 						<h5 class="modal-title" id="complaintPicTitle"
@@ -67,7 +68,7 @@
 			<div class="container bootstrap snippet">
 				<div class="row">
 					<div class="col-sm-10">
-						<h1>User name</h1>
+						<h1 id="userNickName">User name</h1>
 					</div>
 				</div>
 
@@ -95,7 +96,6 @@
 						</div>
 						</hr>
 						<br>
-
 
 
 
