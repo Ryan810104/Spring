@@ -482,11 +482,11 @@ tbody td:hover {
 					</div>
 
 					<div class="col-md-7 mb-2"
-						style="font-size: 150%; word-wrap: break-word; max-width: 450px;">
+						style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
 						爭議內容: <span style="color: #FF44AA" id="searchResult"></span>
 					</div>
 					<div class="col-md-7 mb-2"
-						style="font-size: 150%; word-wrap: break-word; max-width: 450px;">
+						style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
 						違規帳號: <span style="color:	#CC0000" id="searchViolator"></span>
 					</div>
 
