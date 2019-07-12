@@ -717,7 +717,7 @@ public class MemberController {
 		
 		@PostMapping("/uploadImage/{membernum}")
 		public String uploadImage(@PathVariable("membernum") Integer num,@RequestParam("imageFile")MultipartFile imageFile) {
-			String returnValue	="/test/testupload";
+			String returnValue	="/main/setting/SettingIndex";
 			try {
 				Member mem = em.find(Member.class, num);
 				if (mem != null) {
@@ -727,7 +727,7 @@ public class MemberController {
 					service.update(mem);
 				}else {
 					System.out.println("member not excist");
-					returnValue="/test/testupload";
+					returnValue="/main/setting/SettingIndex";
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
