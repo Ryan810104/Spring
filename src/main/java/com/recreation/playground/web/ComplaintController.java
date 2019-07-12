@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.recreation.playground.entity.Complaint;
 import com.recreation.playground.entity.CustomerMessageBoardBean;
@@ -43,7 +44,7 @@ public class ComplaintController {
 	@RequestMapping("/insertComplaint")
 	@Transactional
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model,
-			@RequestParam("complaintPic") MultipartFile imageFile) throws IOException {
+			@RequestParam("complaintPic") MultipartFile imageFile,RedirectAttributes redirectAttributes) throws IOException {
 		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
@@ -82,8 +83,8 @@ public class ComplaintController {
 		}
 		cpp.setComplaintPicURL(dataBasePath);
 		em.persist(cpp);
-		model.addAttribute("insertComplaint", "1");
-		return "/main/Index";
+		redirectAttributes.addFlashAttribute("insertComplaint", "1");
+		return "redirect:/main/index";
 
 	}
 

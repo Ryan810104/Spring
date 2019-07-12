@@ -310,7 +310,6 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 
-
 </body>
 <link
 	href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap"
@@ -556,7 +555,7 @@
 					txt += "<form id=\"report"+i+"2\" name=\"report\" action=\"/main/report\">"
 					txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
 					txt += "<input type=\"text\" name=\"customermessageboardMemberid\" style=\"display: none\" value=\""+data[i]["customermessageboardMemberid"]+"\">"
-					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+i+"\"><i class=\"fa fa-edit\"></i></button>"
+					txt += "<span class=\"input-group-addon\"><button type=\"button\" id=\"articlefloor"+i+"\"><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
 					txt += "<input name=\"customermessageboardArticleFloor\" type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
 					txt += "<div id=\"floor"+i+"11\"></div>"
