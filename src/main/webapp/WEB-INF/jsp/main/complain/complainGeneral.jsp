@@ -76,7 +76,7 @@
 							for="complaintMessage">請輸入投訴內容:</label> <span id="complaintSp"
 							style="color: red"></span>
 						<textarea style="font-size: 120%" class="form-control"
-							id="complaintMessage" name="complaintMessage" rows="3">${AtricleNum}</textarea>
+							id="complaintMessage" name="complaintMessage" rows="3">${Violater}/${AtricleNum}</textarea>
 					</div>
 				</div>
 				<div class="col-md-2 mb-5" style="display: none">

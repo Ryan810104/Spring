@@ -396,6 +396,7 @@
 					// 送出留言button  id=articlefloor+i 
 					txt += "<form id=\"report"+parseInt(i+floor)+"2\" name=\"report\" action=\"/main/report\">"
 					txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
+					txt += "<input type=\"text\" name=\"customermessageboardMemberid\" style=\"display: none\" value=\""+data[i]["customermessageboardMemberid"]+"\">"
 					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+parseInt(i+floor)+"\" ><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
 					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
@@ -554,6 +555,7 @@
 					// 送出留言button  id=articlefloor+i  
 					txt += "<form id=\"report"+i+"2\" name=\"report\" action=\"/main/report\">"
 					txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
+					txt += "<input type=\"text\" name=\"customermessageboardMemberid\" style=\"display: none\" value=\""+data[i]["customermessageboardMemberid"]+"\">"
 					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+i+"\"><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
 					txt += "<input name=\"customermessageboardArticleFloor\" type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
