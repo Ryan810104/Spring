@@ -94,6 +94,7 @@ public class Member {
     private MultipartFile productImage;
   
 	private Integer memberIllegalTimes;
+	private Integer banAnnot;
 	
 	private String memberLocation;
 	private String googleEmail;

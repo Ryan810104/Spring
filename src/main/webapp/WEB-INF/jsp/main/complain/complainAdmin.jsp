@@ -508,7 +508,12 @@ tbody td:hover {
 				success : function(data) {
 					alert("違規次數增加成功");							
 				},
-
+				error : function(data){
+					alert("玩家已被停權");
+					
+				},
+				
+				
 			});
 		};
 		
