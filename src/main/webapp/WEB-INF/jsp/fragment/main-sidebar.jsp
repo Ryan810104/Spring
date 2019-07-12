@@ -909,10 +909,22 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
-$("#membersearch01").mousedown(function(){
+// $(".search_input").click(function(){
+// 	$("#membersearch01").show();
+// 	event.stopPropagation();
+// });
+
+// $(".searchbar").blur(function(){
+// 	$("#membersearch01").slideUp();
+// });
+$(".search_input").blur(function(){
+	$(".searchbar").click(function(){
+		$("#membersearch01").show();
+	});
+})
+$(".search_icon").click(function(){
 	$("#membersearch01").slideUp();
 });
-
 function addfunction(num){
 	$("#friendlistfriendid").val(num);
 	console.log($("#friendaddform").serialize());

@@ -165,6 +165,7 @@ public class ComplaintController {
 //		if (cpp.getComplaintStatus() != 1 ) {
 		cpp.setComplaintResponse(complaintResponse);
 		cpp.setComplaintStatus(1);
+		cpp.setResponseAnno(0);
 		java.util.Date date = new java.util.Date();
 		cpp.setComplaintResponsetime(date);
 
@@ -177,5 +178,12 @@ public class ComplaintController {
 //		}	
 
 	}
-
+	@ResponseBody
+	@RequestMapping("/checknotice")
+	@Transactional
+	public void response_notice_check (int num) {
+		Complaint cp = em.find(Complaint.class, num);
+		cp.setResponseAnno(1);
+		em.persist(cp);
+	}
 }

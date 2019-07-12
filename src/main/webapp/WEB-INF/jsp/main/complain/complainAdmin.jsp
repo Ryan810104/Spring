@@ -482,8 +482,12 @@ tbody td:hover {
 					</div>
 
 					<div class="col-md-7 mb-2"
-						style="font-size: 150%; word-wrap: break-word; max-width: 450px;">
+						style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
 						爭議內容: <span style="color: #FF44AA" id="searchResult"></span>
+					</div>
+					<div class="col-md-7 mb-2"
+						style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
+						違規帳號: <span style="color:	#CC0000" id="searchViolator"></span>
 					</div>
 
 
@@ -494,14 +498,37 @@ tbody td:hover {
 		</div>
 
 		<script>
+		function addTimes(){
+			$.ajax({
+				url:"/admin/memberBeans/addIllegalTimes",
+				data:{
+					violator:$("#xxx").html(),
+				},
+				type : "POST",
+				success : function(data) {
+					alert("違規次數增加成功");							
+				},
+				error : function(data){
+					alert("玩家已被停權");
+					
+				},
+				
+				
+			});
+		};
+		
+		
+		
 $("#search").click(function(){
 	let theSearch = document.getElementById("articleNum").value.trim();
 	
 	if(theSearch!=""){	
 		searchArticle();
+		searchViolator();
 	}else{
 		document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>請輸入文章編號</n>";
 		$("#searchResult").html("");
+		$("#searchViolator").html("");
 	}	
 	
 });
@@ -521,6 +548,29 @@ function searchArticle(){
 				}else{
 					document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>搜尋失敗,文章編號不存在</n>";
 					$("#searchResult").html("");
+					
+				}
+				
+			},
+
+
+			});
+		};
+function searchViolator(){
+	  $.ajax({
+		  	url : "/main/complain/findByCMBnum",
+		  	data : {
+		  		CMBnum : $("#articleNum").val(),
+			},
+			type : "POST", 
+			success : function(data) {
+				if(data["customermessageboardMemberid"]!=null){
+					
+					$("#searchViolator").html("<span id='xxx'>"+data["customermessageboardMemberid"]+"</span>").append("	<button onclick='addTimes()'>處罰</button>");
+					
+				}else{
+					
+					$("#searchViolator").html("");
 					
 				}
 				
