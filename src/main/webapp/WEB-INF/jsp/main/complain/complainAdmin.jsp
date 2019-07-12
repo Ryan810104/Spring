@@ -502,7 +502,7 @@ tbody td:hover {
 			$.ajax({
 				url:"/admin/memberBeans/addIllegalTimes",
 				data:{
-					violator:$("#xxx").html(),
+					violator:$("#violatorValue").html(),
 				},
 				type : "POST",
 				success : function(data) {
@@ -566,7 +566,7 @@ function searchViolator(){
 			success : function(data) {
 				if(data["customermessageboardMemberid"]!=null){
 					
-					$("#searchViolator").html("<span id='xxx'>"+data["customermessageboardMemberid"]+"</span>").append("	<button onclick='addTimes()'>處罰</button>");
+					$("#searchViolator").html("<span id='violatorValue'>"+data["customermessageboardMemberid"]+"</span>").append("	<button class='btn btn-outline-danger' style='font-size: 100%;' onclick='addTimes()'>處罰</button>");
 					
 				}else{
 					
