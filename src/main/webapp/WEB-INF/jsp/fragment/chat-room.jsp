@@ -290,15 +290,15 @@ function fri_notice_check(data){
 }
 function showinformation(data){
 	//測試/[[3, admin, 2]]回復檢舉[]討論通知[] <<data
-	console.log(data);
+// 	console.log(data);
 	var dataindex = data.indexOf("response");
 	var dataindex2 = data.indexOf("discuss");
 	var datafriend = data.substring(0,dataindex);
 	var dataresponse = data.substring(dataindex,dataindex2);
 	var datadiscuss = data.substring(dataindex2,data.length);
-	console.log(datafriend.replace("test/","").length);
-	console.log(dataresponse.replace("response","").length);
-	console.log(datadiscuss.replace("discuss","").length);
+// 	console.log(datafriend.replace("test/","").length);
+// 	console.log(dataresponse.replace("response","").length);
+// 	console.log(datadiscuss.replace("discuss","").length);
 	var showinfor = "";
 	var inforlength = 0;
 
