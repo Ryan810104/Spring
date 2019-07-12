@@ -27,6 +27,8 @@ public class Complaint {
 	@Column
 	private String memberId ; 
 	@Column
+	private Integer responseAnno;
+	@Column
 	private Integer complaintType ; 
 	@Column
 	private String complaintMessage ; 
@@ -41,5 +43,6 @@ public class Complaint {
 	private String complaintResponse ;
 	@Column
 	private String complaintPicURL;
+	
 
 }

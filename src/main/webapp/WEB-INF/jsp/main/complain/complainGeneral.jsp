@@ -56,9 +56,20 @@
 								value="4"> <label for="complaintType4"
 								class="custom-control-label">社群問題</label>
 						</div>
-						
+
 					</div>
 				</div>
+
+				<div class="row">
+					<div class="col-md-3 mb-5">
+						<label for="violator" style="font-size: 120%; color: green;">檢舉對象:</label>
+							<input type="text" class="form-control-plaintext"
+							style="font-size: 120%;" id="complaintViolator"
+							name="complaintViolator" value="${Violater}" readOnly>
+					
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-md-6 mb-5">
 						<h4 style="font-size: 120%; color: green;">請提供截圖以利投訴案件處理:</h4>
@@ -76,7 +87,7 @@
 							for="complaintMessage">請輸入投訴內容:</label> <span id="complaintSp"
 							style="color: red"></span>
 						<textarea style="font-size: 120%" class="form-control"
-							id="complaintMessage" name="complaintMessage" rows="3">${Violater}	${AtricleNum}</textarea>
+							id="complaintMessage" name="complaintMessage" rows="3">${AtricleNum}</textarea>
 					</div>
 				</div>
 				<div class="col-md-2 mb-5" style="display: none">
