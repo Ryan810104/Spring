@@ -22,6 +22,7 @@ form {
 }
 
 td {
+	max-width:142px;
 	border-right: 1px solid;
 	padding: 6px;
 }
