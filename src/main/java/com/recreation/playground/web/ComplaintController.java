@@ -1,7 +1,10 @@
 package com.recreation.playground.web;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,7 +37,7 @@ public class ComplaintController {
 
 	@Autowired
 	private ComplaintService service;
-	
+
 	@Autowired
 	private CustomerMessageBoardService service2;
 
@@ -44,7 +47,8 @@ public class ComplaintController {
 	@RequestMapping("/insertComplaint")
 	@Transactional
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model,
-			@RequestParam("complaintPic") MultipartFile imageFile,RedirectAttributes redirectAttributes) throws IOException {
+			@RequestParam("complaintPic") MultipartFile imageFile, RedirectAttributes redirectAttributes)
+			throws IOException {
 		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
@@ -74,15 +78,22 @@ public class ComplaintController {
 //			System.out.println("serverPath=" + serverPath);
 //			System.out.println("folderPath=" + folderPath);
 //			System.out.println("imagePath=" + imagePath);
-//			System.out.println("dataBasePath=" + dataBasePath);
+//			System.out.println("dataBasePath=" + dataBasePath);	
+
 			try {
 				Files.write(imagePath, bytes);
-			} catch (IOException e) {
-				e.printStackTrace();
+
+			} catch (AccessDeniedException e) {
+				System.out.println("File Access Denied");
 			}
+
+		} else {
+			System.out.println("File Not Found");
 		}
+
 		cpp.setComplaintPicURL(dataBasePath);
 		em.persist(cpp);
+
 		redirectAttributes.addFlashAttribute("insertComplaint", "1");
 		return "redirect:/main/index";
 
@@ -95,15 +106,13 @@ public class ComplaintController {
 
 		return service.findBycomplaintNum(complaintNum);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/findByCMBnum")
 	public CustomerMessageBoardBean findByCMBnum(int CMBnum) {
 //		System.out.println(CMBnum);
 		return service2.searchMessageByNum(CMBnum);
 	}
-	
-	
 
 	@ResponseBody
 	@RequestMapping("/query1")
@@ -178,10 +187,11 @@ public class ComplaintController {
 //		}	
 
 	}
+
 	@ResponseBody
 	@RequestMapping("/checknotice")
 	@Transactional
-	public void response_notice_check (int num) {
+	public void response_notice_check(int num) {
 		Complaint cp = em.find(Complaint.class, num);
 		cp.setResponseAnno(1);
 		em.persist(cp);

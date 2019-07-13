@@ -447,13 +447,13 @@ tbody td:hover {
 						method="POST" class="">
 
 						<div class="col-md-2 mb-2">
-							<label style="font-weight:bold;font-size: 150%;color: #0066FF;" for="complaintNum">編號:</label> <input
+							<label style="font-weight:bold;font-size: 120%;color: #0066FF;" for="complaintNum">編號:</label> <input
 								type="text" style="font-size: 120%" class="form-control"
 								id="complaintNum" name="complaintNum">
 						</div>
 
 						<div class="col-md-11 mb-3">
-							<label style="font-weight:bold;font-size: 150%;color: #00AA55;" for="complaintResponse">回覆:</label>
+							<label style="font-weight:bold;font-size: 120%;color: #00AA55;" for="complaintResponse">回覆:</label>
 							<span id="responseSp" style="color: red"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
@@ -650,7 +650,7 @@ function searchViolator(){
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 140%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:330px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -663,7 +663,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 140%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:330px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
 	}else
 		response();
 });

@@ -29,8 +29,8 @@ public class CustomerMessageBoardController {
 			Model model) {
 		model.addAttribute("AtricleNum", "文章編號:"+bean.getCustomermessageboardNum()+"	(勿更改以利查證)");
 		model.addAttribute("Violater", bean.getCustomermessageboardMemberid());
-		System.out.println(bean.getCustomermessageboardNum());
-		System.out.println(bean.getCustomermessageboardMemberid());
+//		System.out.println(bean.getCustomermessageboardNum());
+//		System.out.println(bean.getCustomermessageboardMemberid());
 		return "/main/complain/complainIndex";
 	}
 

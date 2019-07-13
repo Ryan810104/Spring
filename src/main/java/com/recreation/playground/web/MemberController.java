@@ -810,7 +810,7 @@ public class MemberController {
 	@PostMapping("/addIllegalTimes")
 	public String addIllegalTimes(String violator) {
 		Member mb = service.finById(violator);
-		System.out.println(mb);
+//		System.out.println(mb);
 
 //			Member mb = em.find(Member.class, violator);
 //			if(mb.getMemberIllegalTimes()==null) {
