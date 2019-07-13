@@ -38,8 +38,8 @@ public class MoneyRecord implements Serializable{
 	@CreatedDate
 	private Date moneyRecordTime=new Date();
 	
-	@Column(name="moneyRecordPoint")
-	private Long moneyRecordPoint;
+	@Column(name="moneyRecordCash")
+	private Long moneyRecordCash;
 	
 //	@Column(name="money_record_chip_type")
 //	private String ChipType;
@@ -48,7 +48,7 @@ public class MoneyRecord implements Serializable{
 	private Long moneyRecordChip;
 	
 	
-	@Column(name="moneyRecordChiptype")
-	private String moneyRecordChiptype;
+	@Column(name="moneyRecordType")
+	private String moneyRecordType;
 	
 }
