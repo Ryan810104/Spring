@@ -39,6 +39,9 @@ tbody td:hover {
 	color: #FF0000;
 	border-right: 1px solid black;
 }
+
+
+
 </style>
 <jsp:include page="/WEB-INF/jsp/fragment/header.jsp"></jsp:include>
 </head>
@@ -444,13 +447,13 @@ tbody td:hover {
 						method="POST" class="">
 
 						<div class="col-md-2 mb-2">
-							<label style="font-size: 150%" for="complaintNum">編號:</label> <input
+							<label style="font-weight:bold;font-size: 150%;color: #0066FF;" for="complaintNum">編號:</label> <input
 								type="text" style="font-size: 120%" class="form-control"
 								id="complaintNum" name="complaintNum">
 						</div>
 
 						<div class="col-md-11 mb-3">
-							<label style="font-size: 150%" for="complaintResponse">回覆:</label>
+							<label style="font-weight:bold;font-size: 150%;color: #00AA55;" for="complaintResponse">回覆:</label>
 							<span id="responseSp" style="color: red"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
@@ -465,8 +468,11 @@ tbody td:hover {
 				</div>
 
 				<div class="col-6">
-
-					<div class="col-md-7 mb-3">
+					
+					<fieldset style="background-color:#DDDDDD;padding:40px;border-radius:15px;border:solid 1px #CC00CC;">
+					<legend style="font-family:標楷體;color:#CC00CC;font-size:30px;text-align:center;padding-left:10px;">文章查證	&	帳號處置</legend>
+					
+					<div class="col-md-9 mb-3">
 
 						<div class="input-group">
 							<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
@@ -489,7 +495,8 @@ tbody td:hover {
 						style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
 						違規帳號: <span style="color:	#CC0000" id="searchViolator"></span>
 					</div>
-
+				
+				</fieldset>
 
 
 				</div>
@@ -643,7 +650,7 @@ function searchViolator(){
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";		
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 140%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -656,7 +663,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 140%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
 	}else
 		response();
 });
