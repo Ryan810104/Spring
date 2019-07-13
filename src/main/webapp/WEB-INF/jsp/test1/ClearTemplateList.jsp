@@ -15,6 +15,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	
 	<link href="/resources/css/signin.css" rel="stylesheet">
+	
+<!-- echart -->
+<!-- 		<script src="echarts.min.js"></script> -->
+<!-- 		<script src='/resources/echarts-stat-master/dist/ecStat.js'></script> -->
+		
+	
 <style>
 .pagination {
 	font-size: 80%;
@@ -86,51 +92,56 @@
 		<div id="sd6" style="width: 900px; height: 600px; margin: 0 auto;display:none"></div>
 		
 		
-		<div class="table-responsive-xl">
-			<form action="" id="form1">
-				<table id="showdata" class="table">
+<!--Echarts-遊戲a輸贏趨勢 -->
+		 <div id="main" style="width: 600px;height:400px;"></div>
+		
+		
+<!-- 		使用Ajax印出各個view的資料 -->
+<!-- 		<div class="table-responsive-xl"> -->
+<!-- 			<form action="" id="form1"> -->
+<!-- 				<table id="showdata" class="table"> -->
 
-				</table>
+<!-- 				</table> -->
 
-			</form>
-		</div>
+<!-- 			</form> -->
+<!-- 		</div> -->
 
-		<div class="table-responsive-xl">
-			<form action="" id="form2">
-				<table id="showdata1" class="table">
+<!-- 		<div class="table-responsive-xl"> -->
+<!-- 			<form action="" id="form2"> -->
+<!-- 				<table id="showdata1" class="table"> -->
 
-				</table>
+<!-- 				</table> -->
 
-			</form>
-		</div>
-
-
+<!-- 			</form> -->
+<!-- 		</div> -->
 
 
-		<div class="table-responsive-xl">
-			<form action="" id="form3">
-				<table id="sd2" class="table">
 
-				</table>
 
-			</form>
-		</div>
-		<div class="table-responsive-xl">
-			<form action="" id="form4">
-				<table id="sd3" class="table">
+<!-- 		<div class="table-responsive-xl"> -->
+<!-- 			<form action="" id="form3"> -->
+<!-- 				<table id="sd2" class="table"> -->
 
-				</table>
+<!-- 				</table> -->
 
-			</form>
-		</div>
-		<div class="table-responsive-xl">
-			<form action="" id="form5">
-				<table id="sd4" class="table">
+<!-- 			</form> -->
+<!-- 		</div> -->
+<!-- 		<div class="table-responsive-xl"> -->
+<!-- 			<form action="" id="form4"> -->
+<!-- 				<table id="sd3" class="table"> -->
 
-				</table>
+<!-- 				</table> -->
 
-			</form>
-		</div>
+<!-- 			</form> -->
+<!-- 		</div> -->
+<!-- 		<div class="table-responsive-xl"> -->
+<!-- 			<form action="" id="form5"> -->
+<!-- 				<table id="sd4" class="table"> -->
+
+<!-- 				</table> -->
+
+<!-- 			</form> -->
+<!-- 		</div> -->
 
 		
 <!-- 		<div id="sd5"></div> -->
@@ -166,6 +177,364 @@ function getchargerank(){
 	document.getElementById("sd5").style.display="none";
 }
 </script>
+<script src='/resources/echarts-stat-master/echart.js'></script>
+<script src='/resources/echarts-stat-master/dist/ecStat.js'></script>
+<script>
+$(document).ready(function(){
+	
+	$.ajax({
+		url : "/admin/memberBeans/gameatrend",
+		type : "POST",
+		success:function(data) {
+			var data01 = [
+				[1,123],[2,254],[3,111]
+				
+			]
+			var myChart = echarts.init($("#main"));
+			var myRegression = ecStat.regression('exponential', data01);
+			
+			myRegression.points.sort(function(a, b) {
+			    return a[0] - b[0];
+			});
+			option = {
+			        title: {
+			            text: '1981 - 1998 gross domestic product GDP (trillion yuan)',
+			            subtext: 'By ecStat.regression',
+			            sublink: 'https://github.com/ecomfe/echarts-stat',
+			            left: 'center'
+			        },
+			        tooltip: {
+			            trigger: 'axis',
+			            axisPointer: {
+			                type: 'cross'
+			            }
+			        },
+			        xAxis: {
+			            type: 'value',
+			            splitLine: {
+			                lineStyle: {
+			                    type: 'dashed'
+			                }
+			            },
+			            splitNumber: 20
+			        },
+			        yAxis: {
+			            type: 'value',
+			            splitLine: {
+			                lineStyle: {
+			                    type: 'dashed'
+			                }
+			            }
+			        },
+			        series: [{
+			            name: 'scatter',
+			            type: 'scatter',
+			            label: {
+			                emphasis: {
+			                    show: true,
+			                    position: 'left',
+			                    textStyle: {
+			                        color: 'blue',
+			                        fontSize: 16
+			                    }
+			                }
+			            },
+			            data: data01
+			        }, {
+			            name: 'line',
+			            type: 'line',
+			            showSymbol: false,
+			            smooth: true,
+			            data: myRegression.points,
+			            markPoint: {
+			                itemStyle: {
+			                    normal: {
+			                        color: 'transparent'
+			                    }
+			                },
+			                label: {
+			                    normal: {
+			                        show: true,
+			                        position: 'left',
+			                        formatter: myRegression.expression,
+			                        textStyle: {
+			                            color: '#333',
+			                            fontSize: 14
+			                        }
+			                    }
+			                },
+			                data: [{
+			                    coord: myRegression.points[myRegression.points.length - 1]
+			                }]
+			            }
+			        }]
+			    };
+
+			 myChart.setOption(option);
+		}
+	});
+});
+
+
+
+
+
+</script>
+
+
+
+<!-- highcharts玩家總獲勝獎金排名 -->
+		<script type="text/javascript">
+			var str = new Array();
+			var sti = new Array();
+			var json = {};
+			$(document).ready(function() {
+
+				$.ajax({
+
+					url : "/admin/memberBeans/mostbouns",
+					type : "POST",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							str.push(data[i][0]);
+							sti.push(data[i][1]);
+						}
+						$("#id").append(str);
+						$("#id1").append(sti);
+						alert(str);
+						alert(sti);
+
+						var chart = {
+							renderTo : 'container',
+							type : 'cylinder',
+							// 							type : 'column',
+							margin : 75,
+							options3d : {
+								enabled : true,
+								alpha : 10,
+								beta : 20,
+								depth : 25,
+								viewDistance : 60
+							}
+						};
+
+// 						var plotOptions = {
+// 								cylinder : {
+// 								depth : 25,
+// 								colorByPoint : true
+// 							}
+// 						};
+						
+						var plotOptions= {
+						    series: {
+						      depth: 25,
+						      colorByPoint: true
+						    }
+						  };
+						var title = {
+							text : "玩家勝利獎金排名"
+						};
+						var xAxis = {
+							categories : str
+						};
+						var yAxis = {
+							// 							min : 0,
+							title : {
+								text : null
+							}
+						};
+						var series = [ {
+							name : "獎金",
+							data : sti,
+							 showInLegend: false
+						} ];
+						json.chart = chart;
+						json.title = title;
+						json.xAxis = xAxis;
+						json.yAxis = yAxis;
+						json.plotOptions = plotOptions;
+						json.series = series;
+
+						$("#sd4-1").highcharts(json);
+						// 					};
+ 
+					}
+
+				});
+
+			});
+		</script>
+		
+		
+<!-- highcharts遊戲獲勝率對比 -->
+		<script type="text/javascript">
+			var sta = new Array();
+			var stb = new Array();
+// 			var sta = new Array();
+			var json = {};
+			$(document).ready(function() {
+
+				$.ajax({
+
+					url : "/admin/memberBeans/winrate",
+					type : "POST",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							sta.push(data[i][0]);
+							stb.push(data[i][1]).toFixed(2);
+// 							sat.push(data[i][2]);
+						}
+// 						$("#id").append(str);
+// 						$("#id1").append(sti);
+						alert(sta);
+						alert(stb);
+// 						alert(sta);
+
+						var chart = {
+							renderTo : 'container',
+// 							type : 'cylinder',
+							 type : 'column',
+							margin : 75,
+							options3d : {
+								enabled : true,
+								alpha : 10,
+								beta : 20,
+								depth : 25,
+								viewDistance : 60
+							}
+						};
+
+						var plotOptions = {
+								column : {
+								depth : 25,
+								colorByPoint : true
+							}
+						};
+						
+// 						var plotOptions= {
+// 						    series: {
+// 						      depth: 25,
+// 						      colorByPoint: true
+// 						    }
+// 						  };
+						var title = {
+							text : "各遊戲獲勝率"
+						};
+						var xAxis = {
+							categories : sta
+						};
+						var yAxis = {
+							// 							min : 0,
+							title : {
+								text : null
+							}
+						};
+						var series = [ {
+							name : "獲勝率",
+							data : stb,
+// 							 name: '獲勝率',
+							 showInLegend: false
+						} ];
+						json.chart = chart;
+						json.title = title;
+						json.xAxis = xAxis;
+						json.yAxis = yAxis;
+						json.plotOptions = plotOptions;
+						json.series = series;
+
+						$("#sd5").highcharts(json);
+						// 					};
+ 
+					}
+
+				});
+
+			});
+		</script>
+<!-- highcharts課長排名 -->
+		<script type="text/javascript">
+			var stc = new Array();
+			var std = new Array();
+			var json = {};
+			$(document).ready(function() {
+
+				$.ajax({
+
+					url : "/admin/memberBeans/top3cash",
+					type : "POST",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							stc.push(data[i][0]);
+							std.push(data[i][1]);
+// 							sat.push(data[i][2]);
+						}
+
+						alert(stc);
+						alert(std);
+// 						alert(sta);
+
+						var chart = {
+							renderTo : 'container',
+// 							type : 'cylinder',
+							 type : 'column',
+							margin : 75,
+							options3d : {
+								enabled : true,
+								alpha : 10,
+								beta : 20,
+								depth : 25,
+								viewDistance : 60
+							}
+						};
+
+						var plotOptions = {
+								column : {
+								depth : 25,
+								colorByPoint : true
+							}
+						};
+						
+// 						var plotOptions= {
+// 						    series: {
+// 						      depth: 25,
+// 						      colorByPoint: true
+// 						    }
+// 						  };
+						var title = {
+							text : "課長排名"
+						};
+						var xAxis = {
+							categories : stc
+						};
+						var yAxis = {
+							// 							min : 0,
+							title : {
+								text : null
+							}
+						};
+						var series = [ {
+							name : "金額",
+							data : std,
+// 							 name: '金額',
+							 showInLegend: false
+						} ];
+						json.chart = chart;
+						json.title = title;
+						json.xAxis = xAxis;
+						json.yAxis = yAxis;
+						json.plotOptions = plotOptions;
+						json.series = series;
+
+						$("#sd6").highcharts(json);
+					}
+
+				});
+
+			});
+		</script>
 
 
 		<script>
@@ -282,7 +651,7 @@ function getchargerank(){
 		</script>
 
 
-<!-- 玩家勝場比分比 -->
+<!-- highcharts玩家勝場比分比 -->
 		<script>
 			var json = {};
 			$(document)
@@ -350,413 +719,158 @@ function getchargerank(){
 
 
 
-		<!--玩家累積金額排行榜-->
-		<script>
-			$
-					.ajax({
-						url : "/admin/memberBeans/therichest",
-						type : "POST",
-						success : function(data) {
-							var str2 = "";
-							$("#sd2")
-									.append(
-											"<thead><tr><th>chipMemberNum</th><th>summary</th><tr></thead>");
-							str2 += "<tbody>";
-							$
+<!-- 		<!--玩家累積金額排行榜--> -->
+ 		<script> 
+ 			$
+ 					.ajax({
+ 						url : "/admin/memberBeans/therichest",
+ 						type : "POST",
+ 						success : function(data) {
+ 							var str2 = "";
+ 							$("#sd2")
+ 									.append(
+ 											"<thead><tr><th>chipMemberNum</th><th>summary</th><tr></thead>");
+ 							str2 += "<tbody>";
+ 							$
 									.each(
-											data,
-											function(key, value) {
-												str2 += "<tr>";
-												for (i in value) {
-													str2 += "<td>" + value[i]
-															+ "</td>";
-													id = Object.values(value)[0];
-												}
-												str2 += "<td><button id="
-														+ "'"
-														+ id
-														+ "'"
-														+ "type='button' onclick='edit(this)'>edit</button></td>";
-												str2 += "<td><button id="
-														+ "'"
-														+ id
-														+ "'"
-														+ "type='button' onclick='del(this)'>delete</button></td>";
-												str2 += "</tr>";
-											})
-							str2 += "</tbody>";
-							$("#sd2").append(str2);
+ 											data,
+ 											function(key, value) {
+ 												str2 += "<tr>";
+ 												for (i in value) {
+ 													str2 += "<td>" + value[i]
+ 															+ "</td>";
+ 													id = Object.values(value)[0];
+ 												}
+ 												str2 += "<td><button id="
+ 														+ "'" 
+ 														+ id
+ 														+ "'"
+ 														+ "type='button' onclick='edit(this)'>edit</button></td>";
+ 												str2 += "<td><button id="
+ 														+ "'"
+ 														+ id
+ 														+ "'"
+ 														+ "type='button' onclick='del(this)'>delete</button></td>";
+ 												str2 += "</tr>";
+ 											})
+ 							str2 += "</tbody>";
+ 							$("#sd2").append(str2);
 
-						}
-					});
-			function edit(Object) {
-				window.location.href = "/admin/test/index?id=" + Object.id;
-			}
-			function del(Object) {
-				$(location).attr('href', '/admin/test/index?id=' + Object.id);
-			}
-			function send() {
-				$(location).attr('href', '/admin/test/query');
-			}
-		</script>
+ 						}
+ 					});
+ 			function edit(Object) {
+ 				window.location.href = "/admin/test/index?id=" + Object.id;
+ 			}
+ 			function del(Object) {
+ 				$(location).attr('href', '/admin/test/index?id=' + Object.id);
+ 			}
+ 			function send() {
+ 			}
+ 		</script> 
 
 
-		<!-- 遊戲A各玩家遊玩次數排行榜 -->
-		<script type="text/javascript">
-			$
-					.ajax({
-						url : "/admin/memberBeans/gamea",
-						type : "POST",
-						success : function(data) {
+<!-- 		遊戲A各玩家遊玩次數排行榜 -->
+ 		<script type="text/javascript"> 
+ 			$
+ 					.ajax({
+ 						url : "/admin/memberBeans/gamea",
+ 						type : "POST",
+ 						success : function(data) {
 							var str2 = "";
-							$("#sd3")
-									.append(
-											"<thead><tr><th>chipMemberNum</th><th>chipType</th><th>totalRound</th><tr></thead>");
-							str2 += "<tbody>";
-							$
-									.each(
-											data,
-											function(key, value) {
-												str2 += "<tr>";
-												for (i in value) {
-													str2 += "<td>" + value[i]
-															+ "</td>";
+ 							$("#sd3")
+ 									.append(
+ 											"<thead><tr><th>chipMemberNum</th><th>chipType</th><th>totalRound</th><tr></thead>");
+ 							str2 += "<tbody>";
+ 							$
+ 									.each(
+ 											data,
+ 											function(key, value) {
+ 												str2 += "<tr>";
+ 												for (i in value) {
+ 													str2 += "<td>" + value[i]
+ 															+ "</td>";
 													id = Object.values(value)[0];
-												}
-												str2 += "<td><button id="
-														+ "'"
+ 												}
+ 												str2 += "<td><button id="
+														+ "'" 
 														+ id
 														+ "'"
-														+ "type='button' onclick='edit(this)'>edit</button></td>";
-												str2 += "<td><button id="
-														+ "'"
+													+ "type='button' onclick='edit(this)'>edit</button></td>";
+											str2 += "<td><button id="
+ 														+ "'" 
 														+ id
-														+ "'"
+ 														+ "'"
 														+ "type='button' onclick='del(this)'>delete</button></td>";
-												str2 += "</tr>";
-											})
-							str2 += "</tbody>";
-							$("#sd3").append(str2);
+ 												str2 += "</tr>";
+ 											})
+ 							str2 += "</tbody>";
+ 							$("#sd3").append(str2);
 
-						}
-					});
-			function edit(Object) {
+ 						}
+ 					});
+ 			function edit(Object) {
 				window.location.href = "/admin/test/index?id=" + Object.id;
-			}
-			function del(Object) {
-				$(location).attr('href', '/admin/test/index?id=' + Object.id);
-			}
-			function send() {
-				$(location).attr('href', '/admin/test/query');
-			}
-		</script>
+ 			}
+ 			function del(Object) {
+ 				$(location).attr('href', '/admin/test/index?id=' + Object.id);
+ 			}
+ 			function send() {
+ 				$(location).attr('href', '/admin/test/query');
+ 			}
+ 		</script> 
 
 
-		<script>
-			$
-					.ajax({
-						url : "/admin/memberBeans/mostbouns",
-						type : "POST",
-						success : function(data) {
-							var str2 = "";
-							$("#sd4")
-									.append(
-											"<thead><tr><th>chipMemberNum</th><th>TotalBouns</th><th>win</th><tr></thead>");
-							str2 += "<tbody>";
-							$
-									.each(
-											data,
-											function(key, value) {
-												str2 += "<tr>";
-												for (i in value) {
-													str2 += "<td>" + value[i]
-															+ "</td>";
-													id = Object.values(value)[0];
-												}
-												str2 += "<td><button id="
-														+ "'"
-														+ id
-														+ "'"
-														+ "type='button' onclick='edit(this)'>edit</button></td>";
-												str2 += "<td><button id="
-														+ "'"
-														+ id
-														+ "'"
-														+ "type='button' onclick='del(this)'>delete</button></td>";
-												str2 += "</tr>";
-											})
-							str2 += "</tbody>";
-							$("#sd4").append(str2);
+ 		<script> 
+ 			$
+ 					.ajax({
+ 						url : "/admin/memberBeans/mostbouns",
+ 						type : "POST",
+ 						success : function(data) {
+ 							var str2 = "";
+ 							$("#sd4")
+ 									.append(
+ 											"<thead><tr><th>chipMemberNum</th><th>TotalBouns</th><th>win</th><tr></thead>");
+ 							str2 += "<tbody>";
+ 							$
+ 									.each(
+ 											data,
+ 											function(key, value) {
+ 												str2 += "<tr>";
+ 												for (i in value) {
+ 													str2 += "<td>" + value[i]
+ 															+ "</td>";
+ 													id = Object.values(value)[0];
+ 												}
+ 												str2 += "<td><button id="
+ 														+ "'"
+ 														+ id
+ 														+ "'"
+ 														+ "type='button' onclick='edit(this)'>edit</button></td>";
+ 												str2 += "<td><button id="
+ 														+ "'"
+ 														+ id
+ 														+ "'"
+ 														+ "type='button' onclick='del(this)'>delete</button></td>";
+ 												str2 += "</tr>";
+ 											})
+ 							str2 += "</tbody>";
+ 							$("#sd4").append(str2);
 
-						}
-					});
-			function edit(Object) {
-				window.location.href = "/admin/test/index?id=" + Object.id;
-			}
-			function del(Object) {
-				$(location).attr('href', '/admin/test/index?id=' + Object.id);
-			}
-			function send() {
-				$(location).attr('href', '/admin/test/query');
-			}
-		</script>
+ 						}
+ 					});
+ 			function edit(Object) {
+ 				window.location.href = "/admin/test/index?id=" + Object.id;
+ 			}
+ 			function del(Object) {
+ 				$(location).attr('href', '/admin/test/index?id=' + Object.id);
+ 			}
+ 			function send() {
+ 				$(location).attr('href', '/admin/test/query');
+ 			}
+ 		</script> 
 
 
-		<!-- 玩家總獲勝獎金排名 -->
-		<script type="text/javascript">
-			var str = new Array();
-			var sti = new Array();
-			var json = {};
-			$(document).ready(function() {
-
-				$.ajax({
-
-					url : "/admin/memberBeans/mostbouns",
-					type : "POST",
-					success : function(data) {
-
-						for (var i = 0; i < data.length; i++) {
-							str.push(data[i][0]);
-							sti.push(data[i][1]);
-						}
-						$("#id").append(str);
-						$("#id1").append(sti);
-						alert(str);
-						alert(sti);
-
-						var chart = {
-							renderTo : 'container',
-							type : 'cylinder',
-							// 							type : 'column',
-							margin : 75,
-							options3d : {
-								enabled : true,
-								alpha : 10,
-								beta : 20,
-								depth : 25,
-								viewDistance : 60
-							}
-						};
-
-// 						var plotOptions = {
-// 								cylinder : {
-// 								depth : 25,
-// 								colorByPoint : true
-// 							}
-// 						};
-						
-						var plotOptions= {
-						    series: {
-						      depth: 25,
-						      colorByPoint: true
-						    }
-						  };
-						var title = {
-							text : "玩家勝利獎金排名"
-						};
-						var xAxis = {
-							categories : str
-						};
-						var yAxis = {
-							// 							min : 0,
-							title : {
-								text : null
-							}
-						};
-						var series = [ {
-							name : "獎金",
-							data : sti,
-							 name: '獎金',
-							 showInLegend: false
-						} ];
-						json.chart = chart;
-						json.title = title;
-						json.xAxis = xAxis;
-						json.yAxis = yAxis;
-						json.plotOptions = plotOptions;
-						json.series = series;
-
-						$("#sd4-1").highcharts(json);
-						// 					};
-
-					}
-
-				});
-
-			});
-		</script>
 		
-		
-<!-- 遊戲獲勝率對比 -->
-		<script type="text/javascript">
-			var sta = new Array();
-			var stb = new Array();
-// 			var sta = new Array();
-			var json = {};
-			$(document).ready(function() {
-
-				$.ajax({
-
-					url : "/admin/memberBeans/winrate",
-					type : "POST",
-					success : function(data) {
-
-						for (var i = 0; i < data.length; i++) {
-							sta.push(data[i][0]);
-							stb.push(data[i][1]).toFixed(2);
-// 							sat.push(data[i][2]);
-						}
-// 						$("#id").append(str);
-// 						$("#id1").append(sti);
-						alert(sta);
-						alert(stb);
-// 						alert(sta);
-
-						var chart = {
-							renderTo : 'container',
-// 							type : 'cylinder',
-							 type : 'column',
-							margin : 75,
-							options3d : {
-								enabled : true,
-								alpha : 10,
-								beta : 20,
-								depth : 25,
-								viewDistance : 60
-							}
-						};
-
-						var plotOptions = {
-								column : {
-								depth : 25,
-								colorByPoint : true
-							}
-						};
-						
-// 						var plotOptions= {
-// 						    series: {
-// 						      depth: 25,
-// 						      colorByPoint: true
-// 						    }
-// 						  };
-						var title = {
-							text : "各遊戲獲勝率"
-						};
-						var xAxis = {
-							categories : sta
-						};
-						var yAxis = {
-							// 							min : 0,
-							title : {
-								text : null
-							}
-						};
-						var series = [ {
-							name : "獲勝率",
-							data : stb,
-							 name: '獲勝率',
-							 showInLegend: false
-						} ];
-						json.chart = chart;
-						json.title = title;
-						json.xAxis = xAxis;
-						json.yAxis = yAxis;
-						json.plotOptions = plotOptions;
-						json.series = series;
-
-						$("#sd5").highcharts(json);
-						// 					};
-
-					}
-
-				});
-
-			});
-		</script>
-		
-		<script type="text/javascript">
-			var stc = new Array();
-			var std = new Array();
-			var json = {};
-			$(document).ready(function() {
-
-				$.ajax({
-
-					url : "/admin/memberBeans/top3cash",
-					type : "POST",
-					success : function(data) {
-
-						for (var i = 0; i < data.length; i++) {
-							stc.push(data[i][0]);
-							std.push(data[i][1]);
-// 							sat.push(data[i][2]);
-						}
-
-						alert(stc);
-						alert(std);
-// 						alert(sta);
-
-						var chart = {
-							renderTo : 'container',
-// 							type : 'cylinder',
-							 type : 'column',
-							margin : 75,
-							options3d : {
-								enabled : true,
-								alpha : 10,
-								beta : 20,
-								depth : 25,
-								viewDistance : 60
-							}
-						};
-
-						var plotOptions = {
-								column : {
-								depth : 25,
-								colorByPoint : true
-							}
-						};
-						
-// 						var plotOptions= {
-// 						    series: {
-// 						      depth: 25,
-// 						      colorByPoint: true
-// 						    }
-// 						  };
-						var title = {
-							text : "課長排名"
-						};
-						var xAxis = {
-							categories : stc
-						};
-						var yAxis = {
-							// 							min : 0,
-							title : {
-								text : null
-							}
-						};
-						var series = [ {
-							name : "金額",
-							data : std,
-							 name: '金額',
-							 showInLegend: false
-						} ];
-						json.chart = chart;
-						json.title = title;
-						json.xAxis = xAxis;
-						json.yAxis = yAxis;
-						json.plotOptions = plotOptions;
-						json.series = series;
-
-						$("#sd6").highcharts(json);
-
-
-					}
-
-				});
-
-			});
-		</script>
 
 
 		<script src="/resources/js/all.min.js"></script>
@@ -771,14 +885,21 @@ function getchargerank(){
 
 		<!-- highcharts -->
 		<script src="/resources/highcharts/code/highcharts.js"></script>
-		<script src="https://code.highcharts.com/modules/data.js"></script>
+<!-- <script src="https://code.highcharts.com/modules/data.js"></script> -->
 		<script src="/resources/highcharts/code/modules/data.js"></script>
-		<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<!-- <script src="https://code.highcharts.com/modules/drilldown.js"></script> -->
 		<script src="/resources/highcharts/code/modules/drilldown.js"></script>
-		<script src="http://code.highcharts.com/highcharts-3d.js"></script>
+<!-- <script src="http://code.highcharts.com/highcharts-3d.js"></script> -->
+		<script src="/resources/highcharts/code/highcharts-3d.js"></script>
 		<script src="https://code.highcharts.com/modules/cylinder.js"></script>
 		<!-- highcarts -->
-
+		
+		
+		<!-- Echarts -->
+<!--  		<script src="echarts.min.js"></script> -->
+<!-- 		<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.2.1/echarts-en.common.js"></script> -->
+<!-- 		<script src='https://cdn.bootcss.com/echarts/3.4.0/echarts.js'></script> -->
+<!-- 		<script src='/resources/echarts-stat-master/dist/ecStat.js'></script> -->
 
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
