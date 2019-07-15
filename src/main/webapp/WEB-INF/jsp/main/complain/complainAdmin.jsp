@@ -220,6 +220,7 @@ tbody td:hover {
 			}
 			//alert(opt);
 			$("#showByInteractR").append(opt);
+			
 			}, 4);	
 	}
 	
@@ -641,6 +642,126 @@ function searchViolator(){
 
 
 </script>
+
+
+<!-- 退款 -->
+<button data-toggle='modal' data-target='#showtopup' class="btn btn-primary btn-lg active"
+			onclick="topup();">
+			<i class="fas fa-money-bill" style="font-size: 20px"> <span
+				style="font-size: 20px">退款</span>
+			</i>
+		</button>
+
+
+<div class="modal fade" id="showtopup" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 150%">充值平台</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" style="font-size: 200%">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+
+				<form class="form-signin" name="form3" id="form3" action=""
+			method="POST">	
+
+						<input id='chipMemberNum' name="chipMemberNum" type="text"
+							onclick="this.value=''" value="${sessionScope.member.memberNum}"
+							placeholder="chipMemberNum:" class="form-control" style="display:"> 
+							
+							<input
+							id='chipFirstName' name="chipFirstName" type="text"
+							onclick="this.value=''"
+							value="${sessionScope.member.memberFitstName}"
+							placeholder="玩家名稱:" class="form-control" style="display:"> 
+							
+							<input
+							id='chipNickName' name="chipNickName" type="text"
+							onclick="this.value=''"
+							value="${sessionScope.member.memberNickName}"
+							placeholder="玩家暱稱:" class="form-control" style="display:"> 
+							
+							<input
+							id='chipBalanced' name="chipBalanced" type="text"
+							placeholder="請輸入調整點數:"
+							class="form-control" style="display:"> 
+							
+							<input id='chipType'
+							name="chipType" type="text" value="${memberP.chipRecordChip}"
+							placeholder="chipType:" class="form-control" style="display:none"> 
+							
+							<input
+							id='win' name="win" type="text" value="${memberP.chipRecordChip}"
+							placeholder="win:" class="form-control" style="display:none"> 
+							
+							<input
+							id='round' name="round" type="text"
+							 placeholder="round:" class="form-control"  style="display:none">
+							 
+
+							
+							<button class="btn btn-warning" type="button" id="sendout1"
+							 style="font-size: 20px">Confirm</button>
+						</form>	
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+<script>
+			function topup() {
+				document.getElementById("showtopup");
+			}
+</script>
+<script>
+			$("#sendout1").click(function() {
+
+								var insert = $("#form3").serializeArray();
+// 								alert(insert);
+// 								alert(JSON.stringify(insert));
+								var i = {};
+								$.each(insert, function(index, value1) {
+									i[value1.name] = value1.value;
+								});
+								var ant1 = JSON.stringify(i);
+// 								alert(ant1);
+
+								$.ajax({url : '/admin/memberBeans/refund?chipMemberNum='
+													+ $("#chipMemberNum").val()
+													+ "&chipFirstName="
+													+ $("#chipFirstName").val()
+													+ "&chipNickName="
+													+ $("#chipNickName").val()
+													+ "&chipBalanced="
+													+ $("#chipBalanced").val()
+													+ "&chipType="
+													+ $("#chipType").val()
+													+ "&round="
+													+ $("#round").val()
+													+ "&win=" + $("#win").val()
+													,
+											method : 'post',
+											contentType : 'application/json;charset=UTF-8',
+											dataType : 'json',
+											data : ant1,
+											success : function(data) {
+												alert("處裡成功");
+											},
+											error : function(ajaxres) {
+												alert("資料新增失敗");
+											}
+										});
+							});
+		</script>
+
+<!-- 退款 -->
 
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>

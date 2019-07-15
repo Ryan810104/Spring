@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +33,20 @@
 </head>
 
 <body>
+
+<c:choose>
+		<c:when test="${open==0}">
+			<script>
+				alert("開設房間成功");
+			</script>
+		</c:when>
+		
+	</c:choose>
+
+
+
+
+
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 	<article class="content moe">
 
@@ -46,8 +62,10 @@
 		<div style="margin-top: 200px; text-align: center">
 			<button style="align: center" data-toggle="modal"
 				data-target="#login">開創房間</button>
-			<button style="align: center" data-toggle="modal"
-				data-target="#login">現有房間列表</button>
+				
+				
+			<button style="align: center"  id="show"   data-toggle="modal"  data-target="#open"
+				>現有房間列表</button>
 		</div>
 
 
@@ -96,10 +114,19 @@
 							
 							<div class="mb-3">
 								<label for="inputID">下賭金額</label> <input type="text"
-									id="gameMoney" name="gameMoney" value="${memberParam.memberId}"
+									id="gameMoney" name="gameMoney" value=""
 									class="form-control" placeholder="" required autofocus>
 									<span id="errormoney"></span>
 							</div>
+							
+							<div class="mb-3">
+								<label for="roomStage">房間狀態</label> <input type="hidden"
+									id="gameRoomStage" name="gameRoomStage" value=1
+									class="form-control" placeholder="" required autofocus>
+									<span id="errormoney"></span>
+							</div>
+							
+							
 
 							<hr>
 							<button class="btn btn-lg btn-primary btn-block" type="submit">確認開設房間</button>
@@ -108,6 +135,8 @@
 				
 						</form>
 					</div>
+		
+					
 				</div>
 			</div>
 		</div>
@@ -120,7 +149,38 @@
 
 
 
-
+<div class="modal fade" id="open" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">現有房間</h5>					
+					</div>
+					<table>
+								<thead style="font-size: 120%; color: #0066FF;">
+								
+									<tr>
+									
+										<th>房間名稱</th>
+										<th>房主</th>
+										<th>球隊名稱</th>
+										<th>賭注金額</th>									
+									</tr>
+								</thead>
+								<tbody style="font-size: 120%" id="room"></tbody>
+							</table>
+					
+					
+					
+					
+					<div class="modal-body">
+	               
+					</div>
+					
+	
+				</div>
+			</div>
+		</div>
 
 
 
@@ -170,14 +230,27 @@
 		
 		
 		//ajax傳資料
-		$.ajax({
-		url : "/save/GameBling1",
-		type : "POST",
-		success : function(data) {
-			alert(data);
-			showByWeb(data);
-		}
-	});
+		$("#show").click(function(){
+			$("#room").html("");
+			$.ajax({
+				url : "/save/GameBling1",
+				type : "POST",
+				success : function(data) {
+					var opt="";
+					for(i in data){
+						opt += "<tr><td>" + data[i]["gameRoomName"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
+						+ data[i]["gameResult"] + "</td>" + "<td>"
+						+ data[i]["gameMoney"] + "</td>"+ "<td style='text-align:center;'>"
+						+ "<button  onclick=''>"+"進入房間"+"</button>"+ "</td><tr>";
+					}
+					$("#room").append(opt);
+				}
+			
+			});
+			
+		});
+		
 		
 		
 		

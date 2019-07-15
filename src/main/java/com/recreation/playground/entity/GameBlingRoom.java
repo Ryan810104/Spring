@@ -51,10 +51,23 @@ public class GameBlingRoom {
 	//賭局結果
 	
 	@Column
+	private String player1Result;
+	
+	
+	@Column
+	private String player2Result;
+	
+	
+	@Column
 	private String gameRoomMember;
 	//房間內參加者
 	
 	@Column
-	private String gameMoney;
+	private int gameMoney;
+	
+	@Column
+	private int player2Money;
 
+	
+	
 }

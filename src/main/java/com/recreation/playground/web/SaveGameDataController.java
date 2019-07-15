@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -53,11 +54,13 @@ public String saveData(
 		
 }
 
-
+@Transactional
 @RequestMapping("/GameBling")
 public String saveGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, BindingResult result, Model model) {
 	
 	service1.SaveGameData(member);
+	model.addAttribute("open", "0");
+	
 	
 	return"/main/games/Gambling";
 }
@@ -65,8 +68,8 @@ public String saveGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlin
 
 @ResponseBody
 @RequestMapping("/GameBling1")
-public GameBlingRoom findGameRoom(int stage) {
-	return service1.showRoom(stage);
+public List<GameBlingRoom> findGameRoom() {
+	return service1.showRoom();
 }
 
 

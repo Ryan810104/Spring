@@ -1,5 +1,7 @@
 package com.recreation.playground.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +20,9 @@ public class GameBlingRoomService {
 		dao.save(GBR);		
 	}
 	
-	public GameBlingRoom showRoom(int stage){
+	public List<GameBlingRoom> showRoom(){
 		
-		return dao.findByGameRoomStage(stage);
+		return dao.findByGameRoomStage(1);
 				
 		
 	}

@@ -278,7 +278,7 @@ public class MemberController {
 		chip.setWin(win);
 		chip.setRound(round);
 		session.setAttribute("moneyRecordCash", moneyRecordCash);
-		session.setAttribute("moneyRecordFirstName", moneyRecordFirstName);
+		session.setAttribute("moneyRecordType", moneyRecordType);
 		MoneyRecord moneyRecord = new MoneyRecord();
 		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
 		moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
@@ -339,6 +339,34 @@ public class MemberController {
 		
 		return res;
 	}
+	
+	@RequestMapping("/refund")
+	@ResponseBody
+	public AjaxResponse<String> refund(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
+			@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
+			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+			@RequestParam(value = "chipType", defaultValue = " ") String chipType,
+			@RequestParam(value = "time", defaultValue = "0") Float round,
+			@RequestParam(value = "win", defaultValue = "0") Integer win){
+		Chip chip = new Chip();
+		chip.setChipMemberNum(chipMemberNum);
+		chip.setChipFirstName(chipFirstName);
+		chip.setChipNickName(chipNickName);
+		chip.setChipBalanced(chipBalanced);
+		chip.setChipType(chipType);
+		chip.setWin(win);
+		chip.setRound(round);
+		AjaxResponse<String> res = new AjaxResponse<>();
+		res.setType(AjaxResponseType.SUCCESS);
+		res.setData(chipService.save(chip).toString());
+		
+		return res;
+		
+	}
+	
+	
+	
+	
 	@PostMapping("/query")
 	@ResponseBody // 轉JSON
 	public List<MoneyRecord> query(Integer moneyRecordNum) {
@@ -431,12 +459,30 @@ public class MemberController {
 		return chipDao.findPlayerSummary(chipMemberNum);
 	}
 	
+	
+	//遊戲A玩家輸贏金額趨勢
 	@RequestMapping("/gameatrend")
 	@ResponseBody
 	public List<Object> findgameatrend() {
 		return chipRecordDao.findgameatrend();
 	}
-
+	
+	
+	//遊戲B玩家輸贏金額趨勢
+	@RequestMapping("/gamebtrend")
+	@ResponseBody
+	public List<Object> findgamebtrend() {
+		return chipRecordDao.findgamebtrend();
+	}
+	
+	
+	//遊戲C玩家輸贏金額趨勢
+	@RequestMapping("/gamectrend")
+	@ResponseBody
+	public List<Object> findgamectrend() {
+		return chipRecordDao.findgamectrend();
+	}
+	
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
 //		System.out.println(member);
