@@ -219,7 +219,7 @@ function whoismyfriend(){
 		var NumOfJData = Jdata.length;
 		console.log(NumOfJData);
 		if (NumOfJData == 0 ){
-			myfriends +=	"<div>"
+			myfriends +=	"<div style=\"text-align:center\">"
 			myfriends +=	"<span>目前沒有朋友喔！</span>"
 			myfriends +=	"<span class= \" "+online+" \" ></span>"
 			myfriends +=	"</div>"
@@ -292,10 +292,10 @@ function showinformation(data){
 	//測試/[[3, admin, 2]]回復檢舉[]討論通知[] <<data
 // 	console.log(data);
 	var dataindex = data.indexOf("response");
-	var dataindex2 = data.indexOf("discuss");
+	var dataindex2 = data.indexOf("ban");
 	var datafriend = data.substring(0,dataindex);
 	var dataresponse = data.substring(dataindex,dataindex2);
-	var datadiscuss = data.substring(dataindex2,data.length);
+	var databan = data.substring(dataindex2,data.length);
 // 	console.log(datafriend.replace("test/","").length);
 // 	console.log(dataresponse.replace("response","").length);
 // 	console.log(datadiscuss.replace("discuss","").length);
@@ -358,6 +358,33 @@ if (dataresponse.replace("response","").length > 2 ){
 	};
 	
 }
+
+if (databan.replace("ban","").length > 2 ){
+	var tempdata = databan.replace("[","").replace("[","").replace("ban","")
+	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+	tempdata1[0] = ","+tempdata1[0];
+	console.log(tempdata);
+	for (var i = 0 ; i < tempdata1.length -1 ; i++){
+		var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+			console.log(onerowdata);
+		//onerowdata[1] == 你的NUM
+		//onerowdata[2] == 你的檢舉內容
+		//onerowdata[3] == 管理員的回覆
+		//onerowdata[4] == 投訴表格流水號
+			console.log(onerowdata);
+		showinfor += "<li>"
+		showinfor +="<a href=\"#\">"
+		showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+		showinfor += 	"<a  style=\" font-size:14px;\">停權通知</a><br>"
+		showinfor += "<a  style=\" font-size:14px; color:red  \">違規達三次，已被停權</a>"
+		showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"ban_notice_check("+onerowdata[3].trim()+")\" style=\"float: right;\">"
+		showinfor +=	"</div>"
+		showinfor +="</a>"
+		showinfor +="</li>"
+		inforlength ++ ;
+	};
+	
+}
 	
 	$("#notifystatus").html(showinfor);
 	if (inforlength != 0){
@@ -366,6 +393,19 @@ if (dataresponse.replace("response","").length > 2 ){
 	};
 };
 
+
+function ban_notice_check(num){
+	$.ajax({
+		url : "/main/complain/ban_notice_check?num="+num,
+		type: "GET",
+		success : function(data){
+//				alert("ss");
+		},
+		error : function(data){
+			alert("errrrrrooooorrrrrrrrrrr");
+		},
+	})
+}
 
 function response_notice_check(num){
 	$.ajax({

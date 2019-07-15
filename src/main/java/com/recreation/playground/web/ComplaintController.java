@@ -28,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.recreation.playground.entity.Complaint;
 import com.recreation.playground.entity.CustomerMessageBoardBean;
+import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.ComplaintService;
 import com.recreation.playground.service.CustomerMessageBoardService;
 
@@ -195,5 +196,14 @@ public class ComplaintController {
 		Complaint cp = em.find(Complaint.class, num);
 		cp.setResponseAnno(1);
 		em.persist(cp);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ban_notice_check")
+	@Transactional
+	public void ban_notice_check(int num) {
+		Member mem = em.find(Member.class, num);
+		mem.setBanAnnot(1);
+		em.persist(mem);
 	}
 }
