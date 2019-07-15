@@ -219,7 +219,7 @@ function whoismyfriend(){
 		var NumOfJData = Jdata.length;
 		console.log(NumOfJData);
 		if (NumOfJData == 0 ){
-			myfriends +=	"<div>"
+			myfriends +=	"<div style=\"text-align:center\">"
 			myfriends +=	"<span>目前沒有朋友喔！</span>"
 			myfriends +=	"<span class= \" "+online+" \" ></span>"
 			myfriends +=	"</div>"
