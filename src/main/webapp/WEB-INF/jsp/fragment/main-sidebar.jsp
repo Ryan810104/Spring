@@ -166,7 +166,26 @@
 			</a></li>
 		</ul>
 	</nav>
-
+	
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">好友邀請</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         已寄送好友邀請給<span id= "friendrequest"></span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </header>
 <hr style="margin-top: 0px">
@@ -830,7 +849,7 @@ $("#findmemberlist").on("input",function(){
 						break;
 			//jdata <> ismyfriend <> ornot <> defination
 					} else {
-						var ismyfriendornot = "<a  style=\"color: cyan;\" onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn  btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
+						var ismyfriendornot = "<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\"  href=\"#\"  style=\"color: cyan;\" onclick=\"addfunction("+Jdata[i]["memberNum"]+") \" class=\"btn  btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
 						console.log ("notmyfriend");
 					}
 				}
@@ -869,9 +888,6 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
-function gotohomepage(num){
-	alert(num);
-}
 // $(".search_input").click(function(){
 // 	$("#membersearch01").show();
 // 	event.stopPropagation();
@@ -895,10 +911,10 @@ function addfunction(num){
 		url : "/friend/list/add?yourid="+'${sessionScope.member.memberNum}'+"&friendid="+num,
 		type: "GET"
 	})
-	confirm("已加入好友");
-	location.reload();
+// 	location.reload();
 	
 };
+
 function talkfunction(id){
 	$("#search_friend_icon").click();
 }
