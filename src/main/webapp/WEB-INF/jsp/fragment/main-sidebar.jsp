@@ -826,11 +826,11 @@ $("#findmemberlist").on("input",function(){
 				for (var k  = 0 ; k < friend2member.length ; k++){
 					if (Jdata[i]["memberNum"] == friend2member[k]){
 						console.log ("myfriend");
-						var ismyfriendornot = "<a onclick=\"talkfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
+						var ismyfriendornot = "<a style=\"color: springgreen\" onclick=\"talkfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
 						break;
 			//jdata <> ismyfriend <> ornot <> defination
 					} else {
-						var ismyfriendornot = "<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
+						var ismyfriendornot = "<a  style=\"color: cyan;\" onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn  btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
 						console.log ("notmyfriend");
 					}
 				}
@@ -839,14 +839,16 @@ $("#findmemberlist").on("input",function(){
 				text += "<div class=\"well well-sm\">"
 				text +=	"<div class=\"media\">"
 				text +=	"<a class=\"thumbnail pull-left\" href=\"#\"> <img "
-				text +=	"class=\"media-object\" style=\"width: 60px;height: 60px;margin-top: 6px;\""
+				text +=	"class=\"media-object\" style=\" border-radius: 50% ; width: 60px;height: 60px;margin-top: 6px;\""
 				text +=	"src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i]["memberNum"]+"' />\">"
 				text +=	"</a>"
 				text +=	"<div class=\"media-body\">"
 				text +=	"<h4 class=\"media-heading\">"+Jdata[i]["memberId"]+"</h4>"
 				text +=	"<p style=\"margin-top: 0px;\">"
-				text +=	"<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-success btn-sm\"><i class=\"fas fa-home\"></i></a>"
+				text +=	"<a href=\"/main/setting/"+Jdata[i]["memberNum"]+"\"  style=\"color: yellow\" class=\"btn btn-sm\" alt=\"HomePage\"><i class=\"fas fa-home\"></i></a>"
+				
 				text +=	 ismyfriendornot
+				text +=	"<a href=\"/friend/list/report/"+Jdata[i]["memberNum"]+"\"  style=\"color: #ff6c00\" class=\"btn btn-sm\"><i class=\"fas fa-skull-crossbones\"></i></a>"
 				text +=	"</p>"
 				text +=	"</div>"
 				text +=	"</div>"
@@ -867,6 +869,9 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
+function gotohomepage(num){
+	alert(num);
+}
 // $(".search_input").click(function(){
 // 	$("#membersearch01").show();
 // 	event.stopPropagation();

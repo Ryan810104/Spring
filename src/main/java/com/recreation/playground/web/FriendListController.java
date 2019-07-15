@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.recreation.playground.entity.CustomerMessageBoardBean;
 import com.recreation.playground.entity.FriendList;
 import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.FriendListService;
@@ -109,5 +113,14 @@ public class FriendListController {
 		System.out.println(a.getMemberEmail());
 		return a;
 	}
-
+	@Transactional
+	@RequestMapping("/report/{num}")
+	public String report(@PathVariable("num")Integer num, 
+			Model model) {
+		Member a = em.find(Member.class, num);
+		model.addAttribute("Violater", a.getMemberId());
+//		System.out.println(bean.getCustomermessageboardNum());
+//		System.out.println(bean.getCustomermessageboardMemberid());
+		return "/main/complain/complainIndex";
+	}
 }
