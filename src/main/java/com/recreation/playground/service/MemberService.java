@@ -128,5 +128,10 @@ public class MemberService {
 		}
 		return dataBasePath;
 	}
+	
+	public Member findNumById(String memberid) {
+		return dao.findMemberNumByMemberId(memberid);
+	}
+	
 
 }
