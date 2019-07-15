@@ -47,6 +47,7 @@ import com.recreation.playground.dao.ChipRecordDao;
 import com.recreation.playground.dao.MoneyRecordDao;
 import com.recreation.playground.entity.Chip;
 import com.recreation.playground.entity.ChipRecord;
+import com.recreation.playground.entity.CustomerMessageBoardBean;
 import com.recreation.playground.entity.Member;
 import com.recreation.playground.entity.MoneyRecord;
 import com.recreation.playground.service.ChipRecordService;
@@ -882,5 +883,13 @@ public class MemberController {
 		service.update(mb);
 		return "/main/complain/complainAdmin";
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/findNumById")
+	public Member findNumById(String memberId) {		
+		return service.findNumById(memberId);		
+	}
+	
 
 }
