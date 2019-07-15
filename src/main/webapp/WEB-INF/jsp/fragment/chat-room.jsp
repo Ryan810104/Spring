@@ -13,7 +13,7 @@
 			<path class="s-path" fill="#fff" d="M0,0 50,0 a0,250 0 1,1 0,500 L0,500" />
 		  </svg>
 		  <div class="static">
-			<div class="static__text">Pull white sidebar to the right</div>
+			<div class="static__text"><i class="fas fa-times"></i></div>
 		  </div>
 		  <div class="sidebar-content active" id = "myfriendlist">
 <!-- 			<div class="contact"> -->
@@ -487,13 +487,16 @@ ws.onmessage = function(event){
 
 };
 });
-
+$(".static__text").click(function(){
+	$("#search_friend_icon").click();
+});
 $("#search_friend_icon").click(function(){
 	$(".demo").slideToggle();
+	whoismyfriend();
 });
 
 $("#search_friend_icon").click(function() {
-	whoismyfriend();
+	
 });
 </script>
    

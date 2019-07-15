@@ -44,7 +44,7 @@
   width: 30rem;
   height: 50rem;
   box-shadow: 0 1rem 5rem rgba(0, 0, 0, 0.3);
-  right: 80px;
+  right: 20px;
   position: fixed;
   bottom: 20px;
   float: right;
@@ -81,11 +81,12 @@
   top: 35rem;
 }
 .demo .static__text {
-  width: 9rem;
+	cursor: pointer;
+	    z-index: 10;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -5rem;
+top: 5%;
+    right: 5%;
+  margin-left: 0rem;
   -webkit-transform: translate3d(0, -50%, 0);
           transform: translate3d(0, -50%, 0);
   color: #fff;
@@ -186,6 +187,7 @@
   display: block;
   width: 100%;
   height: 100%;
+  background-image : url("/resources/img/friendlistbg.png");
 }
 
 .demo .s-path {
