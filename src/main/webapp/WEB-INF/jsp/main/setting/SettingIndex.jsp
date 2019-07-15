@@ -9,6 +9,58 @@
 
 <body>
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
+	<!-- 				上傳頭像開頭                                                          -->
+	<form
+		action="/admin/memberBeans/uploadImage/${sessionScope.member.memberNum}"
+		method="POST" enctype="multipart/form-data">
+		<div class="modal fade" id="showComplaintPic" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalLongTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 150%">目前頭像：</h5>
+
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" style="font-size: 200%">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="col-sm-9" id="result2"></div>
+
+					</div>
+					<div>
+						<input type="file" id="progressbarTWInput"
+							accept="image/gif, image/jpeg, image/png"
+							class="text-center center-block file-upload" name="imageFile"
+							id="progressbarTWInput">
+					</div>
+					<div class="modal-body">
+						<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 150%">上傳頭像：</h5>
+
+						<div id="complaintResult"
+							style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+
+							<img id="preview_progressbarTW_img" width='0' height='0'
+								class="avatar img-circle img-thumbnail" src="" />
+
+						</div>
+						<div>
+							<input type="submit" value="上傳">
+						</div>
+
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- 				上傳頭像結尾                                                         -->
 	<form class="form" action="/admin/memberBeans/update" method="post"
 		id="updateForm">
 		<article class="content moe">
@@ -16,14 +68,11 @@
 			<div class="container bootstrap snippet">
 				<div class="row">
 					<div class="col-sm-10">
-						<h1>User name</h1>
-					</div>
-					<div class="col-sm-2">
-						<a href="/users" class="pull-right"> <img
-							title="profile image" class="img-circle img-responsive"
-							src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a>
+						<h1 id="userNickName">User name</h1>
 					</div>
 				</div>
+
+
 				<div class="row">
 					<div class="col-sm-3">
 						<!--left col-->
@@ -32,17 +81,14 @@
 
 						<div class="text-center"></div>
 						<!--/col-3-->
-						<div  >
+						<div>
 							<div class="col-sm-9" id="result1"></div>
 
-							<!-- 								<img class="avatar img-circle img-thumbnail" -->
-							<%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
-							<input type="file" id="progressbarTWInput"
-								accept="image/gif, image/jpeg, image/png"
-								class="text-center center-block file-upload">
-							<hr>
-							<h3>預覽圖</h3>
-							<img id="preview_progressbarTW_img" width='0' height='0' src="" />
+							<button type="button" data-toggle='modal'
+								data-target='#showComplaintPic'>
+								<h3>更新頭像</h3>
+							</button>
+
 
 							<hr>
 
@@ -50,7 +96,6 @@
 						</div>
 						</hr>
 						<br>
-
 
 
 
@@ -169,6 +214,25 @@
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 	<script>
+		function showImg(complaintNum1) {
+			$
+					.ajax({
+						url : "/main/complain/findBycomplaintNum",
+						data : {
+							complaintNum : complaintNum1,
+						},
+						type : "POST",
+						success : function(data) {
+							if (data["complaintPicURL"] == null) {
+								text = "<img width='350' height='350' src="+ "/resources/img/file-notApply.png" + ">";
+							} else {
+								text = "<img width='350' height='350' src="+ data["complaintPicURL"] + ">";
+							}
+
+							// 							$("#complaintResult").html(text);
+						}
+					});
+		}
 		$(document).ready(function() {
 			findBymemberId();
 
@@ -198,6 +262,7 @@
 								text = "<img  class=\"avatar img-circle img-thumbnail\" src="+ data["memberPhotoURL"] + ">";
 							}
 							$("#result1").html(text);
+							$("#result2").html(text);
 						}
 					});
 		}
@@ -261,8 +326,8 @@
 
 					$("#preview_progressbarTW_img")
 							.attr('src', e.target.result);
-					$("#preview_progressbarTW_img").attr('width', '150');
-					$("#preview_progressbarTW_img").attr('height', '80');
+					$("#preview_progressbarTW_img").attr('width', '350');
+					$("#preview_progressbarTW_img").attr('height', '350');
 					// 				       $("#preview_progressbarTW_img").attr('class', 'avatar img-circle img-thumbnail');
 				}
 

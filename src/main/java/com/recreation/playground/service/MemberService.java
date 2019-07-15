@@ -26,8 +26,14 @@ public class MemberService {
 //		System.out.println("dao");
 		return dao.save(member);
 	}
+	
+	public Member findByMemberNum(int memberNum) {
+		return dao.findByMemberNum(memberNum);
+	}
 
+	
 	public Member finById(String memberId) {
+		System.out.println("service result="+dao.findByMemberId(memberId));
 		return dao.findByMemberId(memberId);
 	}
 

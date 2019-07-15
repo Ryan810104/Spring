@@ -14,10 +14,10 @@ public interface MoneyRecordDao extends JpaRepository<MoneyRecord, Integer> {
 //	"SELECT ,SUM(money_record_point) AS total_point FROM moneyrecord m GROUP BY money_record_memberid ORDER "
 //	+ "BY total_cash DESC"
 ////	
-    @Query(value="select money_record_member_num,total_point from summary order by total_point desc", nativeQuery = true)   
+    @Query(value="select money_record_member_num,total_cash from summary order by total_cash desc", nativeQuery = true)   
 	List<Object> findBestMoneyRecordid();
     
-    @Query(value="select money_record_member_num,total_point from summary order by total_point desc", nativeQuery = true)   
+    @Query(value="select money_record_member_num,total_cash from summary order by total_cash desc", nativeQuery = true)   
 	List<Object[]> findBestMoneyRecordid1();
 	
 	

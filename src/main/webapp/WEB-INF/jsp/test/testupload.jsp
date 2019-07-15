@@ -12,6 +12,7 @@
 	<article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
+		<a href="/main/setting/2">測試個人頁面(進入帳號"user"的個人頁面)</a>
 		<h1>測試上傳圖片(圖檔存資料庫)</h1>
 		<form
 			action="/admin/memberBeans/gogo/${sessionScope.member.memberNum}"
@@ -39,6 +40,9 @@
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
 	</article>
+	
+	
+	
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 	<script>

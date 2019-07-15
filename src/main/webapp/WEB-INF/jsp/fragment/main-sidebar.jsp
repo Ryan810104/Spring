@@ -6,7 +6,7 @@
 	<header class="sidebar-header moe">
 		<figure class="sidebar-avatar moe">
 
-			<a href="/main/setting" id="result" > 
+			<a href="/main/setting/${sessionScope.member.memberNum}" id="result" > 
 			<input type="text" value="${sessionScope.member.memberId}"
 				id="memberId" style="display: none">
 <!-- 			<img class="sidebar-avatar-in" -->
@@ -43,7 +43,7 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-cart-arrow-down"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/shop">購物商城</a></li>
+				href="/admin/memberBeans/index2">購物商城</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-user-friends"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
@@ -51,7 +51,7 @@
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fa fa-area-chart"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/gamesrank">遊戲排行</a></li>
+				href="/admin/memberBeans/list">遊戲排行</a></li>
 			<li class="sidebar-nav-item moe"><i
 				class="sidebar-nav-item-icon fas fa-vial"></i> <a
 				class="sidebar-nav-item-zelda moe text-line-height"
@@ -909,10 +909,22 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
-$("#membersearch01").mousedown(function(){
+// $(".search_input").click(function(){
+// 	$("#membersearch01").show();
+// 	event.stopPropagation();
+// });
+
+// $(".searchbar").blur(function(){
+// 	$("#membersearch01").slideUp();
+// });
+$(".search_input").blur(function(){
+	$(".searchbar").click(function(){
+		$("#membersearch01").show();
+	});
+})
+$(".search_icon").click(function(){
 	$("#membersearch01").slideUp();
 });
-
 function addfunction(num){
 	$("#friendlistfriendid").val(num);
 	console.log($("#friendaddform").serialize());

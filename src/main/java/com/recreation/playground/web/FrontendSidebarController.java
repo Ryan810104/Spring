@@ -50,10 +50,18 @@ public class FrontendSidebarController {
 	public String toGameRank(Model model) {
 		return "/main/gamesrank/GamesRankIndex";
 		}	
-// Sidebar 排行榜系統
+	
+	
 	@RequestMapping("/setting")
-	public String toSetting(Model model) {
+	public String toMemberSetting(Model model) {
 		return "/main/setting/SettingIndex";
+	}
+	//查看特定個人頁面
+	@RequestMapping("/setting/{memberNum}")
+	public String toSetting(@PathVariable("memberNum") Integer membernum,Model model) {
+//		System.out.println("membernum="+membernum);
+		model.addAttribute("memberNum", membernum);
+		return "/main/setting/UserIndex";
 	}
 // Game 踩地雷
 	@RequestMapping("/minesweeper")

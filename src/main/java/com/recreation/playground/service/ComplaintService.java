@@ -45,6 +45,12 @@ public class ComplaintService {
 	public List<Complaint> chooseDealEventPay() {
 		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(3, 1);
 	}
+	public List<Complaint> chooseUndealEventInteract() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(4, 0);
+	}
+	public List<Complaint> chooseDealEventInteract() {
+		return dao.findTop10ByComplaintTypeAndComplaintStatusOrderByComplaintNumDesc(4, 1);
+	}
 
 	public void fileComplaints(Complaint cp) {
 		dao.save(cp);

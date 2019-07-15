@@ -292,12 +292,12 @@ public class AioCheckOutController {
 		aio.setMerchantTradeDate(sdf.format(date));
 		
 		aio.setItemName(session.getAttribute("moneyRecordFirstName").toString());
-		aio.setTotalAmount(session.getAttribute("moneyRecordPoint").toString());
+		aio.setTotalAmount(session.getAttribute("moneyRecordCash").toString());
 		aio.setTradeDesc("item desc");
 	
 //		aio.setHoldTradeAMT("0");
-
-		aio.setReturnURL("http://211.23.128.214:5000");
+		aio.setReturnURL("http://www.yahoo.com.tw");
+//		aio.setReturnURL("http://211.23.128.214:5000");
 		try{
 			String html = all.aioCheckOut(aio, invoice);
 			System.out.println(html);

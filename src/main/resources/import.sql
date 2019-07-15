@@ -21,23 +21,23 @@ INSERT INTO Chip(chip_member_num,chip_balanced,chip_type,win,play_round,chip_fir
 (1,200,'b',1,1.0,'Jack','kk');
 
 
-INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_point,money_record_chip,money_record_chiptype,money_record_first_name,money_record_nick_name)values
-(1,getdate(),10000,10000,'a','Jack','kk'),
-(3,getdate(),1000,1000,'b','Judy','JJ'),
-(2,getdate(),20000,20000,'c','Thomas','TT'),
-(2,getdate(),70000,70000,'a','Thomas','TT'),
-(2,getdate(),14500,14500,'b','Thomas','TT'),
-(1,getdate(),12220,12220,'a','Jack','kk'),
-(3,getdate(),2500,2500,'c','Judy','JJ');
+INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_cash,money_record_chip,money_record_type,money_record_first_name,money_record_nick_name)values
+(1,getdate(),10000,10000,'topup','Jack','kk'),
+(3,getdate(),1000,1000,'topup','Judy','JJ'),
+(2,getdate(),20000,20000,'topup','Thomas','TT'),
+(2,getdate(),70000,70000,'topup','Thomas','TT'),
+(2,getdate(),14500,14500,'topup','Thomas','TT'),
+(1,getdate(),12220,12220,'topup','Jack','kk'),
+(3,getdate(),2500,2500,'topup','Judy','JJ');
 
 INSERT INTO Chiprecord(chip_record_member_num,chip_record_chip,chip_record_time,chip_record_chiptype,play_round,win,chip_record_first_name,chip_record_nick_name) values
-(2,10000,getdate(),'a',1,1,'Thomas','TT'),
-(3,-1000,getdate(),'b',1,0,'Judy','JJ'),
-(1,20000,getdate(),'c',1,1,'Jack','JJ'),
-(2,70000,getdate(),'a',1,1,'Thomas','TT'),
-(1,-14500,getdate(),'c',1,0,'Jack','kk'),
-(3,12220,getdate(),'b',1,1,'Judy','JJ'),
-(2,2500,getdate(),'a',1,1,'Thomas','TT');
+(2,10000,'2017-07-12','a',1,1,'Thomas','TT'),
+(3,-1000,'2017-08-12','b',1,0,'Judy','JJ'),
+(1,20000,'2017-09-12','c',1,1,'Jack','JJ'),
+(2,70000,'2017-10-12','a',1,1,'Thomas','TT'),
+(1,-14500,'2018-11-10','c',1,0,'Jack','kk'),
+(3,12220,'2019-01-13','b',1,1,'Judy','JJ'),
+(2,2500,'2019-07-12','a',1,1,'Thomas','TT');
 
 IF Object_ID('dbo.summary') IS NOT NULL
     DROP VIEW dbo.summary;
@@ -46,7 +46,7 @@ IF Object_ID('dbo.summary') IS NOT NULL
 create view summary
   as
   select money_record_member_num,
-         sum(money_record_point) as total_point
+         sum(money_record_cash) as total_cash
   from moneyrecord
   group by money_record_member_num;
   
@@ -102,9 +102,18 @@ create view summary
     
     create view wincalculate 
   as
-  select chip_type,sum(win) as totalwin,sum(play_round) as totalround,convert(numeric(3,2),sum(win)/sum(play_round)) as rate from chip group by chip_type;
+   select chip_type,sum(win) as totalwin,sum(play_round) as totalround,convert(numeric(3,2),sum(win)/sum(play_round)) as rate from chip where chip_type='a'or chip_type='b'or chip_type='c' group by chip_type ;
   
 
+  
+   IF Object_ID('dbo.gameatrend') IS NOT NULL
+    DROP VIEW dbo.gameatrend;
+   create view gameatrend
+  as
+  select row_number() OVER(ORDER BY chip_record_time)AS num,chip_record_chiptype,chip_record_chip
+  from chiprecord
+  where chip_record_chiptype='a';
+   
  INSERT INTO vip_level values
 (1.0,1,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
 (0.89,2,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','普通會員'),
