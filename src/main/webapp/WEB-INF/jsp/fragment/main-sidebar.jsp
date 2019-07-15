@@ -868,7 +868,7 @@ $("#findmemberlist").on("input",function(){
 				for (var k  = 0 ; k < friend2member.length ; k++){
 					if (Jdata[i]["memberNum"] == friend2member[k]){
 						console.log ("myfriend");
-						var ismyfriendornot = "<a onclick=\"talktofromclickbutton("+Jdata[i]["memberNum"]+")\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
+						var ismyfriendornot = "<a onclick=\"talkfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
 						break;
 			//jdata <> ismyfriend <> ornot <> defination
 					} else {
@@ -936,6 +936,9 @@ function addfunction(num){
 	location.reload();
 	
 };
+function talkfunction(id){
+	$("#search_friend_icon").click();
+}
 </script>
 <!-- 顯示玩家餘額 -->
 <script type="text/javascript">
