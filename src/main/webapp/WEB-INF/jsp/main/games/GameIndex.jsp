@@ -11,7 +11,8 @@ canvas {
 	position:absolute;
 	top:100;
 	left:100;
-	bottom:100;
+	
+	height:1417.26px;
 }
 
 </style>

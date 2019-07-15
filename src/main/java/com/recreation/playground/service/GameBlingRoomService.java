@@ -1,29 +1,28 @@
 package com.recreation.playground.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.recreation.playground.dao.SaveGameDataDao;
+import com.recreation.playground.dao.GameBlingRoomDao;
 import com.recreation.playground.entity.GameBlingRoom;
-import com.recreation.playground.entity.Member;
-import com.recreation.playground.entity.SaveGameData;
 
 @Service
 @Transactional
-public class SaveGameDataService {
+public class GameBlingRoomService {
 	@Autowired
-	private SaveGameDataDao dao;
+	private GameBlingRoomDao dao;
 	
-	public void SaveGameData(SaveGameData SGD) {		
-		dao.save(SGD);	
+	
+	public void SaveGameData(GameBlingRoom GBR) {		
+		dao.save(GBR);		
+	}
+	
+	public GameBlingRoom showRoom(int stage){
+		
+		return dao.findByGameRoomStage(stage);
+				
 		
 	}
-
-	
-	
-	
 	
 }

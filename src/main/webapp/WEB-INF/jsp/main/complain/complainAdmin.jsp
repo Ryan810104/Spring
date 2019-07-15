@@ -390,7 +390,7 @@ td {
 							} else {
 								text = "<img width='350' height='350' src="+ data["complaintPicURL"] + ">";
 							}
-
+							
 							$("#complaintResult").html(text);
 						}
 					});

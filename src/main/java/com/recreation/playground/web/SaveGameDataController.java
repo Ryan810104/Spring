@@ -1,12 +1,21 @@
 package com.recreation.playground.web;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.recreation.playground.entity.GameBlingRoom;
 import com.recreation.playground.entity.SaveGameData;
+import com.recreation.playground.service.GameBlingRoomService;
 import com.recreation.playground.service.SaveGameDataService;
 
 
@@ -19,6 +28,8 @@ public class SaveGameDataController {
 	@Autowired
 	SaveGameDataService service;
 	
+	@Autowired
+	GameBlingRoomService service1;
 	
 @RequestMapping("/SaveGameData")
 @ResponseBody
@@ -41,6 +52,24 @@ public String saveData(
     return "/main/games/circlegame";
 		
 }
+
+
+@RequestMapping("/GameBling")
+public String saveGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, BindingResult result, Model model) {
+	
+	service1.SaveGameData(member);
+	
+	return"/main/games/Gambling";
+}
+
+
+@ResponseBody
+@RequestMapping("/GameBling1")
+public GameBlingRoom findGameRoom(int stage) {
+	return service1.showRoom(stage);
+}
+
+
 
 
 }
