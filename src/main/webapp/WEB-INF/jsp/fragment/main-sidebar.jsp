@@ -45,10 +45,6 @@
 				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/admin/memberBeans/index2">購物商城</a></li>
 			<li class="sidebar-nav-item ex"><i
-				class="sidebar-nav-item-icon fas fa-user-friends"></i> <a
-				class="sidebar-nav-item-zelda ex text-line-height"
-				href="/main/friend">好友系統</a></li>
-			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-area-chart"></i> <a
 				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/admin/memberBeans/list">遊戲排行</a></li>
@@ -364,7 +360,7 @@ img {
 	color: #2196F3;
 }
 
-.active .fa-user-friends, .active>.fa-user-friends+a {
+.active .fa-envelope-open-text, .active>.fa-envelope-open-text+a {
 	color: #f44336;
 }
 
