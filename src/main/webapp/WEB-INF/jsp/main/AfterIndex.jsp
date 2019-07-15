@@ -611,7 +611,6 @@
 			}
 			
 var a = 0;
-	
 if (!sessionStorage.getItem("count")){
 	a = 15000;
 	$(".odometer").html(a);

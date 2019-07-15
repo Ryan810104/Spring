@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<aside class="sidebar moe">
-	<header class="sidebar-header moe">
-		<figure class="sidebar-avatar moe">
+<aside class="sidebar ex">
+	<header class="sidebar-header ex">
+		<figure class="sidebar-avatar ex">
 
 			<a href="/main/setting/${sessionScope.member.memberNum}" id="result" > 
 			<input type="text" value="${sessionScope.member.memberId}"
@@ -12,71 +12,71 @@
 <!-- 			<img class="sidebar-avatar-in" -->
 <%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
 			</a>
-			<img class="sidebar-avatar-logo moe"
+			<img class="sidebar-avatar-logo ex"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
 
-		<div class="sidebar-title moe username-line-height">
+		<div class="sidebar-title ex username-line-height">
 			<a href="/main/setting">${sessionScope.member.memberLastName}</a>
 		</div>
-		<div class="sidebar-title moe" id="QQ"></div>
+		<div class="sidebar-title ex" id="QQ"></div>
 
 	</header>
 
 	<nav class="sidebar-nav" role="navigation">
 		<ul>
-			<li class="sidebar-nav-item moe  active"><i
+			<li class="sidebar-nav-item ex  active"><i
 				class="sidebar-nav-item-icon fa fa-th-large"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/index">回到首頁</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-newspaper"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/news">活動訊息</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-gamepad"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/games">遊戲列表</a></li>
 			<!-- 			<li class="sidebar-nav-item moe"><i -->
 			<!-- 				class="sidebar-nav-item-icon fa fa-envira"></i> <a -->
 			<!-- 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/deposit">儲值金幣</a></li> -->
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-cart-arrow-down"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/admin/memberBeans/index2">購物商城</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fas fa-user-friends"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/friend">好友系統</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-area-chart"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/admin/memberBeans/list">遊戲排行</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fas fa-vial"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/testing">測試</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/complain">投訴箱</a></li>				
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/logout">登出</a></li>
 		</ul>
 
 
 		<footer class="sidebar-footer">
-			<span class="sidebar-footer-icon moe">···</span> <span
-				class="sidebar-footer-label moe">· · ·</span>
+			<span class="sidebar-footer-icon ex">···</span> <span
+				class="sidebar-footer-label ex">· · ·</span>
 		</footer>
 </aside>
-<main class="main moe"> <header
+<main class="main ex"> <header
 	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
 	style="padding: 0px">
 	<span class="toggle"> <!-- fa-angle-double-left fa-bars fa-th-list -->
-		<i class="fa fa-bars"></i>
+		<i class="fa fa-angle-double-left"></i>
 	</span>
 	<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"></ul>
 
@@ -602,120 +602,82 @@ Inicio Tercer Estado: Oculto (OK)
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
 <script>
 	var hamburguesa = document.querySelector('.toggle');
-	hamburguesa
-			.addEventListener(
-					'click',
-					function() {
+	hamburguesa.addEventListener('click',function() {
+		if (document.querySelector('.ex')) {
 
-						if (document.querySelector('.ex')) {
-							var expandida = document.querySelector('.ex');
-							var pivote = expandida.classList.contains('ex');
-							console.log('Existe un elemento ocultable: '
-									+ pivote);
-
-							while (pivote == true) {
-
-								if (window.CP.shouldStopExecution(1)) {
-									break;
-								}
-								expandida.classList.remove('ex');
-								expandida.classList.add('ok');
-
-								if (document.querySelector('.ex')) {
-									var expandida = document
-											.querySelector('.ex');
-									console
-											.log('Aun existe un elemento ocutable.');
-								} else {
-									var pivote = false;
-									var expandida = false;
-									console
-											.log('Ya no existe ningun elemento ocutable.');
-									if (document
-											.querySelector('.fa-angle-double-left')) {
-										var fonta = document
-												.querySelector('.fa-angle-double-left');
-										fonta.classList
-												.remove('fa-angle-double-left');
-										fonta.classList.add('fa-list-ul');
-										console.log('Cambiado Icono Toggle');
+			var expandida = document.querySelector('.ex');
+			var pivote = expandida.classList.contains('ex');
+				while (pivote == true) {
+					if (window.CP.shouldStopExecution(1)) {
+						break;
+					}
+					expandida.classList.remove('ex');
+					expandida.classList.add('ok');
+					if (document.querySelector('.ex')) {
+						var expandida = document.querySelector('.ex');
+					} else {
+						var pivote = false;
+						var expandida = false;
+					if (document.querySelector('.fa-angle-double-left')) {
+						var fonta = document.querySelector('.fa-angle-double-left');
+							fonta.classList.remove('fa-angle-double-left');
+							fonta.classList.add('fa-list-ul');
+					}
+							} // else
 									}
-								} // else
-							}
-							window.CP.exitedLoop(1);
+					window.CP.exitedLoop(1);
 							// end while 1
-						} else if (document.querySelector('.moe')) {
-							var colapsada = document.querySelector('.moe');
-							var pivote = colapsada.classList.contains('moe');
-							console
-									.log('No existe un elemento ocultable, encontrado uno expandible: '
-											+ pivote);
+		} else if (document.querySelector('.moe')) {
 
-							while (pivote == true) {
-								if (window.CP.shouldStopExecution(2)) {
-									break;
-								}
-								colapsada.classList.remove('moe');
-								colapsada.classList.add('ex');
+			var colapsada = document.querySelector('.moe');
+			var pivote = colapsada.classList.contains('moe');
+				while (pivote == true) {
+					if (window.CP.shouldStopExecution(2)) {
+						break;
+					}
+				colapsada.classList.remove('moe');
+				colapsada.classList.add('ex');
+					if (document.querySelector('.moe')) {
+						var colapsada = document.querySelector('.moe');
 
-								if (document.querySelector('.moe')) {
-									var colapsada = document
-											.querySelector('.moe');
-									console
-											.log('Aun existe un elemento expandible.');
-								} else {
-									var pivote = false;
-									var colapsada = false;
-									console
-											.log('Ya no existe ningun elemento expandible.');
-									if (document.querySelector('.fa-bars')) {
-										var fonta = document
-												.querySelector('.fa-bars');
-										fonta.classList.remove('fa-bars');
-										fonta.classList
-												.add('fa-angle-double-left');
-										console.log('Cambiado Icono Toggle');
-									}
-								} // end else
-							}
-							window.CP.exitedLoop(2);
+					} else {
+						var pivote = false;
+						var colapsada = false;
+					if (document.querySelector('.fa-bars')) {
+						var fonta = document.querySelector('.fa-bars');
+							fonta.classList.remove('fa-bars');
+							fonta.classList.add('fa-angle-double-left');
+						
+					}
+							} // end else
+										}
+						window.CP.exitedLoop(2);
 							// end while 2
-						} else if (document.querySelector('.ok')) {
-							var oculta = document.querySelector('.ok');
-							var pivote = oculta.classList.contains('ok');
-							console
-									.log('No existe un elemento expandible, encontrado uno mostrable: '
-											+ pivote);
-
-							while (pivote == true) {
+					} else if (document.querySelector('.ok')) {
+						var oculta = document.querySelector('.ok');
+						var pivote = oculta.classList.contains('ok');
+						while (pivote == true) {
 								if (window.CP.shouldStopExecution(3)) {
 									break;
 								}
-								oculta.classList.remove('ok');
-								oculta.classList.add('moe');
-
+							oculta.classList.remove('ok');
+							oculta.classList.add('moe');
 								if (document.querySelector('.ok')) {
 									var oculta = document.querySelector('.ok');
-									console
-											.log('Aun existe un elemento mostrable.');
 								} else {
 									var pivote = false;
 									var oculta = false;
-									console
-											.log('Ya no existe ningun elemento mostrable.');
-									if (document.querySelector('.fa-list-ul')) {
-										var fonta = document
-												.querySelector('.fa-list-ul');
+
+								if (document.querySelector('.fa-list-ul')) {
+									var fonta = document.querySelector('.fa-list-ul');
 										fonta.classList.remove('fa-list-ul');
 										fonta.classList.add('fa-bars');
-										console.log('Cambiado Icono Toggle');
 									}
-								} // end else
-							}
+										} // end else
+												}
 							window.CP.exitedLoop(3);
 							// end while 3
 						} else {
-							console.log('NO debes ver esto');
 						}
 					})
 
