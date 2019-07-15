@@ -113,6 +113,25 @@ create view summary
   select row_number() OVER(ORDER BY chip_record_time)AS num,chip_record_chiptype,chip_record_chip
   from chiprecord
   where chip_record_chiptype='a';
+  
+  
+  IF Object_ID('dbo.gamebtrend') IS NOT NULL
+    DROP VIEW dbo.gamebtrend;
+   create view gamebtrend
+  as
+  select row_number() OVER(ORDER BY chip_record_time)AS num,chip_record_chiptype,chip_record_chip
+  from chiprecord
+  where chip_record_chiptype='b';
+  
+  
+  IF Object_ID('dbo.gamectrend') IS NOT NULL
+    DROP VIEW dbo.gamectrend;
+   create view gamectrend
+  as
+  select row_number() OVER(ORDER BY chip_record_time)AS num,chip_record_chiptype,chip_record_chip
+  from chiprecord
+  where chip_record_chiptype='c';
+   
    
  INSERT INTO vip_level values
 (1.0,1,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),

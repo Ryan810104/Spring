@@ -291,7 +291,7 @@ public class AioCheckOutController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 		aio.setMerchantTradeDate(sdf.format(date));
 		
-		aio.setItemName(session.getAttribute("moneyRecordFirstName").toString());
+		aio.setItemName(session.getAttribute("moneyRecordType").toString());
 		aio.setTotalAmount(session.getAttribute("moneyRecordCash").toString());
 		aio.setTradeDesc("item desc");
 	
