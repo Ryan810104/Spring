@@ -212,9 +212,9 @@
 			crossorigin="anonymous"></script>
 
 
-		<button data-toggle='modal' data-target='#showtopup'
+		<button data-toggle='modal' data-target='#showtopup' class="btn btn-primary btn-lg active"
 			onclick="topup();">
-			<i class="fas fa-dollar-sign" style="font-size: 20px"> <span
+			<i class="fab fa-cc-visa" style="font-size: 20px"> <span
 				style="font-size: 20px">儲值</span>
 			</i>
 		</button>
@@ -232,8 +232,8 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<h5 class="modal-title" id="complaintPicTitle"
-							style="font-size: 100%">請輸入儲值金額</h5>
+<!-- 						<h5 class="modal-title" id="complaintPicTitle" -->
+<!-- 							style="font-size: 120%">請輸入儲值金額</h5> -->
 						<form class="form-signin" name="form2" id="form2" action=""
 			method="POST">	
 						<input id='moneyRecordMemberNum' name="moneyRecordMemberNum"
@@ -246,11 +246,16 @@
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control"
 							onclick="this.value=''"> 
+							
 						<input id='moneyRecordNickName'
 							name="moneyRecordNickName" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control"
 							onclick="this.value=''"> 
+							
+							<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 120%">儲值現金</h5>
+							
 						<input id='moneyRecordCash'
 							name="moneyRecordCash" type="text" value=""
 							placeholder="儲值金額:" class="form-control">
@@ -260,6 +265,9 @@
 							 placeholder="cal:"
 							class="form-control" value="10" style="display:none"> 
 							
+							<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 120%">兌換點數</h5>
+							
 						<input
 							id='moneyRecordChip' name="moneyRecordChip" type="text"
 							value="${memberP.moneyRecordChip}" placeholder="兌換點數:"
@@ -267,12 +275,11 @@
 							
 						<input id='moneyRecordType'
 							name="moneyRecordType" type="text"
-							
 							placeholder="moneyRecordType:" class="form-control" value="topup" style="display:none">
 
 						<input id='chipMemberNum' name="chipMemberNum" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
-							placeholder="chipMemberNum:" class="form-control"> 
+							placeholder="chipMemberNum:" class="form-control" style="display:none"> 
 							
 							<input
 							id='chipFirstName' name="chipFirstName" type="text"
@@ -304,11 +311,11 @@
 							 placeholder="round:" class="form-control"  style="display:none">
 							 
 							 	<!-- 兌換按鈕 -->
-						<button class="btn btn-lg btn-primary" type="button"
-							onclick="exchangepoint();" style="font-size: 20px">Exchange</button>
+<!-- 						<button class="btn btn-lg btn-primary" type="button" -->
+<!-- 							onclick="" style="font-size: 20px">Exchange</button> -->
 							 
 							
-							<button class="btn btn-lg btn-primary" type="button" id="sendout"
+							<button class="btn btn-warning" type="button" id="sendout"
 							 style="font-size: 20px">Confirm</button>
 						</form>	
 					</div>
@@ -325,28 +332,74 @@
 				document.getElementById("showtopup");
 			}
 		</script>
+		<script>
+// 		$(document).ready(function(){
+// 			var n1 = document.getElementById("moneyRecordCash").value;
+// 			var n2 = document.getElementById("cal").value;
+// 			document.getElementById("moneyRecordChip").value = n1 * n2;
+				
+// 			var tt1 = document.getElementById('moneyRecordMemberNum').value;
+// 			document.getElementById('chipMemberNum').value = tt1;
+
+// 			var oo1 = document.getElementById('moneyRecordFirstName').value;
+// 			document.getElementById('chipFirstName').value = oo1;
+
+// 			var kk1 = document.getElementById('moneyRecordNickName').value;
+// 			document.getElementById('chipNickName').value = kk1;
+
+// 			var dd1 = document.getElementById('moneyRecordChip').value;
+// 			document.getElementById('chipBalanced').value = dd1;
+			
+// 		})
+
+		</script>
 
 		<script>
-			function exchangepoint() {
-				var n1 = document.getElementById("moneyRecordCash").value;
-				var n2 = document.getElementById("cal").value;
-				document.getElementById("moneyRecordChip").value = n1 * n2;
+// 			function exchangepoint() {
+// 				var n1 = document.getElementById("moneyRecordCash").value;
+// 				var n2 = document.getElementById("cal").value;
+// 				document.getElementById("moneyRecordChip").value = n1 * n2;
 					
-				var tt1 = document.getElementById('moneyRecordMemberNum').value;
-				document.getElementById('chipMemberNum').value = tt1;
+// 				var tt1 = document.getElementById('moneyRecordMemberNum').value;
+// 				document.getElementById('chipMemberNum').value = tt1;
 
-				var oo1 = document.getElementById('moneyRecordFirstName').value;
-				document.getElementById('chipFirstName').value = oo1;
+// 				var oo1 = document.getElementById('moneyRecordFirstName').value;
+// 				document.getElementById('chipFirstName').value = oo1;
 
-				var kk1 = document.getElementById('moneyRecordNickName').value;
-				document.getElementById('chipNickName').value = kk1;
+// 				var kk1 = document.getElementById('moneyRecordNickName').value;
+// 				document.getElementById('chipNickName').value = kk1;
 
-				var dd1 = document.getElementById('moneyRecordChip').value;
-				document.getElementById('chipBalanced').value = dd1;
-
-// 				var cc1 = document.getElementById('moneyRecordType').value;
-// 				document.getElementById('chipType').value = cc1;
-			}
+// 				var dd1 = document.getElementById('moneyRecordChip').value;
+// 				document.getElementById('chipBalanced').value = dd1;
+// 			}
+			$(document).ready(function(){
+			$("#moneyRecordFirstName").change(function(){
+				var aa=$("#chipFirstName").val();
+				aa += $(this).val();
+				$("#chipFirstName").val(aa);
+			});
+			
+			$("#moneyRecordNickName").change(function(){
+				var cc = $("#moneyRecordNickName").val();
+				$("#chipNickName").val(cc);
+			});
+			
+			$("#moneyRecordCash").change(function(){
+				var bb=$("#moneyRecordCash").val();
+// 				bb +=$(this).val();
+				$("#moneyRecordChip").val(bb*10);
+				$("#chipBalanced").val(bb*10);
+			});
+			
+			
+// 			$("#moneyRecordChip").change(function(){
+// 				var dd= $("#moneyRecordChip").val();
+// 				dd +=$(this).val();
+// 				$("#chipBalanced").val(dd);
+// 			});
+			
+			
+			});
 		</script>
 		<script>
 // 		function synchorize(){

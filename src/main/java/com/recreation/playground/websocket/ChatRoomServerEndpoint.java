@@ -113,12 +113,12 @@ public class ChatRoomServerEndpoint {
 						String sql2 = "SELECT DISTINCT m1.member_num , c1.complaint_message , c1.complaint_response , c1.complaint_num FROM complaint c1 JOIN member m1 on m1.member_id = c1.member_id  WHERE m1.member_num = "+usernumber+" and c1.response_anno = 0 ";
 						List<Object[]> list2 = em.createNativeQuery(sql2).getResultList();
 						
-						String sql3 = "SELECT DISTINCT m1.member_num , c1.complaint_message , c1.complaint_response FROM complaint c1 JOIN member m1 on m1.member_id = c1.member_id  WHERE m1.member_num = "+usernumber+" and c1.response_anno = 0 ";
+						String sql3 = "SELECT  m1.member_illegal_times , m1.member_id , m1.member_num FROM MEMBER m1 WHERE m1.member_num = "+usernumber+" and m1.ban_annot = 0";
 						List<Object[]> list3 = em.createNativeQuery(sql3).getResultList();
 					
 						if (list1.size() != 0 || list2.size() !=0 || list3.size() !=0) {
 							try {
-								mysession.getBasicRemote().sendText("test" + "/" + Arrays.deepToString(list1.toArray()) +"response" + Arrays.deepToString(list2.toArray()) + "discuss" + Arrays.deepToString(list3.toArray()));
+								mysession.getBasicRemote().sendText("test" + "/" + Arrays.deepToString(list1.toArray()) +"response" + Arrays.deepToString(list2.toArray()) + "ban" + Arrays.deepToString(list3.toArray()));
 							} catch (IOException e) {
 								running = false;
 							}

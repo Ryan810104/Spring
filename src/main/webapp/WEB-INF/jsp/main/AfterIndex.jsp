@@ -20,7 +20,9 @@
 	rel='stylesheet' type='text/css'>
 <!-- Custom styles for this template -->
 <link rel="stylesheet" href="/resources/css/CustomAfterIndex.css">
+<link rel="stylesheet" href="/resources/css/odometer.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="/resources/js/odometer.js"></script>
 <style>
 .button {
   display: inline-block;
@@ -172,7 +174,8 @@
 					<h4
 						class="alert-heading font-weight-bolder text-white d-inline mr-5">
 						百 家 樂 超 級 彩 金</h4>
-					<h2 class=" text-warning font-weight-bold d-inline align-center">9,156,552.0</h2>
+					<h2 class="text-warning font-weight-bold d-inline align-center"></h2>
+					<div class="odometer"></div>
 					<button type="button"
 						class="btn btn-outline-success d-inline ml-5 ">中獎名單</button>
 
@@ -606,9 +609,21 @@
 			document.getElementById(this.id+"2").submit();
 		})
 			}
-		
+			
+var a = 0;
+if (!sessionStorage.getItem("count")){
+	a = 15000;
+	$(".odometer").html(a);
+} else if (sessionStorage.getItem("count")){
+	a = parseInt(sessionStorage.getItem("count"));
+	$(".odometer").html(a);
+}
+
+setInterval(function(){
+	a +=  Math.floor(Math.random()*5) +1;
+	sessionStorage.setItem("count",a);
+	$(".odometer").html(a);
+				},3500);
 });
-	
-	
 </script>
 </html>
