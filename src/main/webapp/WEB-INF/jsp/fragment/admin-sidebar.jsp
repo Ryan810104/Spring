@@ -43,7 +43,7 @@
 		</a></li>
 		<li><a href="/admin/toNews"> <i class="fas fa-cart-arrow-down"></i>發布訊息
 		</a></li>
-		<li><a href="/admin/complaint"> <i class="fas fa-hand-holding-usd"></i>儲值
+		<li><a href="/admin/complaint"> <i class="fas fa-envelope-open-text"></i>處理投訴
 		</a></li>
 		<li><a href="#"> <i class="fas fa-question"></i>幫助
 		</a></li>
