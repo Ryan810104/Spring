@@ -35,6 +35,12 @@
 				
 				</div>
 				</div>
+				<hr>
+				<div class="row">
+				<div class="col-sm-12">
+				<div id="newsresult" style="overflow: scroll; border: 1px solid black; height: 20rem; width: 68rem; font-size: 12px; margin-top: 10px;">
+				</div>
+				</div>
 				</div>
 			<!-- Write your data here -->
 			<!-- Write your data here -->
@@ -48,12 +54,54 @@
 	</div>
 </body>
 <script>
+$(document).ready(function(){
+	$.ajax({
+		url : "/main/news/printall",
+		type: "GET",
+		success : function(data){
+			text = "<table id=\"numbercount\" style=\"text-align:center\" class=\" table table-sm table-hover\">";
+			text += "<tr><th>流水號</th><th>種類</th><th>主旨</th><th>內文</th></tr>"
+			for (var i = 0 ; i < data.length ; i++){
+				text += "<tr onclick=\"newsclick("+ data[i]["newsnum"]+ ");\" class=\"col\""+ "id = row"+ data[i]["newsnum"] + ">";
+			text += "<td style=\"width:3.5rem\">"+ data[i]["newsnum"]+ "</td>";
+			text += "<td>"+ data[i]["title"]+ "</td>";
+			text += "<td>"+ data[i]["briefcontent"]+ "</td>";
+			text += "<td>"+ data[i]["content"]+ "</td>";
+			text += "</tr>";
+			}
+			text += "<table>"
+			$("#newsresult").html(text);
+		},
+		error : function(data){
+			alert("aasdasdasd");
+		},
+	})
+});
+
+function newsclick(id){
+	$.ajax({
+		url : "/main/news/findone?id="+ id,
+		type: "GET",
+		success : function(Jdata){
+			console.log(JSON.stringify(Jdata));
+			for (var i = 0 ; i < Jdata.length ; i++){
+				console.log(Jdata[i]["title"]);
+			}
+		},
+		error : function(Jdata){
+			alert("aasdasdasd");
+		},
+	})
+}
+
+
 $("#newsadd").click(function(){
 	$.ajax({
 		url : "/main/news/insert?title="+$("#newstitle").val()+"&briefcontent="+$("#newsbriefcontent").val()+"&content="+$("#newscontent").val(),
 		type: "GET",
 		success : function(data){
-			alert("aa");
+			alert("已新增成功");
+			location.reload();
 		},
 		error : function(data){
 			alert("aasdasdasd");

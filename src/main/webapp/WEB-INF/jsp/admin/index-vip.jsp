@@ -401,8 +401,7 @@ input[type="button"]:disabled {
 					function() {
 						var text = "<table id=\"numbercount\" style=\"text-align:center\" class=\" table table-sm table-hover\">";
 						text += "<tr><th>流水號</th><th>等級</th><th>徽章</th><th>稱號</th><th>折扣</th></tr>"
-						$
-								.ajax({
+						$.ajax({
 									url : "/admin/vip/query",
 									type : "GET",
 									success : function(Jdata) {

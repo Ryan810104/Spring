@@ -34,4 +34,10 @@ public class NewsController {
 		news.setCreatedate(new Date());
 		newsservice.insert(news);
 	}
+	
+	@ResponseBody
+	@RequestMapping("/findone")
+	public News findone(Integer id) {
+		return newsservice.findone(id);
+	}
 }

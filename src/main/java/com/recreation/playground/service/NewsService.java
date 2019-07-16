@@ -28,4 +28,8 @@ public class NewsService {
 	public News insert(News news) {
 		return newsdao.save(news);
 	}
+	
+	public News findone(Integer id) {
+		return em.find(News.class, id);
+	}
 }
