@@ -41,7 +41,7 @@
 		</a></li>
 		<li><a href="http://localhost/admin/vip/index"> <i class="fas fa-sort-numeric-down"></i>Vip
 		</a></li>
-		<li><a href="#"> <i class="fas fa-cart-arrow-down"></i>購物
+		<li><a href="http://localhost/admin/complaint"> <i class="fas fa-cart-arrow-down"></i>客訴
 		</a></li>
 		<li><a href="#"> <i class="fas fa-hand-holding-usd"></i>儲值
 		</a></li>
