@@ -59,7 +59,9 @@ public class ComplaintService {
 		return dao.findByComplaintNum(num);
 	}
 	
-	
+	public List<Object> findSummaryByMemberNum(Integer num) {
+		return dao.findSummaryByMemberNum(num);
+	}
 
 //	public void delete(Complaint cp) {
 //		if (cp.getComplaintNum() != null) {

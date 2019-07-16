@@ -470,7 +470,7 @@ tbody td:hover {
 
 						<div class="col-md-6 mb-5">
 							<button type="button" class="btn btn-outline-info" id="sendout"
-								style="font-size: 150%; margin-left: 405px">送出</button>
+								style="font-size: 150%; margin-left: 390px">送出</button>
 						</div>
 
 					</form>
@@ -678,9 +678,9 @@ function searchViolator(){
 						<div class="container">
 							<div class="row">
 								<div class="col-6">
-									<div class="col-md-13 ">
+									<div class="col-md-13 mb-3">
 										<label style="font-size: 120%; color: #CCEEFF;"
-											for="searchMemberId">玩家ID:</label>
+											for="searchMemberId">請輸入玩家ID:</label>
 										<div class="input-group">
 											<input type="text" class="form-control" id="searchMemberId"
 												name="searchMemberId" style="font-size: 120%;">
@@ -690,6 +690,16 @@ function searchViolator(){
 											</div>
 										</div>
 										<span id="NumByIdSp"></span>
+
+									</div>
+
+									<div class="col-md-13 mb-4"
+										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
+										調整前餘額: <span style="color:	#33FF33" id="summaryBefore"></span>
+									</div>
+									<div class="col-md-13 mb-3"
+										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
+										調整後餘額: <span style="color:	#33FF33" id="summaryAfter"></span>
 									</div>
 
 
@@ -703,8 +713,9 @@ function searchViolator(){
 											<label for="chipMemberNum"
 												style="font-size: 120%; color: #CCEEFF;">玩家ID的流水號:</label> <input
 												id='chipMemberNum' name="chipMemberNum" type="text"
-												 class="form-control-plaintext"
-												style="font-size: 120%;text-align:center;background-color:#666666;color:white" readOnly>
+												class="form-control-plaintext"
+												style="font-size: 120%; text-align: center; background-color: #666666; color: white"
+												readOnly>
 										</div>
 										<div class="col-md-5 mb-3">
 											<input id='chipFirstName' name="chipFirstName" type="text"
@@ -732,9 +743,15 @@ function searchViolator(){
 										</div>
 
 										<div class="col-md-13 mb-3">
+											<button class="btn btn-outline-secondary" type="button"
+												onclick="reset()" id="reset1" style="font-size: 20px;">清空</button>
+
 											<button class="btn btn-outline-warning" type="button"
-												id="sendout1" style="font-size: 20px;">確定調整</button>
+												id="sendout1" style="font-size: 20px; margin-left: 50px">確定調整</button>
+
+
 										</div>
+
 
 									</form>
 								</div>
@@ -750,6 +767,23 @@ function searchViolator(){
 
 		<script>
 		
+		$("#reset1").click(function(){
+			$("#searchMemberId").val("");
+			document.getElementById("NumByIdSp").innerHTML = "";
+			$("#summaryBefore").html("");
+			$("#summaryAfter").html("");
+		});
+		
+		$("#searchMemberId").blur(function(){
+			if($("#searchMemberId").val().trim()==""){
+				$("#chipMemberNum").val("");
+				$("#summaryBefore").html("");
+				$("#summaryAfter").html("");
+			}
+		});
+		
+		
+		
 		$("#searchSerialNum").click(function(){
 			let theSearchNum = document.getElementById("searchMemberId").value.trim();
 			
@@ -758,7 +792,10 @@ function searchViolator(){
 				searchNumByMemberId();
 				
 			}else{
+				$("#chipMemberNum").val("");
 				document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>請輸入玩家ID</n>";
+				$("#summaryBefore").html("");
+				$("#summaryAfter").html("");
 
 			}	
 			
@@ -777,11 +814,23 @@ function searchViolator(){
 							if(data["memberNum"]!=null){
 							document.getElementById("NumByIdSp").innerHTML ="";
 							$("#chipMemberNum").val(data["memberNum"]);
-						
+							
+								$.ajax({
+										url:"/main/complain/findSummary",
+										data:{
+											memberNum : data["memberNum"],
+										},
+										type:"POST",
+										success:function(data){
+											$("#summaryBefore").html("$"+data);
+										},
+								});
 					
 							}else{
 								document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>搜尋失敗,玩家ID不存在</n>";
 								$("#chipMemberNum").val("");
+								$("#summaryBefore").html("");
+								$("#summaryAfter").html("");
 								
 							}
 					},
@@ -834,14 +883,30 @@ function searchViolator(){
 											data : ant1,
 											success : function(data) {
 												alert("餘額更改成功");
+													
+												$.ajax({
+													url:"/main/complain/findSummary",
+													data:{
+														memberNum : $("#chipMemberNum").val(),
+													},
+													type:"POST",
+													success:function(data){
+														$("#summaryAfter").html("$"+data);
+														
+													},
+											});
+												
+												
+												
+												
 											},
 											error : function(ajaxres) {
-												alert("輸入資料有誤");
+												alert("調整額度有誤");
 											}
 										});
 								
 								}else{
-									alert("不存在此會員");
+									alert("玩家流水號不存在");
 								}
 							});
 		</script>
@@ -856,7 +921,7 @@ function searchViolator(){
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:330px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -869,7 +934,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:330px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
 	}else
 		response();
 });
