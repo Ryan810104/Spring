@@ -66,6 +66,7 @@
 		<footer class="sidebar-footer">
 			<span class="sidebar-footer-icon ex">···</span> <span
 				class="sidebar-footer-label ex">· · ·</span>
+				<a href="/admin/index"><input type="button" id="admitbutton" class="btn btn-danger"  value="管理者介面" style="visibility:hidden"/></a>
 		</footer>
 </aside>
 <main class="main ex"> <header
@@ -707,6 +708,9 @@ Inicio Tercer Estado: Oculto (OK)
 				a(i);
 			}
 		};
+		if ('${sessionScope.member.memberId}' == 'admin'){
+			$("#admitbutton").css("visibility","visible");
+		}
 		
 	});
 	function showImageBymemberId() {

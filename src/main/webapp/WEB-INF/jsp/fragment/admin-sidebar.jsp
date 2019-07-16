@@ -53,7 +53,7 @@
 
 
 	<ul class="list-unstyled CTAs">
-		<li><a href="#" class="download" style="text-align: center">登出</a>
+		<li><a href="/admin/memberBeans/index" class="download" style="text-align: center">回到使用者介面</a>
 		</li>
 	</ul>
 
