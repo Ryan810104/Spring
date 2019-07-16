@@ -38,6 +38,7 @@ public class CustomerMessageBoardController {
 	public String topublic(@Valid @ModelAttribute("CMBtextarea") CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
 		System.out.println(bean);
+		bean.setCustomerresponseanno(0);
 		service.insert(bean);
 		return "redirect:/main/CMBIndex";
 	}
