@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.recreation.playground.entity.News;
 
 public interface NewsDao extends JpaRepository<News, Integer> {
-	public List<News> findAllByOrderByCreatedateDesc();
+	public List<News> findAllByOrderByNewsnumDesc();
 }

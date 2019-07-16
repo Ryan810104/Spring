@@ -168,6 +168,13 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('字真d太小',getdate(),null,0,2,'user11');
 
 
-insert into news(briefcontent,content,title,createdate) values ('伺服器維修','伺服器維修中忠','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('伺服器維修','伺服器維修中忠','活動',getdate());
-insert into news(briefcontent,content,title,createdate) values ('伺服器維修','伺服器維修中忠','遊戲',getdate());
+  insert into news(briefcontent,content,title,createdate) values ('2019/07/10例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+  insert into news(briefcontent,content,title,createdate) values ('第101期百家樂中獎名單','恭喜 user 玩家得到金額 15,150元 ! ','活動',getdate());
+  insert into news(briefcontent,content,title,createdate) values ('2019/07/11例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('2019/07/12例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','伺服器維修中忠','遊戲',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('2019/07/14例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('2019/07/15例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('2019/07/16例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('端午活動上線啦！獎品總額高達 1,000,000 元。','端午活動上線啦！獎品總額高達 1,000,000 元。端午活動上線啦！獎品總額高達 1,000,000 元。','活動',getdate());
+insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','伺服器維修中忠','遊戲',getdate());

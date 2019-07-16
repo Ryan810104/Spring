@@ -15,7 +15,12 @@ public class AdminSidebarController {
 		@RequestMapping("/complaint")
 		public String toIndex(Model model) {
 			return "/admin/ComplaintDeal";
-		}	
+		}
+		
+		@RequestMapping("/toNews")
+		public String toNews() {
+			return "/admin/NewsController";
+		}
 	
 	
 	

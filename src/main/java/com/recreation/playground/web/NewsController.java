@@ -1,5 +1,6 @@
 package com.recreation.playground.web;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,16 @@ public class NewsController {
 	@RequestMapping("/printall")
 	public List<News> printnews() {
 		return newsservice.printall();
+	}
+	
+	@ResponseBody
+	@RequestMapping("/insert")
+	public void insert(String title,String briefcontent, String content) {
+		News news = new News();
+		news.setBriefcontent(briefcontent);
+		news.setContent(content);
+		news.setTitle(title);
+		news.setCreatedate(new Date());
+		newsservice.insert(news);
 	}
 }

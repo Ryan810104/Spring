@@ -23,6 +23,9 @@ public class NewsService {
 	EntityManager em;
 	
 	public List<News> printall(){
-		return newsdao.findAllByOrderByCreatedateDesc();
+		return newsdao.findAllByOrderByNewsnumDesc();
+	}
+	public News insert(News news) {
+		return newsdao.save(news);
 	}
 }
