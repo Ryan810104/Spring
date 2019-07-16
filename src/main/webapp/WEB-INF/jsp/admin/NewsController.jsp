@@ -23,6 +23,7 @@
 				<div class="row">
 				<div class="col-sm-6">
 				<form class="form">
+				<input type="text" id="newsnum" name="newsnum" style="display:none"/>
 				<input type="text" id="newstitle" name="title" placeholder="請輸入種類"/><br>
 				<input type="text"  id= "newsbriefcontent" name="briefcontent" placeholder="請輸入主旨"/><br>
 				<textarea cols="50" id= "newscontent" rows="10" placeholder="請輸入內文"></textarea>
@@ -30,8 +31,8 @@
 				</div>
 				<div class="col-sm-6">
 				<input type="button" id="newsadd" class="btn btn-success" value="新增"/>
-				<input type="button" class="btn btn-primary" value="修改"/>
-				<input type="button" class="btn btn-danger" value="刪除"/>
+				<input type="button" id="newsupdate" class="btn btn-primary" value="修改"/>
+				<input type="button" id="newsdelete" class="btn btn-danger" value="刪除"/>
 				
 				</div>
 				</div>
@@ -83,10 +84,10 @@ function newsclick(id){
 		url : "/main/news/findone?id="+ id,
 		type: "GET",
 		success : function(Jdata){
-			console.log(JSON.stringify(Jdata));
-			for (var i = 0 ; i < Jdata.length ; i++){
-				console.log(Jdata[i]["title"]);
-			}
+			$("#newstitle").val(Jdata.title)
+			$("#newsbriefcontent").val(Jdata.briefcontent);
+			$("#newscontent").val(Jdata.content);
+			$("#newsnum").val(Jdata.newsnum);
 		},
 		error : function(Jdata){
 			alert("aasdasdasd");
@@ -108,5 +109,31 @@ $("#newsadd").click(function(){
 		},
 	})
 });
+$("#newsupdate").click(function(){
+	$.ajax({
+		url : "/main/news/update?newsnum="+$("#newsnum").val()+"&title="+$("#newstitle").val()+"&briefcontent="+$("#newsbriefcontent").val()+"&content="+$("#newscontent").val(),
+		type: "GET",
+		success : function(data){
+			alert("已修改成功");
+			location.reload();
+		},
+		error : function(data){
+			alert("aasdasdasd");
+		},
+	})
+});
+$("#newsdelete").click(function(){
+	$.ajax({
+		url : "/main/news/delete?newsnum="+$("#newsnum").val(),
+		type: "GET",
+		success : function(data){
+			alert("已刪除成功");
+			location.reload();
+		},
+		error : function(data){
+			alert("aasdasdasd");
+		},
+	})
+})
 </script>
 </html>

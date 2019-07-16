@@ -40,4 +40,21 @@ public class NewsController {
 	public News findone(Integer id) {
 		return newsservice.findone(id);
 	}
+	@ResponseBody
+	@RequestMapping("/update")
+	public void update(Integer newsnum,String title,String briefcontent, String content) {
+		News news1 = newsservice.findone(newsnum);
+		news1.setBriefcontent(briefcontent);
+		news1.setContent(content);
+		news1.setTitle(title);
+		newsservice.update(news1);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/delete")
+	public void delete(Integer newsnum) {
+		News news1 = newsservice.findone(newsnum);
+		newsservice.delete(news1);
+
+	}
 }

@@ -32,4 +32,10 @@ public class NewsService {
 	public News findone(Integer id) {
 		return em.find(News.class, id);
 	}
+	public void update(News news) {
+		 em.persist(news);
+	}
+	public void delete(News news) {
+		em.remove(news);
+	}
 }
