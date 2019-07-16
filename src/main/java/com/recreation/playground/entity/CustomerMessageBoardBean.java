@@ -42,5 +42,8 @@ public class CustomerMessageBoardBean {
 	private Date customermessageboardMessagetime;
 	@Column
 	private String customermessageboardStatus ;
+	
+	@Column
+	private Integer customerresponseanno;
 
 } 

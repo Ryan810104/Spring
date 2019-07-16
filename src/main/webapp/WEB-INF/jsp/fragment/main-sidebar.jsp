@@ -78,7 +78,7 @@
 
 	<div class="d-flex justify-content-center h-100">
 		<div class="searchbar">
-			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="Search..."> <a class="search_icon">
+			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="搜尋會員..."> <a class="search_icon">
 			<i class="fas fa-search" style="color: white;"></i></a>
 			
 			
@@ -178,10 +178,10 @@
         </button>
       </div>
       <div class="modal-body">
-         已寄送好友邀請給<span id= "friendrequest"></span>
+         已寄送好友邀請給<span id= "friendrequest" style="color:red"></span>，等待對方接受申請。
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
       </div>
     </div>
   </div>
@@ -849,7 +849,7 @@ $("#findmemberlist").on("input",function(){
 						break;
 			//jdata <> ismyfriend <> ornot <> defination
 					} else {
-						var ismyfriendornot = "<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\"  href=\"#\"  style=\"color: cyan;\" onclick=\"addfunction("+Jdata[i]["memberNum"]+") \" class=\"btn  btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
+						var ismyfriendornot = "<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\"  href=\"#\"  style=\"color: cyan;\" onclick=\"addfunction("+Jdata[i]["memberNum"]+",'"+Jdata[i]["memberId"]+"'); \" class=\"btn  btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
 						console.log ("notmyfriend");
 					}
 				}
@@ -904,15 +904,14 @@ $(".search_input").blur(function(){
 $(".search_icon").click(function(){
 	$("#membersearch01").slideUp();
 });
-function addfunction(num){
-	$("#friendlistfriendid").val(num);
-	console.log($("#friendaddform").serialize());
+function addfunction(num,id){
+	$("#friendrequest").html(id);
 	$.ajax({
 		url : "/friend/list/add?yourid="+'${sessionScope.member.memberNum}'+"&friendid="+num,
 		type: "GET"
 	})
 // 	location.reload();
-	
+	$(".search_icon").click();
 };
 
 function talkfunction(id){

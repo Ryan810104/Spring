@@ -13,7 +13,7 @@
 			<path class="s-path" fill="#fff" d="M0,0 50,0 a0,250 0 1,1 0,500 L0,500" />
 		  </svg>
 		  <div class="static">
-			<div class="static__text">Pull white sidebar to the right</div>
+			<div class="static__text"><i class="fas fa-times"></i></div>
 		  </div>
 		  <div class="sidebar-content active" id = "myfriendlist">
 <!-- 			<div class="contact"> -->
@@ -293,12 +293,15 @@ function showinformation(data){
 // 	console.log(data);
 	var dataindex = data.indexOf("response");
 	var dataindex2 = data.indexOf("ban");
+	var dataindex3 = data.indexOf("reply");
 	var datafriend = data.substring(0,dataindex);
 	var dataresponse = data.substring(dataindex,dataindex2);
-	var databan = data.substring(dataindex2,data.length);
+	var databan = data.substring(dataindex2,dataindex3);
+	var datareply = data.substring(dataindex3,data.length);
 // 	console.log(datafriend.replace("test/","").length);
 // 	console.log(dataresponse.replace("response","").length);
 // 	console.log(datadiscuss.replace("discuss","").length);
+
 	var showinfor = "";
 	var inforlength = 0;
 
@@ -385,6 +388,31 @@ if (databan.replace("ban","").length > 2 ){
 	};
 	
 }
+
+if (datareply.replace("reply","").length > 2 ){
+	var tempdata = datareply.replace("[","").replace("[","").replace("reply","")
+	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+	tempdata1[0] = ","+tempdata1[0];
+	console.log(tempdata);
+	for (var i = 0 ; i < tempdata1.length -1 ; i++){
+		var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+		//onerowdata[1] == 對方id
+		//onerowdata[2] == 樓層
+		//onerowdata[3] == 標題
+		//onerowdata[4] == 流水號
+		showinfor += "<li>"
+		showinfor +="<a href=\"#\">"
+		showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+		showinfor += 	"<a  style=\" font-size:14px;\">回覆通知</a><br>"
+		showinfor += "<a  style=\" font-size:14px; color:red  \">"+onerowdata[1]+"</a><br> <a style=\" font-size:14px;\" >已在您的發文</a><a style=\" font-size:14px; color: blue\">"+onerowdata[3]+"</a><a style=\" font-size:14px;\"> 底下留言";
+		showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"reply_notice_check("+onerowdata[4]+")\" style=\"float: right;\">"
+		showinfor +=	"</div>"
+		showinfor +="</a>"
+		showinfor +="</li>"
+		inforlength ++ ;
+	};
+	
+}
 	
 	$("#notifystatus").html(showinfor);
 	if (inforlength != 0){
@@ -393,7 +421,18 @@ if (databan.replace("ban","").length > 2 ){
 	};
 };
 
-
+function reply_notice_check(num){
+	$.ajax({
+		url : "/main/reply_notice_check?num=" + num,
+		type: "GET",
+		success : function(data){
+			
+		},
+		error : function(data){
+			alert("aasdasdasd");
+		},
+	})
+}
 function ban_notice_check(num){
 	$.ajax({
 		url : "/main/complain/ban_notice_check?num="+num,
@@ -487,13 +526,16 @@ ws.onmessage = function(event){
 
 };
 });
-
+$(".static__text").click(function(){
+	$("#search_friend_icon").click();
+});
 $("#search_friend_icon").click(function(){
 	$(".demo").slideToggle();
+	whoismyfriend();
 });
 
 $("#search_friend_icon").click(function() {
-	whoismyfriend();
+	
 });
 </script>
    
