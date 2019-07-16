@@ -222,12 +222,12 @@ tbody td:hover {
 
 <body>
 	<!-- wrapper -->
-	<div class="wrapper">
+	<div class="wrapper" style="background-color:#DDDDDD;">
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
 		<article class="content moe">
-			<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+			<nav class="navbar navbar-light" style="background-color:;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab"
 						data-toggle="tab" href="#nav-home" role="tab"
@@ -251,7 +251,7 @@ tbody td:hover {
 			<!-- Write your data here -->
 			<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-				aria-labelledby="nav-home-tab" style="background-color:">
+				aria-labelledby="nav-home-tab" style="background-color:#DDDDDD">
 
 				<div class="container">
 					<div class="row">
@@ -297,7 +297,7 @@ tbody td:hover {
 
 
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-				aria-labelledby="nav-profile-tab" style="background-color:">
+				aria-labelledby="nav-profile-tab" style="background-color:#DDDDDD">
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
@@ -340,7 +340,7 @@ tbody td:hover {
 
 
 			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-				aria-labelledby="nav-contact-tab" style="background-color:">
+				aria-labelledby="nav-contact-tab" style="background-color:#DDDDDD">
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
@@ -382,7 +382,7 @@ tbody td:hover {
 			</div>
 
 			<div class="tab-pane fade" id="nav-interact" role="tabpanel"
-				aria-labelledby="nav-interact-tab" style="background-color:">
+				aria-labelledby="nav-interact-tab" style="background-color:#DDDDDD">
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
@@ -432,7 +432,7 @@ tbody td:hover {
 			<div class="row">
 				<div class="col-6">
 
-					<div class="col-md-11 mb-5">
+					<div class="col-md-11 mb-4">
 						<!-- 退款 -->
 						<button data-toggle='modal' data-target='#showtopup'
 							class="btn btn-primary btn-lg active" onclick="topup();">
@@ -455,7 +455,7 @@ tbody td:hover {
 								name="complaintNum">
 						</div>
 
-						<div class="col-md-11 mb-3">
+						<div class="col-md-11 mb-2">
 							<label
 								style="font-weight: bold; font-size: 130%; color: #00AA55;"
 								for="complaintResponse">回覆:</label> <span id="responseSp"
@@ -465,8 +465,8 @@ tbody td:hover {
 						</div>
 
 						<div class="col-md-6 mb-5">
-							<button type="button" class="btn btn-outline-primary" id="sendout"
-								style="font-size: 150%; margin-left: 370px">送出</button>
+							<button type="button" class="btn btn-success" id="sendout"
+								style="font-size: 120%; margin-left: 380px">送出</button>
 						</div>
 
 					</form>
@@ -478,7 +478,7 @@ tbody td:hover {
 				<div class="col-6">
 
 					<fieldset
-						style="background-color:#DDDDDD; padding: 40px; border-radius: 15px; margin-top: 40px">
+						style="background-color:#DDDDDD; padding: 40px;border:2px solid #FF3333 ;border-radius: 15px; margin-top: 40px">
 						<legend
 							style="font-family: 標楷體; color:#9900FF; font-size: 30px; text-align: center; padding-left: 10px;">文章查證
 							& 帳號處置</legend>
@@ -592,7 +592,7 @@ function searchViolator(){
 			success : function(data) {
 				if(data["customermessageboardMemberid"]!=null){
 					
-					$("#searchViolator").html("<span id='violatorValue'>"+data["customermessageboardMemberid"]+"</span>").append("	<button class='btn btn-outline-danger' style='font-size: 100%;' onclick='addTimes()'>處罰</button>");
+					$("#searchViolator").html("<span id='violatorValue'>"+data["customermessageboardMemberid"]+"</span>").append("	<button class='btn btn-outline-danger' style='font-size: 80%;' onclick='addTimes()'>處罰</button>");
 					
 				}else{
 					

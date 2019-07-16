@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!-- wrapper -->
-	<div class="wrapper">
+	<div class="wrapper" style="background-color:#DDDDDD;">
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
@@ -52,6 +52,7 @@
 			<!-- End of context -->
 		</div>
 		<!-- End of wrapper -->
+	</div>
 	</div>
 </body>
 <script>
