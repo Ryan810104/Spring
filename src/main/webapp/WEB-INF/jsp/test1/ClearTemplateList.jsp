@@ -16,6 +16,10 @@
 
 <link href="/resources/css/signin.css" rel="stylesheet">
 
+
+<!-- highcharts-CSS -->
+<link href="/resources/highcharts/code/css/highcharts.css" rel="stylesheet">
+
 <!-- echart -->
 <!-- 		<script src="echarts.min.js"></script> -->
 <!-- 		<script src='/resources/echarts-stat-master/dist/ecStat.js'></script> -->
@@ -99,15 +103,15 @@
 		<div id="sd6"
 			style="width: 900px; height: 600px; margin: 0 auto; display: none"></div>
 
-<!-- 遊戲A輸贏趨勢 -->
+	<!-- 遊戲A輸贏趨勢 -->
 		<div id="tt" style="width: 900px; height: 600px; margin: 0 auto;"></div>
-<!-- 遊戲B輸贏趨勢 -->
+	<!-- 遊戲B輸贏趨勢 -->
 		<div id="cc" style="width: 900px; height: 600px; margin: 0 auto;"></div>
-<!--遊戲C輸贏趨勢 -->
+	<!--遊戲C輸贏趨勢 -->
 		<div id="ee" style="width: 900px; height: 600px; margin: 0 auto;"></div>
 
 
-		<!--Echarts-遊戲a輸贏趨勢 -->
+<!-- 		Echarts-遊戲a輸贏趨勢  -->
 <!-- 		<div id="main" style="width: 600px; height: 400px;"></div> -->
 
 
@@ -862,8 +866,8 @@
 
 
 
-		<!-- 		<!--玩家累積金額排行榜-->
-		-->
+		 		<!--玩家累積金額排行榜-->
+		
 		<script>
 			$.ajax({url : "/admin/memberBeans/therichest",
 						type : "POST",
@@ -1027,15 +1031,16 @@
 
 		<!-- highcharts -->
 		<script src="/resources/highcharts/code/highcharts.js"></script>
-		<!-- <script src="https://code.highcharts.com/modules/data.js"></script> -->
+<!-- 		<script src="https://code.highcharts.com/modules/data.js"></script> -->
 		<script src="/resources/highcharts/code/modules/data.js"></script>
-		<!-- <script src="https://code.highcharts.com/modules/drilldown.js"></script> -->
+<!-- 		<script src="https://code.highcharts.com/modules/drilldown.js"></script> -->
 		<script src="/resources/highcharts/code/modules/drilldown.js"></script>
-		<!-- <script src="http://code.highcharts.com/highcharts-3d.js"></script> -->
+<!-- 		<script src="http://code.highcharts.com/highcharts-3d.js"></script> -->
 		<script src="/resources/highcharts/code/highcharts-3d.js"></script>
 		<script src="https://code.highcharts.com/modules/cylinder.js"></script>
 		<script src="/resources/highcharts/code/modules/exporting.js"></script>
 		<script src="/resources/highcharts/code/modules/export-data.js"></script>
+		
 		<!-- highcarts -->
 
 
