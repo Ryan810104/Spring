@@ -227,7 +227,7 @@ tbody td:hover {
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
 		<article class="content moe">
-			<nav class="navbar navbar-light" style="background-color:;">
+			<nav class="navbar navbar-light" style="background-color:#CCDDFF;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab"
 						data-toggle="tab" href="#nav-home" role="tab"
@@ -251,7 +251,7 @@ tbody td:hover {
 			<!-- Write your data here -->
 			<div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-				aria-labelledby="nav-home-tab" style="background-color:#DDDDDD">
+				aria-labelledby="nav-home-tab" style="background-color:">
 
 				<div class="container">
 					<div class="row">
@@ -297,7 +297,7 @@ tbody td:hover {
 
 
 			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-				aria-labelledby="nav-profile-tab" style="background-color:#DDDDDD">
+				aria-labelledby="nav-profile-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
@@ -340,7 +340,7 @@ tbody td:hover {
 
 
 			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-				aria-labelledby="nav-contact-tab" style="background-color:#DDDDDD">
+				aria-labelledby="nav-contact-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
@@ -382,7 +382,7 @@ tbody td:hover {
 			</div>
 
 			<div class="tab-pane fade" id="nav-interact" role="tabpanel"
-				aria-labelledby="nav-interact-tab" style="background-color:#DDDDDD">
+				aria-labelledby="nav-interact-tab" style="background-color:">
 				<div class="container">
 					<div class="row">
 						<div class="col-6">
