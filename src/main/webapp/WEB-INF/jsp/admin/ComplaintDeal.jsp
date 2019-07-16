@@ -417,9 +417,9 @@ tbody td:hover {
 								</thead>
 								<tbody style="font-size: 120%" id="showByInteractR"></tbody>
 							</table>
-						</div>
+						</div>			
 					</div>
-					<hr>
+					
 				</div>
 			</div>
 
@@ -430,9 +430,11 @@ tbody td:hover {
 
 		<div class="container">
 			<div class="row">
+			<hr>
 				<div class="col-6">
 
-					<div class="col-md-11 mb-4">
+					<div class="col-md-12 mb-3">
+					
 						<!-- 退款 -->
 						<button data-toggle='modal' data-target='#showtopup'
 							class="btn btn-primary btn-lg active" onclick="topup();">
@@ -440,14 +442,14 @@ tbody td:hover {
 								style="font-size: 20px; font-family: 微軟正黑體">餘額調整</span>
 							</i>
 						</button>
-						<hr>
+						
 					</div>
-
+					<hr>
 
 					<form action="/main/complain/responseComplaint" name="formCR"
 						method="POST" class="">
 
-						<div class="col-md-4 mb-2">
+						<div class="col-md-3 mb-2">
 							<label
 								style="font-weight: bold; font-size: 130%; color: #0066FF;"
 								for="complaintNum">編號:</label> <input type="text"
@@ -455,7 +457,7 @@ tbody td:hover {
 								name="complaintNum">
 						</div>
 
-						<div class="col-md-11 mb-2">
+						<div class="col-md-12 mb-2">
 							<label
 								style="font-weight: bold; font-size: 130%; color: #00AA55;"
 								for="complaintResponse">回覆:</label> <span id="responseSp"
@@ -466,7 +468,7 @@ tbody td:hover {
 
 						<div class="col-md-6 mb-5">
 							<button type="button" class="btn btn-success" id="sendout"
-								style="font-size: 120%; margin-left: 380px">送出</button>
+								style="font-size: 120%; margin-left: 445px">送出</button>
 						</div>
 
 					</form>
@@ -930,7 +932,7 @@ function searchViolator(){
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:290px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:350px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -943,7 +945,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:290px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:350px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
 	}else
 		response();
 });
