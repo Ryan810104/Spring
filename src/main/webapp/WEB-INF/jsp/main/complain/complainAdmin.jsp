@@ -823,6 +823,8 @@ function searchViolator(){
 										type:"POST",
 										success:function(data){
 											$("#summaryBefore").html("$"+data);
+											$("#summaryAfter").html("");
+											
 										},
 								});
 					
