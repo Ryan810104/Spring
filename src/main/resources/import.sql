@@ -168,4 +168,6 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('字真d太小',getdate(),null,0,2,'user11');
 
 
-
+insert into news(briefcontent,content,title,createdate) values ('伺服器維修','伺服器維修中忠','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('伺服器維修','伺服器維修中忠','活動',getdate());
+insert into news(briefcontent,content,title,createdate) values ('伺服器維修','伺服器維修中忠','遊戲',getdate());
