@@ -134,12 +134,12 @@ create view summary
    
    
  INSERT INTO vip_level values
-(1.0,1,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
-(0.89,2,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','普通會員'),
-(0.79,3,'https://tw.beanfun.com/bnb/images/game/5/image205.gif','高級會員'),
-(0.69,4,'https://tw.beanfun.com/bnb/images/game/5/image305.gif','尊爵不凡'),
-(0.59,5,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
-(0.49,6,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
+(1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
+(0.89,1,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','普通會員'),
+(0.79,2,'https://tw.beanfun.com/bnb/images/game/5/image205.gif','高級會員'),
+(0.69,3,'https://tw.beanfun.com/bnb/images/game/5/image305.gif','尊爵不凡'),
+(0.59,4,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
+(0.49,5,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
 
 
 insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567,'/resources/img/default-picture.png');
@@ -171,14 +171,13 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into article_nice values (1,'user');
 insert into article_nice values (3,'user');
 
-  insert into news(briefcontent,content,title,createdate) values ('2019/07/10例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+  insert into news(briefcontent,content,title,createdate) values ('2019/07/10例行性維修','系統將於2019/07/10 09:00 ~ 11:00維修，請見諒。','公告',getdate());
   insert into news(briefcontent,content,title,createdate) values ('第101期百家樂中獎名單','恭喜 user 玩家得到金額 15,150元 ! ','活動',getdate());
-  insert into news(briefcontent,content,title,createdate) values ('2019/07/11例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
- insert into news(briefcontent,content,title,createdate) values ('2019/07/12例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
- insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','伺服器維修中忠','遊戲',getdate());
- insert into news(briefcontent,content,title,createdate) values ('2019/07/14例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('2019/07/15例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('2019/07/16例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('端午活動上線啦！獎品總額高達 1,000,000 元。','端午活動上線啦！獎品總額高達 1,000,000 元。端午活動上線啦！獎品總額高達 1,000,000 元。','活動',getdate());
-insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','伺服器維修中忠','遊戲',getdate());
+  insert into news(briefcontent,content,title,createdate) values ('2019/07/11例行性維修','系統將於2019/07/11 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('2019/07/12例行性維修','系統將於2019/07/12 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','更新踩地雷遊戲bug','遊戲',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('2019/07/14例行性維修','系統將於2019/07/14 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('2019/07/16例行性維修','系統將於2019/07/16 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('端午活動上線啦！獎品總額高達 1,000,000 元。','端午活動上線啦！獎品總額高達 1,000,000 元。','活動',getdate());
+insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','更新踩地雷遊戲bug','遊戲',getdate());
 

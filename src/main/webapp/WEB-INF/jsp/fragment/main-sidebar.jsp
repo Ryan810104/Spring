@@ -12,8 +12,8 @@
 <!-- 			<img class="sidebar-avatar-in" -->
 <%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
 			</a>
-			<img class="sidebar-avatar-logo ex"
-				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
+			<img class="sidebar-avatar-logo ex" id="membervipimg"
+				src="" />
 		</figure>
 
 		<div class="sidebar-title ex username-line-height">
@@ -940,4 +940,14 @@ function talkfunction(id){
 
 		});
 	</script>
-
+<script>
+$(document).ready(function(){
+	$.ajax({
+		url : "/admin/vip/getvipimage?membernum="+'${sessionScope.member.memberNum}',
+		type : "GET",
+		success : function(data) {
+				$("#membervipimg").attr("src",data);
+		}
+	});
+});
+</script>
