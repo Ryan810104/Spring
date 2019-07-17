@@ -29,6 +29,6 @@ public class GameboyAPP {
     
 	@PostConstruct
     void setCSTTimeZone(){
-        TimeZone.setDefault(TimeZone.getTimeZone("UTC +8"));
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+08:00"));
     }
 }
