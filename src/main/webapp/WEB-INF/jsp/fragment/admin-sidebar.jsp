@@ -15,7 +15,7 @@
 	<ul class="list-unstyled CTAs" style="margin-bottom: -2rem;">
 		<li style="text-align: center"><img
 			class="mx-auto rounded-circle" src="/resources/img/team/admin.jpg" alt=""
-			style="max-width: 8rem;height:6.2rem">
+			style="max-width: 7rem;">
 			<button type="button" class="btn btn-info " style="margin: 1rem;">管理員</button>
 		</li>
 		<li></li>
