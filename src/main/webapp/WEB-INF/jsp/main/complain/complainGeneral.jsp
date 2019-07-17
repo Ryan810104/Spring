@@ -28,7 +28,7 @@
 					<h4 style="font-size: 120%; color: #FF44AA;" class="mb-3">親愛的會員</h4>
 					<input type="text" class="form-control-plaintext"
 						style="color: #0066FF; font-size: 120%;" id="memberId"
-						name="memberId" value="${sessionScope.member.memberId}" readonly>
+						name="memberId" value="${sessionScope.member.memberId}" disabled>
 				</div>
 
 				<div class="row">
@@ -68,7 +68,7 @@
 							<label for="violator" style="font-size: 120%; color: green;">檢舉對象:(請由首頁留言區檢舉鈕)</label>
 							<input type="text" class="form-control-plaintext"
 								style="font-size: 120%; color: #CC0000;" id="complaintViolator"
-								name="complaintViolator" value="${Violater}" readOnly>
+								name="complaintViolator" value="${Violater}" disabled>
 
 						</div>
 

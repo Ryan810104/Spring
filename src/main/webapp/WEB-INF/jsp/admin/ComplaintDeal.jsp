@@ -730,7 +730,7 @@ function searchViolator(){
 												<input id='chipMemberNum' name="chipMemberNum" type="text"
 													class="form-control-plaintext"
 													style="font-size: 120%; text-align: center; background-color: #666666; color: white"
-													readOnly>
+													disabled>
 											</div>
 											<div class="col-md-5 mb-3">
 												<input id='chipFirstName' name="chipFirstName" type="text"
