@@ -102,9 +102,9 @@
 							</div>
 						</div>
 						<div class="col-md-11 mb-5">
-							<button type="button" class="btn btn-outline-info"
+							<button type="button" class="btn btn-info"
 								style="font-size: 150%; width:100%"
-								onclick='complaint()'>送出</button>
+								onclick='complaint()'><i class="fas fa-paper-plane"></i>	送出</button>
 						</div>
 					</fieldset>	
 						

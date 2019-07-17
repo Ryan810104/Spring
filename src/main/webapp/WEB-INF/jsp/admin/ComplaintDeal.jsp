@@ -476,7 +476,7 @@ tbody td:hover {
 
 							<div class="col-md-12 mb-5">
 								<button type="button" class="btn btn-success" id="sendout"
-									style="font-size: 120%; width: 100%">送出</button>
+									style="font-size: 120%; width: 100%">送出	<i class="fas fa-arrow-alt-circle-right"></i></button>
 							</div>
 
 						</form>
