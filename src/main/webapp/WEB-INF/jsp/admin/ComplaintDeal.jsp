@@ -17,7 +17,7 @@ table {
 
 td {
 	word-wrap: break-word;
-	max-width: 120px;
+	max-width: 128px;
 	border-right: 1px solid;
 	padding: 6px;
 }
@@ -232,19 +232,19 @@ tbody td:hover {
 					<a class="nav-item nav-link active" id="nav-home-tab"
 						data-toggle="tab" href="#nav-home" role="tab"
 						aria-controls="nav-home" aria-selected="true"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">遊戲問題</a>
+						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-gamepad"></i></span>	遊戲問題</a>
 					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
 						href="#nav-profile" role="tab" aria-controls="nav-profile"
 						aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">網頁問題</a>
+						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-network-wired"></i></span>		網頁問題</a>
 					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
 						href="#nav-contact" role="tab" aria-controls="nav-contact"
 						aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">儲值問題</a>
+						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-money-bill"></i></span>	儲值問題</a>
 					<a class="nav-item nav-link" id="nav-interact-tab"
 						data-toggle="tab" href="#nav-interact" role="tab"
 						aria-controls="nav-interact" aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:">社群問題</a>
+						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-users"></i></span>		社群問題</a>
 				</div>
 			</nav>
 			<!-- Write your data here -->
@@ -419,7 +419,7 @@ tbody td:hover {
 							</table>
 						</div>			
 					</div>
-					
+					<hr>
 				</div>
 			</div>
 
@@ -480,12 +480,11 @@ tbody td:hover {
 				<div class="col-6">
 
 					<fieldset
-						style="background-color:#DDDDDD; padding: 40px;border:2px solid #FF3333 ;border-radius: 15px; margin-top: 40px">
+						style="padding: 40px;border-radius: 15px; margin-top: 40px;box-shadow:3px 3px 10px #666;">
 						<legend
-							style="font-family: 標楷體; color:#9900FF; font-size: 30px; text-align: center; padding-left: 10px;">文章查證
-							& 帳號處置</legend>
+							style="width:200px;border-radius: 5px;background-color:#9999FF; font-family:標楷體; color:#FFFFFF; font-size: 30px; text-align:left; padding-left: 10px;box-shadow:2px 2px 4px #666;"><span style="margin-left:10px"><i class="fas fa-search"></i></span>查證/處置</legend>
 
-						<div class="col-md-10 mb-3">
+						<div class="col-md-10 mb-2">
 
 							<div class="input-group">
 								<label style="font-size: 150%;color:#444444" for="articleNum">文章編號:</label> <input
@@ -619,7 +618,7 @@ function searchViolator(){
 			role="dialog" aria-labelledby="exampleModalLongTitle"
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content">
+				<div class="modal-content" style="">
 					<div class="modal-header">
 						<h5 class="modal-title" id="complaintPicTitle"
 							style="font-size: 150%">案件提供截圖</h5>
