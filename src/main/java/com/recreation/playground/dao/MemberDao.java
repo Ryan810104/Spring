@@ -20,4 +20,6 @@ public interface MemberDao extends JpaRepository<Member, Integer>{
 	
 	public Member findByMemberEmail(String email);
 	public  Member findByMemberNum(int memberNum);
+	
+	public Member findMemberNumByMemberId(String memberid);
 }

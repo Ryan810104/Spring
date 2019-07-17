@@ -569,6 +569,7 @@
 						</div>
 						<hr>
 						<button class="btn btn-lg btn-primary btn-block" type="submit">登入</button>
+						<a style="color:blue" href="">忘記密碼</a>
 
 						<hr>
 						<!-- 						<div id="fb-root"> -->

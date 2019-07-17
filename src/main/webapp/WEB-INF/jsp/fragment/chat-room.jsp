@@ -13,7 +13,7 @@
 			<path class="s-path" fill="#fff" d="M0,0 50,0 a0,250 0 1,1 0,500 L0,500" />
 		  </svg>
 		  <div class="static">
-			<div class="static__text">Pull white sidebar to the right</div>
+			<div class="static__text"><i class="fas fa-times"></i></div>
 		  </div>
 		  <div class="sidebar-content active" id = "myfriendlist">
 <!-- 			<div class="contact"> -->
@@ -219,7 +219,7 @@ function whoismyfriend(){
 		var NumOfJData = Jdata.length;
 		console.log(NumOfJData);
 		if (NumOfJData == 0 ){
-			myfriends +=	"<div>"
+			myfriends +=	"<div style=\"text-align:center\">"
 			myfriends +=	"<span>目前沒有朋友喔！</span>"
 			myfriends +=	"<span class= \" "+online+" \" ></span>"
 			myfriends +=	"</div>"
@@ -289,8 +289,27 @@ function fri_notice_check(data){
 	});
 }
 function showinformation(data){
+	//測試/[[3, admin, 2]]回復檢舉[]討論通知[] <<data
+// 	console.log(data);
+	var dataindex = data.indexOf("response");
+	var dataindex2 = data.indexOf("ban");
+	var dataindex3 = data.indexOf("reply");
+	var datafriend = data.substring(0,dataindex);
+	var dataresponse = data.substring(dataindex,dataindex2);
+	var databan = data.substring(dataindex2,dataindex3);
+	var datareply = data.substring(dataindex3,data.length);
+// 	console.log(datafriend.replace("test/","").length);
+// 	console.log(dataresponse.replace("response","").length);
+// 	console.log(datadiscuss.replace("discuss","").length);
+
 	var showinfor = "";
-	var tempdata = data.replace("[","").replace("[","").replace("測試/","")
+	var inforlength = 0;
+
+	
+	
+if (datafriend.replace("test/","").length > 2 ){
+	
+	var tempdata = datafriend.replace("[","").replace("[","").replace("test/","")
 	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
 //		console.log(tempdata1[0]);
 	tempdata1[0] = ","+tempdata1[0];
@@ -310,13 +329,135 @@ function showinformation(data){
 		showinfor +=	"</div>"
 		showinfor +="</a>"
 		showinfor +="</li>"
-	};
-	$("#notifystatus").html(showinfor);
-	if (tempdata1.length != 0){
-		$("#notifycount").css("display","block");
-		$("#notifycount").html(tempdata1.length -1 );
+		inforlength ++;
 	};
 };
+
+if (dataresponse.replace("response","").length > 2 ){
+	var tempdata = dataresponse.replace("[","").replace("[","").replace("response","")
+	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+	tempdata1[0] = ","+tempdata1[0];
+	console.log(tempdata);
+	for (var i = 0 ; i < tempdata1.length -1 ; i++){
+		var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+			console.log(onerowdata);
+		//onerowdata[1] == 你的NUM
+		//onerowdata[2] == 你的檢舉內容
+		//onerowdata[3] == 管理員的回覆
+		//onerowdata[4] == 投訴表格流水號
+			console.log(onerowdata);
+		showinfor += "<li>"
+		showinfor +="<a href=\"#\">"
+		showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+		showinfor += 	"<a  style=\" font-size:14px;\">管理員已回復您的檢舉</a><br>"
+		showinfor +=	"<a  style=\"font-size:14px;\">申訴內容<br>"+onerowdata[2]+"</a><br>"
+		showinfor +="<a  style=\" font-size:14px;\">回覆內容</a><br>"
+		showinfor += "<a  style=\" font-size:14px; color:red  \">"+onerowdata[3]+"</a>"
+		showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"response_notice_check("+onerowdata[4].trim()+")\" style=\"float: right;\">"
+		showinfor +=	"</div>"
+		showinfor +="</a>"
+		showinfor +="</li>"
+		inforlength ++ ;
+	};
+	
+}
+
+if (databan.replace("ban","").length > 2 ){
+	var tempdata = databan.replace("[","").replace("[","").replace("ban","")
+	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+	tempdata1[0] = ","+tempdata1[0];
+	console.log(tempdata);
+	for (var i = 0 ; i < tempdata1.length -1 ; i++){
+		var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+			console.log(onerowdata);
+		//onerowdata[1] == 你的NUM
+		//onerowdata[2] == 你的檢舉內容
+		//onerowdata[3] == 管理員的回覆
+		//onerowdata[4] == 投訴表格流水號
+			console.log(onerowdata);
+		showinfor += "<li>"
+		showinfor +="<a href=\"#\">"
+		showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+		showinfor += 	"<a  style=\" font-size:14px;\">停權通知</a><br>"
+		showinfor += "<a  style=\" font-size:14px; color:red  \">違規達三次，已被停權</a>"
+		showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"ban_notice_check("+onerowdata[3].trim()+")\" style=\"float: right;\">"
+		showinfor +=	"</div>"
+		showinfor +="</a>"
+		showinfor +="</li>"
+		inforlength ++ ;
+	};
+	
+}
+
+if (datareply.replace("reply","").length > 2 ){
+	var tempdata = datareply.replace("[","").replace("[","").replace("reply","")
+	var tempdata1 = tempdata.substring(0, tempdata.length-1).split("]");
+	tempdata1[0] = ","+tempdata1[0];
+	console.log(tempdata);
+	for (var i = 0 ; i < tempdata1.length -1 ; i++){
+		var onerowdata =  tempdata1[i].replace(", [",",").split(",");
+		//onerowdata[1] == 對方id
+		//onerowdata[2] == 樓層
+		//onerowdata[3] == 標題
+		//onerowdata[4] == 流水號
+		showinfor += "<li>"
+		showinfor +="<a href=\"#\">"
+		showinfor +=	"<div class=\"col-sm-12 size-adjust\">"
+		showinfor += 	"<a  style=\" font-size:14px;\">回覆通知</a><br>"
+		showinfor += "<a  style=\" font-size:14px; color:red  \">"+onerowdata[1]+"</a><br> <a style=\" font-size:14px;\" >已在您的發文</a><a style=\" font-size:14px; color: blue\">"+onerowdata[3]+"</a><a style=\" font-size:14px;\"> 底下留言";
+		showinfor += "<input type=\"button\" class=\"btn btn-primary\" value=\"Check\" onclick=\"reply_notice_check("+onerowdata[4]+")\" style=\"float: right;\">"
+		showinfor +=	"</div>"
+		showinfor +="</a>"
+		showinfor +="</li>"
+		inforlength ++ ;
+	};
+	
+}
+	
+	$("#notifystatus").html(showinfor);
+	if (inforlength != 0){
+		$("#notifycount").css("display","block");
+		$("#notifycount").html(inforlength);
+	};
+};
+
+function reply_notice_check(num){
+	$.ajax({
+		url : "/main/reply_notice_check?num=" + num,
+		type: "GET",
+		success : function(data){
+			
+		},
+		error : function(data){
+			alert("aasdasdasd");
+		},
+	})
+}
+function ban_notice_check(num){
+	$.ajax({
+		url : "/main/complain/ban_notice_check?num="+num,
+		type: "GET",
+		success : function(data){
+//				alert("ss");
+		},
+		error : function(data){
+			alert("errrrrrooooorrrrrrrrrrr");
+		},
+	})
+}
+
+function response_notice_check(num){
+	$.ajax({
+		url : "/main/complain/checknotice?num="+num,
+		type: "GET",
+		success : function(data){
+//				alert("ss");
+		},
+		error : function(data){
+			alert("errrrrrooooorrrrrrrrrrr");
+		},
+	})
+}
 //listnum = 好友列表的流水號
 // friendnum = 加你的好友number
 // 
@@ -376,7 +517,7 @@ ws.onmessage = function(event){
 	}else if (event.data.startsWith("你沒朋友")){
 		$("#friendcount").css("display","none");
 		$("#whoaddme").html("你沒有好友邀請唷");
-	} else if (event.data.startsWith("測試")){
+	} else if (event.data.startsWith("test")){
 //			console.log(event.data);
 		showinformation(event.data);
 	} else if (event.data.startsWith("沒有通知")){
@@ -385,13 +526,16 @@ ws.onmessage = function(event){
 
 };
 });
-
+$(".static__text").click(function(){
+	$("#search_friend_icon").click();
+});
 $("#search_friend_icon").click(function(){
 	$(".demo").slideToggle();
+	whoismyfriend();
 });
 
 $("#search_friend_icon").click(function() {
-	whoismyfriend();
+	
 });
 </script>
    

@@ -16,12 +16,9 @@ table {
 	margin-left: 15px;
 }
 
-form {
-	/* 	margin-left:10px; */
-	
-}
-
 td {
+	word-wrap: break-word;
+	max-width: 120px;
 	border-right: 1px solid;
 	padding: 6px;
 }
@@ -438,49 +435,83 @@ tbody td:hover {
 		<div class="container">
 			<div class="row">
 				<div class="col-6">
+
+					<div class="col-md-11 mb-5">
+						<!-- 退款 -->
+						<button data-toggle='modal' data-target='#showtopup'
+							class="btn btn-primary btn-lg active" onclick="topup();">
+							<i class="fas fa-money-bill" style="font-size: 20px"> <span
+								style="font-size: 20px; font-family: 微軟正黑體">餘額調整</span>
+							</i>
+						</button>
+						<hr>
+					</div>
+
+
 					<form action="/main/complain/responseComplaint" name="formCR"
 						method="POST" class="">
 
 						<div class="col-md-2 mb-2">
-							<label style="font-size: 150%" for="complaintNum">編號:</label> <input
-								type="text" style="font-size: 120%" class="form-control"
-								id="complaintNum" name="complaintNum">
+							<label
+								style="font-weight: bold; font-size: 130%; color: #0066FF;"
+								for="complaintNum">編號:</label> <input type="text"
+								style="font-size: 120%" class="form-control" id="complaintNum"
+								name="complaintNum">
 						</div>
 
 						<div class="col-md-11 mb-3">
-							<label style="font-size: 150%" for="complaintResponse">回覆:</label>
-							<span id="responseSp" style="color: red"></span>
+							<label
+								style="font-weight: bold; font-size: 130%; color: #00AA55;"
+								for="complaintResponse">回覆:</label> <span id="responseSp"
+								style="color: red"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
 						</div>
 
 						<div class="col-md-6 mb-5">
 							<button type="button" class="btn btn-outline-info" id="sendout"
-								style="font-size: 150%; margin-left: 405px">送出</button>
+								style="font-size: 150%; margin-left: 390px">送出</button>
 						</div>
 
 					</form>
+
+
+
 				</div>
 
 				<div class="col-6">
 
-					<div class="col-md-7 mb-3">
-						
-						<div class="input-group">
-							<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
-								type="text" class="form-control" id="articleNum"
-								name="articleNum" style="font-size: 120%">
-							<div class="input-group-append">
-								<button class="btn btn btn-danger" type="button"
-									style="font-size: 120%;" id="search">搜尋</button>
+					<fieldset
+						style="background-color: #DDDDDD; padding: 40px; border-radius: 15px; border: solid 1px #CC00CC; margin-top: 30px">
+						<legend
+							style="font-family: 標楷體; color: #CC00CC; font-size: 30px; text-align: center; padding-left: 10px;">文章查證
+							& 帳號處置</legend>
+
+						<div class="col-md-9 mb-3">
+
+							<div class="input-group">
+								<label style="font-size: 150%" for="articleNum">文章編號:</label> <input
+									type="text" class="form-control" id="articleNum"
+									name="articleNum" style="font-size: 120%">
+								<div class="input-group-append">
+									<button class="btn btn btn-danger" type="button"
+										style="font-size: 120%;" id="search">搜尋</button>
+								</div>
 							</div>
-						</div>
 							<span id="searchSp"></span>
 
-					</div>
+						</div>
 
-					<div class="col-md-7 mb-2" style="font-size: 150%">爭議內容:	<span style="color:#FF44AA" id="searchResult"></span></div>
+						<div class="col-md-7 mb-2"
+							style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
+							爭議內容: <span style="color: #FF44AA" id="searchResult"></span>
+						</div>
+						<div class="col-md-7 mb-2"
+							style="font-size: 150%; word-wrap: break-word; max-width: 460px;">
+							違規帳號: <span style="color: #CC0000" id="searchViolator"></span>
+						</div>
 
+					</fieldset>
 
 
 				</div>
@@ -489,14 +520,37 @@ tbody td:hover {
 		</div>
 
 		<script>
+		function addTimes(){
+			$.ajax({
+				url:"/admin/memberBeans/addIllegalTimes",
+				data:{
+					violator:$("#violatorValue").html(),
+				},
+				type : "POST",
+				success : function(data) {
+					alert("違規次數增加成功");							
+				},
+				error : function(data){
+					alert("玩家已被停權");
+					
+				},
+				
+				
+			});
+		};
+		
+		
+		
 $("#search").click(function(){
 	let theSearch = document.getElementById("articleNum").value.trim();
 	
 	if(theSearch!=""){	
 		searchArticle();
+		searchViolator();
 	}else{
 		document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>請輸入文章編號</n>";
 		$("#searchResult").html("");
+		$("#searchViolator").html("");
 	}	
 	
 });
@@ -516,6 +570,29 @@ function searchArticle(){
 				}else{
 					document.getElementById("searchSp").innerHTML = "<n style='color:red;font-size: 120%;margin-left:90px;'>搜尋失敗,文章編號不存在</n>";
 					$("#searchResult").html("");
+					
+				}
+				
+			},
+
+
+			});
+		};
+function searchViolator(){
+	  $.ajax({
+		  	url : "/main/complain/findByCMBnum",
+		  	data : {
+		  		CMBnum : $("#articleNum").val(),
+			},
+			type : "POST", 
+			success : function(data) {
+				if(data["customermessageboardMemberid"]!=null){
+					
+					$("#searchViolator").html("<span id='violatorValue'>"+data["customermessageboardMemberid"]+"</span>").append("	<button class='btn btn-outline-danger' style='font-size: 100%;' onclick='addTimes()'>處罰</button>");
+					
+				}else{
+					
+					$("#searchViolator").html("");
 					
 				}
 				
@@ -580,6 +657,264 @@ function searchArticle(){
 
 </script>
 
+
+
+
+		<!-- 退款 -->
+		<div class="modal fade" id="showtopup" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content" style="background-color: #888888">
+					<div class="modal-header">
+						<h5 class="modal-title" id="complaintPicTitle"
+							style="font-size: 150%; color: #FFFFFF">調整玩家餘額</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close" style="font-size: 200%">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+
+						<div class="container">
+							<div class="row">
+								<div class="col-6">
+									<div class="col-md-13 mb-3">
+										<label style="font-size: 120%; color: #CCEEFF;"
+											for="searchMemberId">請輸入玩家ID:</label>
+										<div class="input-group">
+											<input type="text" class="form-control" id="searchMemberId"
+												name="searchMemberId" style="font-size: 120%;">
+											<div class="input-group-append">
+												<button class="btn btn btn-danger" type="button"
+													style="font-size: 120%;" id="searchSerialNum">搜尋</button>
+											</div>
+										</div>
+										<span id="NumByIdSp"></span>
+
+									</div>
+
+									<div class="col-md-13 mb-4"
+										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
+										調整前餘額: <span style="color:	#33FF33" id="summaryBefore"></span>
+									</div>
+									<div class="col-md-13 mb-3"
+										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
+										調整後餘額: <span style="color:	#33FF33" id="summaryAfter"></span>
+									</div>
+
+
+								</div>
+
+								<div class="col-6">
+									<form class="form-signin" name="form3" id="form3" action=""
+										method="POST">
+
+										<div class="col-md-13 ">
+											<label for="chipMemberNum"
+												style="font-size: 120%; color: #CCEEFF;">玩家ID的流水號:</label> <input
+												id='chipMemberNum' name="chipMemberNum" type="text"
+												class="form-control-plaintext"
+												style="font-size: 120%; text-align: center; background-color: #666666; color: white"
+												readOnly>
+										</div>
+										<div class="col-md-5 mb-3">
+											<input id='chipFirstName' name="chipFirstName" type="text"
+												onclick="this.value=''" placeholder="玩家FirstName:"
+												class="form-control" style="display: none"> <input
+												id='chipNickName' name="chipNickName" type="text"
+												onclick="this.value=''" placeholder="玩家NickName:"
+												class="form-control" style="display: none">
+										</div>
+										<div class="col-md-13 mb-2">
+											<label for="chipBalanced"
+												style="font-size: 120%; color: #CCEEFF;">請輸入調整額度:</label> <input
+												id='chipBalanced' name="chipBalanced" type="text"
+												class="form-control" style="font-size: 120%;">
+										</div>
+
+										<div class="col-md-5 mb-3">
+											<input id='chipType' name="chipType" type="text"
+												placeholder="chipType:" class="form-control"
+												style="display: none"> <input id='win' name="win"
+												type="text" placeholder="win:" class="form-control"
+												style="display: none"> <input id='round'
+												name="round" type="text" placeholder="round:"
+												class="form-control" style="display: none">
+										</div>
+
+										<div class="col-md-13 mb-3">
+											<button class="btn btn-outline-secondary" type="button"
+												onclick="reset()" id="reset1" style="font-size: 20px;">清空</button>
+
+											<button class="btn btn-outline-warning" type="button"
+												id="sendout1" style="font-size: 20px; margin-left: 50px">確定調整</button>
+
+
+										</div>
+
+
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+		
+		$("#reset1").click(function(){
+			$("#searchMemberId").val("");
+			document.getElementById("NumByIdSp").innerHTML = "";
+			$("#summaryBefore").html("");
+			$("#summaryAfter").html("");
+		});
+		
+		$("#searchMemberId").blur(function(){
+			if($("#searchMemberId").val().trim()==""){
+				$("#chipMemberNum").val("");
+				$("#summaryBefore").html("");
+				$("#summaryAfter").html("");
+			}
+		});
+		
+		
+		
+		$("#searchSerialNum").click(function(){
+			let theSearchNum = document.getElementById("searchMemberId").value.trim();
+			
+			if(theSearchNum!=""){
+				document.getElementById("NumByIdSp").innerHTML = "";
+				searchNumByMemberId();
+				
+			}else{
+				$("#chipMemberNum").val("");
+				document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>請輸入玩家ID</n>";
+				$("#summaryBefore").html("");
+				$("#summaryAfter").html("");
+
+			}	
+			
+		});
+
+		function searchNumByMemberId(){
+			$.ajax({
+				  	url : "/admin/memberBeans/findNumById",
+				  	data : {
+				  		memberId : $("#searchMemberId").val().trim(),
+					},
+					type : "POST", 
+					success : function(data) {
+							//alert(data["memberNum"]);
+							
+							if(data["memberNum"]!=null){
+							document.getElementById("NumByIdSp").innerHTML ="";
+							$("#chipMemberNum").val(data["memberNum"]);
+							
+								$.ajax({
+										url:"/main/complain/findSummary",
+										data:{
+											memberNum : data["memberNum"],
+										},
+										type:"POST",
+										success:function(data){
+											$("#summaryBefore").html("$"+data);
+											$("#summaryAfter").html("");
+											
+										},
+								});
+					
+							}else{
+								document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>搜尋失敗,玩家ID不存在</n>";
+								$("#chipMemberNum").val("");
+								$("#summaryBefore").html("");
+								$("#summaryAfter").html("");
+								
+							}
+					},
+
+					});
+				};
+
+		
+		
+		
+		
+		
+		
+		
+		
+			function topup() {
+				document.getElementById("showtopup");
+			}
+</script>
+		<script>
+			$("#sendout1").click(function() {
+
+								var insert = $("#form3").serializeArray();
+// 								alert(insert);
+// 								alert(JSON.stringify(insert));
+								var i = {};
+								$.each(insert, function(index, value1) {
+									i[value1.name] = value1.value;
+								});
+								var ant1 = JSON.stringify(i);
+// 								alert(ant1);
+								if($("#chipMemberNum").val().trim()!=""){
+								$.ajax({url : '/admin/memberBeans/refund?chipMemberNum='
+													+ $("#chipMemberNum").val().trim()
+													+ "&chipFirstName="
+													+ $("#chipFirstName").val()
+													+ "&chipNickName="
+													+ $("#chipNickName").val()
+													+ "&chipBalanced="
+													+ $("#chipBalanced").val()
+													+ "&chipType="
+													+ $("#chipType").val()
+													+ "&round="
+													+ $("#round").val()
+													+ "&win=" + $("#win").val()
+													,
+											method : 'post',
+											contentType : 'application/json;charset=UTF-8',
+											dataType : 'json',
+											data : ant1,
+											success : function(data) {
+												alert("餘額更改成功");
+													
+												$.ajax({
+													url:"/main/complain/findSummary",
+													data:{
+														memberNum : $("#chipMemberNum").val(),
+													},
+													type:"POST",
+													success:function(data){
+														$("#summaryAfter").html("$"+data);
+														
+													},
+											});
+												
+												
+												
+												
+											},
+											error : function(ajaxres) {
+												alert("調整額度有誤");
+											}
+										});
+								
+								}else{
+									alert("玩家流水號不存在");
+								}
+							});
+		</script>
+
+		<!-- 退款 -->
+
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
@@ -588,7 +923,7 @@ function searchArticle(){
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";		
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -601,7 +936,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 140%'>	不可空白</n>";
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:310px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
 	}else
 		response();
 });

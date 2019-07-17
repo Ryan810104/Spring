@@ -33,6 +33,7 @@ public class MemberService {
 
 	
 	public Member finById(String memberId) {
+		System.out.println("service result="+dao.findByMemberId(memberId));
 		return dao.findByMemberId(memberId);
 	}
 
@@ -127,5 +128,10 @@ public class MemberService {
 		}
 		return dataBasePath;
 	}
+	
+	public Member findNumById(String memberid) {
+		return dao.findMemberNumByMemberId(memberid);
+	}
+	
 
 }

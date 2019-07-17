@@ -1,7 +1,10 @@
 package com.recreation.playground.web;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.recreation.playground.entity.Complaint;
 import com.recreation.playground.entity.CustomerMessageBoardBean;
+import com.recreation.playground.entity.Member;
 import com.recreation.playground.service.ComplaintService;
 import com.recreation.playground.service.CustomerMessageBoardService;
 
@@ -34,7 +38,7 @@ public class ComplaintController {
 
 	@Autowired
 	private ComplaintService service;
-	
+
 	@Autowired
 	private CustomerMessageBoardService service2;
 
@@ -44,7 +48,8 @@ public class ComplaintController {
 	@RequestMapping("/insertComplaint")
 	@Transactional
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model,
-			@RequestParam("complaintPic") MultipartFile imageFile,RedirectAttributes redirectAttributes) throws IOException {
+			@RequestParam("complaintPic") MultipartFile imageFile, RedirectAttributes redirectAttributes)
+			throws IOException {
 		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
@@ -74,15 +79,22 @@ public class ComplaintController {
 //			System.out.println("serverPath=" + serverPath);
 //			System.out.println("folderPath=" + folderPath);
 //			System.out.println("imagePath=" + imagePath);
-//			System.out.println("dataBasePath=" + dataBasePath);
+//			System.out.println("dataBasePath=" + dataBasePath);	
+
 			try {
 				Files.write(imagePath, bytes);
-			} catch (IOException e) {
-				e.printStackTrace();
+
+			} catch (AccessDeniedException e) {
+				System.out.println("File Access Denied");
 			}
+
+		} else {
+			System.out.println("File Not Found");
 		}
+
 		cpp.setComplaintPicURL(dataBasePath);
 		em.persist(cpp);
+
 		redirectAttributes.addFlashAttribute("insertComplaint", "1");
 		return "redirect:/main/index";
 
@@ -95,7 +107,7 @@ public class ComplaintController {
 
 		return service.findBycomplaintNum(complaintNum);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/findByCMBnum")
 	public CustomerMessageBoardBean findByCMBnum(int CMBnum) {
@@ -103,7 +115,12 @@ public class ComplaintController {
 		return service2.searchMessageByNum(CMBnum);
 	}
 	
-	
+	@ResponseBody
+	@RequestMapping("/findSummary")
+	public List<Object> findSummary(Integer memberNum) {
+		return service.findSummaryByMemberNum(memberNum);
+		
+	}
 
 	@ResponseBody
 	@RequestMapping("/query1")
@@ -165,6 +182,7 @@ public class ComplaintController {
 //		if (cpp.getComplaintStatus() != 1 ) {
 		cpp.setComplaintResponse(complaintResponse);
 		cpp.setComplaintStatus(1);
+		cpp.setResponseAnno(0);
 		java.util.Date date = new java.util.Date();
 		cpp.setComplaintResponsetime(date);
 
@@ -178,4 +196,21 @@ public class ComplaintController {
 
 	}
 
+	@ResponseBody
+	@RequestMapping("/checknotice")
+	@Transactional
+	public void response_notice_check(int num) {
+		Complaint cp = em.find(Complaint.class, num);
+		cp.setResponseAnno(1);
+		em.persist(cp);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/ban_notice_check")
+	@Transactional
+	public void ban_notice_check(int num) {
+		Member mem = em.find(Member.class, num);
+		mem.setBanAnnot(1);
+		em.persist(mem);
+	}
 }

@@ -109,9 +109,18 @@ public class ChatRoomServerEndpoint {
 								+ usernumber
 								+ " and f1.friend_id_is_read = f2.friend_id_is_read and f1.friend_id_is_read = 1 and f1.friend_notify = 0";
 						List<Object[]> list1 = em.createNativeQuery(sql).getResultList();
-						if (list1.size() != 0) {
+						
+						String sql2 = "SELECT DISTINCT m1.member_num , c1.complaint_message , c1.complaint_response , c1.complaint_num FROM complaint c1 JOIN member m1 on m1.member_id = c1.member_id  WHERE m1.member_num = "+usernumber+" and c1.response_anno = 0 ";
+						List<Object[]> list2 = em.createNativeQuery(sql2).getResultList();
+						
+						String sql3 = "SELECT  m1.member_illegal_times , m1.member_id , m1.member_num FROM MEMBER m1 WHERE m1.member_num = "+usernumber+" and m1.ban_annot = 0";
+						List<Object[]> list3 = em.createNativeQuery(sql3).getResultList();
+						
+						String sql4 = "SELECT c2.customermessageboard_memberid , c2.customermessageboard_response_floor, c1.customermessageboard_title , c2.customermessageboard_num FROM  customer_message_board c1 INNER JOIN customer_message_board c2 ON c2.customermessageboard_article_floor = c1.customermessageboard_article_floor WHERE c1.customermessageboard_response_floor = 0 and c2.customermessageboard_article_floor <> 0 and c2.customermessageboard_member_num <> "+usernumber+" and c1.customermessageboard_member_num = "+usernumber+"  and c2.customerresponseanno = 0";
+						List<Object[]> list4 = em.createNativeQuery(sql4).getResultList();
+						if (list1.size() != 0 || list2.size() !=0 || list3.size() !=0 || list4.size() !=0) {
 							try {
-								mysession.getBasicRemote().sendText("測試" + "/" + Arrays.deepToString(list1.toArray()));
+								mysession.getBasicRemote().sendText("test" + "/" + Arrays.deepToString(list1.toArray()) +"response" + Arrays.deepToString(list2.toArray()) + "ban" + Arrays.deepToString(list3.toArray()) + "reply" + Arrays.deepToString(list4.toArray()));
 							} catch (IOException e) {
 								running = false;
 							}

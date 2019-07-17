@@ -497,7 +497,11 @@
 					txt += "<\/script>"
 					//  送出留言 抓取articlefloor&responsefloor +1後送出
 					txt += "<script>"
+<<<<<<< HEAD
 					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+parseInt(i+floor)+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+parseInt(i+floor)+"\").val('');aftercomment"+parseInt(i+floor)+"();}})});"
+=======
+					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+parseInt(i+floor)+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),CustomermessageboardStatus : 1,},success : function() {$(\"#leavecontentarea"+parseInt(i+floor)+"\").val('');aftercomment"+parseInt(i+floor)+"();}})});"
+>>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 					
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
@@ -731,6 +735,7 @@
 		})
 			}
 			
+<<<<<<< HEAD
 		$("#searchbutton").click(function(){
 				$.ajax({
 					url : "/main/query/",
@@ -834,6 +839,22 @@ setInterval(function(){
 	sessionStorage.setItem("count",a);
 	$(".odometer").html(a);
 				},3500);		
+=======
+var a = 0;
+if (!sessionStorage.getItem("count")){
+	a = 15000;
+	$(".odometer").html(a);
+} else if (sessionStorage.getItem("count")){
+	a = parseInt(sessionStorage.getItem("count"));
+	$(".odometer").html(a);
+}
+
+setInterval(function(){
+	a +=  Math.floor(Math.random()*5) +1;
+	sessionStorage.setItem("count",a);
+	$(".odometer").html(a);
+				},3500);
+>>>>>>> branch 'master' of https://github.com/Ryan810104/Spring.git
 });
 </script>
 <script>

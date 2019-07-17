@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<aside class="sidebar moe">
-	<header class="sidebar-header moe">
-		<figure class="sidebar-avatar moe">
+<aside class="sidebar ex">
+	<header class="sidebar-header ex">
+		<figure class="sidebar-avatar ex">
 
 			<a href="/main/setting/${sessionScope.member.memberNum}" id="result" > 
 			<input type="text" value="${sessionScope.member.memberId}"
@@ -12,77 +12,74 @@
 <!-- 			<img class="sidebar-avatar-in" -->
 <%-- 				src="<c:url value='/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}' />" /> --%>
 			</a>
-			<img class="sidebar-avatar-logo moe"
+			<img class="sidebar-avatar-logo ex"
 				src="https://tw.beanfun.com/bnb/images/game/5/image400.gif" />
 		</figure>
 
-		<div class="sidebar-title moe username-line-height">
+		<div class="sidebar-title ex username-line-height">
 			<a href="/main/setting">${sessionScope.member.memberLastName}</a>
 		</div>
-		<div class="sidebar-title moe" id="QQ"></div>
+		<div class="sidebar-title ex" id="QQ"></div>
 
 	</header>
 
 	<nav class="sidebar-nav" role="navigation">
 		<ul>
-			<li class="sidebar-nav-item moe  active"><i
+			<li class="sidebar-nav-item ex  active"><i
 				class="sidebar-nav-item-icon fa fa-th-large"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/index">回到首頁</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-newspaper"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/news">活動訊息</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-gamepad"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/games">遊戲列表</a></li>
 			<!-- 			<li class="sidebar-nav-item moe"><i -->
 			<!-- 				class="sidebar-nav-item-icon fa fa-envira"></i> <a -->
 			<!-- 				class="sidebar-nav-item-zelda moe text-line-height" href="/main/deposit">儲值金幣</a></li> -->
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-cart-arrow-down"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/shop">購物商城</a></li>
-			<li class="sidebar-nav-item moe"><i
-				class="sidebar-nav-item-icon fas fa-user-friends"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/friend">好友系統</a></li>
-			<li class="sidebar-nav-item moe"><i
+				class="sidebar-nav-item-zelda ex text-line-height"
+				href="/admin/memberBeans/index2">購物商城</a></li>
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-area-chart"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
-				href="/main/gamesrank">遊戲排行</a></li>
-			<li class="sidebar-nav-item moe"><i
+				class="sidebar-nav-item-zelda ex text-line-height"
+				href="/admin/memberBeans/list">遊戲排行</a></li>
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fas fa-vial"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/testing">測試</a></li>
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/complain">投訴箱</a></li>				
-			<li class="sidebar-nav-item moe"><i
+			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fa fa-sign-out"></i> <a
-				class="sidebar-nav-item-zelda moe text-line-height"
+				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/main/logout">登出</a></li>
 		</ul>
 
 
 		<footer class="sidebar-footer">
-			<span class="sidebar-footer-icon moe">···</span> <span
-				class="sidebar-footer-label moe">· · ·</span>
+			<span class="sidebar-footer-icon ex">···</span> <span
+				class="sidebar-footer-label ex">· · ·</span>
+				<a href="/admin/index"><input type="button" id="admitbutton" class="btn btn-danger"  value="管理者介面" style="visibility:hidden"/></a>
 		</footer>
 </aside>
-<main class="main moe"> <header
+<main class="main ex"> <header
 	class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar"
 	style="padding: 0px">
 	<span class="toggle"> <!-- fa-angle-double-left fa-bars fa-th-list -->
-		<i class="fa fa-bars"></i>
+		<i class="fa fa-angle-double-left"></i>
 	</span>
 	<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex"></ul>
 
 	<div class="d-flex justify-content-center h-100">
 		<div class="searchbar">
-			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="Search..."> <a class="search_icon">
+			<input class="search_input" type="text" name="findmemberid" id="findmemberlist" placeholder="搜尋會員..."> <a class="search_icon">
 			<i class="fas fa-search" style="color: white;"></i></a>
 			
 			
@@ -170,7 +167,26 @@
 			</a></li>
 		</ul>
 	</nav>
-
+	
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">好友邀請</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         已寄送好友邀請給<span id= "friendrequest" style="color:red"></span>，等待對方接受申請。
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </header>
 <hr style="margin-top: 0px">
@@ -364,7 +380,7 @@ img {
 	color: #2196F3;
 }
 
-.active .fa-user-friends, .active>.fa-user-friends+a {
+.active .fa-envelope-open-text, .active>.fa-envelope-open-text+a {
 	color: #f44336;
 }
 
@@ -602,120 +618,82 @@ Inicio Tercer Estado: Oculto (OK)
 <script type="text/javascript" src="/resources/js/windowstop.js"></script>
 <script>
 	var hamburguesa = document.querySelector('.toggle');
-	hamburguesa
-			.addEventListener(
-					'click',
-					function() {
+	hamburguesa.addEventListener('click',function() {
+		if (document.querySelector('.ex')) {
 
-						if (document.querySelector('.ex')) {
-							var expandida = document.querySelector('.ex');
-							var pivote = expandida.classList.contains('ex');
-							console.log('Existe un elemento ocultable: '
-									+ pivote);
-
-							while (pivote == true) {
-
-								if (window.CP.shouldStopExecution(1)) {
-									break;
-								}
-								expandida.classList.remove('ex');
-								expandida.classList.add('ok');
-
-								if (document.querySelector('.ex')) {
-									var expandida = document
-											.querySelector('.ex');
-									console
-											.log('Aun existe un elemento ocutable.');
-								} else {
-									var pivote = false;
-									var expandida = false;
-									console
-											.log('Ya no existe ningun elemento ocutable.');
-									if (document
-											.querySelector('.fa-angle-double-left')) {
-										var fonta = document
-												.querySelector('.fa-angle-double-left');
-										fonta.classList
-												.remove('fa-angle-double-left');
-										fonta.classList.add('fa-list-ul');
-										console.log('Cambiado Icono Toggle');
+			var expandida = document.querySelector('.ex');
+			var pivote = expandida.classList.contains('ex');
+				while (pivote == true) {
+					if (window.CP.shouldStopExecution(1)) {
+						break;
+					}
+					expandida.classList.remove('ex');
+					expandida.classList.add('ok');
+					if (document.querySelector('.ex')) {
+						var expandida = document.querySelector('.ex');
+					} else {
+						var pivote = false;
+						var expandida = false;
+					if (document.querySelector('.fa-angle-double-left')) {
+						var fonta = document.querySelector('.fa-angle-double-left');
+							fonta.classList.remove('fa-angle-double-left');
+							fonta.classList.add('fa-list-ul');
+					}
+							} // else
 									}
-								} // else
-							}
-							window.CP.exitedLoop(1);
+					window.CP.exitedLoop(1);
 							// end while 1
-						} else if (document.querySelector('.moe')) {
-							var colapsada = document.querySelector('.moe');
-							var pivote = colapsada.classList.contains('moe');
-							console
-									.log('No existe un elemento ocultable, encontrado uno expandible: '
-											+ pivote);
+		} else if (document.querySelector('.moe')) {
 
-							while (pivote == true) {
-								if (window.CP.shouldStopExecution(2)) {
-									break;
-								}
-								colapsada.classList.remove('moe');
-								colapsada.classList.add('ex');
+			var colapsada = document.querySelector('.moe');
+			var pivote = colapsada.classList.contains('moe');
+				while (pivote == true) {
+					if (window.CP.shouldStopExecution(2)) {
+						break;
+					}
+				colapsada.classList.remove('moe');
+				colapsada.classList.add('ex');
+					if (document.querySelector('.moe')) {
+						var colapsada = document.querySelector('.moe');
 
-								if (document.querySelector('.moe')) {
-									var colapsada = document
-											.querySelector('.moe');
-									console
-											.log('Aun existe un elemento expandible.');
-								} else {
-									var pivote = false;
-									var colapsada = false;
-									console
-											.log('Ya no existe ningun elemento expandible.');
-									if (document.querySelector('.fa-bars')) {
-										var fonta = document
-												.querySelector('.fa-bars');
-										fonta.classList.remove('fa-bars');
-										fonta.classList
-												.add('fa-angle-double-left');
-										console.log('Cambiado Icono Toggle');
-									}
-								} // end else
-							}
-							window.CP.exitedLoop(2);
+					} else {
+						var pivote = false;
+						var colapsada = false;
+					if (document.querySelector('.fa-bars')) {
+						var fonta = document.querySelector('.fa-bars');
+							fonta.classList.remove('fa-bars');
+							fonta.classList.add('fa-angle-double-left');
+						
+					}
+							} // end else
+										}
+						window.CP.exitedLoop(2);
 							// end while 2
-						} else if (document.querySelector('.ok')) {
-							var oculta = document.querySelector('.ok');
-							var pivote = oculta.classList.contains('ok');
-							console
-									.log('No existe un elemento expandible, encontrado uno mostrable: '
-											+ pivote);
-
-							while (pivote == true) {
+					} else if (document.querySelector('.ok')) {
+						var oculta = document.querySelector('.ok');
+						var pivote = oculta.classList.contains('ok');
+						while (pivote == true) {
 								if (window.CP.shouldStopExecution(3)) {
 									break;
 								}
-								oculta.classList.remove('ok');
-								oculta.classList.add('moe');
-
+							oculta.classList.remove('ok');
+							oculta.classList.add('moe');
 								if (document.querySelector('.ok')) {
 									var oculta = document.querySelector('.ok');
-									console
-											.log('Aun existe un elemento mostrable.');
 								} else {
 									var pivote = false;
 									var oculta = false;
-									console
-											.log('Ya no existe ningun elemento mostrable.');
-									if (document.querySelector('.fa-list-ul')) {
-										var fonta = document
-												.querySelector('.fa-list-ul');
+
+								if (document.querySelector('.fa-list-ul')) {
+									var fonta = document.querySelector('.fa-list-ul');
 										fonta.classList.remove('fa-list-ul');
 										fonta.classList.add('fa-bars');
-										console.log('Cambiado Icono Toggle');
 									}
-								} // end else
-							}
+										} // end else
+												}
 							window.CP.exitedLoop(3);
 							// end while 3
 						} else {
-							console.log('NO debes ver esto');
 						}
 					})
 
@@ -730,6 +708,9 @@ Inicio Tercer Estado: Oculto (OK)
 				a(i);
 			}
 		};
+		if ('${sessionScope.member.memberId}' == 'admin'){
+			$("#admitbutton").css("visibility","visible");
+		}
 		
 	});
 	function showImageBymemberId() {
@@ -868,11 +849,11 @@ $("#findmemberlist").on("input",function(){
 				for (var k  = 0 ; k < friend2member.length ; k++){
 					if (Jdata[i]["memberNum"] == friend2member[k]){
 						console.log ("myfriend");
-						var ismyfriendornot = "<a onclick=\"talktofromclickbutton("+Jdata[i]["memberNum"]+")\" class=\"btn btn-danger btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
+						var ismyfriendornot = "<a style=\"color: springgreen\" onclick=\"talkfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-sm\"><i class=\"fas fa-comment-dots\"></i></a>"
 						break;
 			//jdata <> ismyfriend <> ornot <> defination
 					} else {
-						var ismyfriendornot = "<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-primary btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
+						var ismyfriendornot = "<a data-toggle=\"modal\" data-target=\"#exampleModalCenter\"  href=\"#\"  style=\"color: cyan;\" onclick=\"addfunction("+Jdata[i]["memberNum"]+",'"+Jdata[i]["memberId"]+"'); \" class=\"btn  btn-sm\"><i class=\"fas fa-user-friends\"></i></a>"
 						console.log ("notmyfriend");
 					}
 				}
@@ -881,14 +862,16 @@ $("#findmemberlist").on("input",function(){
 				text += "<div class=\"well well-sm\">"
 				text +=	"<div class=\"media\">"
 				text +=	"<a class=\"thumbnail pull-left\" href=\"#\"> <img "
-				text +=	"class=\"media-object\" style=\"width: 60px;height: 60px;margin-top: 6px;\""
+				text +=	"class=\"media-object\" style=\" border-radius: 50% ; width: 60px;height: 60px;margin-top: 6px;\""
 				text +=	"src=\"<c:url value='/admin/memberBeans/getServerPicture/"+Jdata[i]["memberNum"]+"' />\">"
 				text +=	"</a>"
 				text +=	"<div class=\"media-body\">"
 				text +=	"<h4 class=\"media-heading\">"+Jdata[i]["memberId"]+"</h4>"
 				text +=	"<p style=\"margin-top: 0px;\">"
-				text +=	"<a  onclick=\"addfunction("+Jdata[i]["memberNum"]+")\" class=\"btn btn-success btn-sm\"><i class=\"fas fa-home\"></i></a>"
+				text +=	"<a href=\"/main/setting/"+Jdata[i]["memberNum"]+"\"  style=\"color: yellow\" class=\"btn btn-sm\" alt=\"HomePage\"><i class=\"fas fa-home\"></i></a>"
+				
 				text +=	 ismyfriendornot
+				text +=	"<a href=\"/friend/list/report/"+Jdata[i]["memberNum"]+"\"  style=\"color: #ff6c00\" class=\"btn btn-sm\"><i class=\"fas fa-skull-crossbones\"></i></a>"
 				text +=	"</p>"
 				text +=	"</div>"
 				text +=	"</div>"
@@ -909,21 +892,35 @@ $("#findmemberlist").on("input",function(){
 	
 });
 
-$("#membersearch01").mousedown(function(){
+// $(".search_input").click(function(){
+// 	$("#membersearch01").show();
+// 	event.stopPropagation();
+// });
+
+// $(".searchbar").blur(function(){
+// 	$("#membersearch01").slideUp();
+// });
+$(".search_input").blur(function(){
+	$(".searchbar").click(function(){
+		$("#membersearch01").show();
+	});
+})
+$(".search_icon").click(function(){
 	$("#membersearch01").slideUp();
 });
-
-function addfunction(num){
-	$("#friendlistfriendid").val(num);
-	console.log($("#friendaddform").serialize());
+function addfunction(num,id){
+	$("#friendrequest").html(id);
 	$.ajax({
 		url : "/friend/list/add?yourid="+'${sessionScope.member.memberNum}'+"&friendid="+num,
 		type: "GET"
 	})
-	confirm("已加入好友");
-	location.reload();
-	
+// 	location.reload();
+	$(".search_icon").click();
 };
+
+function talkfunction(id){
+	$("#search_friend_icon").click();
+}
 </script>
 <!-- 顯示玩家餘額 -->
 <script type="text/javascript">
