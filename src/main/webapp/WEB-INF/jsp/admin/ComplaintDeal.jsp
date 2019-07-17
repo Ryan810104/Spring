@@ -226,7 +226,7 @@ tbody td:hover {
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
-		<article class="content moe">
+		<article class="content moe" style="margin-left:280px;">
 			<nav class="navbar navbar-light" style="background-color:#CCDDFF;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab"
@@ -920,7 +920,6 @@ function searchViolator(){
 </article>
 			<!-- insert footer in the end of context -->
 			<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
-			<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>
 			<!-- Your data ends here -->
 			<!-- End of context -->
 		
