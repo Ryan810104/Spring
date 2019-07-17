@@ -317,7 +317,19 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 			<br>
-<!-- 			ajax 網頁啟動會填入留言區域的div -->
+			<div style="" align="center">
+			<input type="radio" name="gender" value="name" id="radioname" checked="true"><label for="radioname">UserID</label>
+			<input type="radio" name="gender" value="title" id="radiotitle"><label for="radiotitle">Title</label>
+			<input type="radio" name="gender" value="content" id="radiocontent"><label for="radiocontent">Content</label> 
+			<form action="/main/search" name="search">
+			<input type="text" id="searchbyuserid" name="customermessageboardMemberid">
+			<input type="text" id="searchbytitle" name="customermessageboardTitle">
+			<input type="text" id="searchbycontent" name="customermessageboardMessage">
+			<input type="button" value="查詢" id="searchbutton">
+			</form>
+			</div>
+			<br>
+			<!-- 			ajax 網頁啟動會填入留言區域的div -->
 			<div id="messageboard"></div>
 			<div class="post-footer" id="more" align="center"><button><i class="far fa-caret-square-down"></i>&nbsp;&nbsp;查看更多&nbsp;&nbsp;<i class="far fa-caret-square-down"></i></button></div>
 		</div>
@@ -335,6 +347,25 @@
 }
 </style>
 <script>
+
+	var checkfloor = 100 ;
+
+	$('[name=gender]').change(function () {
+    	var checked = $("input[name=gender]:checked").val() ;
+    	if (checked == 'name'){
+    		$("#searchbyuserid").css('display','block');
+    		$("#searchbytitle").css('display','none');
+    		$("#searchbycontent").css('display','none');
+    	}else if (checked == 'title'){
+    		$("#searchbyuserid").css('display','none');
+    		$("#searchbytitle").css('display','block');
+    		$("#searchbycontent").css('display','none');
+    	}else if(checked == 'content'){
+    		$("#searchbyuserid").css('display','none');
+    		$("#searchbytitle").css('display','none');
+    		$("#searchbycontent").css('display','block');
+    	}
+	})
 	
 	var floor = 3 ;
 
@@ -350,23 +381,27 @@
 //   	  		$("#searchend").val(parseInt($("#searchend").val())+3) ;
 //  	   }
 // 	})
-
-	function checkpressornot(){
+	var flag = 0 ;
+	function checkpressornot(){	
 		$.ajax({
 			url : "/main/pressornot/",
 			type : "POST",
 			data : {
-				Articlefloor : $("#searchend").val(),
-				Memberid : $("#searchstart").val(),
+				memberid : $("#CustomermessageboardMemberid").val(),
 				},
-			success : function(data) {
-				
+			success : function(res) {
+				likelist = res.data ;
+				sessionStorage.setItem("likelist",likelist);
 			}
 			})
 		}
 
 	
 	$("#more").mouseup(function(){
+		
+		checkpressornot();
+		var likelist = sessionStorage.getItem("likelist");
+		
 		$.ajax({url : "/main/searchcontinue/",
 			type : "POST",
 			data : {
@@ -374,6 +409,7 @@
 				CustomermessageboardArticleFloor : $("#searchstart").val(),
 				},
 				success : function(data) {
+					var floor = 3 ;
 					if( data == ""){
 						alert("已無資料");
 					}else{
@@ -389,7 +425,7 @@
 					txt += "<div class=\"title h2\">";
 					txt += "<a href=\"#\"><b>"
 							+ data[i]["customermessageboardMemberid"]
-							+ "</b></a> "
+							+ "</b></a>"
 							+ data[i]["customermessageboardTitle"]
 							+ "</div></div></div>";
 					txt += "<div class=\"post-description\">";
@@ -397,6 +433,39 @@
 							+ data[i]["customermessageboardMessage"]
 							+ "</p>";
 					txt += "<div class=\"stats\">";
+					
+					var flag = 0 ;
+					
+					checkfloor = data[i]["customermessageboardArticleFloor"];
+					for(var j =0 ; j<likelist.length ; j++){
+						if (likelist[j] == checkfloor){
+							flag = 1 ;
+							break;
+						}else{
+							flag = 0;
+						}
+					}		
+					if(flag == 1){
+						txt += "<span><i class=\"fas fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 20px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+					}else{
+						txt += "<span><i class=\"far fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+					}
+					
+					txt += "<script>"
+					txt += "$(\"#like"+parseInt(i+floor)+"\").click(function(){"
+					txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
+					txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 20px ; color : black \");"
+					txt +=	"}else{"
+					txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 20px ; color : red \");}"
+					txt += "$.ajax({url : \"/main/pressnice/\","
+					txt += "type : \"POST\","
+					txt += "data : {Articlefloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() , Memberid : $(\"#CustomermessageboardMemberid\").val(),},"
+					txt += "success : function(data) {checkpressornot();}})"
+					txt +=  "})<\/script>"
+						
+						
 					// 留言button id = floor + i  ex:floor0, floor1
 					txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+ parseInt(i+floor) +"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
 					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+parseInt(i+floor)+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
@@ -413,7 +482,7 @@
 					txt += "<input type=\"text\" name=\"customermessageboardMemberid\" style=\"display: none\" value=\""+data[i]["customermessageboardMemberid"]+"\">"
 					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+parseInt(i+floor)+"\" ><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
-					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
+					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"
 					txt += "<div id=\"floor"+parseInt(i+floor)+"11\"></div>"
 					txt += "</div></div></div></div></div><br>";
 					//  隱藏留言  
@@ -422,19 +491,19 @@
 					txt += "<\/script>"
 					txt += "<script>"																																																																																																																																
 					//寫入aftercomment傳出留言之後自動搜尋留言寫出																																																																																																																																					
-					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var i = 0; i < data.length; i++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
+					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var k = 0; k < data.length; k++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"/admin/memberBeans/getServerPicture/\"+data[k][\"customermessageboardMemberNum\"]+\"\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[k][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[k][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
 				//  取出articlefloor 並放置該article的最大樓數+1
 					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
 					txt += "<\/script>"
 					//  送出留言 抓取articlefloor&responsefloor +1後送出
 					txt += "<script>"
-					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+parseInt(i+floor)+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),CustomermessageboardStatus : 1,},success : function() {$(\"#leavecontentarea"+parseInt(i+floor)+"\").val('');aftercomment"+parseInt(i+floor)+"();}})});"
-					
+					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+parseInt(i+floor)+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+parseInt(i+floor)+"\").val('');aftercomment"+parseInt(i+floor)+"();}})});"
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"																																																																																																																																				
 					txt += "$(\"#floor"+parseInt(i+floor)+"\").mousedown(function(){aftercomment"+parseInt(i+floor)+"()})"
-					txt += "<\/script>"					
+					txt += "<\/script>"	
+					
 				}
 					txt += "<script>"
 					txt += "$(\".button1\").click(function(){document.getElementById(this.id+\"2\").submit();})"
@@ -530,6 +599,10 @@
 			});
 
 	$(document).ready(function() {
+		
+		checkpressornot();
+		var likelist = sessionStorage.getItem("likelist");
+		
 			$.ajax({
 				url : "/main/searchall/",
 				type : "POST",
@@ -555,7 +628,41 @@
 							+ data[i]["customermessageboardMessage"]
 							+ "</p>";
 					txt += "<div class=\"stats\">";
+					
+					checkfloor = data[i]["customermessageboardArticleFloor"];
+					var flag = 0 ;
+					
+					for(var j =0 ; j < likelist.length ; j++){
+						if (likelist[j] == checkfloor){
+							flag = 1 ;
+							break;
+						}else{
+							flag = 0;
+						}
+					}		
+					if(flag == 1){
+						txt += "<span><i class=\"fas fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+					}else{
+						txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+					}
+					
+					txt += "<script>"
+					txt += "$(\"#like"+i+"\").click(function(){"
+					txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
+					txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : black \");"
+					txt +=	"}else{"
+					txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
+					txt += "$.ajax({url : \"/main/pressnice/\","
+					txt += "type : \"POST\","
+					txt += "data : {Articlefloor : $(\"#articlefloor"+i+"1\").val() , Memberid : $(\"#CustomermessageboardMemberid\").val(),},"
+					txt += "success : function(data) {checkpressornot();}})"
+					txt +=  "})<\/script>"
+						
 					// 留言button id = floor + i  ex:floor0, floor1
+					
+					
 					txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
 					// 檢舉button id = floor + i + 2 ex:floor02 , floor12
 					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
@@ -597,13 +704,13 @@
 					txt += "<\/script>"
 					//  送出留言 抓取articlefloor&responsefloor +1後送出
 					txt += "<script>"
-					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},success : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})});"
+					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})});"
 					
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"
 					txt += "$(\"#floor"+i+"\").mousedown(function(){aftercomment"+i+"()})"
-					txt += "<\/script>"					
+					txt += "<\/script>"	
 				}
 					txt += "<script>"
 					txt += "function report(){$(\".button1\").click(function(){document.getElementById(this.id+\"2\").submit();})}"
@@ -613,6 +720,7 @@
 					$("#searchstart").val(i-2);
 					$("#searchend").val(i);
 					report();
+					$('[name=gender]').change();
 			}
 		})
 		
@@ -622,7 +730,96 @@
 		})
 			}
 			
-var a = 0;
+		$("#searchbutton").click(function(){
+				$.ajax({
+					url : "/main/query/",
+					type : "POST",
+					data : {
+						CustomermessageboardTitle : $("#searchbytitle").val(),
+						CustomermessageboardMessage : $("#searchbycontent").val(),
+						CustomermessageboardMemberid : $("#searchbyuserid").val(),	
+					},
+					success : function(data) {
+						var txt = "";
+						var result = new Array() ;	
+						for (var i = 0 ; i < data.length; i++) {
+						txt += "<div class=\"container\">";
+						txt += "<div class=\"col-sm-10\" style=\"margin: 0 auto;\">";
+						txt += "<div class=\"panel panel-white post panel-shadow\">";
+						txt += "<div class=\"post-heading\">";
+						txt += "<div class=\"pull-left image\">";
+						txt += "<img src=\"<c:url value='/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"' />\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
+						txt += "<div class=\"pull-left meta\">";
+						txt += "<div class=\"title h2\">";
+						txt += "<a href=\"#\"><b>"
+								+ data[i]["customermessageboardMemberid"]
+								+ "</b></a> "
+								+ data[i]["customermessageboardTitle"]
+								+ "</div></div></div>";
+						txt += "<div class=\"post-description\">";
+						txt += "<p>"
+								+ data[i]["customermessageboardMessage"]
+								+ "</p>";
+						txt += "<div class=\"stats\">";
+						// 留言button id = floor + i  ex:floor0, floor1
+						txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
+						// 檢舉button id = floor + i + 2 ex:floor02 , floor12
+						txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
+						//留言區域 id = floor + i + 1  ex: floor01 , floor11
+						txt += "<div class=\"post-footer\" id=\"floor"+i+"1\"  style=\"display: none\">";
+						txt += "<div class=\"input-group\">";
+						// 輸入留言區域給予id = leavecontentarea +i
+						txt += "<input class=\"form-control\" placeholder=\"Add a comment\" type=\"text\" id=\"leavecontentarea"+i+"\">";
+						// 放置ajax抓取該articlefloor最大樓數+1的位置  id= customermessageboardResponseFloor + i 
+						txt += "<input type=\"text\" id=\"customermessageboardResponseFloor"+i+"\" style=\"display: none\">"
+						// 送出留言button  id=articlefloor+i  
+						txt += "<form id=\"report"+i+"2\" name=\"report\" action=\"/main/report\">"
+						txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
+						txt += "<input type=\"text\" name=\"customermessageboardMemberid\" style=\"display: none\" value=\""+data[i]["customermessageboardMemberid"]+"\">"
+						txt += "<span class=\"input-group-addon\"><button type=\"button\" id=\"articlefloor"+i+"\"><i class=\"fa fa-edit\"></i></button>"
+						// id=articlefloor+i+1    放置該樓層的真實articlefloor
+						txt += "<input name=\"customermessageboardArticleFloor\" type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
+						txt += "<div id=\"floor"+i+"11\"></div>"
+						txt += "</div></div></div></div></div><br>";
+						//  隱藏留言  
+						txt += "<script>"
+						txt += "$(\"#floor"+i+"\").click(function(){$(\"#\"+this.id+\"1\").toggle(300);})"
+						txt += "<\/script>"
+						txt += "<script>"																																																																																																																	
+						//寫入aftercomment傳出留言之後自動搜尋留言寫出																																																																																																														
+						txt += "function aftercomment"+i+"(){var txt1 = \"\" ;$(\"#floor"+i+"11\").empty();"
+						txt += "$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { "
+						txt += "CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val() },"
+						txt += "success : function(data) {"				
+						txt += "for (var i = 0; i < data.length; i++) { "
+						txt += "txt1 += \"<ul class=\\\"comments-list\\\" >\";"
+						txt += "txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> "
+						txt += "<img class=\\\"avatar\\\" src=\\\""
+						txt += "/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\" "
+						txt += "alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\">"
+						txt += "<h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[i][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[i][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+i+"11\").html(txt1)}})}"
+					//  取出articlefloor 並放置該article的最大樓數+1
+						txt += "$(\"#articlefloor"+i+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+i+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
+						txt += "<\/script>"
+						//  送出留言 抓取articlefloor&responsefloor +1後送出
+						txt += "<script>"
+						txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})});"
+						
+						txt += "<\/script>"	
+							// 按下留言按鈕搜尋該articlefloor的留言並寫入
+						txt += "<script>"
+						txt += "$(\"#floor"+i+"\").mousedown(function(){aftercomment"+i+"()})"
+						txt += "<\/script>"					
+					}
+						$("#messageboard").empty();
+						$("#messageboard").html(txt);
+						$('[name=gender]').change();
+						report();
+					}
+			})
+		})
+	var a = 0;
 if (!sessionStorage.getItem("count")){
 	a = 15000;
 	$(".odometer").html(a);
@@ -635,7 +832,7 @@ setInterval(function(){
 	a +=  Math.floor(Math.random()*5) +1;
 	sessionStorage.setItem("count",a);
 	$(".odometer").html(a);
-				},3500);
+				},3500);		
 });
 </script>
 <script>

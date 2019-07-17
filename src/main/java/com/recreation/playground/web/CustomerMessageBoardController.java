@@ -32,17 +32,40 @@ public class CustomerMessageBoardController {
 	@RequestMapping("/report")
 	public String openindex(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-		model.addAttribute("AtricleNum", "文章編號:"+bean.getCustomermessageboardNum()+"	(勿更改以利查證)");
-		model.addAttribute("Violater", bean.getCustomermessageboardMemberid());
+		model.addAttribute("AtricleNum", "文章編號:"+bean.getCustomermessageboardNum());
+		model.addAttribute("Violater", "帳號:"+bean.getCustomermessageboardMemberid());
 //		System.out.println(bean.getCustomermessageboardNum());
 //		System.out.println(bean.getCustomermessageboardMemberid());
 		return "/main/complain/complainIndex";
+	}
+	
+	@RequestMapping("/query")
+	@ResponseBody
+	public List<CustomerMessageBoardBean> query(@Valid @ModelAttribute("search")CustomerMessageBoardBean bean, BindingResult result,
+			Model model) {
+		System.out.println(bean);
+		String id = bean.getCustomermessageboardMemberid();
+		System.out.println(id);
+		String msg = bean.getCustomermessageboardMessage();
+		System.out.println(msg);
+		String title = bean.getCustomermessageboardTitle();
+		System.out.println(title);
+		List<CustomerMessageBoardBean> list = null ;
+		if(id != "") {
+			list = service.searchbyid(id);
+		}else if(msg != ""){
+			list = service.searchbycontent(msg);
+		}else if(title != "") {
+			list = service.searchbytitle(title);
+		}
+		System.out.println(list);
+		return list;
 	}
 
 	@RequestMapping("/public")
 	public String topublic(@Valid @ModelAttribute("CMBtextarea") CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-		System.out.println(bean);
+//		System.out.println(bean);
 		bean.setCustomerresponseanno(0);
 		service.insert(bean);
 		return "redirect:/main/CMBIndex";
@@ -54,7 +77,7 @@ public class CustomerMessageBoardController {
 		List<CustomerMessageBoardBean> bean = service.searchthelastofmessage();
 		int i = bean.get(0).getCustomermessageboardArticleFloor();
 		List<CustomerMessageBoardBean> beans = service.searchall(i-2,i);
-		System.out.println(beans);
+//		System.out.println(beans);
 		return beans;
 	}
 	
@@ -79,8 +102,8 @@ public class CustomerMessageBoardController {
 	@ResponseBody
 	@RequestMapping("/searchcomment")
 	public ArrayList<CustomerMessageBoardBean> searchcomment(CustomerMessageBoardBean bean) {
-		System.out.println(bean.getCustomermessageboardArticleFloor());
-		System.out.println(service.searchthecomment(bean.getCustomermessageboardArticleFloor()));
+//		System.out.println(bean.getCustomermessageboardArticleFloor());
+//		System.out.println(service.searchthecomment(bean.getCustomermessageboardArticleFloor()));
 		return service.searchthecomment(bean.getCustomermessageboardArticleFloor());
 	}
 
@@ -105,3 +128,5 @@ public class CustomerMessageBoardController {
 	}
 
 }
+
+
