@@ -24,6 +24,39 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="/resources/js/odometer.js"></script>
 <style>
+
+.container1 {
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+/*   padding: 5rem 2rem; */
+}
+.container1 .field-input {
+  text-align: center;
+}
+.container1 .field-input input {
+  text-align: left;
+  border-radius: 6rem;
+  border: 1px solid #a0a0a0;
+  padding: .6rem 2rem .6rem 1rem;
+  width: 20rem;
+  font-family: 'roboto';
+  transition: .5s;
+}
+.container1 .field-input input:focus {
+  outline: none;
+  border-color: #212121;
+  transition: .5s;
+}
+.container1 .field-input span:before {
+  content: '';
+  cursor: pointer;
+  position: relative;
+  font-family: 'fontawesome';
+  top: 0;
+  right: 3rem;
+}
+
 .button {
   display: inline-block;
   padding: 3px 5px;
@@ -104,29 +137,20 @@
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="/resources/img/01.jpg" class="d-block w-100"
+							<img src="/resources/img/bg71701.png" class="d-block w-100"
 								style="height: 28rem" alt="...">
 							<div class="carousel-caption d-none d-md-block">
-								<h5>First slide label</h5>
-								<p>Nulla vitae elit libero, a pharetra augue mollis
-									interdum.</p>
+
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img src="/resources/img/02.jpg" class="d-block w-100"
+							<img src="/resources/img/bg71703.PNG" class="d-block w-100"
 								style="height: 28rem" alt="...">
-							<div class="carousel-caption d-none d-md-block">
-								<h5>Second slide label</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							</div>
 						</div>
 						<div class="carousel-item">
-							<img src="/resources/img/03.jpg" class="d-block w-100"
+							<img src="/resources/img/bg71702.PNG" class="d-block w-100"
 								style="height: 28rem" alt="...">
 							<div class="carousel-caption d-none d-md-block">
-								<h5>Third slide label</h5>
-								<p>Praesent commodo cursus magna, vel scelerisque nisl
-									consectetur.</p>
 							</div>
 						</div>
 					</div>
@@ -199,12 +223,13 @@
 					<div class="col-sm-10" style="margin: 0 auto;">
 						<div class="panel panel-white post panel-shadow">
 							<div class="post-heading">
-								<div class="pull-left image">
+								<div class="pull-left image" style="width: 20%">
 									<img
 										src="/admin/memberBeans/getServerPicture/${sessionScope.member.memberNum}"
-										class="img-circle avatar" alt="user profile image">
+										class="img-circle avatar" alt="user profile image"
+										>
 								</div>
-								<div class="pull-left meta">
+								<div class="pull-left meta" style="width: 60%">
 									<div id="putdisplaynone">
 										<input type="text" id="CustomermessageboardMemberid"
 											name="CustomermessageboardMemberid" placeholder="此欄為隱藏抓取ID格"
@@ -226,14 +251,15 @@
 										<textarea class="form-control" cols="95" rows="3"
 											placeholder="輸入你想要寫的內容..." name="CustomermessageboardMessage"
 											id="CustomermessageboardMessage"></textarea>
-
 									</div>
-									<!--<h6 class="text-muted time">1 minute ago</h6> -->
-
+									<!--<h6 class="text-muted time">1 minute ago</h6> -->	
 								</div>
+								<div class="pull-left meta" style="width: 15% ; padding-left: 5px" >
 								<span class="input-group-addon"><input type="button"
 									class="btn btn-success btn-lg" value="送出"
 									id="messageboardsubmit"> </span>
+								</div>	
+								
 							</div>
 							<div class="post-description"></div>
 						</div>
@@ -317,16 +343,23 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 			<br>
-			<div style="" align="center">
-			<input type="radio" name="gender" value="name" id="radioname" checked="true"><label for="radioname">UserID</label>
-			<input type="radio" name="gender" value="title" id="radiotitle"><label for="radiotitle">Title</label>
-			<input type="radio" name="gender" value="content" id="radiocontent"><label for="radiocontent">Content</label> 
-			<form action="/main/search" name="search">
-			<input type="text" id="searchbyuserid" name="customermessageboardMemberid">
-			<input type="text" id="searchbytitle" name="customermessageboardTitle">
-			<input type="text" id="searchbycontent" name="customermessageboardMessage">
-			<input type="button" value="查詢" id="searchbutton">
-			</form>
+			<div style="" align="center">  依
+			<input type="radio" name="gender" value="name" id="radioname" checked="true"><label for="radioname">&nbsp;UserID</label>
+			<input type="radio" name="gender" value="title" id="radiotitle"><label for="radiotitle">&nbsp;Title</label>
+			<input type="radio" name="gender" value="content" id="radiocontent"><label for="radiocontent">&nbsp;Content</label> 
+			搜尋
+			
+			<div class="container1">
+  			<div class="field-input">
+  			<form action="/main/search" name="search">
+   			 	<input type="text" id="searchbyuserid" name="customermessageboardMemberid" placeholder="UserID">
+				<input type="text" id="searchbytitle" name="customermessageboardTitle" placeholder="含有......字元">
+				<input type="text" id="searchbycontent" name="customermessageboardMessage" placeholder="含有......字元"><span id="searchbutton"> </span>
+ 			 </form>
+ 			 </div>
+			</div>
+<!-- 			<input type="button" value="查詢" id="searchbutton" style="width: 200px"> -->
+			
 			</div>
 			<br>
 			<!-- 			ajax 網頁啟動會填入留言區域的div -->
@@ -353,17 +386,17 @@
 	$('[name=gender]').change(function () {
     	var checked = $("input[name=gender]:checked").val() ;
     	if (checked == 'name'){
-    		$("#searchbyuserid").css('display','block');
+    		$("#searchbyuserid").css('display','inline');
     		$("#searchbytitle").css('display','none');
     		$("#searchbycontent").css('display','none');
     	}else if (checked == 'title'){
     		$("#searchbyuserid").css('display','none');
-    		$("#searchbytitle").css('display','block');
+    		$("#searchbytitle").css('display','inline');
     		$("#searchbycontent").css('display','none');
     	}else if(checked == 'content'){
     		$("#searchbyuserid").css('display','none');
     		$("#searchbytitle").css('display','none');
-    		$("#searchbycontent").css('display','block');
+    		$("#searchbycontent").css('display','inline');
     	}
 	})
 	
