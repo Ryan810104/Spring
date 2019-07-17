@@ -21,7 +21,7 @@
 	<nav class="navbar navbar-expand-sm navbar-dark fixed-top" id="mainNav"
 		style="background: #6d7fcc; max-height: 5.1rem;">
 		<div class="container">
-			<a class="navbar-brand js-scroll-trigger" href="#page-top">友錢來也</a>
+			<a class="navbar-brand js-scroll-trigger" href="#page-top" style="font-family:微軟正黑體;">友錢來也</a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
 				aria-controls="navbarResponsive" aria-expanded="false"
@@ -30,14 +30,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav text-uppercase ml-auto">
+<!-- 					<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
+<!-- 						href="#services">大綱</a></li> -->
+<!-- 					<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
+<!-- 						href="#about">導覽</a></li> -->
+<!-- 					<li class="nav-item"><a class="nav-link js-scroll-trigger" -->
+<!-- 						href="#team">團隊</a></li> -->
 					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#services">大綱</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#about">導覽</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#team">團隊</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger"
-						href="#contact">註冊</a></li>
+						style="font-size:125%;" href="#contact">註冊</a></li>
 				</ul>
 				<div></div>
 			</div>
@@ -59,242 +59,242 @@
 	</header>
 
 	<!-- Services -->
-	<section class="page-section" id="services">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="section-heading text-uppercase">大綱</h2>
-					<h3 class="section-subheading text-muted">網頁主功能介紹</h3>
-				</div>
-			</div>
-			<div class="row text-center">
-				<div class="col-md-4">
-					<span class="fa-stack fa-4x"> <i
-						class="fas fa-circle fa-stack-2x text-primary"></i> <i
-						class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-					</span>
-					<h4 class="service-heading">購物</h4>
-					<p class="text-muted">一起來購物!</p>
-				</div>
-				<div class="col-md-4">
-					<span class="fa-stack fa-4x"> <i
-						class="fas fa-circle fa-stack-2x text-primary"></i> <i
-						class="fas fa-dice fa-stack-1x fa-inverse"></i>
-					</span>
-					<h4 class="service-heading">開始遊戲</h4>
-					<p class="text-muted">我們有非常多的遊戲等您來挑戰!</p>
-				</div>
-				<div class="col-md-4">
-					<span class="fa-stack fa-4x"> <i
-						class="fas fa-circle fa-stack-2x text-primary"></i> <i
-						class="fas fa-user-friends fa-stack-1x fa-inverse"></i>
-					</span>
-					<h4 class="service-heading">社交</h4>
-					<p class="text-muted">交朋友!</p>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- 	<section class="page-section" id="services"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12 text-center"> -->
+<!-- 					<h2 class="section-heading text-uppercase">大綱</h2> -->
+<!-- 					<h3 class="section-subheading text-muted">網頁主功能介紹</h3> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row text-center"> -->
+<!-- 				<div class="col-md-4"> -->
+<!-- 					<span class="fa-stack fa-4x"> <i -->
+<!-- 						class="fas fa-circle fa-stack-2x text-primary"></i> <i -->
+<!-- 						class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i> -->
+<!-- 					</span> -->
+<!-- 					<h4 class="service-heading">購物</h4> -->
+<!-- 					<p class="text-muted">一起來購物!</p> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-4"> -->
+<!-- 					<span class="fa-stack fa-4x"> <i -->
+<!-- 						class="fas fa-circle fa-stack-2x text-primary"></i> <i -->
+<!-- 						class="fas fa-dice fa-stack-1x fa-inverse"></i> -->
+<!-- 					</span> -->
+<!-- 					<h4 class="service-heading">開始遊戲</h4> -->
+<!-- 					<p class="text-muted">我們有非常多的遊戲等您來挑戰!</p> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-md-4"> -->
+<!-- 					<span class="fa-stack fa-4x"> <i -->
+<!-- 						class="fas fa-circle fa-stack-2x text-primary"></i> <i -->
+<!-- 						class="fas fa-user-friends fa-stack-1x fa-inverse"></i> -->
+<!-- 					</span> -->
+<!-- 					<h4 class="service-heading">社交</h4> -->
+<!-- 					<p class="text-muted">交朋友!</p> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</section> -->
 	<!-- About -->
-	<section class="bg-light page-section" id="about">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="section-heading text-uppercase">導覽</h2>
-					<h3 class="section-subheading text-muted">跟著步驟，開始遊戲並賺取金幣！</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-12">
-					<ul class="timeline">
-						<li>
-							<div class="timeline-image">
-								<span class="fa-stack fa-4x"> <i
-									class="fas fa-clipboard-check fa-stack-1x fa-inverse"></i>
-								</span>
-							</div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h6>第一步</h6>
-									<h4 class="subheading">註冊</h4>
-								</div>
-								<div class="timeline-body">
-									<p class="text-muted">填寫以下表格，成為我們的會員吧！</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted">
-							<div class="timeline-image">
-								<span class="fa-stack fa-4x"> <i
-									class="fas fa-dice fa-stack-1x fa-inverse"></i>
-								</span>
-							</div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h6>第二步</h6>
-									<h4 class="subheading">開始遊戲</h4>
-								</div>
-								<div class="timeline-body">
-									<p class="text-muted">請選擇遊戲：</p>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="timeline-image">
-								<span class="fa-stack fa-4x"> <i
-									class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i>
-								</span>
-							</div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h6>第三步</h6>
-									<h4 class="subheading">賺取金幣</h4>
-								</div>
-								<div class="timeline-body">
-									<p class="text-muted">贏得遊戲，賺取金幣</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted">
-							<div class="timeline-image">
-								<span class="fa-stack fa-4x"> <i
-									class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-								</span>
-							</div>
-							<div class="timeline-panel">
-								<div class="timeline-heading">
-									<h6>第四步</h6>
-									<h4 class="subheading">購物</h4>
-								</div>
-								<div class="timeline-body">
-									<p class="text-muted">利用您賺取的金幣，開始購物吧！</p>
-								</div>
-							</div>
-						</li>
-						<li class="timeline-inverted">
-							<div class="timeline-image">
-								<br>
-								<h4>開始遊戲</h4>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- 	<section class="bg-light page-section" id="about"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12 text-center"> -->
+<!-- 					<h2 class="section-heading text-uppercase">導覽</h2> -->
+<!-- 					<h3 class="section-subheading text-muted">跟著步驟，開始遊戲並賺取金幣！</h3> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12"> -->
+<!-- 					<ul class="timeline"> -->
+<!-- 						<li> -->
+<!-- 							<div class="timeline-image"> -->
+<!-- 								<span class="fa-stack fa-4x"> <i -->
+<!-- 									class="fas fa-clipboard-check fa-stack-1x fa-inverse"></i> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="timeline-panel"> -->
+<!-- 								<div class="timeline-heading"> -->
+<!-- 									<h6>第一步</h6> -->
+<!-- 									<h4 class="subheading">註冊</h4> -->
+<!-- 								</div> -->
+<!-- 								<div class="timeline-body"> -->
+<!-- 									<p class="text-muted">填寫以下表格，成為我們的會員吧！</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</li> -->
+<!-- 						<li class="timeline-inverted"> -->
+<!-- 							<div class="timeline-image"> -->
+<!-- 								<span class="fa-stack fa-4x"> <i -->
+<!-- 									class="fas fa-dice fa-stack-1x fa-inverse"></i> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="timeline-panel"> -->
+<!-- 								<div class="timeline-heading"> -->
+<!-- 									<h6>第二步</h6> -->
+<!-- 									<h4 class="subheading">開始遊戲</h4> -->
+<!-- 								</div> -->
+<!-- 								<div class="timeline-body"> -->
+<!-- 									<p class="text-muted">請選擇遊戲：</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</li> -->
+<!-- 						<li> -->
+<!-- 							<div class="timeline-image"> -->
+<!-- 								<span class="fa-stack fa-4x"> <i -->
+<!-- 									class="fas fa-dollar-sign fa-stack-1x fa-inverse"></i> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="timeline-panel"> -->
+<!-- 								<div class="timeline-heading"> -->
+<!-- 									<h6>第三步</h6> -->
+<!-- 									<h4 class="subheading">賺取金幣</h4> -->
+<!-- 								</div> -->
+<!-- 								<div class="timeline-body"> -->
+<!-- 									<p class="text-muted">贏得遊戲，賺取金幣</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</li> -->
+<!-- 						<li class="timeline-inverted"> -->
+<!-- 							<div class="timeline-image"> -->
+<!-- 								<span class="fa-stack fa-4x"> <i -->
+<!-- 									class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i> -->
+<!-- 								</span> -->
+<!-- 							</div> -->
+<!-- 							<div class="timeline-panel"> -->
+<!-- 								<div class="timeline-heading"> -->
+<!-- 									<h6>第四步</h6> -->
+<!-- 									<h4 class="subheading">購物</h4> -->
+<!-- 								</div> -->
+<!-- 								<div class="timeline-body"> -->
+<!-- 									<p class="text-muted">利用您賺取的金幣，開始購物吧！</p> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</li> -->
+<!-- 						<li class="timeline-inverted"> -->
+<!-- 							<div class="timeline-image"> -->
+<!-- 								<br> -->
+<!-- 								<h4>開始遊戲</h4> -->
+<!-- 							</div> -->
+<!-- 						</li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</section> -->
 
 	<!-- Team -->
-	<section class=" page-section" id="team">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 text-center">
-					<h2 class="section-heading text-uppercase">我們的團隊</h2>
-					<h3 class="section-subheading text-muted">團隊介紹</h3>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto rounded-circle"
-							src="/resources/img/team/1.jpg" alt="">
-						<h4>陳峻宏</h4>
-						<p class="text-muted">Background Designer</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item"><a href="#"> <i
-									class="fas fa-bars"></i>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <i
-									class="fab fa-facebook-f"></i>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto rounded-circle"
-							src="/resources/img/team/1.jpg" alt="">
-						<h4>劉九榕</h4>
-						<p class="text-muted">Background Designer</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item"><a href="#"> <i
-									class="fas fa-bars"></i>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <i
-									class="fab fa-facebook-f"></i>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto rounded-circle"
-							src="/resources/img/team/1.jpg" alt="">
-						<h4>謝政餘</h4>
-						<p class="text-muted">Background Designer</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item"><a href="#"> <i
-									class="fas fa-bars"></i>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <i
-									class="fab fa-facebook-f"></i>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+<!-- 	<section class=" page-section" id="team"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12 text-center"> -->
+<!-- 					<h2 class="section-heading text-uppercase">我們的團隊</h2> -->
+<!-- 					<h3 class="section-subheading text-muted">團隊介紹</h3> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<div class="team-member"> -->
+<!-- 						<img class="mx-auto rounded-circle" -->
+<!-- 							src="/resources/img/team/1.jpg" alt=""> -->
+<!-- 						<h4>陳峻宏</h4> -->
+<!-- 						<p class="text-muted">Background Designer</p> -->
+<!-- 						<ul class="list-inline social-buttons"> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fas fa-bars"></i> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fab fa-facebook-f"></i> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<div class="team-member"> -->
+<!-- 						<img class="mx-auto rounded-circle" -->
+<!-- 							src="/resources/img/team/1.jpg" alt=""> -->
+<!-- 						<h4>劉九榕</h4> -->
+<!-- 						<p class="text-muted">Background Designer</p> -->
+<!-- 						<ul class="list-inline social-buttons"> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fas fa-bars"></i> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fab fa-facebook-f"></i> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<div class="team-member"> -->
+<!-- 						<img class="mx-auto rounded-circle" -->
+<!-- 							src="/resources/img/team/1.jpg" alt=""> -->
+<!-- 						<h4>謝政餘</h4> -->
+<!-- 						<p class="text-muted">Background Designer</p> -->
+<!-- 						<ul class="list-inline social-buttons"> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fas fa-bars"></i> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fab fa-facebook-f"></i> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto rounded-circle"
-							src="/resources/img/team/1.jpg" alt="">
-						<h4>張人友</h4>
-						<p class="text-muted">Background Designer</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item"><a href="#"> <i
-									class="fas fa-bars"></i>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <i
-									class="fab fa-facebook-f"></i>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto rounded-circle"
-							src="/resources/img/team/2.jpg" alt="">
-						<h4>王泉</h4>
-						<p class="text-muted">Background Designer</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item"><a href="#"> <i
-									class="fas fa-bars"></i>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <i
-									class="fab fa-facebook-f"></i>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="team-member">
-						<img class="mx-auto rounded-circle"
-							src="/resources/img/team/3.jpg" alt="">
-						<h4>吳紹銘</h4>
-						<p class="text-muted">Background Designer</p>
-						<ul class="list-inline social-buttons">
-							<li class="list-inline-item"><a href="#"> <i
-									class="fas fa-bars"></i>
-							</a></li>
-							<li class="list-inline-item"><a href="#"> <i
-									class="fab fa-facebook-f"></i>
-							</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<div class="team-member"> -->
+<!-- 						<img class="mx-auto rounded-circle" -->
+<!-- 							src="/resources/img/team/1.jpg" alt=""> -->
+<!-- 						<h4>張人友</h4> -->
+<!-- 						<p class="text-muted">Background Designer</p> -->
+<!-- 						<ul class="list-inline social-buttons"> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fas fa-bars"></i> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fab fa-facebook-f"></i> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<div class="team-member"> -->
+<!-- 						<img class="mx-auto rounded-circle" -->
+<!-- 							src="/resources/img/team/2.jpg" alt=""> -->
+<!-- 						<h4>王泉</h4> -->
+<!-- 						<p class="text-muted">Background Designer</p> -->
+<!-- 						<ul class="list-inline social-buttons"> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fas fa-bars"></i> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fab fa-facebook-f"></i> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<div class="team-member"> -->
+<!-- 						<img class="mx-auto rounded-circle" -->
+<!-- 							src="/resources/img/team/3.jpg" alt=""> -->
+<!-- 						<h4>吳紹銘</h4> -->
+<!-- 						<p class="text-muted">Background Designer</p> -->
+<!-- 						<ul class="list-inline social-buttons"> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fas fa-bars"></i> -->
+<!-- 							</a></li> -->
+<!-- 							<li class="list-inline-item"><a href="#"> <i -->
+<!-- 									class="fab fa-facebook-f"></i> -->
+<!-- 							</a></li> -->
+<!-- 						</ul> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</section> -->
 
 	<script>
 		function chkId() {
@@ -469,7 +469,8 @@
 			<div class="row">
 				<div class="col-lg-12 text-center">
 					<h2 class="section-heading text-uppercase">註冊</h2>
-					<h3 class="section-subheading text-muted">//</h3>
+ 					
+				<!--<h3 class="section-subheading text-muted">//</h3> -->
 				</div>
 			</div>
 			<div class="row">
@@ -523,7 +524,7 @@
 								name="memberEmail"> <span id="emailsp"
 								style="color: red">${ErrorMsg.memberEmail}</span>
 						</div>
-						<hr class="mb-4">
+						<hr class="mb-3">
 						<input type="button" class="btn btn-primary btn-lg btn-block"
 							onclick="chkAll()" value="註冊">
 					</form>

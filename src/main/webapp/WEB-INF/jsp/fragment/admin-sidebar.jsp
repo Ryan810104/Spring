@@ -14,13 +14,13 @@
 	</div>
 	<ul class="list-unstyled CTAs" style="margin-bottom: -2rem;">
 		<li style="text-align: center"><img
-			class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt=""
-			style="max-width: 7rem;">
-			<button type="button" class="btn btn-info " style="margin: 1rem;">Username</button>
+			class="mx-auto rounded-circle" src="/resources/img/team/admin.jpg" alt=""
+			style="max-width: 8rem;height:6.2rem">
+			<button type="button" class="btn btn-info " style="margin: 1rem;">管理員</button>
 		</li>
 		<li></li>
-		<li><a class="" href="#" style="text-align: center">遊戲幣 : <b>500P</b></a>
-			<a class="" href="#" style="text-align: center">遊戲紀錄</a></li>
+<!-- 		<li><a class="" href="#" style="text-align: center">遊戲幣 : <b>500P</b></a> -->
+<!-- 			<a class="" href="#" style="text-align: center">遊戲紀錄</a></li> -->
 	</ul>
 
 	<ul class="list-unstyled components">
@@ -37,11 +37,11 @@
 <!-- 				<li><a href="#">Page 3</a></li> -->
 <!-- 			</ul></li> -->
 
-		<li><a href="http://localhost/admin/member/index"> <i class="far fa-comment-dots"></i>會員相關
-		</a></li>
+<!-- 		<li><a href="http://localhost/admin/member/index"> <i class="far fa-comment-dots"></i>會員相關 -->
+<!-- 		</a></li> -->
 		<li><a href="http://localhost/admin/vip/index"> <i class="fas fa-sort-numeric-down"></i>Vip
 		</a></li>
-		<li><a href="/admin/toNews"> <i class="fas fa-cart-arrow-down"></i>發布訊息
+		<li><a href="/admin/toNews"> <i class="far fa-calendar-plus"></i>發布訊息
 		</a></li>
 		<li><a href="/admin/complaint"> <i class="fas fa-envelope-open-text"></i>處理投訴
 		</a></li>
