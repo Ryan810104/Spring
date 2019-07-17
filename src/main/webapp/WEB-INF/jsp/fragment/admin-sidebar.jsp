@@ -45,9 +45,9 @@
 		</a></li>
 		<li><a href="/admin/complaint"> <i class="fas fa-envelope-open-text"></i>處理投訴
 		</a></li>
-		<li><a href="#"> <i class="fas fa-question"></i>幫助
+		<li><a href="#"> <i class="fas fa-chart-area"></i>報表走勢
 		</a></li>
-		<li><a href="#"> <i class="fas fa-paper-plane"></i>聯絡我們
+		<li><a href="#"> <i class="fas fa-paper-plane"></i>其他功能
 		</a></li>
 	</ul>
 
