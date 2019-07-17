@@ -25,7 +25,7 @@ public class CustomerMessageBoardService {
 	
 	public List<CustomerMessageBoardBean> searchall(int i , int j) {
 //		System.out.println(dao.findAll());
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i,j,0);
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i,j,0,1);
 	}
 	
 	public List<CustomerMessageBoardBean> searchthelastofmessage(){
@@ -42,12 +42,23 @@ public class CustomerMessageBoardService {
 	}
 
 	public List<CustomerMessageBoardBean> searchcontinue(int i , int j ){
-		System.out.println("i = "+ i + "j = "+j);
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i, j, 0) ;
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, j, 0 , 1) ;
 	}
 	
 	public CustomerMessageBoardBean searchMessageByNum(int num) {
 		return dao.findByCustomermessageboardNum(num);
+	}
+	
+	public List<CustomerMessageBoardBean> searchbyid(String i ){
+		return dao.findByCustomermessageboardMemberidEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1);
+	}
+	
+	public List<CustomerMessageBoardBean> searchbytitle(String i){
+		return dao.findByCustomermessageboardTitleContainingAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1);
+				}
+	
+	public List<CustomerMessageBoardBean> searchbycontent(String i ){
+		return dao.findByCustomermessageboardMessageContainingAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1);
 	}
 	
 }

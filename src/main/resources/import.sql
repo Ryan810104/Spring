@@ -139,5 +139,6 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('遊戲難度太低',getdate(),null,0,1,'user10');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('字真d太小',getdate(),null,0,2,'user11');
 
-
+insert into article_nice values (1,'user');
+insert into article_nice values (3,'user');
 
