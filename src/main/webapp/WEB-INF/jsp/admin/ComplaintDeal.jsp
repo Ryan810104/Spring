@@ -15,9 +15,13 @@ table {
 	margin-left: 15px;
 }
 
+ th { 
+ 	max-width: 100px; 
+ } 
+
 td {
 	word-wrap: break-word;
-	max-width: 128px;
+	max-width: 100px;
 	border-right: 1px solid;
 	padding: 6px;
 }
@@ -222,301 +226,307 @@ tbody td:hover {
 
 <body>
 	<!-- wrapper -->
-	<div class="wrapper" style="background-color:#DDDDDD;">
+	<div class="wrapper" style="background-color: #DDDDDD;">
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
-		<article class="content moe" style="margin-left:115px;">
-			<nav class="navbar navbar-light" style="background-color:#CCDDFF;">
+		<article class="content moe" style="margin-left: 20px;width:68rem">
+			<nav class="navbar navbar-light" style="background-color: #CCDDFF;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab"
 						data-toggle="tab" href="#nav-home" role="tab"
 						aria-controls="nav-home" aria-selected="true"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-gamepad"></i></span>	遊戲問題</a>
-					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-						href="#nav-profile" role="tab" aria-controls="nav-profile"
-						aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-network-wired"></i></span>		網頁問題</a>
-					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
+							class="fas fa-gamepad"></i></span> 遊戲問題</a> <a class="nav-item nav-link"
+						id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+						role="tab" aria-controls="nav-profile" aria-selected="false"
+						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
+							class="fas fa-network-wired"></i></span> 網頁問題</a> <a
+						class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
 						href="#nav-contact" role="tab" aria-controls="nav-contact"
 						aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-money-bill"></i></span>	儲值問題</a>
-					<a class="nav-item nav-link" id="nav-interact-tab"
-						data-toggle="tab" href="#nav-interact" role="tab"
-						aria-controls="nav-interact" aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 180%; color: #FF44AA; background-color:"><span><i class="fas fa-users"></i></span>		社群問題</a>
+						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
+							class="fas fa-money-bill"></i></span> 儲值問題</a> <a class="nav-item nav-link"
+						id="nav-interact-tab" data-toggle="tab" href="#nav-interact"
+						role="tab" aria-controls="nav-interact" aria-selected="false"
+						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
+							class="fas fa-users"></i></span> 社群問題</a>
 				</div>
 			</nav>
 			<!-- Write your data here -->
 			<!-- Write your data here -->
 			<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-				aria-labelledby="nav-home-tab" style="background-color:">
+				<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+					aria-labelledby="nav-home-tab" style="background-color:">
 
-				<div class="container">
-					<div class="row">
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #0066FF;">
-									<tr>
-										<th>未處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>會員ID</th>
-										<th>投訴內容</th>
-										<th>投訴時間</th>
-										<th>截圖檔</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByGame"></tbody>
-							</table>
-						</div>
-
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #00AA55;">
-									<tr>
-										<th>已處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>投訴內容</th>
-										<th>回覆內容</th>
-										<th>回覆時間</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByGameR"></tbody>
-							</table>
-						</div>
-
-					</div>
-					<hr>
-				</div>
-			</div>
-
-
-			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-				aria-labelledby="nav-profile-tab" style="background-color:">
-				<div class="container">
-					<div class="row">
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #0066FF;">
-									<tr>
-										<th>未處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>會員ID</th>
-										<th>投訴內容</th>
-										<th>投訴時間</th>
-										<th>截圖檔</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByWeb"></tbody>
-							</table>
-						</div>
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #00AA55;">
-									<tr>
-										<th>已處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>投訴內容</th>
-										<th>回覆內容</th>
-										<th>回覆時間</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByWebR"></tbody>
-							</table>
-						</div>
-					</div>
-					<hr>
-				</div>
-			</div>
-
-
-			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-				aria-labelledby="nav-contact-tab" style="background-color:">
-				<div class="container">
-					<div class="row">
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #0066FF;">
-									<tr>
-										<th>未處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>會員ID</th>
-										<th>投訴內容</th>
-										<th>投訴時間</th>
-										<th>截圖檔</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByPay"></tbody>
-							</table>
-						</div>
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #00AA55;">
-									<tr>
-										<th>已處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>投訴內容</th>
-										<th>回覆內容</th>
-										<th>回覆時間</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByPayR"></tbody>
-							</table>
-						</div>
-					</div>
-					<hr>
-				</div>
-			</div>
-
-			<div class="tab-pane fade" id="nav-interact" role="tabpanel"
-				aria-labelledby="nav-interact-tab" style="background-color:">
-				<div class="container">
-					<div class="row">
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #0066FF;">
-									<tr>
-										<th>未處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>會員ID</th>
-										<th>投訴內容</th>
-										<th>投訴時間</th>
-										<th>截圖檔</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByInteract"></tbody>
-							</table>
-						</div>
-						<div class="col-6">
-							<table>
-								<thead style="font-size: 120%; color: #00AA55;">
-									<tr>
-										<th>已處理:</th>
-									</tr>
-									<tr>
-										<th>編號</th>
-										<th>投訴內容</th>
-										<th>回覆內容</th>
-										<th>回覆時間</th>
-									</tr>
-								</thead>
-								<tbody style="font-size: 120%" id="showByInteractR"></tbody>
-							</table>
-						</div>			
-					</div>
-					<hr>
-				</div>
-			</div>
-
-
-
-		</div>
-
-
-		<div class="container">
-			<div class="row">
-			<hr>
-				<div class="col-6">
-
-					<div class="col-md-12 mb-3">
-					
-						<!-- 退款 -->
-						<button data-toggle='modal' data-target='#showtopup'
-							class="btn btn-primary btn-lg active" onclick="topup();">
-							<i class="fas fa-money-bill" style="font-size: 20px"> <span
-								style="font-size: 20px; font-family: 微軟正黑體">餘額調整</span>
-							</i>
-						</button>
-						
-					</div>
-					<hr>
-
-					<form action="/main/complain/responseComplaint" name="formCR"
-						method="POST" class="">
-
-						<div class="col-md-3 mb-2">
-							<label
-								style="font-weight: bold; font-size: 130%; color: #0066FF;"
-								for="complaintNum">編號:</label> <input type="text"
-								style="font-size: 120%" class="form-control" id="complaintNum"
-								name="complaintNum">
-						</div>
-
-						<div class="col-md-12 mb-2">
-							<label
-								style="font-weight: bold; font-size: 130%; color: #00AA55;"
-								for="complaintResponse">回覆:</label> <span id="responseSp"
-								style="color: red"></span>
-							<textarea style="font-size: 120%" class="form-control"
-								id="complaintResponse" name="complaintResponse" rows="3"></textarea>
-						</div>
-
-						<div class="col-md-6 mb-5">
-							<button type="button" class="btn btn-success" id="sendout"
-								style="font-size: 120%; margin-left: 445px">送出</button>
-						</div>
-
-					</form>
-
-
-
-				</div>
-
-				<div class="col-6">
-
-					<fieldset
-						style="padding: 40px;border-radius: 15px; margin-top: 40px;box-shadow:3px 3px 10px #666;">
-						<legend
-							style="width:200px;border-radius: 5px;background-color:#9999FF; font-family:標楷體; color:#FFFFFF; font-size: 30px; text-align:left; padding-left: 10px;box-shadow:2px 2px 4px #666;"><span style="margin-left:10px"><i class="fas fa-search"></i></span>查證/處置</legend>
-
-						<div class="col-md-10 mb-2">
-
-							<div class="input-group">
-								<label style="font-size: 150%;color:#444444" for="articleNum">文章編號:</label> <input
-									type="text" class="form-control" id="articleNum"
-									name="articleNum" style="font-size: 120%">
-								<div class="input-group-append">
-									<button class="btn btn btn-danger" type="button"
-										style="font-size: 120%;" id="search">搜尋</button>
-								</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #0066FF;">
+										<tr>
+											<th>未處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>會員ID</th>
+											<th>投訴內容</th>
+											<th>投訴時間</th>
+											<th>截圖檔</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByGame"></tbody>
+								</table>
 							</div>
-							<span id="searchSp"></span>
+
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #00AA55;">
+										<tr>
+											<th>已處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>投訴內容</th>
+											<th>回覆內容</th>
+											<th>回覆時間</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByGameR"></tbody>
+								</table>
+							</div>
 
 						</div>
-
-						<div class="col-md-7 mb-2"
-							style="font-size: 150%; word-wrap: break-word; max-width: 460px;color:#444444">
-							爭議內容: <span style="color: #FF44AA" id="searchResult"></span>
-						</div>
-						<div class="col-md-7 mb-2"
-							style="font-size: 150%; word-wrap: break-word; max-width: 460px;color:#444444">
-							違規帳號: <span style="color: #CC0000" id="searchViolator"></span>
-						</div>
-
-					</fieldset>
-
-
+						<hr>
+					</div>
 				</div>
 
-			</div>
-		</div>
 
-		<script>
+				<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+					aria-labelledby="nav-profile-tab" style="background-color:">
+					<div class="container">
+						<div class="row">
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #0066FF;">
+										<tr>
+											<th>未處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>會員ID</th>
+											<th>投訴內容</th>
+											<th>投訴時間</th>
+											<th>截圖檔</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByWeb"></tbody>
+								</table>
+							</div>
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #00AA55;">
+										<tr>
+											<th>已處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>投訴內容</th>
+											<th>回覆內容</th>
+											<th>回覆時間</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByWebR"></tbody>
+								</table>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+
+
+				<div class="tab-pane fade" id="nav-contact" role="tabpanel"
+					aria-labelledby="nav-contact-tab" style="background-color:">
+					<div class="container">
+						<div class="row">
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #0066FF;">
+										<tr>
+											<th>未處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>會員ID</th>
+											<th>投訴內容</th>
+											<th>投訴時間</th>
+											<th>截圖檔</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByPay"></tbody>
+								</table>
+							</div>
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #00AA55;">
+										<tr>
+											<th>已處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>投訴內容</th>
+											<th>回覆內容</th>
+											<th>回覆時間</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByPayR"></tbody>
+								</table>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+
+				<div class="tab-pane fade" id="nav-interact" role="tabpanel"
+					aria-labelledby="nav-interact-tab" style="background-color:">
+					<div class="container">
+						<div class="row">
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #0066FF;">
+										<tr>
+											<th>未處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>會員ID</th>
+											<th>投訴內容</th>
+											<th>投訴時間</th>
+											<th>截圖檔</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByInteract"></tbody>
+								</table>
+							</div>
+							<div class="col-6">
+								<table>
+									<thead style="font-size: 100%; color: #00AA55;">
+										<tr>
+											<th>已處理:</th>
+										</tr>
+										<tr>
+											<th>編號</th>
+											<th>投訴內容</th>
+											<th>回覆內容</th>
+											<th>回覆時間</th>
+										</tr>
+									</thead>
+									<tbody style="font-size: 100%" id="showByInteractR"></tbody>
+								</table>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+
+
+
+			</div>
+
+
+			<div class="container">
+				<div class="row">
+					<hr>
+					<div class="col-6">
+
+						<div class="col-md-12 mb-3">
+
+							<!-- 退款 -->
+							<button data-toggle='modal' data-target='#showtopup'
+								class="btn btn-primary btn-lg active" onclick="topup();">
+								<i class="fas fa-money-bill" style="font-size: 20px"> <span
+									style="font-size: 20px; font-family: 微軟正黑體">餘額調整</span>
+								</i>
+							</button>
+
+						</div>
+						<hr>
+
+						<form action="/main/complain/responseComplaint" name="formCR"
+							method="POST" class="">
+
+							<div class="col-md-3 mb-2">
+								<label
+									style="font-weight: bold; font-size: 130%; color: #0066FF;"
+									for="complaintNum">編號:</label> <input type="text"
+									style="font-size: 120%" class="form-control" id="complaintNum"
+									name="complaintNum">
+							</div>
+
+							<div class="col-md-12 mb-3">
+								<label
+									style="font-weight: bold; font-size: 130%; color: #00AA55;"
+									for="complaintResponse">回覆:</label> <span id="responseSp"
+									style="color: red; float: right"></span>
+								<textarea style="font-size: 120%" class="form-control"
+									id="complaintResponse" name="complaintResponse" rows="3"></textarea>
+
+
+							</div>
+
+							<div class="col-md-12 mb-5">
+								<button type="button" class="btn btn-success" id="sendout"
+									style="font-size: 120%; width: 100%">送出</button>
+							</div>
+
+						</form>
+
+
+
+					</div>
+
+					<div class="col-6">
+
+						<fieldset
+							style="padding: 40px; border-radius: 15px; margin-top: 40px; box-shadow: 3px 3px 10px #666;">
+							<legend
+								style="width: 200px; border-radius: 5px; background-color: #9999FF; font-family: 標楷體; color: #FFFFFF; font-size: 30px; text-align: left; padding-left: 10px; box-shadow: 2px 2px 4px #666;">
+								<span style="margin-left: 10px"><i class="fas fa-search"></i></span>查證/處置
+							</legend>
+
+							<div class="col-md-11 mb-2">
+
+								<div class="input-group">
+									<label style="font-size: 150%; color: #444444" for="articleNum">文章編號:</label>
+									<input type="text" class="form-control" id="articleNum"
+										name="articleNum" style="font-size: 120%">
+									<div class="input-group-append">
+										<button class="btn btn btn-danger" type="button"
+											style="font-size: 120%;" id="search">搜尋</button>
+									</div>
+								</div>
+								<span id="searchSp"></span>
+
+							</div>
+
+							<div class="col-md-7 mb-2"
+								style="font-size: 150%; word-wrap: break-word; max-width: 460px; color: #444444">
+								爭議內容: <span style="color: #FF44AA" id="searchResult"></span>
+							</div>
+							<div class="col-md-7 mb-2"
+								style="font-size: 150%; word-wrap: break-word; max-width: 460px; color: #444444">
+								違規帳號: <span style="color: #CC0000" id="searchViolator"></span>
+							</div>
+
+						</fieldset>
+
+
+					</div>
+
+				</div>
+			</div>
+
+			<script>
 		function addTimes(){
 			$.ajax({
 				url:"/admin/memberBeans/addIllegalTimes",
@@ -614,31 +624,31 @@ function searchViolator(){
 </script>
 
 
-		<div class="modal fade" id="showComplaintPic" tabindex="-1"
-			role="dialog" aria-labelledby="exampleModalLongTitle"
-			aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content" style="">
-					<div class="modal-header">
-						<h5 class="modal-title" id="complaintPicTitle"
-							style="font-size: 150%">案件提供截圖</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close" style="font-size: 200%">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<div id="complaintResult"
-							style="text-align: center; margin-top: 20px; margin-bottom: 20px"></div>
+			<div class="modal fade" id="showComplaintPic" tabindex="-1"
+				role="dialog" aria-labelledby="exampleModalLongTitle"
+				aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content" style="">
+						<div class="modal-header">
+							<h5 class="modal-title" id="complaintPicTitle"
+								style="font-size: 150%">案件提供截圖</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close" style="font-size: 200%">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div id="complaintResult"
+								style="text-align: center; margin-top: 20px; margin-bottom: 20px"></div>
+
+						</div>
+
 
 					</div>
-
-
 				</div>
 			</div>
-		</div>
 
-		<script>
+			<script>
 
 		function showImg(complaintNum1){
 			$.ajax({
@@ -665,112 +675,112 @@ function searchViolator(){
 
 
 
-		<!-- 退款 -->
-		<div class="modal fade" id="showtopup" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-			<div class="modal-dialog modal-dialog-centered" role="document">
-				<div class="modal-content" style="background-color: #888888">
-					<div class="modal-header">
-						<h5 class="modal-title" id="complaintPicTitle"
-							style="font-size: 150%; color: #FFFFFF">調整玩家餘額</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close" style="font-size: 200%">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
+			<!-- 退款 -->
+			<div class="modal fade" id="showtopup" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content" style="background-color: #888888">
+						<div class="modal-header">
+							<h5 class="modal-title" id="complaintPicTitle"
+								style="font-size: 150%; color: #FFFFFF">調整玩家餘額</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close" style="font-size: 200%">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
 
-						<div class="container">
-							<div class="row">
-								<div class="col-6">
-									<div class="col-md-13 mb-3">
-										<label style="font-size: 120%; color: #CCEEFF;"
-											for="searchMemberId">請輸入玩家ID:</label>
-										<div class="input-group">
-											<input type="text" class="form-control" id="searchMemberId"
-												name="searchMemberId" style="font-size: 120%;">
-											<div class="input-group-append">
-												<button class="btn btn btn-danger" type="button"
-													style="font-size: 120%;" id="searchSerialNum">搜尋</button>
-											</div>
-										</div>
-										<span id="NumByIdSp"></span>
-
-									</div>
-
-									<div class="col-md-13 mb-4"
-										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
-										調整前餘額: <span style="color:	#33FF33" id="summaryBefore"></span>
-									</div>
-									<div class="col-md-13 mb-3"
-										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
-										調整後餘額: <span style="color:	#33FF33" id="summaryAfter"></span>
-									</div>
-
-
-								</div>
-
-								<div class="col-6">
-									<form class="form-signin" name="form3" id="form3" action=""
-										method="POST">
-
-										<div class="col-md-13 ">
-											<label for="chipMemberNum"
-												style="font-size: 120%; color: #CCEEFF;">玩家ID的流水號:</label> <input
-												id='chipMemberNum' name="chipMemberNum" type="text"
-												class="form-control-plaintext"
-												style="font-size: 120%; text-align: center; background-color: #666666; color: white"
-												readOnly>
-										</div>
-										<div class="col-md-5 mb-3">
-											<input id='chipFirstName' name="chipFirstName" type="text"
-												onclick="this.value=''" placeholder="玩家FirstName:"
-												class="form-control" style="display: none"> <input
-												id='chipNickName' name="chipNickName" type="text"
-												onclick="this.value=''" placeholder="玩家NickName:"
-												class="form-control" style="display: none">
-										</div>
-										<div class="col-md-13 mb-2">
-											<label for="chipBalanced"
-												style="font-size: 120%; color: #CCEEFF;">請輸入調整額度:</label> <input
-												id='chipBalanced' name="chipBalanced" type="text"
-												class="form-control" style="font-size: 120%;">
-										</div>
-
-										<div class="col-md-5 mb-3">
-											<input id='chipType' name="chipType" type="text"
-												placeholder="chipType:" class="form-control"
-												style="display: none"> <input id='win' name="win"
-												type="text" placeholder="win:" class="form-control"
-												style="display: none"> <input id='round'
-												name="round" type="text" placeholder="round:"
-												class="form-control" style="display: none">
-										</div>
-
+							<div class="container">
+								<div class="row">
+									<div class="col-6">
 										<div class="col-md-13 mb-3">
-											<button class="btn btn-outline-secondary" type="button"
-												onclick="reset()" id="reset1" style="font-size: 20px;">清空</button>
-
-											<button class="btn btn-outline-warning" type="button"
-												id="sendout1" style="font-size: 20px; margin-left: 25px">確定調整</button>
-
+											<label style="font-size: 120%; color: #CCEEFF;"
+												for="searchMemberId">請輸入玩家ID:</label>
+											<div class="input-group">
+												<input type="text" class="form-control" id="searchMemberId"
+													name="searchMemberId" style="font-size: 120%;">
+												<div class="input-group-append">
+													<button class="btn btn btn-danger" type="button"
+														style="font-size: 120%;" id="searchSerialNum">搜尋</button>
+												</div>
+											</div>
+											<span id="NumByIdSp"></span>
 
 										</div>
 
+										<div class="col-md-13 mb-4"
+											style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
+											調整前餘額: <span style="color: #33FF33" id="summaryBefore"></span>
+										</div>
+										<div class="col-md-13 mb-3"
+											style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
+											調整後餘額: <span style="color: #33FF33" id="summaryAfter"></span>
+										</div>
 
-									</form>
+
+									</div>
+
+									<div class="col-6">
+										<form class="form-signin" name="form3" id="form3" action=""
+											method="POST">
+
+											<div class="col-md-13 ">
+												<label for="chipMemberNum"
+													style="font-size: 120%; color: #CCEEFF;">玩家ID的流水號:</label>
+												<input id='chipMemberNum' name="chipMemberNum" type="text"
+													class="form-control-plaintext"
+													style="font-size: 120%; text-align: center; background-color: #666666; color: white"
+													readOnly>
+											</div>
+											<div class="col-md-5 mb-3">
+												<input id='chipFirstName' name="chipFirstName" type="text"
+													onclick="this.value=''" placeholder="玩家FirstName:"
+													class="form-control" style="display: none"> <input
+													id='chipNickName' name="chipNickName" type="text"
+													onclick="this.value=''" placeholder="玩家NickName:"
+													class="form-control" style="display: none">
+											</div>
+											<div class="col-md-13 mb-2">
+												<label for="chipBalanced"
+													style="font-size: 120%; color: #CCEEFF;">請輸入調整額度:</label> <input
+													id='chipBalanced' name="chipBalanced" type="text"
+													class="form-control" style="font-size: 120%;">
+											</div>
+
+											<div class="col-md-5 mb-3">
+												<input id='chipType' name="chipType" type="text"
+													placeholder="chipType:" class="form-control"
+													style="display: none"> <input id='win' name="win"
+													type="text" placeholder="win:" class="form-control"
+													style="display: none"> <input id='round'
+													name="round" type="text" placeholder="round:"
+													class="form-control" style="display: none">
+											</div>
+
+											<div class="col-md-13 mb-3">
+												<button class="btn btn-outline-secondary" type="button"
+													onclick="reset()" id="reset1" style="font-size: 20px;">清空</button>
+
+												<button class="btn btn-outline-warning" type="button"
+													id="sendout1" style="font-size: 20px; margin-left: 25px">確定調整</button>
+
+
+											</div>
+
+
+										</form>
+									</div>
 								</div>
 							</div>
+
 						</div>
 
+
 					</div>
-
-
 				</div>
 			</div>
-		</div>
 
-		<script>
+			<script>
 		
 		$("#reset1").click(function(){
 			$("#searchMemberId").val("");
@@ -857,7 +867,7 @@ function searchViolator(){
 				document.getElementById("showtopup");
 			}
 </script>
-		<script>
+			<script>
 			$("#sendout1").click(function() {
 
 								var insert = $("#form3").serializeArray();
@@ -917,12 +927,12 @@ function searchViolator(){
 								}
 							});
 		</script>
-</article>
-			<!-- insert footer in the end of context -->
-			<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
-			<!-- Your data ends here -->
-			<!-- End of context -->
-		
+		</article>
+		<!-- insert footer in the end of context -->
+		<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
+		<!-- Your data ends here -->
+		<!-- End of context -->
+
 		<!-- End of wrapper -->
 	</div>
 </body>
@@ -930,7 +940,7 @@ function searchViolator(){
 function responseChk(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:350px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;text-align:right;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";		
 	}else{	
 		document.getElementById("responseSp").innerHTML = "";
 	}
@@ -943,7 +953,7 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#sendout").click(function(){
 	let theResponse = document.getElementById("complaintResponse").value;
 	if(theResponse==""){
-		document.getElementById("responseSp").innerHTML = "<i style='color:red;margin-left:350px;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
+		document.getElementById("responseSp").innerHTML = "<i style='color:red;text-align:right;font-size: 120%'>不可空白</i><i style='margin-left:10px;font-size: 120%' class=\"fas fa-exclamation\"></i><i style='font-size: 120%' class=\"fas fa-exclamation\"></i>";
 	}else
 		response();
 });
