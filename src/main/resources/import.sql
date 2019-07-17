@@ -134,18 +134,19 @@ create view summary
    
    
  INSERT INTO vip_level values
-(1.0,1,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
-(0.89,2,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','普通會員'),
-(0.79,3,'https://tw.beanfun.com/bnb/images/game/5/image205.gif','高級會員'),
-(0.69,4,'https://tw.beanfun.com/bnb/images/game/5/image305.gif','尊爵不凡'),
-(0.59,5,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
-(0.49,6,'https://tw.beanfun.com/bnb/images/game/5/image400.gif','管理員');
+(1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
+(0.89,1,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','普通會員'),
+(0.79,2,'https://tw.beanfun.com/bnb/images/game/5/image205.gif','高級會員'),
+(0.69,3,'https://tw.beanfun.com/bnb/images/game/5/image305.gif','尊爵不凡'),
+(0.59,4,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
+(0.49,5,'https://tw.beanfun.com/bnb/images/game/5/image450.gif','管理員');
 
 
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,567,'/resources/img/default-picture.png');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,789,'/resources/img/default-picture.png');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('admin','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,56799,'/resources/img/default-picture.png');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('admin2','123',0,'abcdefghij@abcd.com','0123456789',getdate(),0,null,78999,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('abcdefgh','0000000000',0,'abcdefghij@abcd.com','0123456789',getdate(),1,null,567,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('user','123',0,'abcdefghij@abcd.com','0123456789',getdate(),2,null,789,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('admin','123',0,'abcdefghij@abcd.com','0123456789',getdate(),5,null,56799,'/resources/img/default-picture.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('admin2','123',0,'abcdefghij@abcd.com','0123456789',getdate(),3,null,78999,'/resources/img/default-picture.png');
+
 
 
 
@@ -171,14 +172,37 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into article_nice values (1,'user');
 insert into article_nice values (3,'user');
 
-  insert into news(briefcontent,content,title,createdate) values ('2019/07/10例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
+/*fake data*/
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Sally','123',0,'sally@gmail.com','0123456789',getdate(),2,null,500,'/resources/memberPhoto/sally.jpg');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Mike','123',0,'mike@gmail.com','0123456789',getdate(),3,null,3504,'/resources/memberPhoto/mike.jpg');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Ogushi','123',0,'Ogushi@gmail.com','0123456789',getdate(),1,null,400,'/resources/memberPhoto/Ogushi.png');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Udo','123',0,'Udo@gmail.com','0123456789',getdate(),3,null,7,'/resources/memberPhoto/udo.jpg');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Sam','123',0,'Sam@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/sam.jpg');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('John','123',0,'John@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/John.jpg');
+
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,6,5,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,5,6,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,8,5,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,5,8,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,9,5,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,5,9,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,7,5,1);
+insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,5,7,1);
+
+INSERT INTO chat_room (chat_room_memberid , chat_room_message , chat_room_message_to , chat_room_time ) values (5,'安安',6,getdate());
+INSERT INTO chat_room (chat_room_memberid , chat_room_message , chat_room_message_to , chat_room_time ) values (5,'在線上嗎?',6,getdate());
+INSERT INTO chat_room (chat_room_memberid , chat_room_message , chat_room_message_to , chat_room_time ) values (5,'這次要賭哪支球隊',6,getdate());
+INSERT INTO chat_room (chat_room_memberid , chat_room_message , chat_room_message_to , chat_room_time ) values (6,'不跟你說',5,getdate());
+INSERT INTO chat_room (chat_room_memberid , chat_room_message , chat_room_message_to , chat_room_time ) values (6,'掰掰',5,getdate());
+INSERT INTO chat_room (chat_room_memberid , chat_room_message , chat_room_message_to , chat_room_time ) values (5,'.....',6,getdate());
+
+  insert into news(briefcontent,content,title,createdate) values ('2019/07/10例行性維修','系統將於2019/07/10 09:00 ~ 11:00維修，請見諒。','公告',getdate());
   insert into news(briefcontent,content,title,createdate) values ('第101期百家樂中獎名單','恭喜 user 玩家得到金額 15,150元 ! ','活動',getdate());
-  insert into news(briefcontent,content,title,createdate) values ('2019/07/11例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
- insert into news(briefcontent,content,title,createdate) values ('2019/07/12例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
- insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','伺服器維修中忠','遊戲',getdate());
- insert into news(briefcontent,content,title,createdate) values ('2019/07/14例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('2019/07/15例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('2019/07/16例行性維修','伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中伺服器維修中','公告',getdate());
-insert into news(briefcontent,content,title,createdate) values ('端午活動上線啦！獎品總額高達 1,000,000 元。','端午活動上線啦！獎品總額高達 1,000,000 元。端午活動上線啦！獎品總額高達 1,000,000 元。','活動',getdate());
-insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','伺服器維修中忠','遊戲',getdate());
+  insert into news(briefcontent,content,title,createdate) values ('2019/07/11例行性維修','系統將於2019/07/11 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('2019/07/12例行性維修','系統將於2019/07/12 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','更新踩地雷遊戲bug','遊戲',getdate());
+ insert into news(briefcontent,content,title,createdate) values ('2019/07/14例行性維修','系統將於2019/07/14 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('2019/07/16例行性維修','系統將於2019/07/16 09:00 ~ 11:00維修，請見諒。','公告',getdate());
+insert into news(briefcontent,content,title,createdate) values ('端午活動上線啦！獎品總額高達 1,000,000 元。','端午活動上線啦！獎品總額高達 1,000,000 元。','活動',getdate());
+insert into news(briefcontent,content,title,createdate) values ('踩地雷遊戲bug修正','更新踩地雷遊戲bug','遊戲',getdate());
 

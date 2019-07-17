@@ -15,4 +15,6 @@ public interface VipDao extends JpaRepository<Vip, Integer> {
 //	@Query(value="SELECT IDENT_CURRENT('vip_level')+IDENT_INCR('vip_level')", nativeQuery = true)
 	@Query(value="SELECT IDENT_CURRENT('vip_level')+IDENT_INCR('vip_level')", nativeQuery = true)
 	int findCurrentId();
+	
+	public Vip findByViplevel(Integer viplevel);
 }

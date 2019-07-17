@@ -47,5 +47,8 @@ public class VipService {
 		return vipdao.findCurrentId();
 	}
 	
+	public Vip findByViplevel(Integer viplevel) {
+		return vipdao.findByViplevel(viplevel);
+	}
 
 }
