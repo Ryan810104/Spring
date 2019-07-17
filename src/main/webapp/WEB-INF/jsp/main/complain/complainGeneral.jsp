@@ -19,12 +19,12 @@
 
 		<div class="container">
 
-
+			
 			<form action="/main/complain/insertComplaint" name="formCI"
 				method="POST" class="" style="display: on"
 				enctype="multipart/form-data">
 
-				<div class="col-md-6 mb-5">
+				<div class="col-md-6">
 					<h4 style="font-size: 120%; color: #FF44AA;" class="mb-3">親愛的會員</h4>
 					<input type="text" class="form-control-plaintext"
 						style="color: #0066FF; font-size: 120%;" id="memberId"
@@ -34,6 +34,8 @@
 				<div class="row">
 
 					<div class="col-6">
+					
+					<fieldset style="padding: 40px;border-radius: 15px; margin-top:15px;box-shadow:3px 3px 10px #666;">
 						<div class="col-md-6 mb-5">
 							<h4 style="font-size: 120%; color: green;" class="mb-3">請選擇投訴類別:</h4>
 							<div class="custom-control custom-radio">
@@ -81,7 +83,7 @@
 						<div class="col-md-11 mb-3">
 							<label style="font-size: 120%; color: green;"
 								for="complaintMessage">請輸入投訴內容:</label> <span id="complaintSp"
-								style="color: red"></span>
+								style="color: red;margin-left:160px"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintMessage" name="complaintMessage" rows="3">${AtricleNum}</textarea>
 						</div>
@@ -101,12 +103,16 @@
 						</div>
 						<div class="col-md-11 mb-5">
 							<button type="button" class="btn btn-outline-info"
-								style="font-size: 150%; margin-left: 405px"
+								style="font-size: 150%; width:100%"
 								onclick='complaint()'>送出</button>
 						</div>
+					</fieldset>	
+						
 					</div>
 
-					<div class="col-6">
+
+
+					<div class="col-6" style="margin-top:55px">
 						<div class="col-md-11 mb-4">
 							<h4 style="font-size: 120%; color: green;">截圖預覽:</h4>
 						</div>
@@ -124,7 +130,7 @@
 				</div>
 
 			</form>
-
+		
 
 
 			<script>
@@ -162,7 +168,7 @@
 	function complaintChk() {
 		let theComplaint = document.getElementById("complaintMessage").value;
 		if (theComplaint == "") {
-			document.getElementById("complaintSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>";
+			document.getElementById("complaintSp").innerHTML = "<n style='color:red;font-size: 120%'>不可空白</n><i class=\"fas fa-exclamation\"></i><i class=\"fas fa-exclamation\"></i>";
 		} else {
 			document.getElementById("complaintSp").innerHTML = "";
 		}
@@ -175,7 +181,7 @@
 	function complaint() {
 		let theComplaint = document.getElementById("complaintMessage").value;
 		if (theComplaint == "") {
-			document.getElementById("complaintSp").innerHTML = "<i class=\"fas fa-exclamation\"></i><n style='color:red;font-size: 120%'>	不可空白</n>"
+			document.getElementById("complaintSp").innerHTML = "<n style='color:red;font-size: 120%'>不可空白</n><i class=\"fas fa-exclamation\"></i><i class=\"fas fa-exclamation\"></i>"
 		} else
 			document.formCI.submit();
 
