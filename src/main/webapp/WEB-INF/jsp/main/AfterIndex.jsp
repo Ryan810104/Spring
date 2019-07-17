@@ -104,29 +104,20 @@
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img src="/resources/img/01.jpg" class="d-block w-100"
+							<img src="/resources/img/bg71701.png" class="d-block w-100"
 								style="height: 28rem" alt="...">
 							<div class="carousel-caption d-none d-md-block">
-								<h5>First slide label</h5>
-								<p>Nulla vitae elit libero, a pharetra augue mollis
-									interdum.</p>
+
 							</div>
 						</div>
 						<div class="carousel-item">
-							<img src="/resources/img/02.jpg" class="d-block w-100"
+							<img src="/resources/img/bg71703.PNG" class="d-block w-100"
 								style="height: 28rem" alt="...">
-							<div class="carousel-caption d-none d-md-block">
-								<h5>Second slide label</h5>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-							</div>
 						</div>
 						<div class="carousel-item">
-							<img src="/resources/img/03.jpg" class="d-block w-100"
+							<img src="/resources/img/bg71702.PNG" class="d-block w-100"
 								style="height: 28rem" alt="...">
 							<div class="carousel-caption d-none d-md-block">
-								<h5>Third slide label</h5>
-								<p>Praesent commodo cursus magna, vel scelerisque nisl
-									consectetur.</p>
 							</div>
 						</div>
 					</div>
