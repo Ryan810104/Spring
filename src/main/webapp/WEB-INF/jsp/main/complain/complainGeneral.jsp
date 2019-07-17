@@ -28,7 +28,7 @@
 					<h4 style="font-size: 120%; color: #FF44AA;" class="mb-3">親愛的會員</h4>
 					<input type="text" class="form-control-plaintext"
 						style="color: #0066FF; font-size: 120%;" id="memberId"
-						name="memberId" value="${sessionScope.member.memberId}" disabled>
+						name="memberId" value="${sessionScope.member.memberId}" readOnly>
 				</div>
 
 				<div class="row">
