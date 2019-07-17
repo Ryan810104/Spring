@@ -226,7 +226,7 @@ tbody td:hover {
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
-		<article class="content moe" style="margin-left:280px;">
+		<article class="content moe" style="margin-left:115px;">
 			<nav class="navbar navbar-light" style="background-color:#CCDDFF;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab"
