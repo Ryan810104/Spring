@@ -87,21 +87,32 @@
 			</div>
 		</form>
 
-		<!--遊戲獲勝率對比 -->
+			<div class="row">
+			<div class="col-sm-6">
+			<!--遊戲獲勝率對比 -->
 		<div id="sd5"
-			style="width: 900px; height: 600px; margin: 0 auto; display: none"></div>
+			style="width: 600px; height: 400px; margin: 0 auto; display: "></div>
 
 		<!-- 玩家贏得獎金排行 -->
 		<div id="sd4-1"
-			style="width: 900px; height: 600px; margin: 0 auto; display: none"></div>
-
-		<!--各玩家獲勝率百分比 -->
+			style="width: 600px; height: 400px; margin: 0 auto; display: "></div>
+		
+			</div>
+			<div class="col-sm-6">
+			<!--各玩家獲勝率百分比 -->
 		<div id="dd"
-			style="width: 900px; height: 600px; margin: 0 auto; display: none"></div>
+			style="width: 600px; height: 400px; margin: 0 auto; display: "></div>
 
 		<!-- 課長排名 -->
 		<div id="sd6"
-			style="width: 900px; height: 600px; margin: 0 auto; display: none"></div>
+			style="width: 600px; height: 400px; margin: 0 auto; display: "></div>
+			
+			</div>
+			</div>
+
+		
+
+		
 
 	<!-- 遊戲A輸贏趨勢 -->
 		<div id="tt" style="width: 900px; height: 600px; margin: 0 auto;"></div>
@@ -300,6 +311,7 @@
 // 							});
 		</script>
 		<script>
+		var json = {};
 			var xx = new Array();
 			var data1 = new Array();
 			$(document).ready(function() {
@@ -345,6 +357,7 @@
 		</script>
 
 		<script>
+		var json = {};
 			var xx1 = new Array();
 			var data2 = new Array();
 			$(document).ready(function() {
@@ -390,6 +403,7 @@
 		</script>
 		
 		<script>
+		var json = {};
 			var xx2 = new Array();
 			var data3 = new Array();
 			$(document).ready(function() {
@@ -460,8 +474,8 @@
 
 						var chart = {
 							renderTo : 'container',
-							type : 'cylinder',
-							// 							type : 'column',
+// 							type : 'cylinder',
+							type : 'column',
 							margin : 75,
 							options3d : {
 								enabled : true,

@@ -933,7 +933,14 @@ function talkfunction(id){
 					url : "/admin/memberBeans/playersummarymoney?chipMemberNum="+${sessionScope.member.memberNum},
 					type : "POST",
 					success : function(data) {
-							$("#QQ").html("餘額:"+"$"+data[1]);
+						console.log(JSON.stringify(data).length);
+//						$("#QQ").html("餘額:"+"$"+data[1]);
+					if(JSON.stringify(data).length == '2'){
+//							alert("a");
+						$("#QQ").html("餘額:"+"$"+0);
+					} else{
+						$("#QQ").html("餘額:"+"$"+data[1]);
+					}
 					}
 
 				});
