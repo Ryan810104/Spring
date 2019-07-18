@@ -294,36 +294,53 @@ public class MemberController {
 //						return res;
 //					}
 
-		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
-//				res.setData(chipService.save(chip).toString());
-		return res;
-	}
-//同時將一筆遊戲結果insert到chip&chiprecord兩個table
-	@RequestMapping("/insert3")
-	@ResponseBody
-	public AjaxResponse<String> insert3(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = "") String chipType,
-			@RequestParam(value = "win", defaultValue = "0") Integer win,
-			@RequestParam(value = "playRound", defaultValue = "0") Float playRound,
-			@RequestParam(value = "chipFirstName", defaultValue = "") String chipFirstName,
-			@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
-			@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
-			@RequestParam(value = "chipRecordFirstName", defaultValue = "") String chipRecordFirstName,
-			@RequestParam(value = "chipRecordNickName", defaultValue = "") String chipRecordNickName,
-			@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
-			@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
-			@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
-			@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipFirstName(chipFirstName);
-		chip.setChipNickName(chipNickName);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(playRound);
+			res.setType(AjaxResponseType.SUCCESS);
+			res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
+//					res.setData(chipService.save(chip).toString());
+			return res;
+		}
+	//同時將一筆遊戲結果insert到chip&chiprecord兩個table
+		@RequestMapping("/insert3")
+		@ResponseBody
+		public AjaxResponse<String> insert3(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+				@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+				@RequestParam(value = "chipType", defaultValue = "") String chipType,
+				@RequestParam(value = "win", defaultValue = "0") Integer win,
+				@RequestParam(value = "round", defaultValue = "0") Float round,
+				@RequestParam(value = "chipFirstName", defaultValue = "") String chipFirstName,
+				@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
+				@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
+				@RequestParam(value = "chipRecordFirstName", defaultValue = "") String chipRecordFirstName,
+				@RequestParam(value = "chipRecordNickName", defaultValue = "") String chipRecordNickName,
+				@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
+				@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
+				@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
+				@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
+			Chip chip = new Chip();
+			chip.setChipMemberNum(chipMemberNum);
+			chip.setChipFirstName(chipFirstName);
+			chip.setChipNickName(chipNickName);
+			chip.setChipBalanced(chipBalanced);
+			chip.setChipType(chipType);
+			chip.setWin(win);
+			chip.setRound(round);
+			
+			
+			ChipRecord chiprecord = new ChipRecord();
+			chiprecord.setChipRecordMemberNum(chipRecordMemberNum);
+			chiprecord.setChipRecordFirstName(chipRecordFirstName);
+			chiprecord.setChipRecordNickName(chipRecordNickName);
+			chiprecord.setChipRecordChip(chipRecordChip);
+			chiprecord.setChipRecordChipType(chipRecordChipType);
+			chiprecord.setChipRecordWin(chipRecordWin);
+			chiprecord.setChipRecordRound(chipRecordRound);
+			AjaxResponse<String> res = new AjaxResponse<>();
+			res.setType(AjaxResponseType.SUCCESS);
+			res.setData(chipService.save(chip).toString()+ chipRecordService.save(chiprecord).toString());
+			
+			return res;
+		}
+
 		
 		@RequestMapping("/refund")
 		@ResponseBody

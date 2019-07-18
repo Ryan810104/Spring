@@ -114,6 +114,13 @@ public class ComplaintController {
 //		System.out.println(CMBnum);
 		return service2.searchMessageByNum(CMBnum);
 	}
+	
+	@ResponseBody
+	@RequestMapping("/findSummary")
+	public List<Object> findSummary(Integer memberNum) {
+		return service.findSummaryByMemberNum(memberNum);
+		
+	}
 
 	@ResponseBody
 	@RequestMapping("/query1")

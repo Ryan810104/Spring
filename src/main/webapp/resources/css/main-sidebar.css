@@ -119,10 +119,10 @@ ul.dots li span {
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   border-radius: 30px; 
-  background-color: #FFF;
-  -webkit-box-shadow: 1px 1px 5px #808080;
+/*   background-color: #FFF; */
+/*   -webkit-box-shadow: 1px 1px 5px #808080; */
   -moz-box-shadow: 1px 1px 5px #808080;
-  box-shadow: 1px 1px 5px #808080;  
+/*   box-shadow: 1px 1px 5px #808080;   */
   padding: 10px;
   width: 30px;
   height: 30px;

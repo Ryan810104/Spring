@@ -3,10 +3,13 @@ package com.recreation.playground.web;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.recreation.playground.entity.Member;
 import com.recreation.playground.entity.Vip;
 import com.recreation.playground.service.VipService;
 
@@ -27,7 +31,9 @@ public class VipController {
 
 	@Autowired
 	private VipService vipservice;
-
+	
+	@PersistenceContext
+	EntityManager em;
 //	@RequestMapping("/list")
 //	public String listPage(Model model) {
 //		List<Vip> list = vipservice.getAll();
@@ -120,6 +126,16 @@ public class VipController {
 		vipservice.save(vip);
 		model.addAttribute("insert", vip);
 		return "/admin/index-vip";
+	}
+	
+	@Transactional
+	@ResponseBody
+	@RequestMapping("/getvipimage")
+	public String getvipimage(Integer membernum) {
+		Member mem = em.find(Member.class, membernum);
+		Vip memvip = vipservice.findByViplevel(mem.getMemberViplevel());
+		return memvip.getVippic();
+		
 	}
 
 }

@@ -14,13 +14,13 @@
 	</div>
 	<ul class="list-unstyled CTAs" style="margin-bottom: -2rem;">
 		<li style="text-align: center"><img
-			class="mx-auto rounded-circle" src="/resources/img/team/1.jpg" alt=""
+			class="mx-auto rounded-circle" src="/resources/img/team/admin.jpg" alt=""
 			style="max-width: 7rem;">
-			<button type="button" class="btn btn-info " style="margin: 1rem;">Username</button>
+			<button type="button" class="btn btn-info " style="margin: 1rem;">管理員</button>
 		</li>
 		<li></li>
-		<li><a class="" href="#" style="text-align: center">遊戲幣 : <b>500P</b></a>
-			<a class="" href="#" style="text-align: center">遊戲紀錄</a></li>
+<!-- 		<li><a class="" href="#" style="text-align: center">遊戲幣 : <b>500P</b></a> -->
+<!-- 			<a class="" href="#" style="text-align: center">遊戲紀錄</a></li> -->
 	</ul>
 
 	<ul class="list-unstyled components">
@@ -37,23 +37,23 @@
 <!-- 				<li><a href="#">Page 3</a></li> -->
 <!-- 			</ul></li> -->
 
-		<li><a href="http://localhost/admin/member/index"> <i class="far fa-comment-dots"></i>會員相關
-		</a></li>
+<!-- 		<li><a href="http://localhost/admin/member/index"> <i class="far fa-comment-dots"></i>會員相關 -->
+<!-- 		</a></li> -->
 		<li><a href="http://localhost/admin/vip/index"> <i class="fas fa-sort-numeric-down"></i>Vip
 		</a></li>
-		<li><a href="#"> <i class="fas fa-cart-arrow-down"></i>購物
+		<li><a href="/admin/toNews"> <i class="far fa-calendar-plus"></i>發布訊息
 		</a></li>
-		<li><a href="#"> <i class="fas fa-hand-holding-usd"></i>儲值
+		<li><a href="/admin/complaint"> <i class="fas fa-envelope-open-text"></i>處理投訴
 		</a></li>
-		<li><a href="#"> <i class="fas fa-question"></i>幫助
+		<li><a href="#"> <i class="fas fa-chart-area"></i>報表走勢
 		</a></li>
-		<li><a href="#"> <i class="fas fa-paper-plane"></i>聯絡我們
+		<li><a href="#"> <i class="fas fa-paper-plane"></i>其他功能
 		</a></li>
 	</ul>
 
 
 	<ul class="list-unstyled CTAs">
-		<li><a href="#" class="download" style="text-align: center">登出</a>
+		<li><a href="/admin/memberBeans/index" class="download" style="text-align: center">回到使用者介面</a>
 		</li>
 	</ul>
 
