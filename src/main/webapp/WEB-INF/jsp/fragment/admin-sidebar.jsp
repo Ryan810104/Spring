@@ -45,7 +45,7 @@
 		</a></li>
 		<li><a href="/admin/complaint"> <i class="fas fa-envelope-open-text"></i>處理投訴
 		</a></li>
-		<li><a href="#"> <i class="fas fa-chart-area"></i>報表走勢
+		<li><a href="/admin/memberBeans/adminlist"> <i class="fas fa-chart-area"></i>報表走勢
 		</a></li>
 		<li><a href="#"> <i class="fas fa-paper-plane"></i>其他功能
 		</a></li>

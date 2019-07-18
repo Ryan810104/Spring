@@ -13,31 +13,12 @@
 	crossorigin="anonymous">
 
 <link href="/resources/css/signin.css" rel="stylesheet">
+<link href="/resources/css/template.css" rel="stylesheet">
 
-<script>
-	document.addEventListener("DOMContentLoaded", function() {
-		document.getElementById("delete1").addEventListener("click", delete1);
-		// 		document.getElementById("update1").addEventListener("click", update2);
-		// 		document.getElementById("insert1").addEventListener("click", insert1);
-		// 		document.getElementById("find1").addEventListener("click", find1);
-	});
-	function delete1() {
-		document.form1.action = "/admin/chip/delete";
-		document.form1.submit();
-	}
-	function update2() {
-		document.form1.action = "/admin/chip/update";
-		document.form1.submit();
-	}
-	// 	function insert1() {
-	// 		document.form1.action = "/admin/member/insert";
-	// 		document.form1.submit();
-	// 	}
-	// 	function find1() {
-	// 		document.form1.action = "/admin/member/queryById";
-	// 		document.form1.submit();
-	// 	}
-</script>
+<!-- 禮包CSS -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
 
 </head>
 
@@ -410,8 +391,8 @@
 							 
 						
 							 <div style="text-align:center">
-							<button class="btn btn-success" type="button" id="sendout1"
-							 style="font-size: 20px;">購買</button>
+<!-- 							<button class="btn btn-success" type="button" id="sendout1" -->
+<!-- 							 style="font-size: 20px;">購買</button> -->
 							 </div>
 						
 	</form>	
@@ -503,8 +484,8 @@
 							 
 						
 							 <div style="text-align:center">
-							<button class="btn btn-success" type="button" id="sendout2"
-							 style="font-size: 20px;">購買</button>
+<!-- 							<button class="btn btn-success" type="button" id="sendout2" -->
+<!-- 							 style="font-size: 20px;">購買</button> -->
 							 </div>
 						
 						</form>	
@@ -598,8 +579,8 @@
 							 
 						
 							 <div style="text-align:center">
-							<button class="btn btn-success" type="button" id="sendout3"
-							 style="font-size: 20px;">購買</button>
+<!-- 							<button class="btn btn-success" type="button" id="sendout3" -->
+<!-- 							 style="font-size: 20px;">購買</button> -->
 							 </div>
 						
 						</form>	
@@ -609,7 +590,113 @@
 
 </div>
 
+<div class="container-fluid bg-gradient p-5">
+      <div class="row m-auto text-center w-75">
+        
+        <div class="col-4 princing-item red">
+          <div class="pricing-divider ">
+              <h3 class="text-light">超值禮包</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 2000 <span class="h5"></span></h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>10000</b>遊戲點數</li>
+              <li><b>初級</b>玩家身分</li>
+<!--               <li><b>Free </b>Email support</li> -->
+<!--               <li><b>Help center access</b></li> -->
+            </ul>
+           
+            
+            
+            
+            
+            <button type="button" class="btn btn-lg btn-block  btn-custom " id="sendout1">購買</button>
+          
+            
+            
+            
+          </div>
+        </div>
+       
 
+        
+        
+        <div class="col-4 princing-item blue">
+          <div class="pricing-divider ">
+              <h3 class="text-light">進階禮包</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 5000 <span class="h5"></span></h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>50000 </b>遊戲點數</li>
+              <li><b>進階</b> 玩家身分</li>
+<!--               <li><b>Free</b>Email support</li> -->
+<!--               <li><b>Help center access</b></li> -->
+            </ul>
+            <button type="button" class="btn btn-lg btn-block  btn-custom" id="sendout2">購買</button>
+          </div>
+        </div>
+               
+        
+  
+        
+        
+         
+        <div class="col-4 princing-item green">
+          <div class="pricing-divider ">
+              <h3 class="text-light">高級禮包</h3>
+            <h4 class="my-0 display-2 text-light font-weight-normal mb-3"><span class="h3">$</span> 10000 <span class="h5"></span></h4>
+             <svg class='pricing-divider-img' enable-background='new 0 0 300 100' height='100px' id='Layer_1' preserveAspectRatio='none' version='1.1' viewBox='0 0 300 100' width='300px' x='0px' xml:space='preserve' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg' y='0px'>
+          <path class='deco-layer deco-layer--1' d='M30.913,43.944c0,0,42.911-34.464,87.51-14.191c77.31,35.14,113.304-1.952,146.638-4.729
+	c48.654-4.056,69.94,16.218,69.94,16.218v54.396H30.913V43.944z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--2' d='M-35.667,44.628c0,0,42.91-34.463,87.51-14.191c77.31,35.141,113.304-1.952,146.639-4.729
+	c48.653-4.055,69.939,16.218,69.939,16.218v54.396H-35.667V44.628z' fill='#FFFFFF' opacity='0.6'></path>
+          <path class='deco-layer deco-layer--3' d='M43.415,98.342c0,0,48.283-68.927,109.133-68.927c65.886,0,97.983,67.914,97.983,67.914v3.716
+	H42.401L43.415,98.342z' fill='#FFFFFF' opacity='0.7'></path>
+          <path class='deco-layer deco-layer--4' d='M-34.667,62.998c0,0,56-45.667,120.316-27.839C167.484,57.842,197,41.332,232.286,30.428
+	c53.07-16.399,104.047,36.903,104.047,36.903l1.333,36.667l-372-2.954L-34.667,62.998z' fill='#FFFFFF'></path>
+        </svg>
+          </div>
+
+          <div class="card-body bg-white mt-0 shadow">
+            <ul class="list-unstyled mb-5 position-relative">
+              <li><b>150000</b> 遊戲點數</li>
+<!--               <li><b>50000</b> 贈送點數</li> -->
+              <li><b>最高</b> 玩家等級</li>
+<!--               <li><b>Help center access</b></li> -->
+            </ul>
+            <button type="button" class="btn btn-lg btn-block  btn-custom " id="sendout3">購買</button>
+          </div>
+        </div>
+               
+         
+        
+        
+        
+        
+      </div>
+    </div>
 
 		<script>
 			function topup() {
@@ -1151,8 +1238,8 @@
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-
-
+<!-- 禮包JS -->
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 
 
