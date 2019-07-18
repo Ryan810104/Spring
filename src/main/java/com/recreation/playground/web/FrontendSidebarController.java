@@ -102,6 +102,13 @@ public class FrontendSidebarController {
 	public String toFruit(Model model) {
 		return "/main/games/fruit";
 	}
+	
+	
+	//賭球房間
+	@RequestMapping("/blingroom")
+	public String togameRoom(Model model) {
+		return "/main/games/blingroom";
+	}
 
 	
 }

@@ -22,7 +22,48 @@
 	right: 0;
 	opacity: 0;
 }
+#myCanvas {
+		display: block;
+	}
+
+	#button1,#button2 {
+		font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+		position: absolute;
+		font-size: 0.5;
+		text-transform: uppercase;
+	
+		border-radius: 10px;
+		color: white;
+		text-shadow: -1px -1px 1px rgba(0,0,0,0.8);
+		border: 5px solid transparent;
+		border-bottom-color: rgba(0,0,0,0.35);
+		background: hsla(260, 100%, 50%, 1);
+		cursor: pointer;
+
+		animation: pulse 1s infinite alternate;
+		transition: background 0.4s, border 0.2s, margin 0.2s;
+	}
+	#button1:hover,#button2:hover {
+		background: hsla(220, 100%, 60%, 1);
+		margin-top: -1px;
+
+		animation: none;
+	}
+ #button1:hover, #button2:active {
+		border-bottom-width: 0;
+		margin-top: 5px;
+	}
+	@keyframes pulse {
+		0% {
+			margin-top: 0px;
+		}
+		100% {
+			margin-top: 6px; 
+		} 
+	}
 </style>
+
+
 
 
 
@@ -33,7 +74,7 @@
 </head>
 
 <body>
-
+ 
 <c:choose>
 		<c:when test="${open==0}">
 			<script>
@@ -42,6 +83,7 @@
 		</c:when>
 		
 	</c:choose>
+
 
 
 
@@ -58,7 +100,7 @@
 		</h1>
 
 		<hr>
-
+ 
 		<div style="margin-top: 200px; text-align: center">
 			<button style="align: center" data-toggle="modal"
 				data-target="#login">開創房間</button>
@@ -67,6 +109,7 @@
 			<button style="align: center"  id="show"   data-toggle="modal"  data-target="#open"
 				>現有房間列表</button>
 		</div>
+		
 
 
 		<div class="modal fade" id="login" tabindex="-1" role="dialog"
@@ -75,10 +118,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLongTitle">開設房間</h5>
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						
 					</div>
 					
 					
@@ -129,7 +169,7 @@
 							
 
 							<hr>
-							<button class="btn btn-lg btn-primary btn-block" type="submit">確認開設房間</button>
+							<input type="button" id="openroom"  value="確認開設房間"/>
 
 							<hr>
 				
@@ -140,6 +180,25 @@
 				</div>
 			</div>
 		</div>
+		
+		<script>
+		$("#openroom").click(function(){
+			if(confirm("確定要開設賭局"))
+			{
+				$("#gameblingForm").submit();
+				
+			}
+			else
+			{
+				location.href='/main/Gamebling';
+			}
+		});
+		
+			</script>
+			
+		
+		
+		
 
 
 
@@ -168,37 +227,14 @@
 									</tr>
 								</thead>
 								<tbody style="font-size: 120%" id="room"></tbody>
-							</table>
-					
-					
-					
-					
-					<div class="modal-body">
-	               
+							</table>					
+					<div class="modal-body">             
 					</div>
-					
-	
 				</div>
 			</div>
 		</div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 
@@ -238,11 +274,11 @@
 				success : function(data) {
 					var opt="";
 					for(i in data){
-						opt += "<tr><td>" + data[i]["gameRoomName"] + "</td>" + "<td>"
-						+ data[i]["memberId"] + "</td>" + "<td>"
-						+ data[i]["gameResult"] + "</td>" + "<td>"
-						+ data[i]["gameMoney"] + "</td>"+ "<td style='text-align:center;'>"
-						+ "<button  onclick=''>"+"進入房間"+"</button>"+ "</td><tr>";
+						opt += "<tr><td style='height:60px;width:100px'>" + data[i]["gameRoomName"] + "</td>" + "<td style='height:60px;width:100px'>"
+						+ data[i]["memberId"] + "</td>" + "<td style='height:60px;width:100px'>"
+						+ data[i]["gameResult"] + "</td>" + "<td style='height:60px;width:100px'>"
+						+ data[i]["gameMoney"] + "</td>"+ "<td style='height:60px;width:100px'>"
+						+ "<button id='button1'  onclick=go()>"+"進入房間"+"</button>"+"</td><tr>";
 					}
 					$("#room").append(opt);
 				}
@@ -251,18 +287,10 @@
 			
 		});
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		function go(){
+			
+			location.href='/save/addroom';
+		}
 		
 		//動畫部分的
 			var ml4 = {};
@@ -318,7 +346,6 @@
 				delay : 500
 			});
 		</script>
-
 	</article>
 	<jsp:include page="/WEB-INF/jsp/fragment/footer.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/jsp/fragment/chat-room.jsp"></jsp:include>

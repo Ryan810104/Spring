@@ -60,10 +60,26 @@ public String saveGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlin
 	
 	service1.SaveGameData(member);
 	model.addAttribute("open", "0");
-	
-	
-	return"/main/games/Gambling";
+	model.addAttribute("player1",member);
+	System.out.println("member = "+ member);
+	return"/main/games/blingroom";
 }
+
+
+@Transactional
+@RequestMapping("/addroom")
+public String joinGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, BindingResult result, Model model) {
+	
+	service1.SaveGameData(member);
+	model.addAttribute("open", "0");
+	model.addAttribute("player1",member);
+	System.out.println("member = "+ member);
+	return"/main/games/blingroom";
+}
+
+
+
+
 
 
 @ResponseBody

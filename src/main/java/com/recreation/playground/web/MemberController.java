@@ -47,6 +47,7 @@ import com.recreation.playground.dao.ChipRecordDao;
 import com.recreation.playground.dao.MoneyRecordDao;
 import com.recreation.playground.entity.Chip;
 import com.recreation.playground.entity.ChipRecord;
+import com.recreation.playground.entity.CustomerMessageBoardBean;
 import com.recreation.playground.entity.Member;
 import com.recreation.playground.entity.MoneyRecord;
 import com.recreation.playground.service.ChipRecordService;
@@ -163,135 +164,135 @@ public class MemberController {
 	//測試同時將兌換遊戲幣的資料insert到Moneyrecord&chip兩個table
 
 	
-	@RequestMapping("/index2")
-	public String index2(Model model) {
-		return "/test1/ClearTemplateIndex";
-	}
-	//將一筆遊戲結果insert到chip&chiprecord兩個table
-	@RequestMapping("/index3")
-	public String index3(Model model) {
-		return "/test1/ClearTemplateChipIndex";
-	}
+		@RequestMapping("/index2")
+		public String index2(Model model) {
+			return "/test1/ClearTemplateIndex";
+		}
+		//將一筆遊戲結果insert到chip&chiprecord兩個table
+		@RequestMapping("/index3")
+		public String index3(Model model) {
+			return "/test1/ClearTemplateChipIndex";
+		}
 
-	@RequestMapping("/list")
-	public String list(Model model) {
-		return "/test1/ClearTemplateList";
-	}
-	
-	@RequestMapping("/list0")
-	public String list0(Model model) {
-		return "/test1/member-list";
-	}
-	
-	@RequestMapping("/listtest")
-	public String listtest(Model model) {
-		return "/test1/ClearTemplateListwintimerank";
-	}
-	
-	@RequestMapping("/listtest1")
-	public String listtest1(Model model) {
-		return "/test1/NewFile";
-	}
-	@RequestMapping("/listtest2")
-	public String listtest2(Model model) {
-		return "/test1/member-list2";
-	}
-
-	@RequestMapping("/insert1")
-	@ResponseBody
-	public String insert1(
-			@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
-			@RequestParam(value = "moneyRecordFirstName", defaultValue = "") String moneyRecordFirstName,
-			@RequestParam(value = "moneyRecordNickName", defaultValue = "") String moneyRecordNickName,
-			@RequestParam(value = "moneyRecordCash", defaultValue = "0") Long moneyRecordCash,
-			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
-			@RequestParam(value = "moneyRecordType", defaultValue = "0") String moneyRecordType,
-			@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
-			@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
-			@RequestParam(value = "chipNickName", defaultValue = "0") String chipNickName,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = "0") String chipType,
-			@RequestParam(value = "time", defaultValue = "0") Float round,
-			@RequestParam(value = "win", defaultValue = "0") Integer win,HttpSession session) {
+		@RequestMapping("/list")
+		public String list(Model model) {
+			return "/test1/ClearTemplateList";
+		}
 		
-		session.setAttribute("moneyRecordCash", moneyRecordCash);
-		session.setAttribute("moneyRecordFirstName", moneyRecordFirstName);
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipFirstName(chipFirstName);
-		chip.setChipNickName(chipNickName);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(round);
-
-		MoneyRecord moneyRecord = new MoneyRecord();
-		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
-		moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
-		moneyRecord.setMoneyRecordNickName(moneyRecordNickName);
-		moneyRecord.setMoneyRecordCash(moneyRecordCash);;
-		moneyRecord.setMoneyRecordChip(moneyRecordChip);
-		moneyRecord.setMoneyRecordType(moneyRecordType);
-
-		moneyRecordService.insertMoney(moneyRecord);
-		chipService.save(chip);
-		return "/test1/aioCheckOut";
-	}
-//同時將兌換遊戲幣的資料insert到Moneyrecord&chip兩個table
-	@RequestMapping("/insert2")
-	@ResponseBody
-	public AjaxResponse<String> insert2(
-			@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
-			@RequestParam(value = "moneyRecordFirstName", defaultValue = "") String moneyRecordFirstName,
-			@RequestParam(value = "moneyRecordNickName", defaultValue = "") String moneyRecordNickName,
-			@RequestParam(value = "moneyRecordCash", defaultValue = "0") Long moneyRecordCash,
-			@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
-			@RequestParam(value = "moneyRecordType", defaultValue = " ") String moneyRecordType,
-			@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
-			@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
-			@RequestParam(value = "chipNickName", defaultValue = "0") String chipNickName,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = " ") String chipType,
-			@RequestParam(value = "time", defaultValue = "0") Float round,
-			@RequestParam(value = "win1", defaultValue = "0") Integer win,HttpSession session) {
-		System.out.println("moneyRecordMemberNum="+moneyRecordMemberNum);
-		System.out.println("moneyRecordFirstName="+moneyRecordFirstName);
-		System.out.println("moneyRecordNickName="+moneyRecordNickName);
-		System.out.println("moneyRecordPoint="+moneyRecordCash);
-		System.out.println("moneyRecordChip="+moneyRecordChip);
-		System.out.println("moneyRecordType="+moneyRecordType);
+		@RequestMapping("/list0")
+		public String list0(Model model) {
+			return "/test1/member-list";
+		}
 		
-		System.out.println("chipMemberNum="+chipMemberNum);
-		System.out.println("chipFirstName="+chipFirstName);
-		System.out.println("chipNickName="+chipNickName);
-		System.out.println("chipBalanced="+chipBalanced);
-		System.out.println("chipType="+chipType);
-		System.out.println("round="+round);
-		System.out.println("win="+win);
+		@RequestMapping("/listtest")
+		public String listtest(Model model) {
+			return "/test1/ClearTemplateListwintimerank";
+		}
 		
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipFirstName(chipFirstName);
-		chip.setChipNickName(chipNickName);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(round);
-		session.setAttribute("moneyRecordCash", moneyRecordCash);
-		session.setAttribute("moneyRecordType", moneyRecordType);
-		MoneyRecord moneyRecord = new MoneyRecord();
-		moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
-		moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
-		moneyRecord.setMoneyRecordNickName(moneyRecordNickName);
-		moneyRecord.setMoneyRecordCash(moneyRecordCash);
-		moneyRecord.setMoneyRecordChip(moneyRecordChip);
-		moneyRecord.setMoneyRecordType(moneyRecordType);
-		AjaxResponse<String> res = new AjaxResponse<>();
-//				if (result.hasErrors()) {
-//					res.setType(AjaxResponseType.ERROR);
-//					System.out.println(result.getAllErrors());
-//					return res;
-//				}
+		@RequestMapping("/listtest1")
+		public String listtest1(Model model) {
+			return "/test1/NewFile";
+		}
+		@RequestMapping("/listtest2")
+		public String listtest2(Model model) {
+			return "/test1/member-list2";
+		}
+
+		@RequestMapping("/insert1")
+		@ResponseBody
+		public String insert1(
+				@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
+				@RequestParam(value = "moneyRecordFirstName", defaultValue = "") String moneyRecordFirstName,
+				@RequestParam(value = "moneyRecordNickName", defaultValue = "") String moneyRecordNickName,
+				@RequestParam(value = "moneyRecordCash", defaultValue = "0") Long moneyRecordCash,
+				@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+				@RequestParam(value = "moneyRecordType", defaultValue = "0") String moneyRecordType,
+				@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+				@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
+				@RequestParam(value = "chipNickName", defaultValue = "0") String chipNickName,
+				@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+				@RequestParam(value = "chipType", defaultValue = "0") String chipType,
+				@RequestParam(value = "time", defaultValue = "0") Float round,
+				@RequestParam(value = "win", defaultValue = "0") Integer win,HttpSession session) {
+			
+			session.setAttribute("moneyRecordCash", moneyRecordCash);
+			session.setAttribute("moneyRecordFirstName", moneyRecordFirstName);
+			Chip chip = new Chip();
+			chip.setChipMemberNum(chipMemberNum);
+			chip.setChipFirstName(chipFirstName);
+			chip.setChipNickName(chipNickName);
+			chip.setChipBalanced(chipBalanced);
+			chip.setChipType(chipType);
+			chip.setWin(win);
+			chip.setRound(round);
+
+			MoneyRecord moneyRecord = new MoneyRecord();
+			moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+			moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
+			moneyRecord.setMoneyRecordNickName(moneyRecordNickName);
+			moneyRecord.setMoneyRecordCash(moneyRecordCash);;
+			moneyRecord.setMoneyRecordChip(moneyRecordChip);
+			moneyRecord.setMoneyRecordType(moneyRecordType);
+
+			moneyRecordService.insertMoney(moneyRecord);
+			chipService.save(chip);
+			return "/test1/aioCheckOut";
+		}
+	//同時將兌換遊戲幣的資料insert到Moneyrecord&chip兩個table
+		@RequestMapping("/insert2")
+		@ResponseBody
+		public AjaxResponse<String> insert2(
+				@RequestParam(value = "moneyRecordMemberNum", defaultValue = "0") Integer moneyRecordMemberNum,
+				@RequestParam(value = "moneyRecordFirstName", defaultValue = "") String moneyRecordFirstName,
+				@RequestParam(value = "moneyRecordNickName", defaultValue = "") String moneyRecordNickName,
+				@RequestParam(value = "moneyRecordCash", defaultValue = "0") Long moneyRecordCash,
+				@RequestParam(value = "moneyRecordChip", defaultValue = "0") Long moneyRecordChip,
+				@RequestParam(value = "moneyRecordType", defaultValue = " ") String moneyRecordType,
+				@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,
+				@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
+				@RequestParam(value = "chipNickName", defaultValue = "0") String chipNickName,
+				@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+				@RequestParam(value = "chipType", defaultValue = " ") String chipType,
+				@RequestParam(value = "time", defaultValue = "0") Float round,
+				@RequestParam(value = "win", defaultValue = "0") Integer win,HttpSession session) {
+			System.out.println("moneyRecordMemberNum="+moneyRecordMemberNum);
+			System.out.println("moneyRecordFirstName="+moneyRecordFirstName);
+			System.out.println("moneyRecordNickName="+moneyRecordNickName);
+			System.out.println("moneyRecordPoint="+moneyRecordCash);
+			System.out.println("moneyRecordChip="+moneyRecordChip);
+			System.out.println("moneyRecordType="+moneyRecordType);
+			
+			System.out.println("chipMemberNum="+chipMemberNum);
+			System.out.println("chipFirstName="+chipFirstName);
+			System.out.println("chipNickName="+chipNickName);
+			System.out.println("chipBalanced="+chipBalanced);
+			System.out.println("chipType="+chipType);
+			System.out.println("round="+round);
+			System.out.println("win="+win);
+			
+			Chip chip = new Chip();
+			chip.setChipMemberNum(chipMemberNum);
+			chip.setChipFirstName(chipFirstName);
+			chip.setChipNickName(chipNickName);
+			chip.setChipBalanced(chipBalanced);
+			chip.setChipType(chipType);
+			chip.setWin(win);
+			chip.setRound(round);
+			session.setAttribute("moneyRecordCash", moneyRecordCash);
+			session.setAttribute("moneyRecordType", moneyRecordType);
+			MoneyRecord moneyRecord = new MoneyRecord();
+			moneyRecord.setMoneyRecordMemberNum(moneyRecordMemberNum);
+			moneyRecord.setMoneyRecordFirstName(moneyRecordFirstName);
+			moneyRecord.setMoneyRecordNickName(moneyRecordNickName);
+			moneyRecord.setMoneyRecordCash(moneyRecordCash);
+			moneyRecord.setMoneyRecordChip(moneyRecordChip);
+			moneyRecord.setMoneyRecordType(moneyRecordType);
+			AjaxResponse<String> res = new AjaxResponse<>();
+//					if (result.hasErrors()) {
+//						res.setType(AjaxResponseType.ERROR);
+//						System.out.println(result.getAllErrors());
+//						return res;
+//					}
 
 		res.setType(AjaxResponseType.SUCCESS);
 		res.setData(moneyRecordService.insertMoney(moneyRecord).toString() + chipService.save(chip).toString());
@@ -305,7 +306,7 @@ public class MemberController {
 			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
 			@RequestParam(value = "chipType", defaultValue = "") String chipType,
 			@RequestParam(value = "win", defaultValue = "0") Integer win,
-			@RequestParam(value = "round", defaultValue = "0") Float round,
+			@RequestParam(value = "playRound", defaultValue = "0") Float playRound,
 			@RequestParam(value = "chipFirstName", defaultValue = "") String chipFirstName,
 			@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
 			@RequestParam(value = "chipRecordMemberNum", defaultValue = "0") Integer chipRecordMemberNum,
@@ -322,166 +323,150 @@ public class MemberController {
 		chip.setChipBalanced(chipBalanced);
 		chip.setChipType(chipType);
 		chip.setWin(win);
-		chip.setRound(round);
+		chip.setRound(playRound);
+		
+		@RequestMapping("/refund")
+		@ResponseBody
+		public AjaxResponse<String> refund(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
+				@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
+				@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
+				@RequestParam(value = "chipType", defaultValue = " ") String chipType,
+				@RequestParam(value = "time", defaultValue = "0") Float round,
+				@RequestParam(value = "win", defaultValue = "0") Integer win){
+			Chip chip = new Chip();
+			chip.setChipMemberNum(chipMemberNum);
+			chip.setChipFirstName(chipFirstName);
+			chip.setChipNickName(chipNickName);
+			chip.setChipBalanced(chipBalanced);
+			chip.setChipType(chipType);
+			chip.setWin(win);
+			chip.setRound(round);
+			AjaxResponse<String> res = new AjaxResponse<>();
+			res.setType(AjaxResponseType.SUCCESS);
+			res.setData(chipService.save(chip).toString());
+			
+			return res;
+			
+		}
 		
 		
-		ChipRecord chiprecord = new ChipRecord();
-		chiprecord.setChipRecordMemberNum(chipRecordMemberNum);
-		chiprecord.setChipRecordFirstName(chipRecordFirstName);
-		chiprecord.setChipRecordNickName(chipRecordNickName);
-		chiprecord.setChipRecordChip(chipRecordChip);
-		chiprecord.setChipRecordChipType(chipRecordChipType);
-		chiprecord.setChipRecordWin(chipRecordWin);
-		chiprecord.setChipRecordRound(chipRecordRound);
-		AjaxResponse<String> res = new AjaxResponse<>();
-		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(chipService.save(chip).toString()+ chipRecordService.save(chiprecord).toString());
 		
-		return res;
-	}
-	
-	@RequestMapping("/refund")
-	@ResponseBody
-	public AjaxResponse<String> refund(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
-			@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
-			@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-			@RequestParam(value = "chipType", defaultValue = " ") String chipType,
-			@RequestParam(value = "time", defaultValue = "0") Float round,
-			@RequestParam(value = "win", defaultValue = "0") Integer win){
-		Chip chip = new Chip();
-		chip.setChipMemberNum(chipMemberNum);
-		chip.setChipFirstName(chipFirstName);
-		chip.setChipNickName(chipNickName);
-		chip.setChipBalanced(chipBalanced);
-		chip.setChipType(chipType);
-		chip.setWin(win);
-		chip.setRound(round);
-		AjaxResponse<String> res = new AjaxResponse<>();
-		res.setType(AjaxResponseType.SUCCESS);
-		res.setData(chipService.save(chip).toString());
 		
-		return res;
+		@PostMapping("/query")
+		@ResponseBody // 轉JSON
+		public List<MoneyRecord> query(Integer moneyRecordNum) {
+			System.out.println(moneyRecordNum);
+			return moneyRecordService.getAll();
+		}
+
+		@RequestMapping("/top3cash")
+		@ResponseBody
+		public List<Object> top3() {
+//			s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//			String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+//			System.out.println(moneyRecordService.findBestSeller());
+			return moneyRecordService.findBestSeller();
+		}
+
+		@RequestMapping("/top4cash")
+		@ResponseBody
+		public List<Object[]> top4() {
+//			s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//			String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+			System.out.println(moneyRecordService.findBestSeller1());
+			return moneyRecordService.findBestSeller1();
+		}
+
 		
-	}
-	
-	
-	
-	
-	@PostMapping("/query")
-	@ResponseBody // 轉JSON
-	public List<MoneyRecord> query(Integer moneyRecordNum) {
-		System.out.println(moneyRecordNum);
-		return moneyRecordService.getAll();
-	}
+		
+		//遊戲至今玩家勝利次數排行榜
+		@RequestMapping("/topwinner")
+		@ResponseBody
+		public List<Object> topwinner() {
+//			s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
+//			String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
+//			System.out.println(chipDao.findTheBestWinner());
+			return chipDao.findTheBestWinner();
+		}
+		
 
-	@RequestMapping("/top3cash")
-	@ResponseBody
-	public List<Object> top3() {
-//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
-//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
-//		System.out.println(moneyRecordService.findBestSeller());
-		return moneyRecordService.findBestSeller();
-	}
+		//累積金額排行榜
+		@RequestMapping("/therichest")
+		@ResponseBody
+		public List<Object> therichest(){
+			System.out.println(chipDao.findTheRichest());
+			return chipDao.findTheRichest();
+		}
+		
+		//遊戲A的遊玩次數排行
+		@RequestMapping("/gamea")
+		@ResponseBody
+		public List<Object> gamea(){
+			return chipDao.findTheGameAMostWin();
+		}
+		
 
-	@RequestMapping("/top4cash")
-	@ResponseBody
-	public List<Object[]> top4() {
-//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
-//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
-		System.out.println(moneyRecordService.findBestSeller1());
-		return moneyRecordService.findBestSeller1();
-	}
-
-	
-	
-	//遊戲至今玩家勝利次數排行榜
-	@RequestMapping("/topwinner")
-	@ResponseBody
-	public List<Object> topwinner() {
-//		s.replaceAll( "[\\pP+~$`^=|<>～｀＄＾＋＝｜＜＞￥×]" , ""); 
-//		String a=moneyRecordService.findBestSeller().toString().replaceAll(",", " ");
-//		System.out.println(chipDao.findTheBestWinner());
-		return chipDao.findTheBestWinner();
-	}
-	
-
-	//累積金額排行榜
-	@RequestMapping("/therichest")
-	@ResponseBody
-	public List<Object> therichest(){
-		System.out.println(chipDao.findTheRichest());
-		return chipDao.findTheRichest();
-	}
-	
-	//遊戲A的遊玩次數排行
-	@RequestMapping("/gamea")
-	@ResponseBody
-	public List<Object> gamea(){
-		return chipDao.findTheGameAMostWin();
-	}
-	
-
-	//遊戲B的遊玩次數排行
-	@RequestMapping("/gameb")
-	@ResponseBody
-	public List<Object> gameb(){
-		return chipDao.findTheGameBMostWin();
-	}
-	//遊戲C的遊玩次數排行
-	@RequestMapping("/gamec")
-	@ResponseBody
-	public List<Object> gamec(){
-		return chipDao.findTheGameCMostWin();
-	}
-	//玩家贏錢排行榜
-	@RequestMapping("/mostbouns")
-	@ResponseBody
-	public List<Object> mostbonus(){
-		return chipDao.findTheMostBonus();
-	}
-	//玩家勝場數
-	@RequestMapping("/totalwin")
-	@ResponseBody
-	public List<Object> totalwin(){
-		return chipDao.findTotalWin();
-	}
-	
-	//各遊戲獲勝率
-	@RequestMapping("/winrate")
-	@ResponseBody
-	public List<Object>winrate(){
-		return chipDao.findTheGameWinRate();
-	}
-	//抓玩家總金額即時更新
-	@RequestMapping("/playersummarymoney")
-	@ResponseBody
-	public Object findPlayerSummary(Integer chipMemberNum) {
-		return chipDao.findPlayerSummary(chipMemberNum);
-	}
-	
-	
-	//遊戲A玩家輸贏金額趨勢
-	@RequestMapping("/gameatrend")
-	@ResponseBody
-	public List<Object> findgameatrend() {
-		return chipRecordDao.findgameatrend();
-	}
-	
-	
-	//遊戲B玩家輸贏金額趨勢
-	@RequestMapping("/gamebtrend")
-	@ResponseBody
-	public List<Object> findgamebtrend() {
-		return chipRecordDao.findgamebtrend();
-	}
-	
-	
-	//遊戲C玩家輸贏金額趨勢
-	@RequestMapping("/gamectrend")
-	@ResponseBody
-	public List<Object> findgamectrend() {
-		return chipRecordDao.findgamectrend();
-	}
+		//遊戲B的遊玩次數排行
+		@RequestMapping("/gameb")
+		@ResponseBody
+		public List<Object> gameb(){
+			return chipDao.findTheGameBMostWin();
+		}
+		//遊戲C的遊玩次數排行
+		@RequestMapping("/gamec")
+		@ResponseBody
+		public List<Object> gamec(){
+			return chipDao.findTheGameCMostWin();
+		}
+		//玩家贏錢排行榜
+		@RequestMapping("/mostbouns")
+		@ResponseBody
+		public List<Object> mostbonus(){
+			return chipDao.findTheMostBonus();
+		}
+		//玩家勝場數
+		@RequestMapping("/totalwin")
+		@ResponseBody
+		public List<Object> totalwin(){
+			return chipDao.findTotalWin();
+		}
+		
+		//各遊戲獲勝率
+		@RequestMapping("/winrate")
+		@ResponseBody
+		public List<Object>winrate(){
+			return chipDao.findTheGameWinRate();
+		}
+		//抓玩家總金額即時更新
+		@RequestMapping("/playersummarymoney")
+		@ResponseBody
+		public Object findPlayerSummary(Integer chipMemberNum) {
+			return chipDao.findPlayerSummary(chipMemberNum);
+		}
+		
+		
+		//遊戲A玩家輸贏金額趨勢
+		@RequestMapping("/gameatrend")
+		@ResponseBody
+		public List<Object> findgameatrend() {
+			return chipRecordDao.findgameatrend();
+		}
+		
+		
+		//遊戲B玩家輸贏金額趨勢
+		@RequestMapping("/gamebtrend")
+		@ResponseBody
+		public List<Object> findgamebtrend() {
+			return chipRecordDao.findgamebtrend();
+		}
+		
+		
+		//遊戲C玩家輸贏金額趨勢
+		@RequestMapping("/gamectrend")
+		@ResponseBody
+		public List<Object> findgamectrend() {
+			return chipRecordDao.findgamectrend();
+		}
 	
 	@RequestMapping("/update")
 	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
@@ -882,5 +867,13 @@ public class MemberController {
 		service.update(mb);
 		return "/main/complain/complainAdmin";
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/findNumById")
+	public Member findNumById(String memberId) {		
+		return service.findNumById(memberId);		
+	}
+	
 
 }
