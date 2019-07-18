@@ -28,7 +28,7 @@
 					<h4 style="font-size: 120%; color: #FF44AA;" class="mb-3">親愛的會員</h4>
 					<input type="text" class="form-control-plaintext"
 						style="color: #0066FF; font-size: 120%;" id="memberId"
-						name="memberId" value="${sessionScope.member.memberId}" readOnly>
+						name="memberId" value="${sessionScope.member.memberId}" disabled>
 				</div>
 
 				<div class="row">
@@ -183,6 +183,7 @@
 		if (theComplaint == "") {
 			document.getElementById("complaintSp").innerHTML = "<n style='color:red;font-size: 120%'>不可空白</n><i class=\"fas fa-exclamation\"></i><i class=\"fas fa-exclamation\"></i>"
 		} else
+			$("#memberId").prop("disabled",false);
 			document.formCI.submit();
 
 	}
