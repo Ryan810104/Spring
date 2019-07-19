@@ -31,21 +31,25 @@
 				<!-- 					<nav class="navbar navbar-light" style="background-color: #e3f2fd;"> -->
 				<!-- 				OO -->
 				<!-- 				<a href="/admin/vip/test2">sdsds</a> -->
-				<span class="navbar-brand-center mb-5 h1" style="background-color:#7386D5; width:1300px;">
-				<div class="row">
-				<div class="col-4"></div>
-				<div class="col-4 text-center"><h3 class=" mb-3 font-italic border-bottom">遊戲趨勢報表</h3></div>
-				<div class="col-4"></div>
-				</div>
-				
-      
-      
+				<span class="navbar-brand-center mb-5 h1"
+					style="background-color: #7386D5; width: 1300px;">
+					<div class="row">
+						<div class="col-4"></div>
+						<div class="col-4 text-center">
+							<h3 class=" mb-3 font-italic border-bottom">遊戲趨勢報表</h3>
+						</div>
+						<div class="col-4"></div>
+					</div>
+
+
+
 				</span>
-				
+
 			</nav>
 
 
-			<article class="content moe" style="width:1200px;background-color: #e0e0e0;">
+			<article class="content moe"
+				style="width: 1200px; background-color: #e0e0e0;">
 				<!-- 				<div class="container" style="width: 1400px;"> -->
 				<div class="row">
 					<div class="col-sm-4">
@@ -82,7 +86,11 @@
 		</div>
 		<!-- End of wrapper -->
 	</div>
+	
+	
+
 	<script>
+		
 		var json = {};
 		var xx = new Array();
 		var data1 = new Array();
@@ -100,7 +108,10 @@
 					// 						alert(data1);
 
 					var chart = {
-						type : 'area'
+						type : 'area',
+						style : {
+							fontFamily : '微軟正黑體'
+						}
 					};
 					var title = {
 						text : 'A遊戲走勢圖'
@@ -145,7 +156,10 @@
 					// 						alert(data2);
 
 					var chart = {
-						type : 'area'
+						type : 'area',
+						style : {
+							fontFamily : '微軟正黑體'
+						}
 					};
 					var title = {
 						text : 'B遊戲走勢圖'
@@ -193,7 +207,10 @@
 						type : 'area'
 					};
 					var title = {
-						text : 'C遊戲走勢圖'
+						text : 'C遊戲走勢圖',
+						style : {
+							fontFamily : '微軟正黑體'
+						}
 					};
 					var xAxis = {
 						categories : xx2
