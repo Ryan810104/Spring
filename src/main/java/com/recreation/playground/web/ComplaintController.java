@@ -54,7 +54,57 @@ public class ComplaintController {
 		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
-		if(service.findBycmbNum(cp.getCmbNum())!=null) {
+		if((cp.getCmbNum())==null) {
+			service.fileComplaints(cp);
+
+			Complaint cpp = em.find(Complaint.class, cp.getComplaintNum());
+			byte[] bytes = imageFile.getBytes();
+			// 當前伺服器絕對路徑
+			String serverPath = new File(".").getCanonicalPath();
+			// 目標資料夾絕對路徑
+			String folderPath = serverPath + "\\src\\main\\webapp\\resources\\complaintPhoto\\";
+			File directory = new File(folderPath);
+			// 偵測目標資料夾是否存在，不存在則建立資料夾
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
+			String fileName = imageFile.getOriginalFilename();
+			String imagePathString = folderPath + fileName;
+			String dataBasePath = "";
+			if (null == fileName || fileName.length() == 0) {
+				dataBasePath = null;
+			} else {
+				dataBasePath = "\\resources\\complaintPhoto\\" + fileName;
+			}
+			if (bytes != null) {
+				Path imagePath = Paths.get(imagePathString);
+//				System.out.println("serverPath=" + serverPath);
+//				System.out.println("folderPath=" + folderPath);
+//				System.out.println("imagePath=" + imagePath);
+//				System.out.println("dataBasePath=" + dataBasePath);	
+
+				try {
+					Files.write(imagePath, bytes);
+
+				} catch (AccessDeniedException e) {
+					System.out.println("File Access Denied");
+				}
+
+			} else {
+				System.out.println("File Not Found");
+			}
+
+			cpp.setComplaintPicURL(dataBasePath);
+			em.persist(cpp);
+
+			redirectAttributes.addFlashAttribute("insertComplaint", "1");
+			return "redirect:/main/index";
+			
+			
+			
+			
+			
+		}else if(service.findBycmbNum(cp.getCmbNum())!=null) {
 			redirectAttributes.addFlashAttribute("insertCmbNum", "1");
 			return "redirect:/main/index";
 			

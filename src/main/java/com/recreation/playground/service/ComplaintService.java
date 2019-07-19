@@ -59,6 +59,7 @@ public class ComplaintService {
 		return dao.findByComplaintNum(num);
 	}
 	public Complaint findBycmbNum(int num) {
+		
 		return dao.findByCmbNum(num);
 	}
 	

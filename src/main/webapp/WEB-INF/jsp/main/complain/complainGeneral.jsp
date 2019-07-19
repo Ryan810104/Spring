@@ -189,12 +189,13 @@
 
 	function complaint() {
 		let theComplaint = document.getElementById("complaintMessage").value;
+		
 		if (theComplaint == "") {
 			document.getElementById("complaintSp").innerHTML = "<n style='color:red;font-size: 120%'>不可空白</n><i class=\"fas fa-exclamation\"></i><i class=\"fas fa-exclamation\"></i>"
-		} else
+		} else {
 			$("#memberId").prop("disabled",false);
 			document.formCI.submit();
-
+		}
 	}
 </script>
 </html>
