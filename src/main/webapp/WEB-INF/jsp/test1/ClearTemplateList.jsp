@@ -69,23 +69,23 @@
 		<h1>排行榜</h1>
 
 
-		<!-- 選擇所要的圖表 -->
-		<form class="form-signin" name="form1" id="form1">
-			<div class="form-group row">
-				<div class="col-sm-11">
-					<div class="btn-group">
-						<button class="btn btn-lg btn-primary" type="button"
-							onclick="getwinrate();">遊戲獲勝比率</button>
-						<button class="btn btn-lg btn-primary" type="button"
-							onclick="getbonusrank();">獲勝獎金排名</button>
-						<button class="btn btn-lg btn-primary" type="button"
-							onclick="getplayerwinrate();">玩家獲勝率排名</button>
-						<button class="btn btn-lg btn-primary" type="button"
-							onclick="getchargerank();">(課長)充值排名</button>
-					</div>
-				</div>
-			</div>
-		</form>
+	<!-- 選擇所要的圖表 --> 
+<!-- 		<form class="form-signin" name="form1" id="form1"> -->
+<!-- 			<div class="form-group row"> -->
+<!-- 				<div class="col-sm-11"> -->
+<!-- 					<div class="btn-group"> -->
+<!-- 						<button class="btn btn-lg btn-primary" type="button" -->
+<!-- 							onclick="getwinrate();">遊戲獲勝比率</button> -->
+<!-- 						<button class="btn btn-lg btn-primary" type="button" -->
+<!-- 							onclick="getbonusrank();">獲勝獎金排名</button> -->
+<!-- 						<button class="btn btn-lg btn-primary" type="button" -->
+<!-- 							onclick="getplayerwinrate();">玩家獲勝率排名</button> -->
+<!-- 						<button class="btn btn-lg btn-primary" type="button" -->
+<!-- 							onclick="getchargerank();">(課長)充值排名</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</form> -->
 
 			<div class="row">
 			<div class="col-sm-6">
@@ -114,12 +114,12 @@
 
 		
 
-	<!-- 遊戲A輸贏趨勢 -->
-		<div id="tt" style="width: 900px; height: 600px; margin: 0 auto;"></div>
+	<!-- 遊戲A輸贏趨勢 --> 
+<!-- 		<div id="tt" style="width: 900px; height: 600px; margin: 0 auto;"></div> -->
 	<!-- 遊戲B輸贏趨勢 -->
-		<div id="cc" style="width: 900px; height: 600px; margin: 0 auto;"></div>
-	<!--遊戲C輸贏趨勢 -->
-		<div id="ee" style="width: 900px; height: 600px; margin: 0 auto;"></div>
+<!-- 		<div id="cc" style="width: 900px; height: 600px; margin: 0 auto;"></div> -->
+<!--遊戲C輸贏趨勢 --> 
+<!-- 		<div id="ee" style="width: 900px; height: 600px; margin: 0 auto;"></div> -->
 
 
 <!-- 		Echarts-遊戲a輸贏趨勢  -->
@@ -331,7 +331,10 @@
 							type : 'area'
 						};
 						var title = {
-							text : 'A遊戲走勢圖'
+							text : 'A遊戲走勢圖',
+							style : {
+								fontFamily : '微軟正黑體'
+							}
 						};
 						var xAxis = {
 							categories : xx
@@ -377,7 +380,10 @@
 							type : 'area'
 						};
 						var title = {
-							text : 'B遊戲走勢圖'
+							text : 'B遊戲走勢圖',
+							style : {
+								fontFamily : '微軟正黑體'
+							}
 						};
 						var xAxis = {
 							categories : xx1
@@ -423,7 +429,10 @@
 							type : 'area'
 						};
 						var title = {
-							text : 'C遊戲走勢圖'
+							text : 'C遊戲走勢圖',
+							style : {
+								fontFamily : '微軟正黑體'
+							}
 						};
 						var xAxis = {
 							categories : xx2
@@ -476,6 +485,9 @@
 							renderTo : 'container',
 // 							type : 'cylinder',
 							type : 'column',
+							style : {
+								fontFamily : '微軟正黑體'
+							},
 							margin : 75,
 							options3d : {
 								enabled : true,
@@ -564,6 +576,9 @@
 							// 							type : 'cylinder',
 							type : 'column',
 							margin : 75,
+							style : {
+								fontFamily : '微軟正黑體'
+							},
 							options3d : {
 								enabled : true,
 								alpha : 10,
@@ -648,6 +663,9 @@
 							// 							type : 'cylinder',
 							type : 'column',
 							margin : 75,
+							style : {
+								fontFamily : '微軟正黑體'
+							},
 							options3d : {
 								enabled : true,
 								alpha : 10,
@@ -779,10 +797,7 @@
 									.append(
 											"<thead><tr><th>chipMemberNum</th><th>chipType</th><th>total_win</th><tr></thead>");
 							str1 += "<tbody>";
-							$
-									.each(
-											data,
-											function(key, value) {
+							$.each(data,function(key, value) {
 												str1 += "<tr>";
 												for (i in value) {
 													str1 += "<td>" + value[i]
@@ -829,6 +844,9 @@
 
 												var chart = {
 													type : 'pie',
+													style : {
+														fontFamily : '微軟正黑體'
+													},
 													options3d : {
 														enabled : true,
 														alpha : 45,
@@ -991,10 +1009,7 @@
 									.append(
 											"<thead><tr><th>chipMemberNum</th><th>TotalBouns</th><th>win</th><tr></thead>");
 							str2 += "<tbody>";
-							$
-									.each(
-											data,
-											function(key, value) {
+							$.each(data,function(key, value) {
 												str2 += "<tr>";
 												for (i in value) {
 													str2 += "<td>" + value[i]
