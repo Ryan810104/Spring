@@ -33,6 +33,7 @@ public class CustomerMessageBoardController {
 	public String openindex(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
 		model.addAttribute("AtricleNum", "文章編號:"+bean.getCustomermessageboardNum()+"	(勿更改以利查證)");
+		model.addAttribute("AtricleNumNum",bean.getCustomermessageboardNum());
 		model.addAttribute("Violater",bean.getCustomermessageboardMemberid());
 //		System.out.println(bean.getCustomermessageboardNum());
 //		System.out.println(bean.getCustomermessageboardMemberid());

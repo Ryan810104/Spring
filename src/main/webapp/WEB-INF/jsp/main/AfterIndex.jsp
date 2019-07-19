@@ -115,6 +115,15 @@
 			</script>
 		</c:when>
 	</c:choose>
+	
+	<c:choose>
+		<c:when test="${insertCmbNum==1}">
+			<script>
+				alert("已有人投訴此文章");
+			</script>
+		</c:when>
+	</c:choose>
+	
 	<!--NavBar-->
 
 	<!--     <div class="wrapper" > -->

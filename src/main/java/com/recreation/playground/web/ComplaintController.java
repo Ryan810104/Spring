@@ -45,6 +45,7 @@ public class ComplaintController {
 	@PersistenceContext
 	EntityManager em;
 
+	
 	@RequestMapping("/insertComplaint")
 	@Transactional
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model,
@@ -53,6 +54,11 @@ public class ComplaintController {
 		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
+		if(service.findBycmbNum(cp.getCmbNum())!=null) {
+			redirectAttributes.addFlashAttribute("insertCmbNum", "1");
+			return "redirect:/main/index";
+			
+		}else {	
 		service.fileComplaints(cp);
 
 		Complaint cpp = em.find(Complaint.class, cp.getComplaintNum());
@@ -97,7 +103,9 @@ public class ComplaintController {
 
 		redirectAttributes.addFlashAttribute("insertComplaint", "1");
 		return "redirect:/main/index";
-
+		
+		}
+		
 	}
 
 	@ResponseBody

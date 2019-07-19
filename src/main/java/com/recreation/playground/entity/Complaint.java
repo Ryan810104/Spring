@@ -42,7 +42,8 @@ public class Complaint {
 	@Column
 	private String complaintResponse ;
 	@Column
-	private String complaintPicURL;
-	
+	private String complaintPicURL;	
+	@Column
+	private Integer cmbNum ;
 
 }
