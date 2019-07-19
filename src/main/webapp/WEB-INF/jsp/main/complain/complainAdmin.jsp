@@ -74,7 +74,8 @@ tbody td:hover {
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+				+ data[i]["memberId"] + "</td>" + "<td>"		
+				+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
 			}
@@ -118,7 +119,8 @@ tbody td:hover {
 		var opt = "";
 		for (i in data) {	
 			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-					+ data[i]["complaintMessage"] + "</td>" + "<td>"
+			+ data[i]["memberId"] + "</td>" + "<td>"		
+			+ data[i]["complaintMessage"] + "</td>" + "<td>"
 					+ data[i]["complaintResponse"] + "</td>" + "<td>"
 					+ data[i]["complaintResponsetime"] + "</td><tr>";
 		}
@@ -162,7 +164,8 @@ tbody td:hover {
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+				+ data[i]["memberId"] + "</td>" + "<td>"		
+				+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
 			}
@@ -206,7 +209,8 @@ tbody td:hover {
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
-						+ data[i]["complaintMessage"] + "</td>" + "<td>"
+				+ data[i]["memberId"] + "</td>" + "<td>"		
+				+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
 			}
@@ -285,6 +289,7 @@ tbody td:hover {
 									</tr>
 									<tr>
 										<th>編號</th>
+										<th>會員ID</th>
 										<th>投訴內容</th>
 										<th>回覆內容</th>
 										<th>回覆時間</th>
@@ -329,6 +334,7 @@ tbody td:hover {
 									</tr>
 									<tr>
 										<th>編號</th>
+										<th>會員ID</th>
 										<th>投訴內容</th>
 										<th>回覆內容</th>
 										<th>回覆時間</th>
@@ -372,6 +378,7 @@ tbody td:hover {
 									</tr>
 									<tr>
 										<th>編號</th>
+										<th>會員ID</th>
 										<th>投訴內容</th>
 										<th>回覆內容</th>
 										<th>回覆時間</th>
@@ -414,6 +421,7 @@ tbody td:hover {
 									</tr>
 									<tr>
 										<th>編號</th>
+										<th>會員ID</th>
 										<th>投訴內容</th>
 										<th>回覆內容</th>
 										<th>回覆時間</th>
@@ -695,11 +703,11 @@ function searchViolator(){
 
 									<div class="col-md-13 mb-4"
 										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
-										調整前餘額: <span style="color:	#33FF33" id="summaryBefore"></span>
+										調整前餘額: <span style="color: #33FF33" id="summaryBefore"></span>
 									</div>
 									<div class="col-md-13 mb-3"
 										style="font-size: 120%; word-wrap: break-word; max-width: 200px; color: #CCEEFF;">
-										調整後餘額: <span style="color:	#33FF33" id="summaryAfter"></span>
+										調整後餘額: <span style="color: #33FF33" id="summaryAfter"></span>
 									</div>
 
 
