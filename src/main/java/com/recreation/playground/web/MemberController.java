@@ -57,6 +57,7 @@ import com.recreation.playground.service.MoneyRecordService;
 
 @Controller
 @RequestMapping("/admin/memberBeans")
+@Transactional
 public class MemberController {
 	@Autowired
 	private MemberService service;
@@ -274,6 +275,21 @@ public class MemberController {
 				System.out.println("chipType="+chipType);
 				System.out.println("round="+round);
 				System.out.println("win="+win);
+				
+				
+				Member a=em.find(Member.class, moneyRecordMemberNum);
+				
+				if(moneyRecordCash==2000&&a.getMemberViplevel()<1) {
+					a.setMemberViplevel(1);
+				}else if(moneyRecordCash==5000&&a.getMemberViplevel()<2) {
+					a.setMemberViplevel(2);
+				}else if(moneyRecordCash==10000&&a.getMemberViplevel()<3) {
+					a.setMemberViplevel(3);
+				}
+				
+				em.persist(a);
+				
+				
 				
 				Chip chip = new Chip();
 				chip.setChipMemberNum(chipMemberNum);

@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
 	<article class="content moe">
 		<!-- WRITE YOUR CONTEXT HERE -->
@@ -86,6 +87,14 @@
 								style="color: red;margin-left:160px"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintMessage" name="complaintMessage" rows="3">${AtricleNum}</textarea>
+						</div>
+						
+						<div class="col-md-11 mb-3" style="display: none">
+							<label style="font-size: 120%; color: green;"
+								for="cmbNum"></label> <span id="cmbNumSp"
+								style="color: red;margin-left:160px"></span>
+							<textarea style="font-size: 120%" class="form-control"
+								id="cmbNum" name="cmbNum" rows="3">${AtricleNumNum}</textarea>
 						</div>
 
 						<div class="col-md-6 mb-5" style="display: none">
@@ -180,12 +189,13 @@
 
 	function complaint() {
 		let theComplaint = document.getElementById("complaintMessage").value;
+		
 		if (theComplaint == "") {
 			document.getElementById("complaintSp").innerHTML = "<n style='color:red;font-size: 120%'>不可空白</n><i class=\"fas fa-exclamation\"></i><i class=\"fas fa-exclamation\"></i>"
-		} else
+		} else {
 			$("#memberId").prop("disabled",false);
 			document.formCI.submit();
-
+		}
 	}
 </script>
 </html>

@@ -58,6 +58,10 @@ public class ComplaintService {
 	public Complaint findBycomplaintNum(int num) {
 		return dao.findByComplaintNum(num);
 	}
+	public Complaint findBycmbNum(int num) {
+		
+		return dao.findByCmbNum(num);
+	}
 	
 	public List<Object> findSummaryByMemberNum(Integer num) {
 		return dao.findSummaryByMemberNum(num);
