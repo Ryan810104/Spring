@@ -499,10 +499,10 @@
 					txt += "$(\"#like"+parseInt(i+floor)+"\").click(function(){"
 					txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
 					txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
-					txt +=	"this.setAttribute(\"style\", \"font-size: 20px ; color : black \");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : black \");"
 					txt +=	"}else{"
 					txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
-					txt +=	"this.setAttribute(\"style\", \"font-size: 20px ; color : red \");}"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
 					txt += "$.ajax({url : \"/main/pressnice/\","
 					txt += "type : \"POST\","
 					txt += "data : {Articlefloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() , Memberid : $(\"#CustomermessageboardMemberid\").val(),},"
@@ -653,7 +653,7 @@
 		checkpressornot();
 		var likelist = sessionStorage.getItem("likelist");
 		if (likelist == null){
-			location.reload();
+			window.setTimeout('location.reload()',100);
 		}
 			$.ajax({
 				url : "/main/searchall/",
