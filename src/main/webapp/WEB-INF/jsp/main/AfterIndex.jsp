@@ -23,6 +23,8 @@
 <link rel="stylesheet" href="/resources/css/odometer.css">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script src="/resources/js/odometer.js"></script>
+<link href="https://fonts.googleapis.com/css?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
 <style>
 
 .container1 {
@@ -115,6 +117,15 @@
 			</script>
 		</c:when>
 	</c:choose>
+	
+	<c:choose>
+		<c:when test="${insertCmbNum==1}">
+			<script>
+				alert("已有人投訴此文章");
+			</script>
+		</c:when>
+	</c:choose>
+	
 	<!--NavBar-->
 
 	<!--     <div class="wrapper" > -->
@@ -343,11 +354,11 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 			<br>
-			<div style="" align="center">  依
-			<input type="radio" name="gender" value="name" id="radioname" checked="true"><label for="radioname">&nbsp;UserID</label>
-			<input type="radio" name="gender" value="title" id="radiotitle"><label for="radiotitle">&nbsp;Title</label>
-			<input type="radio" name="gender" value="content" id="radiocontent"><label for="radiocontent">&nbsp;Content</label> 
-			搜尋
+			<div style="font-family: 'ZCOOL KuaiLe' ;color: #000088" align="center"  >  依&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="radio" name="gender" value="name" id="radioname" checked="true" ><label for="radioname" style="font-family: 'Permanent Marker' ; color: black">&nbsp;UserID</label>
+			<input type="radio" name="gender" value="title" id="radiotitle"><label for="radiotitle" style="font-family: 'Permanent Marker' ; color: black">&nbsp;Title</label>
+			<input type="radio" name="gender" value="content" id="radiocontent"><label for="radiocontent" style="font-family: 'Permanent Marker' ; color: black">&nbsp;Content</label> 
+			&nbsp;&nbsp;找
 			
 			<div class="container1">
   			<div class="field-input">
@@ -479,9 +490,9 @@
 						}
 					}		
 					if(flag == 1){
-						txt += "<span><i class=\"fas fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 20px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						txt += "<span><i class=\"fas fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 30px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 					}else{
-						txt += "<span><i class=\"far fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						txt += "<span><i class=\"far fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 30px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 					}
 					
 					txt += "<script>"
@@ -507,13 +518,13 @@
 					txt += "<div class=\"input-group\">";
 					// 輸入留言區域給予id = leavecontentarea +i
 					txt += "<input class=\"form-control\" placeholder=\"Add a comment\" type=\"text\" id=\"leavecontentarea"+parseInt(i+floor)+"\">";
+					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+parseInt(i+floor)+"\" ><i class=\"fa fa-edit\"></i></button>"
 					// 放置ajax抓取該articlefloor最大樓數+1的位置  id= customermessageboardResponseFloor + i 
 					txt += "<input type=\"text\" id=\"customermessageboardResponseFloor"+parseInt(i+floor)+"\" style=\"display: none\">"
 					// 送出留言button  id=articlefloor+i 
 					txt += "<form id=\"report"+parseInt(i+floor)+"2\" name=\"report\" action=\"/main/report\">"
 					txt += "<input type=\"text\" name=\"customermessageboardNum\" style=\"display: none\" value=\""+data[i]["customermessageboardNum"]+"\">"
 					txt += "<input type=\"text\" name=\"customermessageboardMemberid\" style=\"display: none\" value=\""+data[i]["customermessageboardMemberid"]+"\">"
-					txt += "<span class=\"input-group-addon\"><button id=\"articlefloor"+parseInt(i+floor)+"\" ><i class=\"fa fa-edit\"></i></button>"
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
 					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"
 					txt += "<div id=\"floor"+parseInt(i+floor)+"11\"></div>"
@@ -530,7 +541,7 @@
 					txt += "<\/script>"
 					//  送出留言 抓取articlefloor&responsefloor +1後送出
 					txt += "<script>"
-					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+parseInt(i+floor)+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+parseInt(i+floor)+"\").val('');aftercomment"+parseInt(i+floor)+"();}})});"
+					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mouseup(function() {if($(\"#leavecontentarea"+parseInt(i+floor)+"\").val() == \"\"){alert(\"不可空白\")}else{$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+parseInt(i+floor)+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+parseInt(i+floor)+"\").val('');aftercomment"+parseInt(i+floor)+"();}})}});"	
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"																																																																																																																																				
@@ -602,6 +613,11 @@
 								})
 					});
 	$("#messageboardsubmit").mouseup(function() {
+		var a = $("#CustomermessageboardMessage").val();
+		var b = $("#CustomermessageboardTitle").val() ;
+		if( a == "" || b == ""){
+			alert("不可空白");
+		}else{
 				$.ajax({
 					url : "/main/public/",
 					type : "POST",
@@ -629,13 +645,16 @@
 						location.reload();
 		        }
 				})
+		}
 			});
 
 	$(document).ready(function() {
 		
 		checkpressornot();
 		var likelist = sessionStorage.getItem("likelist");
-		
+		if (likelist == null){
+			location.reload();
+		}
 			$.ajax({
 				url : "/main/searchall/",
 				type : "POST",
@@ -737,8 +756,7 @@
 					txt += "<\/script>"
 					//  送出留言 抓取articlefloor&responsefloor +1後送出
 					txt += "<script>"
-					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})});"
-					
+					txt += "$(\"#articlefloor"+i+"\").mouseup(function() {if($(\"#leavecontentarea"+i+"\").val() == \"\"){alert(\"不可空白\")}else{$.ajax({url : \"\/main\/public\/\",type : \"POST\",data : {CustomermessageboardMessage : $(\"#leavecontentarea"+i+"\").val(),CustomermessageboardResponseFloor : $(\"#customermessageboardResponseFloor"+i+"\").val(),CustomermessageboardArticleFloor : $(\"#articlefloor"+i+"1\").val(),CustomermessageboardMemberid : $(\"#CustomermessageboardMemberid\").val(),CustomermessageboardStatus : 1,CustomermessageboardMemberNum : $(\"#CustomermessageboardMemberNum\").val(),},error : function() {$(\"#leavecontentarea"+i+"\").val('');aftercomment"+i+"();}})}});"	
 					txt += "<\/script>"	
 						// 按下留言按鈕搜尋該articlefloor的留言並寫入
 					txt += "<script>"
@@ -763,7 +781,14 @@
 		})
 			}
 			
+			
 		$("#searchbutton").click(function(){
+			var a = $("#searchbytitle").val() ;
+			var b = $("#searchbycontent").val() ;
+			var c = $("#searchbyuserid").val() ;
+			if( a =="" && b =="" && c=="" ){
+				alert("空")
+			}else{
 				$.ajax({
 					url : "/main/query/",
 					type : "POST",
@@ -794,8 +819,38 @@
 								+ data[i]["customermessageboardMessage"]
 								+ "</p>";
 						txt += "<div class=\"stats\">";
+						
+						checkfloor = data[i]["customermessageboardArticleFloor"];
+						var flag = 0 ;
+						
+						for(var j =0 ; j < likelist.length ; j++){
+							if (likelist[j] == checkfloor){
+								flag = 1 ;
+								break;
+							}else{
+								flag = 0;
+							}
+						}		
+						if(flag == 1){
+							txt += "<span><i class=\"fas fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						}else{
+							txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						}
+						
+						txt += "<script>"
+						txt += "$(\"#like"+i+"\").click(function(){"
+						txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
+						txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
+						txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : black \");"
+						txt +=	"}else{"
+						txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
+						txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
+						txt += "$.ajax({url : \"/main/pressnice/\","
+						txt += "type : \"POST\","
+						txt += "data : {Articlefloor : $(\"#articlefloor"+i+"1\").val() , Memberid : $(\"#CustomermessageboardMemberid\").val(),},"
+						txt += "success : function(data) {checkpressornot();}})"
+						txt +=  "})<\/script>"
 						// 留言button id = floor + i  ex:floor0, floor1
-						txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 						txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
 						// 檢舉button id = floor + i + 2 ex:floor02 , floor12
 						txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
@@ -851,6 +906,7 @@
 						report();
 					}
 			})
+			}
 		})
 	var a = 0;
 if (!sessionStorage.getItem("count")){
