@@ -1,10 +1,13 @@
 package com.recreation.playground.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.recreation.playground.dao.SaveGameDataDao;
+import com.recreation.playground.entity.GameBlingRoom;
 import com.recreation.playground.entity.Member;
 import com.recreation.playground.entity.SaveGameData;
 
@@ -18,6 +21,7 @@ public class SaveGameDataService {
 		dao.save(SGD);	
 		
 	}
+
 	
 	
 	

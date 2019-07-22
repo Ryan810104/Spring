@@ -83,9 +83,9 @@
 						<!--/col-3-->
 						<div>
 							<div class="col-sm-9" id="result1"></div>
-
+							<br>
 							<button type="button" data-toggle='modal'
-								data-target='#showComplaintPic'>
+								data-target='#showComplaintPic' style="position:relative;left:25%;">
 								<h3>更新頭像</h3>
 							</button>
 
@@ -192,7 +192,7 @@
 										<br>
 										<button class="btn btn-lg btn-success" type="button"
 											id="updateButton">
-											<i class="glyphicon glyphicon-ok-sign" id=""></i> Save
+											<i class="glyphicon glyphicon-ok-sign" id=""></i> 更新
 										</button>
 									</div>
 								</div>
@@ -249,6 +249,7 @@
 						},
 						type : "POST",
 						success : function(data) {
+							// 							alert(data["memberId"]);
 							$("#memberId").val(data["memberId"])
 							$("#memberFitstName").val(data["memberFitstName"]);
 							$("#memberLastName").val(data["memberLastName"]);

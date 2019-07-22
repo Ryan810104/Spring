@@ -216,6 +216,7 @@ tbody td:hover {
 			}
 			//alert(opt);
 			$("#showByInteractR").append(opt);
+			
 			}, 4);	
 	}
 	
@@ -656,7 +657,7 @@ function searchViolator(){
 							} else {
 								text = "<img width='350' height='350' src="+ data["complaintPicURL"] + ">";
 							}
-
+							
 							$("#complaintResult").html(text);
 						}
 					});

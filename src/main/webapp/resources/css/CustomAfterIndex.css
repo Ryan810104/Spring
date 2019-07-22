@@ -13,9 +13,14 @@ textarea{
 }
 
 .panel-shadow {
-    box-shadow: rgba(0, 0, 0, 0.3) 1px 3px 10px;
-        background-color:rgba(255, 255, 255,0.5);
+background-image: url(/resources/img/messagebg.png); 
+border-radius: 35px;
+color: white;
+margin-bottom: 2rem;
     
+}
+.panel-shadow b {
+	color:white;
 }
 .panel-white {
   border: 1px solid #dddddd;
@@ -58,7 +63,7 @@ textarea{
   height: auto;
 }
 .post .post-description {
-  padding: 15px;
+  padding: 0px 15px 15px 15px;
 }
 .post .post-description p {
   font-size: 16px;
