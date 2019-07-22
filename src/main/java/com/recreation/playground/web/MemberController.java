@@ -386,7 +386,9 @@ public class MemberController {
 				
 			}
 			
-
+			
+			
+			
 			@PostMapping("/query")
 			@ResponseBody // 轉JSON
 			public List<MoneyRecord> query(Integer moneyRecordNum) {
