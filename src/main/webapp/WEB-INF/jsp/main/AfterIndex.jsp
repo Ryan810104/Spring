@@ -68,10 +68,10 @@
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #AAAAAA;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 0 9px #999;
+    background-color: #5d7eda;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px #999;
   transition-duration: 0.4s;
 }
 
@@ -95,7 +95,7 @@
   background-color: #C63300;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+  box-shadow: 0 5px #999;
   transition-duration: 0.4s;
 }
 
@@ -259,7 +259,7 @@
 											id="CustomermessageboardTitle"></textarea>
 									</div>
 									<div>
-										<textarea class="form-control" cols="95" rows="3"
+										<textarea class="form-control" cols="95" rows="2"
 											placeholder="輸入你想要寫的內容..." name="CustomermessageboardMessage"
 											id="CustomermessageboardMessage"></textarea>
 									</div>
@@ -280,7 +280,7 @@
 			<input type="text" id="customermessageboardResponseFloor" style="display: none">
 <!-- 			<br> -->
 <!-- 			<div class="container"> -->
-<!-- 				<div class="col-sm-10" style="margin: 0 auto;"> -->
+<!-- 				<div class="col-sm-4" style="margin: 0 auto;"> -->
 <!-- 					<div class="panel panel-white post panel-shadow"> -->
 <!-- 						<div class="post-heading"> -->
 <!-- 							<div class="pull-left image"> -->
@@ -457,10 +457,9 @@
 					if( data == ""){
 						alert("已無資料");
 					}else{
-					var txt = "";
+					var txt = "<div class=\"row\">";
 					for (var i = 0 ; i < data.length; i++) {
-					txt += "<div class=\"container\">";
-					txt += "<div class=\"col-sm-10\" style=\"margin: 0 auto;\">";
+					txt += "<div class=\"col-sm-4\" style=\"margin: 0 auto;\">";
 					txt += "<div class=\"panel panel-white post panel-shadow\">";
 					txt += "<div class=\"post-heading\">";
 					txt += "<div class=\"pull-left image\">";
@@ -470,7 +469,7 @@
 					txt += "<a href=\"/main/setting/"+data[i]["customermessageboardMemberNum"]+"\"><b>"
 							+ data[i]["customermessageboardMemberid"]
 							+ "</b></a>"
-							+ data[i]["customermessageboardTitle"]
+							+ "&nbsp&nbsp"+ data[i]["customermessageboardTitle"]
 							+ "</div></div></div>";
 					txt += "<div class=\"post-description\">";
 					txt += "<p>"
@@ -492,14 +491,14 @@
 					if(flag == 1){
 						txt += "<span><i class=\"fas fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 30px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 					}else{
-						txt += "<span><i class=\"far fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 30px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						txt += "<span><i class=\"far fa-heart\" id=\"like"+parseInt(i+floor)+"\" style=\"font-size: 30px ; color: white;\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 					}
 					
 					txt += "<script>"
 					txt += "$(\"#like"+parseInt(i+floor)+"\").click(function(){"
 					txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
 					txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
-					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : black \");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : white \");"
 					txt +=	"}else{"
 					txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
 					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
@@ -528,7 +527,7 @@
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
 					txt += "<input type=\"text\" id=\"articlefloor"+parseInt(i+floor)+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"
 					txt += "<div id=\"floor"+parseInt(i+floor)+"11\"></div>"
-					txt += "</div></div></div></div></div><br>";
+					txt += "</div></div></div><br>";
 					//  隱藏留言  
 					txt += "<script>"
 					txt += "$(\"#floor"+parseInt(i+floor)+"\").click(function(){$(\"#\"+this.id+\"1\").toggle(300);})"
@@ -549,6 +548,7 @@
 					txt += "<\/script>"	
 					
 				}
+					txt += "</div>";
 					txt += "<script>"
 					txt += "$(\".button1\").click(function(){document.getElementById(this.id+\"2\").submit();})"
 					txt += "<\/script>"	
@@ -659,11 +659,10 @@
 				url : "/main/searchall/",
 				type : "POST",
 				success : function(data) {
-					var txt = "";
+					var txt = "<div class=\"row\">";
 					var result = new Array() ;	
 					for (var i = 0 ; i < data.length; i++) {
-					txt += "<div class=\"container\">";
-					txt += "<div class=\"col-sm-10\" style=\"margin: 0 auto;\">";
+					txt += "<div class=\"col-sm-4\" style=\"margin: 0 auto;\">";
 					txt += "<div class=\"panel panel-white post panel-shadow\">";
 					txt += "<div class=\"post-heading\">";
 					txt += "<div class=\"pull-left image\">";
@@ -672,8 +671,8 @@
 					txt += "<div class=\"title h2\">";
 					txt += "<a href=\"/main/setting/"+data[i]["customermessageboardMemberNum"]+"\"><b>"
 							+ data[i]["customermessageboardMemberid"]
-							+ "</b></a> "
-							+ data[i]["customermessageboardTitle"]
+							+ "</b></a>"
+							+ "&nbsp&nbsp" + data[i]["customermessageboardTitle"]
 							+ "</div></div></div>";
 					txt += "<div class=\"post-description\">";
 					txt += "<p>"
@@ -695,14 +694,14 @@
 					if(flag == 1){
 						txt += "<span><i class=\"fas fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 					}else{
-						txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+						txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px ; color: white;\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 					}
 					
 					txt += "<script>"
 					txt += "$(\"#like"+i+"\").click(function(){"
 					txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
 					txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
-					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : black \");"
+					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : white \");"
 					txt +=	"}else{"
 					txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
 					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
@@ -733,7 +732,7 @@
 					// id=articlefloor+i+1    放置該樓層的真實articlefloor
 					txt += "<input name=\"customermessageboardArticleFloor\" type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
 					txt += "<div id=\"floor"+i+"11\"></div>"
-					txt += "</div></div></div></div></div><br>";
+					txt += "</div></div></div><br>";
 					//  隱藏留言  
 					txt += "<script>"
 					txt += "$(\"#floor"+i+"\").click(function(){$(\"#\"+this.id+\"1\").toggle(300);})"
@@ -763,6 +762,7 @@
 					txt += "$(\"#floor"+i+"\").mousedown(function(){aftercomment"+i+"()})"
 					txt += "<\/script>"	
 				}
+					txt += "</div>";
 					txt += "<script>"
 					txt += "function report(){$(\".button1\").click(function(){document.getElementById(this.id+\"2\").submit();})}"
 					txt += "<\/script>"	
@@ -798,11 +798,10 @@
 						CustomermessageboardMemberid : $("#searchbyuserid").val(),	
 					},
 					success : function(data) {
-						var txt = "";
+						var txt = "<div class=\"row\">";
 						var result = new Array() ;	
 						for (var i = 0 ; i < data.length; i++) {
-						txt += "<div class=\"container\">";
-						txt += "<div class=\"col-sm-10\" style=\"margin: 0 auto;\">";
+						txt += "<div class=\"col-sm-4\" style=\"margin: 0 auto;\">";
 						txt += "<div class=\"panel panel-white post panel-shadow\">";
 						txt += "<div class=\"post-heading\">";
 						txt += "<div class=\"pull-left image\">";
@@ -811,8 +810,8 @@
 						txt += "<div class=\"title h2\">";
 						txt += "<a href=\"/main/setting/"+data[i]["customermessageboardMemberNum"]+"\"><b>"
 								+ data[i]["customermessageboardMemberid"]
-								+ "</b></a> "
-								+ data[i]["customermessageboardTitle"]
+								+ "</b></a>"
+								+ "&nbsp&nbsp" + data[i]["customermessageboardTitle"]
 								+ "</div></div></div>";
 						txt += "<div class=\"post-description\">";
 						txt += "<p>"
@@ -834,14 +833,14 @@
 						if(flag == 1){
 							txt += "<span><i class=\"fas fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px ; color: red\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 						}else{
-							txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
+							txt += "<span><i class=\"far fa-heart\" id=\"like"+i+"\" style=\"font-size: 30px ; color: white;\"><span style=\"font-size: 20px\"></span></i>&nbsp&nbsp&nbsp&nbsp</span>";
 						}
 						
 						txt += "<script>"
 						txt += "$(\"#like"+i+"\").click(function(){"
 						txt +=	"if(this.getAttribute(\"class\") == \"fas fa-heart\"){"
 						txt +=	"this.setAttribute(\"class\", \"far fa-heart\");"
-						txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : black \");"
+						txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : white \");"
 						txt +=	"}else{"
 						txt +=	"this.setAttribute(\"class\", \"fas fa-heart\");"
 						txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
@@ -869,7 +868,7 @@
 						// id=articlefloor+i+1    放置該樓層的真實articlefloor
 						txt += "<input name=\"customermessageboardArticleFloor\" type=\"text\" id=\"articlefloor"+i+"1\" style=\"display: none\" value=\""+data[i]["customermessageboardArticleFloor"]+"\"></span></form></div>"									
 						txt += "<div id=\"floor"+i+"11\"></div>"
-						txt += "</div></div></div></div></div><br>";
+						txt += "</div></div></div><br>";
 						//  隱藏留言  
 						txt += "<script>"
 						txt += "$(\"#floor"+i+"\").click(function(){$(\"#\"+this.id+\"1\").toggle(300);})"
@@ -900,6 +899,7 @@
 						txt += "$(\"#floor"+i+"\").mousedown(function(){aftercomment"+i+"()})"
 						txt += "<\/script>"					
 					}
+						txt += "</div>";
 						$("#messageboard").empty();
 						$("#messageboard").html(txt);
 						$('[name=gender]').change();
