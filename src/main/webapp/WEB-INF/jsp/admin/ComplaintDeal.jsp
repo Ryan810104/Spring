@@ -836,7 +836,7 @@ function hideMessage(){
 				
 			}else{
 				$("#chipMemberNum").val("");
-				document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>請輸入玩家ID</n>";
+				document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FFB3FF;font-size: 120%;'>請輸入玩家ID</n>";
 				$("#summaryBefore").html("");
 				$("#summaryAfter").html("");
 
@@ -872,7 +872,7 @@ function hideMessage(){
 								});
 					
 							}else{
-								document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>搜尋失敗,玩家ID不存在</n>";
+								document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FFB3FF;font-size: 120%;'>搜尋失敗,玩家ID不存在</n>";
 								$("#chipMemberNum").val("");
 								$("#summaryBefore").html("");
 								$("#summaryAfter").html("");
