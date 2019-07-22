@@ -32,16 +32,48 @@ canvas {
 
 </head>
 <body>
+<!-- 房名 -->
 <div  align="center" style="color:white; width:100%;position:absolute;z-index:1;">
 ${player1.gameRoomName} 
+</div>
+
+<script type="text/javascript">
+var roomnum=${player1.roomNum};
+</script>
+
+
+
+<!-- 賭金資訊 -->
+<div  align="center"  id="money" style="width:100%;color:white;margin-top:100px;position:absolute;z-index:1;">
 
 </div>
-</body>
 
 
-<script>
-alert(player1);
-</script>
+
+
+<!-- 勇士的資料 -->
+<div   style="margin-top:250px;position:absolute;z-index:1;">
+<img src="/resources/img/Warriors_logo1.png"  style="width:180%;"  >
+<h2  id="player1" name="player1"style="color:white"></h2>
+</div>
+
+
+<!-- 暴龍的資料 -->
+<div   style="margin-top:250px;margin-left:1200px;position:absolute;z-index:1;">
+<img src="/resources/img/tor.png"   style="width:80%">
+<h2 id="player2" name="player2" style="color:white"></h2>
+</div>
+
+
+
+
+<div  align="center" style="margin-top:650px;color:white; width:100%;position:absolute;z-index:1;">
+<input type="button" value="查看賭注結果"/>
+</div>
+
+
+
+
 
 <script>
 
@@ -126,6 +158,13 @@ alert(player1);
 	};
 	run();
 
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
@@ -137,6 +176,56 @@ alert(player1);
 
 
 </script>
+
+
+
+<script>
+	
+
+      
+		setInterval(function(){
+			$.ajax({
+				url:"/save/GameBling3?num="+roomnum,
+				type:"POST",
+				success : function(data) {
+					$("#money").html("目前總賭金:"+data.gameMoney);
+				var a="暴龍";	
+				if(data.player1Result==a){
+					$("#player2").html("玩家:"+data.memberId);
+					$("#player1").html("玩家:"+data.gameRoomMember);
+				}else{
+					$("#player1").html("玩家:"+data.memberId);
+					$("#player2").html("玩家:"+data.gameRoomMember);
+				}
+			
+				
+
+				}
+				
+			});
+		},4);
+			
+
+		function showGame(data){
+			
+			alert(data);
+	
+		}
+	
+	</script>
+
+
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+<script>
+
+</script>
+
+
+
 
 
 

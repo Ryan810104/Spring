@@ -23,8 +23,15 @@ public class GameBlingRoomService {
 	public List<GameBlingRoom> showRoom(){
 		
 		return dao.findByGameRoomStage(1);
-				
+	
+	}
+	
+	
+    public GameBlingRoom findbyroomnum(Integer roomnum){
 		
+    	
+		return dao.findByRoomNum(roomnum);
+	
 	}
 	
 }

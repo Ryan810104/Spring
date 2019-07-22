@@ -2,6 +2,7 @@ package com.recreation.playground.web;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,76 +20,91 @@ import com.recreation.playground.entity.SaveGameData;
 import com.recreation.playground.service.GameBlingRoomService;
 import com.recreation.playground.service.SaveGameDataService;
 
-
-
 @Controller
 @RequestMapping("/save")
+@Transactional
 public class SaveGameDataController {
-	
+
+	@Autowired
+	EntityManager em;
 	
 	@Autowired
 	SaveGameDataService service;
-	
+
 	@Autowired
 	GameBlingRoomService service1;
-	
-@RequestMapping("/SaveGameData")
-@ResponseBody
-public String saveData(
-	@RequestParam(value = "gameDataNum", defaultValue = "0") Integer gameDataNum,
-	@RequestParam(value = "balance", defaultValue = "0") String balance,
-	@RequestParam(value = "memberId", defaultValue = "0") String memberId,
-	@RequestParam(value = "gameType", defaultValue = "0") String gameType,
-	@RequestParam(value = "round", defaultValue = "0") String round
-		) {
-	
-  
-	SaveGameData DD = new SaveGameData();
-	DD.setBalance(balance);
-	DD.setGameType(gameType);
-	DD.setMemberId(memberId);
-	DD.setRound(round);
-	service.SaveGameData(DD);
-    
-    return "/main/games/circlegame";
+
+	@RequestMapping("/SaveGameData")
+	@ResponseBody
+	public String saveData(@RequestParam(value = "gameDataNum", defaultValue = "0") Integer gameDataNum,
+			@RequestParam(value = "balance", defaultValue = "0") String balance,
+			@RequestParam(value = "memberId", defaultValue = "0") String memberId,
+			@RequestParam(value = "gameType", defaultValue = "0") String gameType,
+			@RequestParam(value = "round", defaultValue = "0") String round) {
+
+		SaveGameData DD = new SaveGameData();
+		DD.setBalance(balance);
+		DD.setGameType(gameType);
+		DD.setMemberId(memberId);
+		DD.setRound(round);
+		service.SaveGameData(DD);
+
+		return "/main/games/circlegame";
+
+	}
+
+	@Transactional
+	@RequestMapping("/GameBling")
+	public String saveGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, BindingResult result,
+			Model model) {
+
+		service1.SaveGameData(member);
+		model.addAttribute("open", "0");
+		model.addAttribute("player1", member);
+		System.out.println("member = " + member);
+		return "/main/games/blingroom";
+	}
+
+	@Transactional
+	@ResponseBody
+	@RequestMapping("/addroom")
+	public String joinGameBlingRoom(Integer num) {
 		
-}
 
-@Transactional
-@RequestMapping("/GameBling")
-public String saveGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, BindingResult result, Model model) {
+		return "/main/games/blingroom";
+	}
+
+	@ResponseBody
+	@RequestMapping("/GameBling1")
+	public List<GameBlingRoom> findGameRoom() {
+		return service1.showRoom();
+	}
 	
-	service1.SaveGameData(member);
-	model.addAttribute("open", "0");
-	model.addAttribute("player1",member);
-	System.out.println("member = "+ member);
-	return"/main/games/blingroom";
-}
+	@ResponseBody
+	@RequestMapping("/GameBling3")
+	public GameBlingRoom findWhichGameRoom(@RequestParam(value = "num", defaultValue = "0") Integer num) {
+//System.out.println(num);
+		
+//		return em.find(GameBlingRoom.class, num);
+		return service1.findbyroomnum(num);
+	}
 
+//找對應房間
+	@RequestMapping("/GameBling2")
+	public String findplayer1num(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, Model model) {
 
-@Transactional
-@RequestMapping("/addroom")
-public String joinGameBlingRoom(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, BindingResult result, Model model) {
-	
-	service1.SaveGameData(member);
-	model.addAttribute("open", "0");
-	model.addAttribute("player1",member);
-	System.out.println("member = "+ member);
-	return"/main/games/blingroom";
-}
+		GameBlingRoom bean = service1.findbyroomnum(member.getRoomNum());
+		bean.setGameRoomMember(member.getGameRoomMember());
+		bean.setGameMoney(bean.getGameMoney() * 2);
+		String a = bean.getPlayer1Result();
+		if (bean.getPlayer1Result() == a) {
+			bean.setPlayer2Result("暴龍");
+		} else {
+			bean.setPlayer2Result("勇士");
+		}
 
-
-
-
-
-
-@ResponseBody
-@RequestMapping("/GameBling1")
-public List<GameBlingRoom> findGameRoom() {
-	return service1.showRoom();
-}
-
-
-
-
+		model.addAttribute("player1", bean);
+		service1.SaveGameData(bean);
+		return "/main/games/blingroom";
+	}
 }

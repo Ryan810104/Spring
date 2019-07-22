@@ -26,7 +26,7 @@
 		display: block;
 	}
 
-	#button1,#button2 {
+	.roomnum,#button2 {
 		font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 		position: absolute;
 		font-size: 0.5;
@@ -43,13 +43,13 @@
 		animation: pulse 1s infinite alternate;
 		transition: background 0.4s, border 0.2s, margin 0.2s;
 	}
-	#button1:hover,#button2:hover {
+	.roomnum:hover,#button2:hover {
 		background: hsla(220, 100%, 60%, 1);
 		margin-top: -1px;
 
 		animation: none;
 	}
- #button1:hover, #button2:active {
+ .roomnum:hover, #button2:active {
 		border-bottom-width: 0;
 		margin-top: 5px;
 	}
@@ -145,7 +145,7 @@
 							</div>
 
 							<div class="mb-3">
-								<label for="inputPassword">選擇你賭的球隊</label> <select id="gameResult" name="gameResult">
+								<label for="inputPassword">選擇你賭的球隊</label> <select id="player1Result" name="player1Result">
 									<option value="勇士">勇士</option>
 									<option value="暴龍">暴龍</option>
 									
@@ -175,6 +175,9 @@
 				
 						</form>
 					</div>
+					
+					
+				
 		
 					
 				</div>
@@ -196,17 +199,6 @@
 		
 			</script>
 			
-		
-		
-		
-
-
-
-
-
-
-
-
 
 <div class="modal fade" id="open" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -217,9 +209,8 @@
 					</div>
 					<table>
 								<thead style="font-size: 120%; color: #0066FF;">
-								
 									<tr>
-									
+									    <th>房間號碼</th>
 										<th>房間名稱</th>
 										<th>房主</th>
 										<th>球隊名稱</th>
@@ -233,6 +224,29 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		<!-- 						放玩家2的資料 -->	
+						<form id="submitroom" name="gameblingForm"
+							action="/save/GameBling2" method="post"  style="display:none" >
+							<h4 class="mb-3"></h4>	
+							
+							<div class="mb-3">
+								<label for="inputID">roomnum</label> <input type="text" 
+									id="roomNum" name="roomNum" value=""
+									class="form-control" placeholder="" required autofocus readonly>
+							</div>
+
+							<div class="mb-3">
+								<label for="inputID">你的名稱</label> <input type="text" 
+									id="gameRoomMember" name="gameRoomMember" value="${sessionScope.member.memberId}"
+									class="form-control" placeholder="" required autofocus readonly>
+							</div>
+					
+							
+						</form>
+					
 
 
 		<script	src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
@@ -274,23 +288,37 @@
 				success : function(data) {
 					var opt="";
 					for(i in data){
-						opt += "<tr><td style='height:60px;width:100px'>" + data[i]["gameRoomName"] + "</td>" + "<td style='height:60px;width:100px'>"
+						opt += "<tr><td  id=\"num"+i+"1\" style='height:60px;width:100px'>" + data[i]["roomNum"] + "</td>" +"<td  style='height:60px;width:100px'>" + data[i]["gameRoomName"] + "</td>" + "<td style='height:60px;width:100px'>"
 						+ data[i]["memberId"] + "</td>" + "<td style='height:60px;width:100px'>"
-						+ data[i]["gameResult"] + "</td>" + "<td style='height:60px;width:100px'>"
+						+ data[i]["player1Result"] + "</td>" + "<td style='height:60px;width:100px'>"
 						+ data[i]["gameMoney"] + "</td>"+ "<td style='height:60px;width:100px'>"
-						+ "<button id='button1'  onclick=go()>"+"進入房間"+"</button>"+"</td><tr>";
+						+ "<button  class='roomnum'  id=num"+i+">"+"進入房間"+"</button>"+"</td><tr>";
+			
 					}
 					$("#room").append(opt);
+					
+					findroomnum();
+					
 				}
 			
 			});
 			
 		});
 		
-		function go(){
-			
-			location.href='/save/addroom';
+
+		function findroomnum(){
+		
+			$(".roomnum").click(function(){
+				
+// 				alert($("#"+this.id+"1").html());
+			$("#roomNum").val($("#"+this.id+"1").html());
+		    document.getElementById("submitroom").submit();
+			});
 		}
+		
+		
+		
+		
 		
 		//動畫部分的
 			var ml4 = {};
