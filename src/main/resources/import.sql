@@ -31,12 +31,23 @@ INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_c
 (3,getdate(),2500,2500,'topup','Judy','JJ');
 
 INSERT INTO Chiprecord(chip_record_member_num,chip_record_chip,chip_record_time,chip_record_chiptype,play_round,win,chip_record_first_name,chip_record_nick_name) values
-(2,10000,'2017-07-12','a',1,1,'Thomas','TT'),
+(2,1000,'2017-07-12','a',1,1,'Thomas','TT'),
+(2,500,'2017-07-13','a',1,1,'Thomas','TT'),
+(3,-200,'2017-07-14','a',1,0,'Judy','JJ'),
+(1,2000,'2017-07-20','a',1,1,'Jack','JJ'),
+(4,600,'2017-07-15','a',1,1,'York','YY'),
 (3,-1000,'2017-08-12','b',1,0,'Judy','JJ'),
-(1,20000,'2017-09-12','c',1,1,'Jack','JJ'),
-(2,70000,'2017-10-12','a',1,1,'Thomas','TT'),
-(1,-14500,'2018-11-10','c',1,0,'Jack','kk'),
-(3,12220,'2019-01-13','b',1,1,'Judy','JJ'),
+(3,200,'2017-08-13','b',1,1,'Judy','JJ'),
+(2,-800,'2017-08-13','b',1,0,'Thomas','TT'),
+(4,1200,'2017-08-15','b',1,1,'York','YY'),
+(1,2000,'2017-09-12','c',1,1,'Jack','JJ'),
+(1,-800,'2017-09-13','c',1,0,'Jack','JJ'),
+(2,-400,'2017-09-14','c',1,0,'Thomas','TT'),
+(3,600,'2017-09-15','c',1,1,'Judy','JJ'),
+(4,1200,'2017-09-16','c',1,1,'York','YY'),
+(2,700,'2017-10-12','a',1,1,'Thomas','TT'),
+(1,-1400,'2018-11-10','c',1,0,'Jack','kk'),
+(3,1200,'2019-01-13','b',1,1,'Judy','JJ'),
 (2,2500,'2019-07-12','a',1,1,'Thomas','TT');
 
 IF Object_ID('dbo.summary') IS NOT NULL
@@ -45,10 +56,10 @@ IF Object_ID('dbo.summary') IS NOT NULL
 
 create view summary
   as
-  select money_record_member_num,
+  select money_record_nick_name,
          sum(money_record_cash) as total_cash
   from moneyrecord
-  group by money_record_member_num;
+  group by money_record_nick_name;
   
   
   

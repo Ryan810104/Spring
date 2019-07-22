@@ -38,9 +38,9 @@ public class ArticleNiceController {
 	@ResponseBody
 	@RequestMapping("/pressnice")
 	public void insert(ArticleNice bean) {
-		System.out.println(bean);
+//		System.out.println(bean);
 		ArticleNice bean1 = service.insert(bean.getArticlefloor(), bean.getMemberid());
-		System.out.println(bean1);
+//		System.out.println(bean1);
 		if(bean1 == null) {
 			service.save(bean);
 		}else {

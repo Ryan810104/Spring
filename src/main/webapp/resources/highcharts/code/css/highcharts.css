@@ -40,7 +40,7 @@
 }
 
 .highcharts-background {
-  fill: #ffffff;
+  fill: #e0e0e0;
 }
 
 .highcharts-plot-border, .highcharts-plot-background {
@@ -71,6 +71,8 @@
 .highcharts-title {
   fill: #333333;
   font-size: 1.5em;
+  font-family:微軟正黑體;
+  fontFamily:微軟正黑體;
 }
 
 .highcharts-subtitle {
@@ -89,6 +91,7 @@
 
 .highcharts-axis-title {
   fill: #666666;
+  font-family:微軟正黑體;
 }
 
 .highcharts-axis-labels {

@@ -361,6 +361,7 @@ public class MemberController {
 				
 				return res;
 			}
+
 			
 			@RequestMapping("/refund")
 			@ResponseBody
@@ -386,32 +387,7 @@ public class MemberController {
 				
 			}
 			
-			
-			return res;
-		}
 
-		
-		@RequestMapping("/refund")
-		@ResponseBody
-		public AjaxResponse<String> refund(@RequestParam(value = "chipMemberNum", defaultValue = "0") Integer chipMemberNum,@RequestParam(value = "chipFirstName", defaultValue = "0") String chipFirstName,
-				@RequestParam(value = "chipNickName", defaultValue = "") String chipNickName,
-				@RequestParam(value = "chipBalanced", defaultValue = "0") Long chipBalanced,
-				@RequestParam(value = "chipType", defaultValue = " ") String chipType,
-				@RequestParam(value = "time", defaultValue = "0") Float round,
-				@RequestParam(value = "win", defaultValue = "0") Integer win){
-			Chip chip = new Chip();
-			chip.setChipMemberNum(chipMemberNum);
-			chip.setChipFirstName(chipFirstName);
-			chip.setChipNickName(chipNickName);
-			chip.setChipBalanced(chipBalanced);
-			chip.setChipType(chipType);
-			chip.setWin(win);
-			chip.setRound(round);
-			AjaxResponse<String> res = new AjaxResponse<>();
-			res.setType(AjaxResponseType.SUCCESS);
-			res.setData(chipService.save(chip).toString());
-			
-			
 			@PostMapping("/query")
 			@ResponseBody // 轉JSON
 			public List<MoneyRecord> query(Integer moneyRecordNum) {

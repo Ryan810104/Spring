@@ -8,7 +8,8 @@
 
 <c:choose>
 	<c:when test="${sessionScope.member.memberId =='admin'}">
-		<jsp:include page="complainAdmin.jsp" />
+<%-- 		<jsp:include page="complainAdmin.jsp" /> --%>
+			<jsp:include page="complainGeneral.jsp" />
    </c:when>
 	<c:otherwise>
 		<jsp:include page="complainGeneral.jsp" />

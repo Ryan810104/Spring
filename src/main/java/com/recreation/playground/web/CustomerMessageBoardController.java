@@ -33,6 +33,7 @@ public class CustomerMessageBoardController {
 	public String openindex(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
 		model.addAttribute("AtricleNum", "文章編號:"+bean.getCustomermessageboardNum()+"	(勿更改以利查證)");
+		model.addAttribute("AtricleNumNum",bean.getCustomermessageboardNum());
 		model.addAttribute("Violater",bean.getCustomermessageboardMemberid());
 //		System.out.println(bean.getCustomermessageboardNum());
 //		System.out.println(bean.getCustomermessageboardMemberid());
@@ -43,13 +44,13 @@ public class CustomerMessageBoardController {
 	@ResponseBody
 	public List<CustomerMessageBoardBean> query(@Valid @ModelAttribute("search")CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-		System.out.println(bean);
+//		System.out.println(bean);
 		String id = bean.getCustomermessageboardMemberid();
-		System.out.println(id);
+//		System.out.println(id);
 		String msg = bean.getCustomermessageboardMessage();
-		System.out.println(msg);
+//		System.out.println(msg);
 		String title = bean.getCustomermessageboardTitle();
-		System.out.println(title);
+//		System.out.println(title);
 		List<CustomerMessageBoardBean> list = null ;
 		if(id != "") {
 			list = service.searchbyid(id);
@@ -58,7 +59,7 @@ public class CustomerMessageBoardController {
 		}else if(title != "") {
 			list = service.searchbytitle(title);
 		}
-		System.out.println(list);
+//		System.out.println(list);
 		return list;
 	}
 

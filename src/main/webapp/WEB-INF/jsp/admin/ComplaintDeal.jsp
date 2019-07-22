@@ -12,7 +12,7 @@
 table {
 	margin-top: 20px;
 	margin-bottom: 20px;
-	margin-left: 15px;
+	margin-left: 10px;
 }
 
  th { 
@@ -81,6 +81,7 @@ tbody td:hover {
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
 						+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
@@ -125,6 +126,7 @@ tbody td:hover {
 		var opt = "";
 		for (i in data) {	
 			opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+					+ data[i]["memberId"] + "</td>" + "<td>"
 					+ data[i]["complaintMessage"] + "</td>" + "<td>"
 					+ data[i]["complaintResponse"] + "</td>" + "<td>"
 					+ data[i]["complaintResponsetime"] + "</td><tr>";
@@ -169,6 +171,7 @@ tbody td:hover {
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
 						+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
@@ -213,6 +216,7 @@ tbody td:hover {
 			var opt = "";
 			for (i in data) {
 				opt += "<tr><td>" + data[i]["complaintNum"] + "</td>" + "<td>"
+						+ data[i]["memberId"] + "</td>" + "<td>"
 						+ data[i]["complaintMessage"] + "</td>" + "<td>"
 						+ data[i]["complaintResponse"] + "</td>" + "<td>"
 						+ data[i]["complaintResponsetime"] + "</td><tr>";
@@ -287,6 +291,7 @@ tbody td:hover {
 										</tr>
 										<tr>
 											<th>編號</th>
+											<th>會員ID</th>
 											<th>投訴內容</th>
 											<th>回覆內容</th>
 											<th>回覆時間</th>
@@ -331,6 +336,7 @@ tbody td:hover {
 										</tr>
 										<tr>
 											<th>編號</th>
+											<th>會員ID</th>
 											<th>投訴內容</th>
 											<th>回覆內容</th>
 											<th>回覆時間</th>
@@ -374,6 +380,7 @@ tbody td:hover {
 										</tr>
 										<tr>
 											<th>編號</th>
+											<th>會員ID</th>
 											<th>投訴內容</th>
 											<th>回覆內容</th>
 											<th>回覆時間</th>
@@ -416,6 +423,7 @@ tbody td:hover {
 										</tr>
 										<tr>
 											<th>編號</th>
+											<th>會員ID</th>
 											<th>投訴內容</th>
 											<th>回覆內容</th>
 											<th>回覆時間</th>
