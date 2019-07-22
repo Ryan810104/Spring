@@ -653,7 +653,7 @@
 		checkpressornot();
 		var likelist = sessionStorage.getItem("likelist");
 		if (likelist == null){
-			window.setTimeout('location.reload()',100);
+			window.setTimeout('location.reload()',400);
 		}
 			$.ajax({
 				url : "/main/searchall/",
