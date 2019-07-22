@@ -11,7 +11,7 @@
 
 <body>
 	<jsp:include page="/WEB-INF/jsp/fragment/main-sidebar.jsp"></jsp:include>
-	<form class="form" action="/admin/memberBeans/update" method="post"
+	<form class="form" action="" method="post"
 		id="updateForm">
 		<article class="content moe">
 			<!-- WRITE YOUR CONTEXT HERE -->
@@ -123,7 +123,7 @@
 // 			console.log("ownerMemberNum="+$("#ownerMemberNum").val());
 // 			console.log("memberNum="+$("#memberNum").val());
 			if($("#ownerMemberNum").val()==$("#memberNum").val()){
-				$("#modifyMemberInfo").html("<a href=\"/member/setting\" style=\"font-family: 微軟正黑體; font-family: 微軟正黑體; font-size: 150%\"><button style=\"position:relative;left:25%;\">修改個人資料</button></a>");
+				$("#modifyMemberInfo").html("<a href= ></a><input type =\"button\" onclick=\"javascript:location.href=\'/main/setting\'\" value=\"修改個人資料\" style=\"font-family: 微軟正黑體; font-family: 微軟正黑體; font-size: 150%;position:relative;left:25%;\"></input>");
 			}
 
 		});

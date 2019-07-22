@@ -145,8 +145,8 @@ create view summary
    
    
  INSERT INTO vip_level values
-(1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','垃圾'),
-(0.89,1,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','普通會員'),
+(1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','初級會員'),
+(0.89,1,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','中級會員'),
 (0.79,2,'https://tw.beanfun.com/bnb/images/game/5/image205.gif','高級會員'),
 (0.69,3,'https://tw.beanfun.com/bnb/images/game/5/image305.gif','尊爵不凡'),
 (0.59,4,'https://tw.beanfun.com/bnb/images/game/5/image350.gif','乾爹'),
@@ -184,12 +184,12 @@ insert into article_nice values (1,'user');
 insert into article_nice values (3,'user');
 
 /*fake data*/
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Sally','123',0,'sally@gmail.com','0123456789',getdate(),2,null,500,'/resources/memberPhoto/sally.jpg');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Mike','123',0,'mike@gmail.com','0123456789',getdate(),3,null,3504,'/resources/memberPhoto/mike.jpg');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Ogushi','123',0,'Ogushi@gmail.com','0123456789',getdate(),1,null,400,'/resources/memberPhoto/Ogushi.png');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Udo','123',0,'Udo@gmail.com','0123456789',getdate(),3,null,7,'/resources/memberPhoto/udo.jpg');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('Sam','123',0,'Sam@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/sam.jpg');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl) values('John','123',0,'John@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/John.jpg');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name) values('Sally','123',0,'sally@gmail.com','0123456789',getdate(),2,null,500,'/resources/memberPhoto/sally.jpg','莎莉','Sally','Michaela');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name) values('Mike','123',0,'mike@gmail.com','0123456789',getdate(),3,null,3504,'/resources/memberPhoto/mike.jpg','麥克','Mike','Smith');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name) values('Ogushi','123',0,'Ogushi@gmail.com','0123456789',getdate(),1,null,400,'/resources/memberPhoto/Ogushi.png','奧斯','Ogushi','Jones');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name) values('Udo','123',0,'Udo@gmail.com','0123456789',getdate(),3,null,7,'/resources/memberPhoto/udo.jpg','約督','Udo','Williams');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name) values('Sam','123',0,'Sam@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/sam.jpg','山姆','Sam','Taylor');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name) values('John','123',0,'John@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/John.jpg','強','John','Brown');
 
 insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,6,5,1);
 insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,5,6,1);

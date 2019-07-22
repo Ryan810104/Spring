@@ -48,10 +48,10 @@
 				class="sidebar-nav-item-icon fa fa-area-chart"></i> <a
 				class="sidebar-nav-item-zelda ex text-line-height"
 				href="/admin/memberBeans/list">遊戲排行</a></li>
-			<li class="sidebar-nav-item ex"><i
-				class="sidebar-nav-item-icon fas fa-vial"></i> <a
-				class="sidebar-nav-item-zelda ex text-line-height"
-				href="/main/testing">測試</a></li>
+<!-- 			<li class="sidebar-nav-item ex"><i -->
+<!-- 				class="sidebar-nav-item-icon fas fa-vial"></i> <a -->
+<!-- 				class="sidebar-nav-item-zelda ex text-line-height" -->
+<!-- 				href="/main/testing">測試</a></li> -->
 			<li class="sidebar-nav-item ex"><i
 				class="sidebar-nav-item-icon fas fa-envelope-open-text"></i> <a
 				class="sidebar-nav-item-zelda ex text-line-height"
