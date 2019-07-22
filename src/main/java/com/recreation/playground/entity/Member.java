@@ -47,7 +47,7 @@ public class Member {
 	@Column
 	private String memberNickName;
 	@Column
-	private String memberFirstName;
+	private String memberFitstName;
 	@Column
 	private String memberLastName;
 	
