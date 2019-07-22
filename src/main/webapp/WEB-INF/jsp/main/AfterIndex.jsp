@@ -467,7 +467,7 @@
 					txt += "<img src=\"<c:url value='/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"' />\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
 					txt += "<div class=\"pull-left meta\">";
 					txt += "<div class=\"title h2\">";
-					txt += "<a href=\"#\"><b>"
+					txt += "<a href=\"/main/setting/"+data[i]["customermessageboardMemberNum"]+"\"><b>"
 							+ data[i]["customermessageboardMemberid"]
 							+ "</b></a>"
 							+ data[i]["customermessageboardTitle"]
@@ -535,7 +535,7 @@
 					txt += "<\/script>"
 					txt += "<script>"																																																																																																																																
 					//寫入aftercomment傳出留言之後自動搜尋留言寫出																																																																																																																																					
-					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var k = 0; k < data.length; k++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> <img class=\\\"avatar\\\" src=\\\"/admin/memberBeans/getServerPicture/\"+data[k][\"customermessageboardMemberNum\"]+\"\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[k][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[k][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
+					txt += "function aftercomment"+parseInt(i+floor)+"(){var txt1 = \"\" ;$(\"#floor"+parseInt(i+floor)+"11\").empty();$.ajax({url : \"/main/searchcomment/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() },success : function(data) {for (var k = 0; k < data.length; k++) {txt1 += \"<ul class=\\\"comments-list\\\" >\";txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"/main/setting/\"+data[k][\"customermessageboardMemberNum\"]+\"\\\"> <img class=\\\"avatar\\\" src=\\\"/admin/memberBeans/getServerPicture/\"+data[k][\"customermessageboardMemberNum\"]+\"\\\" alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\"><h4 class=\\\"user\\\">&nbsp;&nbsp;\"+data[k][\"customermessageboardMemberid\"]+\"</h4></div>\";txt1 += \"<p>&nbsp;&nbsp;\"+data[k][\"customermessageboardMessage\"]+\"</p></div></li></ul>\"}$(\"#floor"+parseInt(i+floor)+"11\").html(txt1);}})}"
 				//  取出articlefloor 並放置該article的最大樓數+1
 					txt += "$(\"#articlefloor"+parseInt(i+floor)+"\").mousedown(function(){$.ajax({url : \"\/main\/searchthelastofcomment\/\",type : \"POST\",data : { CustomermessageboardArticleFloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val()},success : function(data) {$(\"#customermessageboardResponseFloor"+parseInt(i+floor)+"\").val(data[0][\"customermessageboardResponseFloor\"] + 1);}})})"
 					txt += "<\/script>"
@@ -670,7 +670,7 @@
 					txt += "<img src=\"<c:url value='/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"' />\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
 					txt += "<div class=\"pull-left meta\">";
 					txt += "<div class=\"title h2\">";
-					txt += "<a href=\"#\"><b>"
+					txt += "<a href=\"/main/setting/"+data[i]["customermessageboardMemberNum"]+"\"><b>"
 							+ data[i]["customermessageboardMemberid"]
 							+ "</b></a> "
 							+ data[i]["customermessageboardTitle"]
@@ -746,7 +746,7 @@
 					txt += "success : function(data) {"				
 					txt += "for (var i = 0; i < data.length; i++) { "
 					txt += "txt1 += \"<ul class=\\\"comments-list\\\" >\";"
-					txt += "txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> "
+					txt += "txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"/main/setting/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\"> "
 					txt += "<img class=\\\"avatar\\\" src=\\\""
 					txt += "/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\" "
 					txt += "alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\">"
@@ -809,7 +809,7 @@
 						txt += "<img src=\"<c:url value='/admin/memberBeans/getServerPicture/"+data[i]["customermessageboardMemberNum"]+"' />\" class=\"img-circle avatar\" alt=\"user profile image\"></div>";
 						txt += "<div class=\"pull-left meta\">";
 						txt += "<div class=\"title h2\">";
-						txt += "<a href=\"#\"><b>"
+						txt += "<a href=\"/main/setting/"+data[i]["customermessageboardMemberNum"]+"\"><b>"
 								+ data[i]["customermessageboardMemberid"]
 								+ "</b></a> "
 								+ data[i]["customermessageboardTitle"]
@@ -882,7 +882,7 @@
 						txt += "success : function(data) {"				
 						txt += "for (var i = 0; i < data.length; i++) { "
 						txt += "txt1 += \"<ul class=\\\"comments-list\\\" >\";"
-						txt += "txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"#\\\"> "
+						txt += "txt1 += \"<li class=\\\"comment\\\"><a class=\\\"pull-left\\\" href=\\\"/main/setting/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\"> "
 						txt += "<img class=\\\"avatar\\\" src=\\\""
 						txt += "/admin/memberBeans/getServerPicture/\"+data[i][\"customermessageboardMemberNum\"]+\"\\\" "
 						txt += "alt=\\\"avatar\\\"></a>\";txt1 += \"<div class=\\\"comment-body\\\">"
