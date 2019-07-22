@@ -7,6 +7,12 @@
     <meta name="author" content="">
 
     <title>友錢來也</title>
+    
+    <!--     防止fontawesome轉SVG -->
+ <script type="text/javascript">
+      // Notice how this gets configured before we load Font Awesome
+      window.FontAwesomeConfig = { autoReplaceSvg: false }
+    </script>
 
     <!-- Bootstrap core CSS -->
     <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

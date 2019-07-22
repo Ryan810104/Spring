@@ -20,7 +20,8 @@ public interface MoneyRecordDao extends JpaRepository<MoneyRecord, Integer> {
     @Query(value="select money_record_nick_name,total_cash from summary order by total_cash desc", nativeQuery = true)   
 	List<Object[]> findBestMoneyRecordid1();
 	
-	
+	@Query(value="select total_cash from companyearn" ,nativeQuery = true)
+	public Object findCompanyEarn(); 
 }
 
 

@@ -1,54 +1,72 @@
 INSERT INTO Chip(chip_member_num,chip_balanced,chip_type,win,play_round,chip_first_name,chip_nick_name)values
-(1,200,'a',1,1.0,'Jack','kk'),
-(2,-1000,'b',0,1.0,'Thomas','TT'),
-(1,200,'b',1,1.0,'Jack','kk'),
-(1,-200,'b',0,1.0,'Jack','kk'),
-(3,400,'c',1,1.0,'Judy','JJ'),
-(3,200,'a',1,1.0,'Judy','JJ'),
-(3,600,'b',1,1.0,'Judy','JJ'),
-(2,800,'b',1,1.0,'Thomas','TT'),
-(1,1000,'c',1,1.0,'Jack','kk'),
-(1,2000,'a',1,1.0,'Jack','kk'),
-(3,1400,'b',1,1.0,'Judy','JJ'),
-(2,1400,'a',1,1.0,'Thomas','TT'),
-(1,-200,'a',0,1.0,'Jack','kk'),
-(1,200,'b',1,1.0,'Jack','kk'),
-(2,200,'c',1,1.0,'Thomas','TT'),
-(4,600,'a',1,1.0,'York','YY'),
-(4,600,'c',1,1.0,'York','YY'),
-(4,600,'b',1,1.0,'York','YY'),
-(4,-200,'c',0,1.0,'York','YY'),
-(1,200,'b',1,1.0,'Jack','kk');
+(1,200,'a',1,1.0,'Sally','莎莉'),
+(2,-1000,'b',0,1.0,'Mike','麥克'),
+(1,200,'b',1,1.0,'Sally','莎莉'),
+(1,-200,'b',0,1.0,'Sally','莎莉'),
+(3,400,'c',1,1.0,'Ogushi','奧斯'),
+(3,200,'a',1,1.0,'Ogushi','奧斯'),
+(3,600,'b',1,1.0,'Ogushi','奧斯'),
+(2,800,'b',1,1.0,'Mike','麥克'),
+(1,1000,'c',1,1.0,'Sally','莎莉'),
+(1,2000,'a',1,1.0,'Sally','莎莉'),
+(3,1400,'b',1,1.0,'Ogushi','奧斯'),
+(2,1400,'a',1,1.0,'Mike','麥克'),
+(1,-200,'a',0,1.0,'Sally','莎莉'),
+(1,200,'b',1,1.0,'Sally','莎莉'),
+(2,200,'c',1,1.0,'Mike','麥克'),
+(4,600,'a',1,1.0,'Udo','約督'),
+(4,600,'c',1,1.0,'Udo','約督'),
+(4,600,'b',1,1.0,'Udo','約督'),
+(4,-200,'c',0,1.0,'Udo','約督'),
+(5,2000,'a',1,1.0,'Sam','山姆'),
+(5,1400,'b',1,1.0,'Sam','山姆'),
+(5,1400,'a',1,1.0,'Sam','山姆'),
+(6,-200,'a',0,1.0,'John','強'),
+(6,200,'b',1,1.0,'John','強'),
+(6,600,'c',1,1.0,'John','強'),
+(1,200,'b',1,1.0,'Sally','莎莉');
 
 
 INSERT INTO Moneyrecord(money_record_member_num,money_record_time,money_record_cash,money_record_chip,money_record_type,money_record_first_name,money_record_nick_name)values
-(1,getdate(),10000,10000,'topup','Jack','kk'),
-(3,getdate(),1000,1000,'topup','Judy','JJ'),
-(2,getdate(),20000,20000,'topup','Thomas','TT'),
-(2,getdate(),70000,70000,'topup','Thomas','TT'),
-(2,getdate(),14500,14500,'topup','Thomas','TT'),
-(1,getdate(),12220,12220,'topup','Jack','kk'),
-(3,getdate(),2500,2500,'topup','Judy','JJ');
+(1,getdate(),2000,10000,'超值禮包','Sally','莎莉'),
+(3,getdate(),5000,50000,'進階禮包','Ogushi','奧斯'),
+(2,getdate(),10000,150000,'高級禮包','Mike','麥克'),
+(2,getdate(),2000,10000,'超值禮包','Thomas','麥克'),
+(2,getdate(),10000,150000,'高級禮包','Mike','麥克'),
+(1,getdate(),5000,50000,'進階禮包','Sally','莎莉'),
+(4,getdate(),5000,50000,'進階禮包','Udo','約督'),
+(4,getdate(),10000,150000,'高級禮包','Udo','約督'),
+(5,getdate(),10000,150000,'高級禮包','Sam','山姆'),
+(5,getdate(),5000,50000,'進階禮包','Sam','山姆'),
+(6,getdate(),2000,10000,'超值禮包','John','強'),
+(3,getdate(),10000,150000,'高級禮包','Ogushi','奧斯');
+
+
 
 INSERT INTO Chiprecord(chip_record_member_num,chip_record_chip,chip_record_time,chip_record_chiptype,play_round,win,chip_record_first_name,chip_record_nick_name) values
-(2,1000,'2017-07-12','a',1,1,'Thomas','TT'),
-(2,500,'2017-07-13','a',1,1,'Thomas','TT'),
-(3,-200,'2017-07-14','a',1,0,'Judy','JJ'),
-(1,2000,'2017-07-20','a',1,1,'Jack','JJ'),
-(4,600,'2017-07-15','a',1,1,'York','YY'),
-(3,-1000,'2017-08-12','b',1,0,'Judy','JJ'),
-(3,200,'2017-08-13','b',1,1,'Judy','JJ'),
-(2,-800,'2017-08-13','b',1,0,'Thomas','TT'),
-(4,1200,'2017-08-15','b',1,1,'York','YY'),
-(1,2000,'2017-09-12','c',1,1,'Jack','JJ'),
-(1,-800,'2017-09-13','c',1,0,'Jack','JJ'),
-(2,-400,'2017-09-14','c',1,0,'Thomas','TT'),
-(3,600,'2017-09-15','c',1,1,'Judy','JJ'),
-(4,1200,'2017-09-16','c',1,1,'York','YY'),
-(2,700,'2017-10-12','a',1,1,'Thomas','TT'),
-(1,-1400,'2018-11-10','c',1,0,'Jack','kk'),
-(3,1200,'2019-01-13','b',1,1,'Judy','JJ'),
-(2,2500,'2019-07-12','a',1,1,'Thomas','TT');
+(2,1000,'2017-07-12','a',1,1,'Mike','麥克'),
+(2,500,'2017-07-13','a',1,1,'Mike','麥克'),
+(3,-200,'2017-07-14','a',1,0,'Ogushi','奧斯'),
+(1,2000,'2017-07-20','a',1,1,'Sally','莎莉'),
+(4,600,'2017-07-15','a',1,1,'Udo','約督'),
+(3,-1000,'2017-08-12','b',1,0,'Ogushi','奧斯'),
+(3,200,'2017-08-13','b',1,1,'Ogushi','奧斯'),
+(2,-800,'2017-08-13','b',1,0,'Mike','麥克'),
+(4,1200,'2017-08-15','b',1,1,'Udo','約督'),
+(1,2000,'2017-09-12','c',1,1,'Sally','莎莉'),
+(1,-800,'2017-09-13','c',1,0,'Sally','莎莉'),
+(2,-400,'2017-09-14','c',1,0,'Mike','麥克'),
+(3,600,'2017-09-15','c',1,1,'Ogushi','奧斯'),
+(4,1200,'2017-09-16','c',1,1,'Udo','約督'),
+(2,700,'2017-10-12','a',1,1,'Mike','麥克'),
+(1,-1400,'2018-11-10','c',1,0,'Sally','莎莉'),
+(5,1200,'2019-02-13','b',1,1,'Sam','山姆'),
+(5,1200,'2018-09-16','c',1,1,'Sam','山姆'),
+(5,700,'2018-10-12','a',1,1,'Sam','山姆'),
+(1,-1400,'2018-11-10','c',1,0,'Sally','莎莉'),
+(6,200,'2017-08-20','b',1,1,'John','強'),
+(6,-200,'2017-08-31','a',1,0,'John','強'),
+(2,2500,'2019-07-12','a',1,1,'Mike','麥克');
 
 IF Object_ID('dbo.summary') IS NOT NULL
     DROP VIEW dbo.summary;
@@ -142,7 +160,12 @@ create view summary
   select row_number() OVER(ORDER BY chip_record_time)AS num,chip_record_chiptype,chip_record_chip
   from chiprecord
   where chip_record_chiptype='c';
-   
+  
+  IF Object_ID('dbo.companyearn') IS NOT NULL
+    DROP VIEW dbo.companyearn;
+ create view companyearn
+ as
+ select FORMAT(sum(money_record_cash), 'N0') as total_cash from moneyrecord;
    
  INSERT INTO vip_level values
 (1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','初級會員'),
@@ -184,12 +207,12 @@ insert into article_nice values (1,'user');
 insert into article_nice values (3,'user');
 
 /*fake data*/
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name,member_location) values('Sally','123',0,'sally@gmail.com','0123456789',getdate(),2,null,500,'/resources/memberPhoto/sally.jpg','莎莉','Sally','Michaela','Taipei');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name,) values('Mike','123',0,'mike@gmail.com','0123456789',getdate(),3,null,3504,'/resources/memberPhoto/mike.jpg','麥克','Mike','Smith','Taipei');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name,) values('Ogushi','123',0,'Ogushi@gmail.com','0123456789',getdate(),1,null,400,'/resources/memberPhoto/Ogushi.png','奧斯','Ogushi','Jones','Taipei');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name,) values('Udo','123',0,'Udo@gmail.com','0123456789',getdate(),3,null,7,'/resources/memberPhoto/udo.jpg','約督','Udo','Williams','Taipei');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name,) values('Sam','123',0,'Sam@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/sam.jpg','山姆','Sam','Taylor','Taipei');
-insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_fitst_name,member_last_name,) values('John','123',0,'John@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/John.jpg','強','John','Brown','Taipei');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_first_name,member_last_name,member_location) values('Sally','123',0,'sally@gmail.com','0123456789',getdate(),2,null,500,'/resources/memberPhoto/sally.jpg','莎莉','Sally','Michaela','Taipei');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_first_name,member_last_name,member_location) values('Mike','123',0,'mike@gmail.com','0123456789',getdate(),3,null,3504,'/resources/memberPhoto/mike.jpg','麥克','Mike','Smith','Taipei');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_first_name,member_last_name,member_location) values('Ogushi','123',0,'Ogushi@gmail.com','0123456789',getdate(),1,null,400,'/resources/memberPhoto/Ogushi.png','奧斯','Ogushi','Jones','Taipei');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_first_name,member_last_name,member_location) values('Udo','123',0,'Udo@gmail.com','0123456789',getdate(),3,null,7,'/resources/memberPhoto/udo.jpg','約督','Udo','Williams','Taipei');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_first_name,member_last_name,member_location) values('Sam','123',0,'Sam@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/sam.jpg','山姆','Sam','Taylor','Taipei');
+insert into member(member_id,member_password,member_permission,member_email,member_phonenum,create_time,member_viplevel,member_photo,money_balance,member_photourl,member_nick_name,member_first_name,member_last_name,member_location) values('John','123',0,'John@gmail.com','0123456789',getdate(),3,null,744,'/resources/memberPhoto/John.jpg','強','John','Brown','Taipei');
 
 insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,6,5,1);
 insert into friend_list(friend_id_is_read , friend_list_friendid , friend_list_memberid , friend_notify)  values (1,5,6,1);

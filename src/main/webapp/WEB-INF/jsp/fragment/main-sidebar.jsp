@@ -945,7 +945,7 @@ function talkfunction(id){
 
 				});
 
-			}, 3000); 
+			}, 1000); 
 
 		});
 	</script>

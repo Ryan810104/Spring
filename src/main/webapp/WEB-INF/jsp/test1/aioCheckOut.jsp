@@ -27,42 +27,7 @@
 <h1 class="card-header">${info}</h1>
 <h5 class="card-header">請選擇付款方式</h5>
 <div class="card-body">
-<form method = "GET"  action = "aioCheckOut/aioCheckOutALL">
-	<table>
-		<tr>
-			<td>
-				<input type = "submit" value = "不指定付款方式"   class="btn btn-secondary"/>
-			</td>
-		</tr>
-	</table>
-</form>
-<form method = "GET"  action = "aioCheckOut/aioCheckOutATM">
-	<table>
-		<tr>
-			<td>
-				<input type = "submit" value = "自動櫃員機"  class="btn btn-secondary"/>
-			</td>
-		</tr>
-	</table>
-</form>
-<form method = "GET"  action = "aioCheckOut/aioCheckOutBARCODE">
-	<table>
-		<tr>
-			<td>
-				<input type = "submit" value = "超商條碼" class="btn btn-secondary"/>
-			</td>
-		</tr>
-	</table>
-</form>
-<form method = "GET"  action = "aioCheckOut/aioCheckOutCVS">
-	<table>
-		<tr>
-			<td>
-				<input type = "submit" value = "超商代碼"  class="btn btn-secondary"/>
-			</td>
-		</tr>
-	</table>
-</form>
+
 <form method = "GET"  action = "aioCheckOut/aioCheckOutDevide">
 	<table>
 		<tr>
@@ -86,15 +51,6 @@
 		<tr>
 			<td>
 				<input type = "submit" value = "信用卡定期定額" class="btn btn-secondary"/>
-			</td>
-		</tr>
-	</table>
-</form>
-<form method = "GET"  action = "aioCheckOut/aioCheckOutWebATM">
-	<table>
-		<tr>
-			<td>
-				<input type = "submit" value = "網路ATM" class="btn btn-secondary"/>
 			</td>
 		</tr>
 	</table>

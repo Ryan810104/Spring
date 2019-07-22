@@ -193,12 +193,12 @@
 			crossorigin="anonymous"></script>
 
 
-		<button data-toggle='modal' data-target='#showtopup' class="btn btn-primary btn-lg active"
-			onclick="topup();">
-			<i class="fab fa-cc-visa" style="font-size: 20px"> <span
-				style="font-size: 20px">儲值</span>
-			</i>
-		</button>
+<!-- 		<button data-toggle='modal' data-target='#showtopup' class="btn btn-primary btn-lg active" -->
+<!-- 			onclick="topup();"> -->
+<!-- 			<i class="fab fa-cc-visa" style="font-size: 20px"> <span -->
+<!-- 				style="font-size: 20px">付款方式</span> -->
+<!-- 			</i> -->
+<!-- 		</button> -->
 
 		<div class="modal fade" id="showtopup" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLongTitle" aria-hidden="true" style="text-align::center">
@@ -215,89 +215,131 @@
 					<div class="modal-body">
 <!-- 						<h5 class="modal-title" id="complaintPicTitle" -->
 <!-- 							style="font-size: 120%">請輸入儲值金額</h5> -->
-						<form class="form-signin" name="form2" id="form2" action=""
-			method="POST">	
-						<input id='moneyRecordMemberNum' name="moneyRecordMemberNum"
-							type="text" value="${sessionScope.member.memberNum}"
-							placeholder="moneyRecordMemberNum:" class="form-control"
-							onclick="this.value=''" style="display:none"> 
+<!-- 						<form class="form-signin" name="form2" id="form2" action="" -->
+<!-- 			method="POST">	 -->
+<!-- 						<input id='moneyRecordMemberNum' name="moneyRecordMemberNum" -->
+<%-- 							type="text" value="${sessionScope.member.memberNum}" --%>
+<!-- 							placeholder="moneyRecordMemberNum:" class="form-control" -->
+<!-- 							onclick="this.value=''" style="display:none">  -->
 							
-						<input id='moneyRecordFirstName'
-							name="moneyRecordFirstName" type="text"
-							value="${sessionScope.member.memberFitstName}"
-							placeholder="moneyRecordFirstName:" class="form-control"
-							onclick="this.value=''"> 
+<!-- 						<input id='moneyRecordFirstName' -->
+<!-- 							name="moneyRecordFirstName" type="text" -->
+<%-- 							value="${sessionScope.member.memberFitstName}" --%>
+<!-- 							placeholder="moneyRecordFirstName:" class="form-control" -->
+<!-- 							onclick="this.value=''">  -->
 							
-						<input id='moneyRecordNickName'
-							name="moneyRecordNickName" type="text"
-							value="${sessionScope.member.memberNickName}"
-							placeholder="moneyRecordNickName:" class="form-control"
-							onclick="this.value=''"> 
+<!-- 						<input id='moneyRecordNickName' -->
+<!-- 							name="moneyRecordNickName" type="text" -->
+<%-- 							value="${sessionScope.member.memberNickName}" --%>
+<!-- 							placeholder="moneyRecordNickName:" class="form-control" -->
+<!-- 							onclick="this.value=''">  -->
 							
-							<h5 class="modal-title" id="complaintPicTitle"
-							style="font-size: 120%">儲值現金</h5>
+<!-- 							<h5 class="modal-title" id="complaintPicTitle" -->
+<!-- 							style="font-size: 120%">儲值現金</h5> -->
 							
-						<input id='moneyRecordCash'
-							name="moneyRecordCash" type="text" value=""
-							placeholder="儲值金額:" class="form-control">
+<!-- 						<input id='moneyRecordCash' -->
+<!-- 							name="moneyRecordCash" type="text" value="" -->
+<!-- 							placeholder="儲值金額:" class="form-control"> -->
 
 					
-<!-- 						<input id='cal' name="cal" type="text" -->
-<!-- 							 placeholder="cal:" -->
-<!-- 							class="form-control" value="10" style="display:none">  -->
+<!-- <!-- 						<input id='cal' name="cal" type="text" --> -->
+<!-- <!-- 							 placeholder="cal:" --> -->
+<!-- <!-- 							class="form-control" value="10" style="display:none">  --> -->
 							
-							<h5 class="modal-title" id="complaintPicTitle"
-							style="font-size: 120%">兌換點數</h5>
+<!-- 							<h5 class="modal-title" id="complaintPicTitle" -->
+<!-- 							style="font-size: 120%">兌換點數</h5> -->
 							
-						<input
-							id='moneyRecordChip' name="moneyRecordChip" type="text"
-							 placeholder="兌換點數:"
-							class="form-control mb-3"> 
+<!-- 						<input -->
+<!-- 							id='moneyRecordChip' name="moneyRecordChip" type="text" -->
+<!-- 							 placeholder="兌換點數:" -->
+<!-- 							class="form-control mb-3">  -->
 							
-						<input id='moneyRecordType'
-							name="moneyRecordType" type="text"
-							placeholder="moneyRecordType:" class="form-control mb-3" value="topup" style="display:none">
+<!-- 						<input id='moneyRecordType' -->
+<!-- 							name="moneyRecordType" type="text" -->
+<!-- 							placeholder="moneyRecordType:" class="form-control mb-3" value="topup" style="display:none"> -->
 
-						<input id='chipMemberNum' name="chipMemberNum" type="text"
-							onclick="this.value=''" value="${sessionScope.member.memberNum}"
-							placeholder="chipMemberNum:" class="form-control mb-3" style="display:none"> 
+<!-- 						<input id='chipMemberNum' name="chipMemberNum" type="text" -->
+<%-- 							onclick="this.value=''" value="${sessionScope.member.memberNum}" --%>
+<!-- 							placeholder="chipMemberNum:" class="form-control mb-3" style="display:none">  -->
 							
-							<input
-							id='chipFirstName' name="chipFirstName" type="text"
-							onclick="this.value=''"
-							value="${sessionScope.member.memberFitstName}"
-							placeholder="chipFirstName:" class="form-control mb-3" style="display:none"> 
+<!-- 							<input -->
+<!-- 							id='chipFirstName' name="chipFirstName" type="text" -->
+<!-- 							onclick="this.value=''" -->
+<%-- 							value="${sessionScope.member.memberFitstName}" --%>
+<!-- 							placeholder="chipFirstName:" class="form-control mb-3" style="display:none">  -->
 							
-							<input
-							id='chipNickName' name="chipNickName" type="text"
-							onclick="this.value=''"
-							value="${sessionScope.member.memberNickName}"
-							placeholder="chipNickName:" class="form-control mb-3" style="display:none"> 
+<!-- 							<input -->
+<!-- 							id='chipNickName' name="chipNickName" type="text" -->
+<!-- 							onclick="this.value=''" -->
+<%-- 							value="${sessionScope.member.memberNickName}" --%>
+<!-- 							placeholder="chipNickName:" class="form-control mb-3" style="display:none">  -->
 							
-							<input
-							id='chipBalanced' name="chipBalanced" type="text"
-							placeholder="chipBalanced:"
-							class="form-control mb-3" style="display:none"> 
+<!-- 							<input -->
+<!-- 							id='chipBalanced' name="chipBalanced" type="text" -->
+<!-- 							placeholder="chipBalanced:" -->
+<!-- 							class="form-control mb-3" style="display:none">  -->
 							
-							<input id='chipType'
-							name="chipType" type="text" value="${memberP.chipRecordChip}"
-							placeholder="chipType:" class="form-control mb-3" style="display:none"> 
+<!-- 							<input id='chipType' -->
+<%-- 							name="chipType" type="text" value="${memberP.chipRecordChip}" --%>
+<!-- 							placeholder="chipType:" class="form-control mb-3" style="display:none">  -->
 							
-							<input
-							id='win' name="win" type="text" value="${memberP.chipRecordChip}"
-							placeholder="win:" class="form-control mb-3" style="display:none"> 
+<!-- 							<input -->
+<%-- 							id='win' name="win" type="text" value="${memberP.chipRecordChip}" --%>
+<!-- 							placeholder="win:" class="form-control mb-3" style="display:none">  -->
 							
-							<input
-							id='round' name="round" type="text"
-							 placeholder="round:" class="form-control mb-3"  style="display:none">	 
+<!-- 							<input -->
+<!-- 							id='round' name="round" type="text" -->
+<!-- 							 placeholder="round:" class="form-control mb-3"  style="display:none">	  -->
 
 						
-							 <div style="text-align:center">
-							<button class="btn btn-success" type="button" id="sendout"
-							 style="font-size: 20px;">Confirm</button>
-							 </div>
+<!-- 							 <div style="text-align:center"> -->
+<!-- 							<button class="btn btn-success" type="button" id="sendout" -->
+<!-- 							 style="font-size: 20px;">Confirm</button> -->
+<!-- 							 </div> -->
 						
-						</form>	
+<!-- 						</form>	 -->
+<h1 class="card-header">${info}</h1>
+<h5 class="card-header">請選擇付款方式</h5>
+<div class="card-body">
+
+<form method = "GET"  action = "aioCheckOut/aioCheckOutDevide">
+	<table>
+		<tr>
+			<td>
+				<input type = "submit" value = "信用卡分期"  class="btn btn-secondary"/>
+			</td>
+		</tr>
+	</table>
+</form>
+<form method = "GET"  action = "/frontEnd/aioCheckOut/aioCheckOutOneTime">
+	<table>
+		<tr>
+			<td>
+				<input type = "submit" value = "信用卡一次付清"  class="btn btn-success"/>
+			</td>
+		</tr>
+	</table>
+</form>
+<form method = "GET"  action = "aioCheckOut/aioCheckOutPeriod">
+	<table>
+		<tr>
+			<td>
+				<input type = "submit" value = "信用卡定期定額" class="btn btn-secondary"/>
+			</td>
+		</tr>
+	</table>
+</form>
+<form method = "GET"  action = "<%=request.getContextPath()%>">
+	<table>
+		<tr>
+			<td>
+				<input type = "submit" value = "back to Home" class="btn btn-secondary"/>
+			</td>
+		</tr>
+	</table>
+</form>
+</div>
+
 					</div>
 
 
@@ -309,11 +351,12 @@
 
 <div class="row">
 
-<!-- 基本禮包 -->
+<!-- 超值禮包 -->
 <div class="col-sm-4">
 
-<i class="fas fa-gift" style="font-size: 50px;"></i>
-<span style="font-size: 20px">基本禮包</span>
+<!-- <i class="fas fa-gift" style="font-size: 50px;"></i> -->
+<!-- <span style="font-size: 20px">基本禮包</span> -->
+
 <form class="form-signin" name="form33" id="form33" action=""
 			method="POST">	
 						<input id='moneyRecordMemberNum1' name="moneyRecordMemberNum1"
@@ -325,36 +368,36 @@
 							name="moneyRecordFirstName1" type="text"
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control mb-3"
-							onclick="this.value=''"> 
+							onclick="this.value=''" style="display:"> 
 							
 						<input id='moneyRecordNickName1'
 							name="moneyRecordNickName1" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control mb-4"
-							onclick="this.value=''"> 
+							onclick="this.value=''"  style="display:"> 
 							
 <!-- 							<h5 class="modal-title"  -->
 <!-- 							style="font-size: 120%">超值優惠包</h5> -->
 							
-							<h3>入門 <span class="badge badge-success" style="font-size: 120%">超值優惠</span></h3>
+<!-- 							<h3>入門 <span class="badge badge-success" style="font-size: 120%">超值優惠</span></h3> -->
 							
 						<input id='moneyRecordCash1'
 							name="moneyRecordCash1" type="text" value="2000"
-							 class="form-control mb-4"  disabled="disabled">
+							 class="form-control mb-4"  disabled="disabled"  style="display:none">
 
 					
 							
-							<h5 class="modal-title" 
-							style="font-size: 120%">點數額度</h5>
+<!-- 							<h5 class="modal-title"  -->
+<!-- 							style="font-size: 120%">點數額度</h5> -->
 							
 						<input
 							id='moneyRecordChip1' name="moneyRecordChip1" type="text"
 							value="10000" 
-							class="form-control mb-3" disabled="disabled"> 
+							class="form-control mb-3" disabled="disabled" style="display:none"> 
 							
 						<input id='moneyRecordType1'
 							name="moneyRecordType1" type="text"
-							placeholder="moneyRecordType:" class="form-control mb-3" value="topup" style="display:none">
+							placeholder="moneyRecordType:" class="form-control mb-3" value="超值禮包" style="display:none">
 
 						<input id='chipMemberNum1' name="chipMemberNum1" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
@@ -404,8 +447,8 @@
 <!-- 進階禮包 -->
 <div class="col-sm-4">
 
-<i class="fas fa-gift" style="font-size: 50px;"></i>
-<span style="font-size: 20px">進階禮包</span>
+<!-- <i class="fas fa-gift" style="font-size: 50px;"></i> -->
+<!-- <span style="font-size: 20px">進階禮包</span> -->
 
 <form class="form-signin" name="form4" id="form4" action=""
 			method="POST">	
@@ -418,36 +461,36 @@
 							name="moneyRecordFirstName2" type="text"
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control mb-3"
-							onclick="this.value=''"> 
+							onclick="this.value=''" style="display:"> 
 							
 						<input id='moneyRecordNickName2'
 							name="moneyRecordNickName2" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control mb-4"
-							onclick="this.value=''"> 
+							onclick="this.value=''" style="display:"> 
 							
 <!-- 							<h5 class="modal-title"  -->
 <!-- 							style="font-size: 120%">儲值現金</h5> -->
 							
-							<h3>進階 <span class="badge badge-warning" style="font-size: 120%">加碼回饋</span></h3>
+<!-- 							<h3>進階 <span class="badge badge-warning" style="font-size: 120%">加碼回饋</span></h3> -->
 							
 							
 						<input id='moneyRecordCash2'
 							name="moneyRecordCash2" type="text" value="5000"
-							 class="form-control mb-4" disabled="disabled">
+							 class="form-control mb-4" disabled="disabled" style="display:none">
 
 							
-							<h5 class="modal-title" 
-							style="font-size: 120%">點數額度</h5>
+<!-- 							<h5 class="modal-title"  -->
+<!-- 							style="font-size: 120%">點數額度</h5> -->
 							
 						<input
 							id='moneyRecordChip2' name="moneyRecordChip2" type="text"
 							value="50000" 
-							class="form-control mb-3" disabled="disabled"> 
+							class="form-control mb-3" disabled="disabled" style="display:none"> 
 							
 						<input id='moneyRecordType2'
 							name="moneyRecordType2" type="text"
-							placeholder="moneyRecordType:" class="form-control mb-3" value="topup" style="display:none">
+							placeholder="moneyRecordType:" class="form-control mb-3" value="進階禮包" style="display:none">
 
 						<input id='chipMemberNum2' name="chipMemberNum2" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
@@ -495,8 +538,8 @@
 <!-- 高級禮包 -->
 <div class="col-sm-4">
 
-<i class="fas fa-gift" style="font-size: 50px;"></i>
-<span style="font-size: 20px">高級禮包</span>
+<!-- <i class="fas fa-gift" style="font-size: 50px;"></i> -->
+<!-- <span style="font-size: 20px">高級禮包</span> -->
 
 
 <form class="form-signin" name="form5" id="form5" action=""
@@ -510,39 +553,39 @@
 							name="moneyRecordFirstName3" type="text"
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control mb-3"
-							onclick="this.value=''"> 
+							onclick="this.value=''" style="display:"> 
 							
 						<input id='moneyRecordNickName3'
 							name="moneyRecordNickName3" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control mb-4"
-							onclick="this.value=''"> 
+							onclick="this.value=''" style="display:"> 
 							
 <!-- 							<h5 class="modal-title"  -->
 <!-- 							style="font-size: 120%">儲值現金</h5> -->
 							
-							<h3>最高<span class="badge badge-danger" style="font-size: 120%">大放送</span></h3>
+<!-- 							<h3>最高<span class="badge badge-danger" style="font-size: 120%">大放送</span></h3> -->
 							
 						<input id='moneyRecordCash3'
 							name="moneyRecordCash3" type="text" value="10000"
-							 class="form-control mb-4" disabled="disabled">
+							 class="form-control mb-4" disabled="disabled" style="display:none">
 
 					
 <!-- 						<input id='cal1' name="cal1" type="text" -->
 <!-- 							 placeholder="cal:" -->
 <!-- 							class="form-control" value="10" style="display:">  -->
 							
-							<h5 class="modal-title" 
-							style="font-size: 120%">點數額度</h5>
+<!-- 							<h5 class="modal-title"  -->
+<!-- 							style="font-size: 120%">點數額度</h5> -->
 							
 						<input
 							id='moneyRecordChip3' name="moneyRecordChip3" type="text"
 							 value="150000"
-							class="form-control mb-3" disabled="disabled"> 
+							class="form-control mb-3" disabled="disabled" style="display:none"> 
 							
 						<input id='moneyRecordType3'
 							name="moneyRecordType3" type="text"
-							placeholder="moneyRecordType:" class="form-control mb-3" value="topup" style="display:none">
+							placeholder="moneyRecordType:" class="form-control mb-3" value="高級禮包" style="display:none">
 
 						<input id='chipMemberNum3' name="chipMemberNum3" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
@@ -818,14 +861,14 @@
 			$("#sendout").click(function() {
 
 								var insert = $("#form2").serializeArray();
-								alert(insert);
-								alert(JSON.stringify(insert));
+// 								alert(insert);
+// 								alert(JSON.stringify(insert));
 								var i = {};
 								$.each(insert, function(index, value1) {
 									i[value1.name] = value1.value;
 								});
 								var ant1 = JSON.stringify(i);
-								alert(ant1);
+// 								alert(ant1);
 
 								$.ajax({url : '/admin/memberBeans/insert2?moneyRecordMemberNum='
 													+ $("#moneyRecordMemberNum")
@@ -864,10 +907,10 @@
 											dataType : 'json',
 											data : ant1,
 											success : function(data) {
-												alert("新增成功"
-														+ data.data.chipRecordChip);
+												alert("新增成功");
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
+// 												$("#")
 
 
 											},
@@ -933,7 +976,7 @@
 														+ data.data.chipRecordChip);
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
-
+// 												topup();
 
 											},
 											error : function(ajaxres) {
@@ -998,7 +1041,7 @@
 														+ data.data.chipRecordChip);
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
-
+// 												topup();
 
 											},
 											error : function(ajaxres) {
@@ -1063,7 +1106,7 @@
 														+ data.data.chipRecordChip);
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
-
+// 												topup();
 
 											},
 											error : function(ajaxres) {
