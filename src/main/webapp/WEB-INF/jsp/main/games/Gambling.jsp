@@ -288,10 +288,10 @@
 				success : function(data) {
 					var opt="";
 					for(i in data){
-						opt += "<tr><td  id=\"num"+i+"1\" style='height:60px;width:100px'>" + data[i]["roomNum"] + "</td>" +"<td  style='height:60px;width:100px'>" + data[i]["gameRoomName"] + "</td>" + "<td style='height:60px;width:100px'>"
-						+ data[i]["memberId"] + "</td>" + "<td style='height:60px;width:100px'>"
-						+ data[i]["player1Result"] + "</td>" + "<td style='height:60px;width:100px'>"
-						+ data[i]["gameMoney"] + "</td>"+ "<td style='height:60px;width:100px'>"
+						opt += "<tr><td  id=\"num"+i+"1\" style='height:70px;width:100px'>" + data[i]["roomNum"] + "</td>" +"<td  style='height:60px;width:100px'>" + data[i]["gameRoomName"] + "</td>" + "<td style='height:60px;width:100px'>"
+						+ data[i]["memberId"] + "</td>" + "<td style='height:70px;width:100px'>"
+						+ data[i]["player1Result"] + "</td>" + "<td style='height:70px;width:100px'>"
+						+ data[i]["gameMoney"] + "</td>"+ "<td style='height:70px;width:100px'>"
 						+ "<button  class='roomnum'  id=num"+i+">"+"進入房間"+"</button>"+"</td><tr>";
 			
 					}

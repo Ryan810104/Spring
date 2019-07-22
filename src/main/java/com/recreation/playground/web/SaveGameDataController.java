@@ -1,5 +1,6 @@
 package com.recreation.playground.web;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import com.recreation.playground.entity.GameBlingRoom;
 import com.recreation.playground.entity.SaveGameData;
 import com.recreation.playground.service.GameBlingRoomService;
 import com.recreation.playground.service.SaveGameDataService;
+import com.recreation.testjsoup.TestJoup;
 
 @Controller
 @RequestMapping("/save")
@@ -91,7 +93,7 @@ public class SaveGameDataController {
 
 //找對應房間
 	@RequestMapping("/GameBling2")
-	public String findplayer1num(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, Model model) {
+	public String findplayer1num(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, Model model) throws IOException {
 
 		GameBlingRoom bean = service1.findbyroomnum(member.getRoomNum());
 		bean.setGameRoomMember(member.getGameRoomMember());
@@ -102,9 +104,19 @@ public class SaveGameDataController {
 		} else {
 			bean.setPlayer2Result("勇士");
 		}
-
+		
 		model.addAttribute("player1", bean);
 		service1.SaveGameData(bean);
 		return "/main/games/blingroom";
 	}
+	
+	//
+	@RequestMapping("/GameBling4")
+	public  String GameResult() throws IOException {
+		TestJoup.jsoup();
+		return "";
+	}
+	
+	
+	
 }

@@ -82,7 +82,7 @@ var roomnum=${player1.roomNum};
 		constructor() {
 			// changing these parameters can give very different results
 			this.damp = 0.00002; // remember a very small amount of the last direction
-			this.accel = 100; // move very quickly
+			this.accel = 1; // move very quickly
 			this.init();
 		}
 		init() {
@@ -190,15 +190,26 @@ var roomnum=${player1.roomNum};
 				success : function(data) {
 					$("#money").html("目前總賭金:"+data.gameMoney);
 				var a="暴龍";	
+				
 				if(data.player1Result==a){
 					$("#player2").html("玩家:"+data.memberId);
-					$("#player1").html("玩家:"+data.gameRoomMember);
+					if(data.gameRoomMember==null){
+						$("#player1").html("玩家:等待中.......");
+					}else{
+						$("#player1").html("玩家:"+data.gameRoomMember);
+					}
+						
+					
 				}else{
 					$("#player1").html("玩家:"+data.memberId);
-					$("#player2").html("玩家:"+data.gameRoomMember);
+					
+					if(data.gameRoomMember==null){
+						$("#player2").html("玩家:等待中.......");
+					}else{
+						$("#player2").html("玩家:"+data.gameRoomMember);
+					}
+						
 				}
-			
-				
 
 				}
 				
@@ -206,11 +217,7 @@ var roomnum=${player1.roomNum};
 		},4);
 			
 
-		function showGame(data){
-			
-			alert(data);
-	
-		}
+		
 	
 	</script>
 
