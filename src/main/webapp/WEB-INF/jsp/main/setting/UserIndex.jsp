@@ -30,7 +30,8 @@
 						<div class="text-center"></div>
 						<!--/col-3-->
 						<div>
-							<div class="col-sm-9" id="result1"></div>
+							<div class="col-sm-9" id="result1" style="position:relative;left:10%;"></div>
+							<br>
 							<div id="modifyMemberInfo"></div>
 							
 							<hr>
@@ -122,7 +123,7 @@
 // 			console.log("ownerMemberNum="+$("#ownerMemberNum").val());
 // 			console.log("memberNum="+$("#memberNum").val());
 			if($("#ownerMemberNum").val()==$("#memberNum").val()){
-				$("#modifyMemberInfo").html("<a href=\"/member/setting\" style=\"font-family: 微軟正黑體; font-family: 微軟正黑體; font-size: 150%\">修改個人資料</a>");
+				$("#modifyMemberInfo").html("<a href=\"/member/setting\" style=\"font-family: 微軟正黑體; font-family: 微軟正黑體; font-size: 150%\"><button style=\"position:relative;left:25%;\">修改個人資料</button></a>");
 			}
 
 		});
@@ -183,7 +184,7 @@
 								$("#userIndexNickName").html("<h1>"+data["memberNickName"]+" 的個人資訊</h1>");
 							}
 												
-							if (data["memberPhonenum"] == null) {
+							if (data["memberPhonenum"] == null||data["memberPhonenum"] == "") {
 								$("#memberPhonenum")
 								.html(
 										"<label for=\"phone\"><h4>連絡電話</h4></label> "
@@ -198,7 +199,7 @@
 												+ data["memberPhonenum"]
 												+ "</p>");
 							}
-							if (data["memberEmail"] == "") {
+							if (data["memberEmail"] == null) {
 								$("#memberEmail")
 								.html(
 										"<label for=\"email\"><h4>郵件</h4></label> "
