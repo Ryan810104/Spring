@@ -510,6 +510,7 @@ public class MemberController {
 	public String update(@Valid @ModelAttribute("userupdate") Member member, BindingResult result, Model model) {
 //		System.out.println(member);
 		Member member1 = service.finById(member.getMemberId());
+//		System.out.println("membe"+member1);
 		member1.setMemberFitstName(member.getMemberFitstName());
 		member1.setMemberLastName(member.getMemberLastName());
 		member1.setMemberEmail(member.getMemberEmail());

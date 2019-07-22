@@ -249,6 +249,7 @@
 						},
 						type : "POST",
 						success : function(data) {
+							// 							alert(data["memberId"]);
 							$("#memberId").val(data["memberId"])
 							$("#memberFitstName").val(data["memberFitstName"]);
 							$("#memberLastName").val(data["memberLastName"]);
