@@ -45,7 +45,6 @@ public class ComplaintController {
 	@PersistenceContext
 	EntityManager em;
 
-	
 	@RequestMapping("/insertComplaint")
 	@Transactional
 	public String insertComplaint(@Valid @ModelAttribute("formCI") Complaint cp, BindingResult result, Model model,
@@ -54,7 +53,7 @@ public class ComplaintController {
 		if (result.hasErrors()) {
 			return "/main/complain/complainIndex";
 		}
-		if((cp.getCmbNum())==null) {
+		if ((cp.getCmbNum()) == null) {
 			service.fileComplaints(cp);
 
 			Complaint cpp = em.find(Complaint.class, cp.getComplaintNum());
@@ -99,63 +98,59 @@ public class ComplaintController {
 
 			redirectAttributes.addFlashAttribute("insertComplaint", "1");
 			return "redirect:/main/index";
-			
-			
-			
-			
-			
-		}else if(service.findBycmbNum(cp.getCmbNum())!=null) {
+
+		} else if (service.findBycmbNum(cp.getCmbNum()) != null) {
 			redirectAttributes.addFlashAttribute("insertCmbNum", "1");
 			return "redirect:/main/index";
-			
-		}else {	
-		service.fileComplaints(cp);
 
-		Complaint cpp = em.find(Complaint.class, cp.getComplaintNum());
-		byte[] bytes = imageFile.getBytes();
-		// 當前伺服器絕對路徑
-		String serverPath = new File(".").getCanonicalPath();
-		// 目標資料夾絕對路徑
-		String folderPath = serverPath + "\\src\\main\\webapp\\resources\\complaintPhoto\\";
-		File directory = new File(folderPath);
-		// 偵測目標資料夾是否存在，不存在則建立資料夾
-		if (!directory.exists()) {
-			directory.mkdir();
-		}
-		String fileName = imageFile.getOriginalFilename();
-		String imagePathString = folderPath + fileName;
-		String dataBasePath = "";
-		if (null == fileName || fileName.length() == 0) {
-			dataBasePath = null;
 		} else {
-			dataBasePath = "\\resources\\complaintPhoto\\" + fileName;
-		}
-		if (bytes != null) {
-			Path imagePath = Paths.get(imagePathString);
+			service.fileComplaints(cp);
+
+			Complaint cpp = em.find(Complaint.class, cp.getComplaintNum());
+			byte[] bytes = imageFile.getBytes();
+			// 當前伺服器絕對路徑
+			String serverPath = new File(".").getCanonicalPath();
+			// 目標資料夾絕對路徑
+			String folderPath = serverPath + "\\src\\main\\webapp\\resources\\complaintPhoto\\";
+			File directory = new File(folderPath);
+			// 偵測目標資料夾是否存在，不存在則建立資料夾
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
+			String fileName = imageFile.getOriginalFilename();
+			String imagePathString = folderPath + fileName;
+			String dataBasePath = "";
+			if (null == fileName || fileName.length() == 0) {
+				dataBasePath = null;
+			} else {
+				dataBasePath = "\\resources\\complaintPhoto\\" + fileName;
+			}
+			if (bytes != null) {
+				Path imagePath = Paths.get(imagePathString);
 //			System.out.println("serverPath=" + serverPath);
 //			System.out.println("folderPath=" + folderPath);
 //			System.out.println("imagePath=" + imagePath);
 //			System.out.println("dataBasePath=" + dataBasePath);	
 
-			try {
-				Files.write(imagePath, bytes);
+				try {
+					Files.write(imagePath, bytes);
 
-			} catch (AccessDeniedException e) {
-				System.out.println("File Access Denied");
+				} catch (AccessDeniedException e) {
+					System.out.println("File Access Denied");
+				}
+
+			} else {
+				System.out.println("File Not Found");
 			}
 
-		} else {
-			System.out.println("File Not Found");
+			cpp.setComplaintPicURL(dataBasePath);
+			em.persist(cpp);
+
+			redirectAttributes.addFlashAttribute("insertComplaint", "1");
+			return "redirect:/main/index";
+
 		}
 
-		cpp.setComplaintPicURL(dataBasePath);
-		em.persist(cpp);
-
-		redirectAttributes.addFlashAttribute("insertComplaint", "1");
-		return "redirect:/main/index";
-		
-		}
-		
 	}
 
 	@ResponseBody
@@ -172,12 +167,12 @@ public class ComplaintController {
 //		System.out.println(CMBnum);
 		return service2.searchMessageByNum(CMBnum);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/findSummary")
 	public List<Object> findSummary(Integer memberNum) {
 		return service.findSummaryByMemberNum(memberNum);
-		
+
 	}
 
 	@ResponseBody
@@ -254,6 +249,24 @@ public class ComplaintController {
 
 	}
 
+	@Transactional
+	@ResponseBody
+	@RequestMapping("/hideMessage")
+	public String updataStatus(Integer CMBNun, Model model) {
+		CustomerMessageBoardBean bean = em.find(CustomerMessageBoardBean.class, CMBNun);
+
+		if (bean.getCustomermessageboardStatus() != 1) {
+			
+			return "1";
+			
+		}else if(bean.getCustomermessageboardStatus()==1) {
+			bean.setCustomermessageboardStatus(0);
+			em.persist(bean);
+					
+		}
+		return "/admin/ComplaintDeal";
+	}
+
 	@ResponseBody
 	@RequestMapping("/checknotice")
 	@Transactional
@@ -262,7 +275,7 @@ public class ComplaintController {
 		cp.setResponseAnno(1);
 		em.persist(cp);
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("/ban_notice_check")
 	@Transactional
