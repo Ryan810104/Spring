@@ -582,7 +582,7 @@ function searchArticle(){
 			success : function(data) {
 				if(data["customermessageboardMessage"]!=null){
 					document.getElementById("searchSp").innerHTML ="";
-					$("#searchResult").html(data["customermessageboardMessage"]).append("	<button class='btn btn-outline-secondary' style='font-size: 80%;' onclick='hideMessage()'>留言區隱藏</button>");;
+					$("#searchResult").html(data["customermessageboardMessage"]).append("	<button class='btn btn-outline-info' style='font-size: 80%;' onclick='hideMessage()'>留言區隱藏</button>");;
 					
 				}else{
 					document.getElementById("searchSp").innerHTML = "<n style='color:#FF3333;font-size: 120%;margin-left:100px;'>搜尋失敗,文章編號不存在</n>";
