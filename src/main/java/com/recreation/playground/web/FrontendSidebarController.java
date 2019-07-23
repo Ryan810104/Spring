@@ -28,7 +28,7 @@ public class FrontendSidebarController {
 // Sidebar 遊戲列表
 	@RequestMapping("/games")
 	public String toGame1(Model model) {
-		return "/main/games/GameIndex";
+		return "/main/games/gameindex2";
 	}
 // Sidebar 儲值中心
 //	@RequestMapping("/deposit")
@@ -109,6 +109,7 @@ public class FrontendSidebarController {
 	public String togameRoom(Model model) {
 		return "/main/games/blingroom";
 	}
+	
 
 	
 }
