@@ -3,7 +3,7 @@
 background: -webkit-linear-gradient(to right, #E2E2E2, #C9D6FF); 
 /* background: linear-gradient(to right, #E2E2E2, #C9D6FF); */
 } 
-ul li {
+.bg-gradient ul li {
   margin-bottom:1.4rem;
 }
 .pricing-divider {
