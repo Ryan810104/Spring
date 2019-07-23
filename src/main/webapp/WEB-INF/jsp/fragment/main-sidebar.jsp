@@ -17,7 +17,7 @@
 		</figure>
 
 		<div class="sidebar-title ex username-line-height">
-			<a href="/main/setting">${sessionScope.member.memberLastName}</a>
+			<a href="/main/setting">${sessionScope.member.memberNickName}</a>
 		</div>
 		<div class="sidebar-title ex" id="QQ"></div>
 
