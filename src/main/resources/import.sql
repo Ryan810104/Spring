@@ -205,7 +205,7 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,cmb_num) values ('文章編號:7	(勿更改以利查證)',getdate(),null,0,4,'Sally',7);
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('遊戲無聊',getdate(),null,0,1,'Udo');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('遊戲難度太低',getdate(),null,0,1,'Ogushi');
-insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('金額不符',getdate(),null,0,3,'Udo');
+insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('金額不符',getdate(),null,0,3,'John');
 
 insert into article_nice values (1,'user');
 insert into article_nice values (3,'user');
