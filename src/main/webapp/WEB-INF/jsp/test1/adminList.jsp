@@ -114,7 +114,7 @@
 						}
 					};
 					var title = {
-						text : 'A遊戲走勢圖'
+						text : '踩地雷走勢圖'
 					};
 					var xAxis = {
 						categories : xx
@@ -162,7 +162,7 @@
 						}
 					};
 					var title = {
-						text : 'B遊戲走勢圖'
+						text : '俄羅斯輪盤走勢圖'
 					};
 					var xAxis = {
 						categories : xx1
@@ -207,7 +207,7 @@
 						type : 'area'
 					};
 					var title = {
-						text : 'C遊戲走勢圖',
+						text : '球賽賭盤走勢圖',
 						style : {
 							fontFamily : '微軟正黑體'
 						}

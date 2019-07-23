@@ -39,7 +39,7 @@
 
 <!-- 		<li><a href="http://localhost/admin/member/index"> <i class="far fa-comment-dots"></i>會員相關 -->
 <!-- 		</a></li> -->
-		<li id="aa" style="margin-left:4em;"></li>
+<!-- 		<li id="aa" style="margin-left:4em;"></li> -->
 		<li><a href="http://localhost/admin/vip/index"> <i class="fas fa-sort-numeric-down"></i>Vip
 		</a></li>
 		<li><a href="/admin/toNews"> <i class="far fa-calendar-plus"></i>發布訊息
@@ -79,7 +79,7 @@
 					type : "POST",
 					success : function(data) {
 					
-						$("#aa").html("總金額:"+"$"+data);
+// 						$("#aa").html("總金額:"+"$"+data);
 					}
 					});
 

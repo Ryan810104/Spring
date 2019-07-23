@@ -519,6 +519,7 @@ public class MemberController {
 //		System.out.println(member);
 		Member member1 = service.finById(member.getMemberId());
 //		System.out.println("membe"+member1);
+		member1.setMemberPhonenum(member.getMemberPhonenum());
 		member1.setMemberFitstName(member.getMemberFitstName());
 		member1.setMemberLastName(member.getMemberLastName());
 		member1.setMemberEmail(member.getMemberEmail());
