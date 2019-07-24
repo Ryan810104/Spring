@@ -256,12 +256,12 @@
 										<input type="text" id="searchend" style="display: none" >
 										<textarea class="form-control" cols="95" rows="1"
 											placeholder="標題..." name="customermessageboardTitle"
-											id="CustomermessageboardTitle"></textarea>
+											id="CustomermessageboardTitle" maxlength="10"></textarea>
 									</div>
 									<div>
 										<textarea class="form-control" cols="95" rows="2"
 											placeholder="輸入你想要寫的內容..." name="CustomermessageboardMessage"
-											id="CustomermessageboardMessage"></textarea>
+											id="CustomermessageboardMessage" maxlength="130"></textarea>
 									</div>
 									<!--<h6 class="text-muted time">1 minute ago</h6> -->	
 								</div>
@@ -453,7 +453,7 @@
 				CustomermessageboardArticleFloor : $("#searchstart").val(),
 				},
 				success : function(data) {
-					var floor = 3 ;
+					var floor = 3 ;					
 					if( data == ""){
 						alert("已無資料");
 					}else{
