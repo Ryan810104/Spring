@@ -523,7 +523,18 @@ public class MemberController {
 		return chipRecordDao.findgameftrend();
 	}
 	
-
+	@RequestMapping("/companyperformance1")
+	@ResponseBody
+	public List<Object> companyperformance1(){
+		return moneyRecordDao.findCompanyPerformance1();
+	}
+	
+	
+	@RequestMapping("/companyperformance2")
+	@ResponseBody
+	public List<Object> companyperformance2(){
+		return moneyRecordDao.findCompanyPerformance2();
+	}
 	
 	
 	//公司賺錢總金額

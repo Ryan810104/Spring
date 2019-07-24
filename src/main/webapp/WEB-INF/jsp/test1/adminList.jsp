@@ -77,6 +77,22 @@
 
 
 					</div>
+				</div >
+				
+				
+				
+				
+				<div class="row">
+				<div class="col-sm-6">
+				
+				<div id="dd1" style="width: 600px; height: 450px; margin: 0 auto;"></div>
+				
+				</div>
+				<div class="col-sm-6">
+				
+				<div id="dd2" style="width: 600px; height: 450px; margin: 0 auto;"></div>
+				
+				</div>
 				</div>
 				<!-- 				</div> -->
 			</article>
@@ -140,6 +156,10 @@
 			});
 		});
 	</script>
+
+
+
+
 
 	<script>
 		var json = {};
@@ -381,6 +401,160 @@
 			});
 		});
 	</script>
+	
+		<script type="text/javascript">
+			var str = new Array();
+			var sti = new Array();
+			var json = {};
+			$(document).ready(function() {
+
+				$.ajax({
+
+					url : "/admin/memberBeans/companyperformance1",
+					type : "POST",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							str.push(data[i][0]);
+							sti.push(data[i][1]);
+						}
+						
+
+						var chart = {
+							renderTo : 'container',
+// 							type : 'cylinder',
+							type : 'column',
+							style : {
+								fontFamily : '微軟正黑體'
+							},
+							margin : 75,
+							options3d : {
+								enabled : true,
+								alpha : 10,
+								beta : 20,
+								depth : 25,
+								viewDistance : 60
+							}
+						};
+
+
+						var plotOptions = {
+							series : {
+								depth : 25,
+								colorByPoint : true
+							}
+						};
+						var title = {
+							text : "禮包銷售數量"
+						};
+						var xAxis = {
+							categories : str
+						};
+						var yAxis = {
+							// 							min : 0,
+							title : {
+								text : null
+							}
+						};
+						var series = [ {
+							name : "數量",
+							data : sti,
+							showInLegend : false
+						} ];
+						json.chart = chart;
+						json.title = title;
+						json.xAxis = xAxis;
+						json.yAxis = yAxis;
+						json.plotOptions = plotOptions;
+						json.series = series;
+
+						$("#dd1").highcharts(json);
+					
+
+					}
+
+				});
+
+			});
+		</script>
+		
+		
+		<script type="text/javascript">
+			var str1 = new Array();
+			var sti1 = new Array();
+			var json = {};
+			$(document).ready(function() {
+
+				$.ajax({
+
+					url : "/admin/memberBeans/companyperformance2",
+					type : "POST",
+					success : function(data) {
+
+						for (var i = 0; i < data.length; i++) {
+							str1.push(data[i][0]);
+							sti1.push(data[i][1]);
+						}
+						
+
+						var chart = {
+							renderTo : 'container',
+// 							type : 'cylinder',
+							type : 'column',
+							style : {
+								fontFamily : '微軟正黑體'
+							},
+							margin : 75,
+							options3d : {
+								enabled : true,
+								alpha : 10,
+								beta : 20,
+								depth : 25,
+								viewDistance : 60
+							}
+						};
+
+
+						var plotOptions = {
+							series : {
+								depth : 25,
+								colorByPoint : true
+							}
+						};
+						var title = {
+							text : "禮包銷售金額"
+						};
+						var xAxis = {
+							categories : str1
+						};
+						var yAxis = {
+							// 							min : 0,
+							title : {
+								text : null
+							}
+						};
+						var series = [ {
+							name : "金額",
+							data : sti1,
+							showInLegend : false
+						} ];
+						json.chart = chart;
+						json.title = title;
+						json.xAxis = xAxis;
+						json.yAxis = yAxis;
+						json.plotOptions = plotOptions;
+						json.series = series;
+
+						$("#dd2").highcharts(json);
+					
+
+					}
+
+				});
+
+			});
+		</script>
+	
 	
 
 	<!-- jquery include ajax -->

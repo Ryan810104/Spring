@@ -278,7 +278,13 @@ create view summary
  create view companyearn
  as
  select FORMAT(sum(money_record_cash), 'N0') as total_cash from moneyrecord;
-   
+ 
+ IF Object_ID('dbo.companyperformance') IS NOT NULL
+    DROP VIEW dbo.companyperformance;
+ create view companyperformance
+ as
+ select money_record_type,count(money_record_type)as countforpack, sum(money_record_cash) as totalcash from moneyrecord group by money_record_type;
+     
  INSERT INTO vip_level values
 (1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','初級會員'),
 (0.89,1,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','中級會員'),
