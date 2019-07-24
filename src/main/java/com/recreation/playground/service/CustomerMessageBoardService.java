@@ -42,7 +42,7 @@ public class CustomerMessageBoardService {
 	}
 
 	public List<CustomerMessageBoardBean> searchcontinue(int i , int j ){
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, j, 0 , 1) ;
+		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, j ,0 , 1) ;
 	}
 	
 	public CustomerMessageBoardBean searchMessageByNum(int num) {
