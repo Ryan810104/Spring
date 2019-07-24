@@ -55,6 +55,7 @@
 					<div class="col-sm-4">
 						<!-- 遊戲A輸贏趨勢 -->
 						<div id="tt1" style="width: 400px; height: 300px; margin: 0 auto;"></div>
+						<div id="tt2" style="width: 400px; height: 300px; margin: 0 auto;"></div>
 
 
 					</div>
@@ -63,6 +64,7 @@
 
 						<!-- 遊戲B輸贏趨勢 -->
 						<div id="cc1" style="width: 400px; height: 300px; margin: 0 auto;"></div>
+						<div id="cc2" style="width: 400px; height: 300px; margin: 0 auto;"></div>
 
 
 					</div>
@@ -71,6 +73,7 @@
 
 						<!--遊戲C輸贏趨勢 -->
 						<div id="ee1" style="width: 400px; height: 300px; margin: 0 auto;"></div>
+						<div id="ee2" style="width: 400px; height: 300px; margin: 0 auto;"></div>
 
 
 					</div>
@@ -114,7 +117,7 @@
 						}
 					};
 					var title = {
-						text : '踩地雷走勢圖'
+						text : '俄羅斯輪盤走勢圖'
 					};
 					var xAxis = {
 						categories : xx
@@ -123,7 +126,7 @@
 						enabled : false
 					};
 					var series = [ {
-						name : 'a',
+						name : '俄羅斯輪盤',
 						data : data1
 					} ];
 
@@ -162,7 +165,7 @@
 						}
 					};
 					var title = {
-						text : '俄羅斯輪盤走勢圖'
+						text : '踩地雷走勢圖'
 					};
 					var xAxis = {
 						categories : xx1
@@ -171,7 +174,7 @@
 						enabled : false
 					};
 					var series = [ {
-						name : 'b',
+						name : '踩地雷',
 						data : data2
 					} ];
 
@@ -207,7 +210,7 @@
 						type : 'area'
 					};
 					var title = {
-						text : '球賽賭盤走勢圖',
+						text : '忍者切西瓜走勢圖',
 						style : {
 							fontFamily : '微軟正黑體'
 						}
@@ -219,7 +222,7 @@
 						enabled : false
 					};
 					var series = [ {
-						name : 'c',
+						name : '忍者切西瓜',
 						data : data3
 					} ];
 
@@ -233,6 +236,152 @@
 			});
 		});
 	</script>
+	
+	<script>
+		var json = {};
+		var xx3 = new Array();
+		var data4 = new Array();
+		$(document).ready(function() {
+
+			$.ajax({
+				url : "/admin/memberBeans/gamedtrend",
+				type : "POST",
+				success : function(data) {
+					for (i in data) {
+						xx3.push(data[i][0]);
+						data4.push(data[i][1]);
+					}
+					// 						alert(xx2);
+					// 						alert(data3);
+
+					var chart = {
+						type : 'area'
+					};
+					var title = {
+						text : '圈圈叉叉走勢圖',
+						style : {
+							fontFamily : '微軟正黑體'
+						}
+					};
+					var xAxis = {
+						categories : xx3
+					};
+					var credits = {
+						enabled : false
+					};
+					var series = [ {
+						name : '圈圈叉叉',
+						data : data4
+					} ];
+
+					json.chart = chart;
+					json.title = title;
+					json.xAxis = xAxis;
+					json.credits = credits;
+					json.series = series;
+					$("#tt2").highcharts(json);
+				}
+			});
+		});
+	</script>
+	
+	
+	<script>
+		var json = {};
+		var xx4 = new Array();
+		var data5 = new Array();
+		$(document).ready(function() {
+
+			$.ajax({
+				url : "/admin/memberBeans/gameetrend",
+				type : "POST",
+				success : function(data) {
+					for (i in data) {
+						xx4.push(data[i][0]);
+						data5.push(data[i][1]);
+					}
+					// 						alert(xx2);
+					// 						alert(data3);
+
+					var chart = {
+						type : 'area'
+					};
+					var title = {
+						text : '球賽賭盤走勢圖',
+						style : {
+							fontFamily : '微軟正黑體'
+						}
+					};
+					var xAxis = {
+						categories : xx4
+					};
+					var credits = {
+						enabled : false
+					};
+					var series = [ {
+						name : '球賽賭盤',
+						data : data5
+					} ];
+
+					json.chart = chart;
+					json.title = title;
+					json.xAxis = xAxis;
+					json.credits = credits;
+					json.series = series;
+					$("#cc2").highcharts(json);
+				}
+			});
+		});
+	</script>
+	
+	<script>
+		var json = {};
+		var xx5 = new Array();
+		var data6 = new Array();
+		$(document).ready(function() {
+
+			$.ajax({
+				url : "/admin/memberBeans/gameftrend",
+				type : "POST",
+				success : function(data) {
+					for (i in data) {
+						xx5.push(data[i][0]);
+						data6.push(data[i][1]);
+					}
+// 					 						alert(xx5);
+// 											alert(data6);
+
+					var chart = {
+						type : 'area'
+					};
+					var title = {
+						text : '狂野賽車走勢圖',
+						style : {
+							fontFamily : '微軟正黑體'
+						}
+					};
+					var xAxis = {
+						categories : xx5
+					};
+					var credits = {
+						enabled : false
+					};
+					var series = [ {
+						name : '狂野賽車',
+						data : data6
+					} ];
+
+					json.chart = chart;
+					json.title = title;
+					json.xAxis = xAxis;
+					json.credits = credits;
+					json.series = series;
+					$("#ee2").highcharts(json);
+				}
+			});
+		});
+	</script>
+	
 
 	<!-- jquery include ajax -->
 	<script
