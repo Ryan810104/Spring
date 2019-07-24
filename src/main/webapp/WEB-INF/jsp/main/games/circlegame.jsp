@@ -75,8 +75,14 @@ $(function (){
 			},function(){
 			  $(this).removeClass('rotateX');
 			});
+		
+		
+		
+		
 //遊戲開始按鈕跟一些需要處理的事件
 	$('.pointer').click(function (){
+		
+		
 		document.getElementById('chipType').value='Roulette';
 		document.getElementById('chipRecordChiptype').value='Roulette';
 		document.getElementById('playRound').value='1';

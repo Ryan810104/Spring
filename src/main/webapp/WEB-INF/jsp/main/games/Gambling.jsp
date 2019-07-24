@@ -146,8 +146,8 @@
 
 							<div class="mb-3">
 								<label for="inputPassword">選擇你賭的球隊</label> <select id="player1Result" name="player1Result">
-									<option value="勇士">勇士</option>
-									<option value="暴龍">暴龍</option>
+									<option value="Warriors">勇士</option>
+									<option value="Raptors">暴龍</option>
 									
 								</select>
 							</div>
@@ -310,9 +310,17 @@
 		
 			$(".roomnum").click(function(){
 				
-// 				alert($("#"+this.id+"1").html());
-			$("#roomNum").val($("#"+this.id+"1").html());
-		    document.getElementById("submitroom").submit();
+				if(confirm("確定要以相同賭金下注另一隊!!"))
+				{
+					$("#roomNum").val($("#"+this.id+"1").html());
+				    document.getElementById("submitroom").submit();
+					
+				}
+				else
+				{
+					location.href='/main/Gamebling';
+				}
+			
 			});
 		}
 		
