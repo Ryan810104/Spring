@@ -21,5 +21,14 @@ public interface ChipRecordDao extends JpaRepository<ChipRecord, Integer> {
 	@Query(value="select num,chip_record_chip from gamectrend order by num",nativeQuery = true)
 	List<Object> findgamectrend();
 	
+	@Query(value="select num,chip_record_chip from gamedtrend order by num",nativeQuery = true)
+	List<Object> findgamedtrend();
+	
+	@Query(value="select num,chip_record_chip from gameetrend order by num",nativeQuery = true)
+	List<Object> findgameetrend();	
+	
+	@Query(value="select num,chip_record_chip from gameftrend order by num",nativeQuery = true)
+	List<Object> findgameftrend();
+	
 	
 }

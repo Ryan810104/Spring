@@ -504,6 +504,26 @@ public class MemberController {
 	public List<Object> findgamectrend() {
 		return chipRecordDao.findgamectrend();
 	}
+	//遊戲D玩家輸贏金額趨勢
+	@RequestMapping("/gamedtrend")
+	@ResponseBody
+	public List<Object> findgamedtrend() {
+		return chipRecordDao.findgamedtrend();
+	}
+	//遊戲E玩家輸贏金額趨勢
+	@RequestMapping("/gameetrend")
+	@ResponseBody
+	public List<Object> findgameetrend() {
+		return chipRecordDao.findgameetrend();
+	}
+	//遊戲F玩家輸贏金額趨勢
+	@RequestMapping("/gameftrend")
+	@ResponseBody
+	public List<Object> findgameftrend() {
+		return chipRecordDao.findgameftrend();
+	}
+	
+
 	
 	
 	//公司賺錢總金額
