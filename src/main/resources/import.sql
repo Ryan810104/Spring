@@ -284,7 +284,7 @@ create view summary
  create view companyperformance
  as
  select money_record_type,count(money_record_type)as countforpack, sum(money_record_cash) as totalcash from moneyrecord group by money_record_type;
-     
+      
  INSERT INTO vip_level values
 (1.0,0,'https://tw.beanfun.com/bnb/images/game/5/image005.gif','初級會員'),
 (0.89,1,'https://tw.beanfun.com/bnb/images/game/5/image105.gif','中級會員'),
@@ -311,7 +311,7 @@ insert into customer_Message_Board(customermessageboard_article_floor,customerme
 insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (7,'Udo','嘴臭仔Ogushi滾辣，小心生兒子沒闢演',getdate(),0,1,'不爽不要玩',8);
 insert into customer_Message_Board(customermessageboard_article_floor,customermessageboard_memberid,customermessageboard_message,customermessageboard_messagetime,customermessageboard_response_floor,customermessageboard_status,customermessageboard_title,customermessageboard_member_num) values (8,'Mike','旺八彈為什麼隱藏我留言',getdate(),0,1,'辣雞網站',6);
 
-insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,complaint_picurl) values ('買了10000點錢被吃還我錢',getdate(),null,0,3,'Sally','/resources/complaintPhoto/complaintPayProblem.png');
+insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('買了10000點錢被吃還我錢',getdate(),null,0,3,'Sally');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('網頁跳轉失敗',getdate(),null,0,2,'Mike');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,cmb_num,complaint_picurl) values ('文章編號:6	(勿更改以利查證)',getdate(),null,0,4,'Sally',6,'/resources/complaintPhoto/complaintArticleNum6.png');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('字真d太小',getdate(),null,0,2,'Udo');
