@@ -23,9 +23,9 @@ public class CustomerMessageBoardService {
 		dao.save(beans);
 	}
 	
-	public List<CustomerMessageBoardBean> searchall(int i , int j) {
+	public CustomerMessageBoardBean searchall(int i ) {
 //		System.out.println(dao.findAll());
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i,j,0,1);
+		return dao.findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i,0,1);
 	}
 	
 	public List<CustomerMessageBoardBean> searchthelastofmessage(){
@@ -41,8 +41,8 @@ public class CustomerMessageBoardService {
 		return dao.findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorGreaterThanOrderByCustomermessageboardResponseFloorDesc(articlefloor, 0);
 	}
 
-	public List<CustomerMessageBoardBean> searchcontinue(int i , int j ){
-		return dao.findByCustomermessageboardArticleFloorBetweenAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, j, 0 , 1) ;
+	public CustomerMessageBoardBean searchcontinue(int i ){
+		return dao.findByCustomermessageboardArticleFloorEqualsAndCustomermessageboardResponseFloorEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 0 , 1) ;
 	}
 	
 	public CustomerMessageBoardBean searchMessageByNum(int num) {
@@ -50,15 +50,15 @@ public class CustomerMessageBoardService {
 	}
 	
 	public List<CustomerMessageBoardBean> searchbyid(String i ){
-		return dao.findByCustomermessageboardMemberidEqualsAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1);
+		return dao.findByCustomermessageboardMemberidEqualsAndCustomermessageboardStatusEqualsAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1 , 0);
 	}
 	
 	public List<CustomerMessageBoardBean> searchbytitle(String i){
-		return dao.findByCustomermessageboardTitleContainingAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1);
+		return dao.findByCustomermessageboardTitleContainingAndCustomermessageboardStatusEqualsAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1 , 0);
 				}
 	
 	public List<CustomerMessageBoardBean> searchbycontent(String i ){
-		return dao.findByCustomermessageboardMessageContainingAndCustomermessageboardStatusEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1);
+		return dao.findByCustomermessageboardMessageContainingAndCustomermessageboardStatusEqualsAndCustomermessageboardResponseFloorEqualsOrderByCustomermessageboardArticleFloorDesc(i, 1 , 0);
 	}
 	
 }

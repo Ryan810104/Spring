@@ -565,7 +565,7 @@
 						</div>
 						<div class="mb-3">
 							<label> <input type="checkbox" value="remember-me">
-								Remember me
+								記住我
 							</label>
 						</div>
 						<hr>

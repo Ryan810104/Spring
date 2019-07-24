@@ -67,8 +67,8 @@
 			<!-- WRITE YOUR CONTEXT HERE -->
 			<div class="container bootstrap snippet">
 				<div class="row">
-					<div class="col-sm-10">
-						<h1 id="userNickName">User name</h1>
+					<div class="col-sm-10" id="userIndexNickName">
+						
 					</div>
 				</div>
 
@@ -83,9 +83,9 @@
 						<!--/col-3-->
 						<div>
 							<div class="col-sm-9" id="result1"></div>
-
+							<br>
 							<button type="button" data-toggle='modal'
-								data-target='#showComplaintPic'>
+								data-target='#showComplaintPic' style="position:relative;left:25%;">
 								<h3>更新頭像</h3>
 							</button>
 
@@ -192,7 +192,7 @@
 										<br>
 										<button class="btn btn-lg btn-success" type="button"
 											id="updateButton">
-											<i class="glyphicon glyphicon-ok-sign" id=""></i> Save
+											<i class="glyphicon glyphicon-ok-sign" id=""></i> 更新
 										</button>
 									</div>
 								</div>
@@ -226,7 +226,7 @@
 							if (data["complaintPicURL"] == null) {
 								text = "<img width='350' height='350' src="+ "/resources/img/file-notApply.png" + ">";
 							} else {
-								text = "<img width='350' height='350' src="+ data["complaintPicURL"] + ">";
+								text = "<img width='350' height='350'  src="+ data["complaintPicURL"] + ">";
 							}
 
 							// 							$("#complaintResult").html(text);
@@ -260,8 +260,11 @@
 							if (data["memberPhotoURL"] == null) {
 								text = "<img class=\"avatar img-circle img-thumbnail\" src="+ "/resources/img/default-picture.png" + ">";
 							} else {
-								text = "<img  class=\"avatar img-circle img-thumbnail\" src="+ data["memberPhotoURL"] + ">";
+								text = "<img  width=\"350\" height=\"350\" class=\"avatar img-circle img-thumbnail\" src="+ data["memberPhotoURL"] + ">";
 							}
+							if (data["memberNickName"] != null) {
+								$("#userIndexNickName").html("<h1>"+data["memberNickName"]+" 的個人資訊</h1>");
+							} 
 							$("#result1").html(text);
 							$("#result2").html(text);
 						}

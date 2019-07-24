@@ -15,9 +15,9 @@ table {
 	margin-left: 10px;
 }
 
- th { 
- 	max-width: 100px; 
- } 
+th {
+	max-width: 100px;
+}
 
 td {
 	word-wrap: break-word;
@@ -234,7 +234,7 @@ tbody td:hover {
 		<!-- Sidebar -->
 		<jsp:include page="/WEB-INF/jsp/fragment/admin-sidebar.jsp"></jsp:include>
 		<!-- start context -->
-		<article class="content moe" style="margin-left: 20px;width:68rem">
+		<article class="content moe" style="margin-left: 20px; width: 68rem">
 			<nav class="navbar navbar-light" style="background-color: #CCDDFF;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
 					<a class="nav-item nav-link active" id="nav-home-tab"
@@ -484,7 +484,9 @@ tbody td:hover {
 
 							<div class="col-md-12 mb-5">
 								<button type="button" class="btn btn-success" id="sendout"
-									style="font-size: 120%; width: 100%">送出	<i class="fas fa-arrow-alt-circle-right"></i></button>
+									style="font-size: 120%; width: 100%">
+									送出 <i class="fas fa-arrow-alt-circle-right"></i>
+								</button>
 							</div>
 
 						</form>
@@ -580,7 +582,7 @@ function searchArticle(){
 			success : function(data) {
 				if(data["customermessageboardMessage"]!=null){
 					document.getElementById("searchSp").innerHTML ="";
-					$("#searchResult").html(data["customermessageboardMessage"]);
+					$("#searchResult").html(data["customermessageboardMessage"]).append("	<button class='btn btn-outline-info' style='font-size: 80%;' onclick='hideMessage()'>留言區隱藏</button>");;
 					
 				}else{
 					document.getElementById("searchSp").innerHTML = "<n style='color:#FF3333;font-size: 120%;margin-left:100px;'>搜尋失敗,文章編號不存在</n>";
@@ -625,7 +627,25 @@ function searchViolator(){
 			});
 		};
 
-
+function hideMessage(){
+	$.ajax({
+		url:"/main/complain/hideMessage"	,
+		data:{
+			CMBNun: $("#articleNum").val(),
+		},
+		type:"POST",
+		success:function(data){
+			if(data!=1){
+// 				alert(data);
+				alert("留言區成功隱藏");
+			}else{
+				alert("留言區已無文章");
+			}		
+		},
+		
+	});
+		
+};
 
 
 
@@ -816,7 +836,7 @@ function searchViolator(){
 				
 			}else{
 				$("#chipMemberNum").val("");
-				document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>請輸入玩家ID</n>";
+				document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FFB3FF;font-size: 120%;'>請輸入玩家ID</n>";
 				$("#summaryBefore").html("");
 				$("#summaryAfter").html("");
 
@@ -852,7 +872,7 @@ function searchViolator(){
 								});
 					
 							}else{
-								document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FF77FF;font-size: 120%;'>搜尋失敗,玩家ID不存在</n>";
+								document.getElementById("NumByIdSp").innerHTML = "<n style='color:#FFB3FF;font-size: 120%;'>搜尋失敗,玩家ID不存在</n>";
 								$("#chipMemberNum").val("");
 								$("#summaryBefore").html("");
 								$("#summaryAfter").html("");

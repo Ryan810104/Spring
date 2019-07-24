@@ -13,6 +13,7 @@
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<!-- WRITE YOUR CONTEXT HERE -->
 		<a href="/main/setting/2">測試個人頁面(進入帳號"user"的個人頁面)</a>
+		<a href="/main/setting">測試個人頁面(進入帳號"user"的個人頁面)</a>
 		<h1>測試上傳圖片(圖檔存資料庫)</h1>
 		<form
 			action="/admin/memberBeans/gogo/${sessionScope.member.memberNum}"

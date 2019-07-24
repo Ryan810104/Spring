@@ -270,14 +270,14 @@ public class AioCheckOutController {
 //		}
 //		
 //	}
+//	
+//	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.GET)
+//	public ModelAndView aioCheckOutOneTime(){
+//		return new ModelAndView("test1/aioCheckOutOneTime", "command", new AioCheckOutOneTime());
+//	}
 	
-	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.GET)
-	public ModelAndView aioCheckOutOneTime(){
-		return new ModelAndView("test1/aioCheckOutOneTime", "command", new AioCheckOutOneTime());
-	}
 	
-	
-	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", method = RequestMethod.POST, produces="text/html;charset=UTF-8")
+	@RequestMapping(value = "frontEnd/aioCheckOut/aioCheckOutOneTime", produces="text/html;charset=UTF-8")
 	public @ResponseBody String aioCheckOutDevide(AioCheckOutOneTime aio,HttpSession session){
 		all = new AllInOne("");
 		System.out.println(aio.getRemark());
