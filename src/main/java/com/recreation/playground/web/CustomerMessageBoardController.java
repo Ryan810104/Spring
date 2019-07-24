@@ -44,13 +44,13 @@ public class CustomerMessageBoardController {
 	@ResponseBody
 	public List<CustomerMessageBoardBean> query(@Valid @ModelAttribute("search")CustomerMessageBoardBean bean, BindingResult result,
 			Model model) {
-//		System.out.println(bean);
+		System.out.println(bean);
 		String id = bean.getCustomermessageboardMemberid();
-//		System.out.println(id);
+		System.out.println(id);
 		String msg = bean.getCustomermessageboardMessage();
-//		System.out.println(msg);
+		System.out.println(msg);
 		String title = bean.getCustomermessageboardTitle();
-//		System.out.println(title);
+		System.out.println(title);
 		List<CustomerMessageBoardBean> list = null ;
 		if(id != "") {
 			list = service.searchbyid(id);
@@ -59,7 +59,7 @@ public class CustomerMessageBoardController {
 		}else if(title != "") {
 			list = service.searchbytitle(title);
 		}
-//		System.out.println(list);
+		System.out.println(list);
 		return list;
 	}
 
@@ -77,15 +77,40 @@ public class CustomerMessageBoardController {
 	public List<CustomerMessageBoardBean> searchall() {
 		List<CustomerMessageBoardBean> bean = service.searchthelastofmessage();
 		int i = bean.get(0).getCustomermessageboardArticleFloor();
-		List<CustomerMessageBoardBean> beans = service.searchall(i-2,i);
+		List<CustomerMessageBoardBean> beans = new ArrayList<CustomerMessageBoardBean>() ;
+		int count = 0 ;
+		for(int j = i ; j>= 0 ; j--) {
+			CustomerMessageBoardBean bean1 = service.searchall(j);
+		if(bean1 != null ) {
+			beans.add(bean1);
+			count ++ ;
+		}
 //		System.out.println(beans);
+		if(count==3) {
+			break ;
+		}
+		}
 		return beans;
 	}
 	
 	@ResponseBody
 	@RequestMapping("/searchcontinue")
 	public List<CustomerMessageBoardBean> searchcontinue(CustomerMessageBoardBean bean) {
-		return service.searchcontinue(bean.getCustomermessageboardArticleFloor(), bean.getCustomermessageboardResponseFloor());
+		int i = bean.getCustomermessageboardArticleFloor();
+		List<CustomerMessageBoardBean> beans = new ArrayList<CustomerMessageBoardBean>() ;
+		int count = 0 ;
+		for(int j = i ; j > 0 ; j--) {
+			CustomerMessageBoardBean bean1 = service.searchall(j);
+		if(bean1 != null ) {
+			beans.add(bean1);
+			count ++ ;
+		}
+//		System.out.println(beans);
+		if(count==3) {
+			break ;
+		}
+		}
+		return beans;
 	}
 	
 	@ResponseBody
