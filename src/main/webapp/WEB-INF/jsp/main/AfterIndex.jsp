@@ -504,7 +504,7 @@
 					txt +=	"this.setAttribute(\"style\", \"font-size: 30px ; color : red \");}"
 					txt += "$.ajax({url : \"/main/pressnice/\","
 					txt += "type : \"POST\","
-					txt += "data : {Articlefloor : $(\"#articlefloor"+parseInt(i+floor)+"1\").val() , Memberid : $(\"#CustomermessageboardMemberid\").val(),},"
+					txt += "data : {Articlefloor : $(\"#articlefloor"+parseInt(i+floor*times)+"1\").val() , Memberid : $(\"#CustomermessageboardMemberid\").val(),},"
 					txt += "success : function(data) {checkpressornot();}})"
 					txt +=  "})<\/script>"
 						
