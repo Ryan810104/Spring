@@ -399,14 +399,20 @@
     	if (checked == 'name'){
     		$("#searchbyuserid").css('display','inline');
     		$("#searchbytitle").css('display','none');
+    		$("#searchbytitle").val("");
     		$("#searchbycontent").css('display','none');
+    		$("#searchbycontent").val("");
     	}else if (checked == 'title'){
     		$("#searchbyuserid").css('display','none');
+    		$("#searchbyuserid").val("");
     		$("#searchbytitle").css('display','inline');
     		$("#searchbycontent").css('display','none');
+    		$("#searchbycontent").val("");
     	}else if(checked == 'content'){
     		$("#searchbyuserid").css('display','none');
+    		$("#searchbyuserid").val("");
     		$("#searchbytitle").css('display','none');
+    		$("#searchbytitle").val("");
     		$("#searchbycontent").css('display','inline');
     	}
 	})
@@ -511,7 +517,42 @@
 						
 					// 留言button id = floor + i  ex:floor0, floor1
 					txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+ parseInt(i+floor*times) +"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
-					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+parseInt(i+floor*times)+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
+					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+parseInt(i+floor*times)+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span>"
+					
+					if( (data[i]["customermessageboardMemberid"]) == $("#CustomermessageboardMemberid").val() ){
+						txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal"+parseInt(i+floor*times)+"\" id=\"update"+parseInt(i+floor*times)+"\" ><i class=\"fas fa-edit\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp修改</span></i></button></span>";
+						
+						txt += "<div class=\"modal fade\" id=\"exampleModal"+parseInt(i+floor*times)+"\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">";
+						txt += "<div class=\"modal-dialog\" role=\"document\">";
+						txt += "<div class=\"modal-content\">";
+						txt += "<div class=\"modal-header\">";
+						txt += "<h2 class=\"modal-title\" style=\"color:black\" id=\"exampleModalLabel\">修改貼文內容</h2>";
+						txt += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">";
+						txt += "<span aria-hidden=\"true\">&times;</span>";
+						txt += "</button>";
+						txt += "</div>";
+						txt += "<div class=\"modal-body\">";
+						
+						txt += "<form name=\"update\" action=\"/main/update\" id=\"update"+parseInt(i+floor*times)+"1\" style=\"color:black\">";
+						txt += "<input type=\"text\" name=\"customermessageboardNum\" value=\""+data[i]["customermessageboardNum"]+"\" style=\"display: none;\">";
+						txt += "文章標題  ：<textarea cols=\"30\" rows=\"1\" maxlength=\"10\" name=\"customermessageboardTitle\" >"+data[i]["customermessageboardTitle"]+"</textarea><br>";
+						txt += "文章內容  ：<textarea cols=\"50\" rows=\"3\" maxlength=\"130\" name=\"customermessageboardMessage\">"+data[i]["customermessageboardMessage"]+"</textarea>";
+						txt += "</form>";
+						txt += "<form action=\"/main/delete\" id=\"delete"+parseInt(i+floor*times)+"\" style=\"display:none\">";
+						txt += "<input type=\"text\" name=\"customermessageboardNum\" value=\""+data[i]["customermessageboardNum"]+"\">";
+						txt += "</form>";
+						
+						txt += "</div>";
+						txt += "<div class=\"modal-footer\">";
+						txt += "<button type=\"button\" class=\"btn btn-primary\" id=\"update"+parseInt(i+floor*times)+"0\">修改</button>";
+						txt += "<script>$(\"#update"+parseInt(i+floor*times)+"0\").click(function(){document.getElementById(\"update"+parseInt(i+floor*times)+"1\").submit();})<\/script>";
+						txt += "<button type=\"button\" id=\"delete"+parseInt(i+floor*times)+"0\" class=\"btn btn-primary\">刪除</button>";
+						txt += "<script>$(\"#delete"+parseInt(i+floor*times)+"0\").click(function(){document.getElementById(\"delete"+parseInt(i+floor*times)+"\").submit();})<\/script>";
+						txt += "</div></div></div></div>";
+					
+					}
+					
+					txt += "</div></div>";
 					//留言區域 id = floor + i + 1  ex: floor01 , floor11
 					txt += "<div class=\"post-footer\" id=\"floor"+parseInt(i+floor*times)+"1\"  style=\"display: none\">";
 					txt += "<div class=\"input-group\">";
@@ -718,7 +759,42 @@
 					
 					txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
 					// 檢舉button id = floor + i + 2 ex:floor02 , floor12
-					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
+					txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span>";
+					
+					if( (data[i]["customermessageboardMemberid"]) == $("#CustomermessageboardMemberid").val() ){
+						txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal"+i+"\" id=\"update"+i+"\" ><i class=\"fas fa-edit\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp修改</span></i></button></span>";
+						
+						txt += "<div class=\"modal fade\" id=\"exampleModal"+i+"\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">";
+						txt += "<div class=\"modal-dialog\" role=\"document\">";
+						txt += "<div class=\"modal-content\">";
+						txt += "<div class=\"modal-header\">";
+						txt += "<h2 class=\"modal-title\" style=\"color:black\" id=\"exampleModalLabel\">修改貼文內容</h2>";
+						txt += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">";
+						txt += "<span aria-hidden=\"true\">&times;</span>";
+						txt += "</button>";
+						txt += "</div>";
+						txt += "<div class=\"modal-body\">";
+						
+						txt += "<form name=\"update\" action=\"/main/update\" id=\"update"+i+"1\" style=\"color:black\">";
+						txt += "<input type=\"text\" name=\"customermessageboardNum\" value=\""+data[i]["customermessageboardNum"]+"\" style=\"display: none;\">";
+						txt += "文章標題  ：<textarea cols=\"30\" rows=\"1\" maxlength=\"10\" name=\"customermessageboardTitle\" >"+data[i]["customermessageboardTitle"]+"</textarea><br>";
+						txt += "文章內容  ：<textarea cols=\"50\" rows=\"3\" maxlength=\"130\" name=\"customermessageboardMessage\">"+data[i]["customermessageboardMessage"]+"</textarea>";
+						txt += "</form>";
+						txt += "<form action=\"/main/delete\" id=\"delete"+i+"\" style=\"display:none\">";
+						txt += "<input type=\"text\" name=\"customermessageboardNum\" value=\""+data[i]["customermessageboardNum"]+"\">";
+						txt += "</form>";
+						
+						txt += "</div>";
+						txt += "<div class=\"modal-footer\">";
+						txt += "<button type=\"button\" class=\"btn btn-primary\" id=\"update"+i+"0\">修改</button>";
+						txt += "<script>$(\"#update"+i+"0\").click(function(){document.getElementById(\"update"+i+"1\").submit();})<\/script>";
+						txt += "<button type=\"button\" id=\"delete"+i+"0\" class=\"btn btn-primary\">刪除</button>";
+						txt += "<script>$(\"#delete"+i+"0\").click(function(){document.getElementById(\"delete"+i+"\").submit();})<\/script>";
+						txt += "</div></div></div></div>";
+					
+					}
+					
+					txt += "</div></div>";
 					//留言區域 id = floor + i + 1  ex: floor01 , floor11
 					txt += "<div class=\"post-footer\" id=\"floor"+i+"1\"  style=\"display: none\">";
 					txt += "<div class=\"input-group\">";
@@ -854,7 +930,42 @@
 						// 留言button id = floor + i  ex:floor0, floor1
 						txt += "<span><button class=\"button\"><i class=\"fas fa-comment-dots\" id=\"floor"+i+"\" style=\"font-size: 20px\"><span style=\"font-size: 20px\">&nbsp&nbsp留言</span></i></button></span>";
 						// 檢舉button id = floor + i + 2 ex:floor02 , floor12
-						txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span></div></div>";
+						txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"button1\" id=\"report"+i+"\" ><i class=\"fas fa-exclamation-circle\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp檢舉</span></i></button></span>"
+						
+						if( (data[i]["customermessageboardMemberid"]) == $("#CustomermessageboardMemberid").val() ){
+							txt += "<span>&nbsp&nbsp&nbsp&nbsp&nbsp<button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#exampleModal"+i+"\" id=\"update"+i+"\" ><i class=\"fas fa-edit\" style=\"font-size: 20px ; font-color:red \"><span style=\"font-size: 20px\">&nbsp&nbsp修改</span></i></button></span>";
+							
+							txt += "<div class=\"modal fade\" id=\"exampleModal"+i+"\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">";
+							txt += "<div class=\"modal-dialog\" role=\"document\">";
+							txt += "<div class=\"modal-content\">";
+							txt += "<div class=\"modal-header\">";
+							txt += "<h2 class=\"modal-title\" style=\"color:black\" id=\"exampleModalLabel\">修改貼文內容</h2>";
+							txt += "<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">";
+							txt += "<span aria-hidden=\"true\">&times;</span>";
+							txt += "</button>";
+							txt += "</div>";
+							txt += "<div class=\"modal-body\">";
+							
+							txt += "<form name=\"update\" action=\"/main/update\" id=\"update"+i+"1\" style=\"color:black\">";
+							txt += "<input type=\"text\" name=\"customermessageboardNum\" value=\""+data[i]["customermessageboardNum"]+"\" style=\"display: none;\">";
+							txt += "文章標題  ：<textarea cols=\"30\" rows=\"1\" maxlength=\"10\" name=\"customermessageboardTitle\" >"+data[i]["customermessageboardTitle"]+"</textarea><br>";
+							txt += "文章內容  ：<textarea cols=\"50\" rows=\"3\" maxlength=\"130\" name=\"customermessageboardMessage\">"+data[i]["customermessageboardMessage"]+"</textarea>";
+							txt += "</form>";
+							txt += "<form action=\"/main/delete\" id=\"delete"+i+"\" style=\"display:none\">";
+							txt += "<input type=\"text\" name=\"customermessageboardNum\" value=\""+data[i]["customermessageboardNum"]+"\">";
+							txt += "</form>";
+							
+							txt += "</div>";
+							txt += "<div class=\"modal-footer\">";
+							txt += "<button type=\"button\" class=\"btn btn-primary\" id=\"update"+i+"0\">修改</button>";
+							txt += "<script>$(\"#update"+i+"0\").click(function(){document.getElementById(\"update"+i+"1\").submit();})<\/script>";
+							txt += "<button type=\"button\" id=\"delete"+i+"0\" class=\"btn btn-primary\">刪除</button>";
+							txt += "<script>$(\"#delete"+i+"0\").click(function(){document.getElementById(\"delete"+i+"\").submit();})<\/script>";
+							txt += "</div></div></div></div>";
+						
+						}
+						
+						txt += "</div></div>";
 						//留言區域 id = floor + i + 1  ex: floor01 , floor11
 						txt += "<div class=\"post-footer\" id=\"floor"+i+"1\"  style=\"display: none\">";
 						txt += "<div class=\"input-group\">";
