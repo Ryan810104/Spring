@@ -7,9 +7,9 @@
 <%-- <c:set var="LogorNot" scope="session" value="${0}"/> --%>
 
 <c:choose>
-	<c:when test="${sessionScope.member.memberId =='admin'}">
+	<c:when test="${sessionScope.member.memberIllegalTimes == 3}">
 <%-- 		<jsp:include page="complainAdmin.jsp" /> --%>
-			<jsp:include page="complainGeneral.jsp" />
+			<jsp:include page="complainBan.jsp" />
    </c:when>
 	<c:otherwise>
 		<jsp:include page="complainGeneral.jsp" />

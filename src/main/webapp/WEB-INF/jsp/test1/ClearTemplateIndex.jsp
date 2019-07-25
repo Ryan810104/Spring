@@ -368,13 +368,13 @@
 							name="moneyRecordFirstName1" type="text"
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control mb-3"
-							onclick="this.value=''" style="display:"> 
+							onclick="this.value=''" style="display:none"> 
 							
 						<input id='moneyRecordNickName1'
 							name="moneyRecordNickName1" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control mb-4"
-							onclick="this.value=''"  style="display:"> 
+							onclick="this.value=''"  style="display:none"> 
 							
 <!-- 							<h5 class="modal-title"  -->
 <!-- 							style="font-size: 120%">超值優惠包</h5> -->
@@ -401,7 +401,7 @@
 
 						<input id='chipMemberNum1' name="chipMemberNum1" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
-							placeholder="chipMemberNum:" class="form-control mb-3" style="display:"> 
+							placeholder="chipMemberNum:" class="form-control mb-3" style="display:none"> 
 							
 							<input
 							id='chipFirstName1' name="chipFirstName1" type="text"
@@ -461,13 +461,13 @@
 							name="moneyRecordFirstName2" type="text"
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control mb-3"
-							onclick="this.value=''" style="display:"> 
+							onclick="this.value=''" style="display:none"> 
 							
 						<input id='moneyRecordNickName2'
 							name="moneyRecordNickName2" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control mb-4"
-							onclick="this.value=''" style="display:"> 
+							onclick="this.value=''" style="display:none"> 
 							
 <!-- 							<h5 class="modal-title"  -->
 <!-- 							style="font-size: 120%">儲值現金</h5> -->
@@ -494,7 +494,7 @@
 
 						<input id='chipMemberNum2' name="chipMemberNum2" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
-							placeholder="chipMemberNum:" class="form-control mb-3" style="display:"> 
+							placeholder="chipMemberNum:" class="form-control mb-3" style="display:none"> 
 							
 							<input
 							id='chipFirstName2' name="chipFirstName2" type="text"
@@ -553,13 +553,13 @@
 							name="moneyRecordFirstName3" type="text"
 							value="${sessionScope.member.memberFitstName}"
 							placeholder="moneyRecordFirstName:" class="form-control mb-3"
-							onclick="this.value=''" style="display:"> 
+							onclick="this.value=''" style="display:none"> 
 							
 						<input id='moneyRecordNickName3'
 							name="moneyRecordNickName3" type="text"
 							value="${sessionScope.member.memberNickName}"
 							placeholder="moneyRecordNickName:" class="form-control mb-4"
-							onclick="this.value=''" style="display:"> 
+							onclick="this.value=''" style="display:none"> 
 							
 <!-- 							<h5 class="modal-title"  -->
 <!-- 							style="font-size: 120%">儲值現金</h5> -->
@@ -589,7 +589,7 @@
 
 						<input id='chipMemberNum3' name="chipMemberNum3" type="text"
 							onclick="this.value=''" value="${sessionScope.member.memberNum}"
-							placeholder="chipMemberNum:" class="form-control mb-3" style="display:"> 
+							placeholder="chipMemberNum:" class="form-control mb-3" style="display:none"> 
 							
 							<input
 							id='chipFirstName3' name="chipFirstName3" type="text"
@@ -907,7 +907,7 @@
 											dataType : 'json',
 											data : ant1,
 											success : function(data) {
-												alert("新增成功");
+// 												alert("新增成功");
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
 // 												$("#")
@@ -926,14 +926,14 @@
 			$("#sendout1").click(function() {
 
 								var insert = $("#form33").serializeArray();
-								alert(insert);
-								alert(JSON.stringify(insert));
+// 								alert(insert);
+// 								alert(JSON.stringify(insert));
 								var i = {};
 								$.each(insert, function(index, value1) {
 									i[value1.name] = value1.value;
 								});
 								var ant1 = JSON.stringify(i);
-								alert(ant1);
+// 								alert(ant1);
 
 								$.ajax({url : '/admin/memberBeans/insert2?moneyRecordMemberNum='
 													+ $("#moneyRecordMemberNum1")
@@ -972,8 +972,7 @@
 											dataType : 'json',
 											data : ant1,
 											success : function(data) {
-												alert("新增成功"
-														+ data.data.chipRecordChip);
+// 												alert("");
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
 // 												topup();
@@ -991,14 +990,14 @@
 			$("#sendout2").click(function() {
 
 								var insert = $("#form4").serializeArray();
-								alert(insert);
-								alert(JSON.stringify(insert));
+// 								alert(insert);
+// 								alert(JSON.stringify(insert));
 								var i = {};
 								$.each(insert, function(index, value1) {
 									i[value1.name] = value1.value;
 								});
 								var ant1 = JSON.stringify(i);
-								alert(ant1);
+// 								alert(ant1);
 
 								$.ajax({url : '/admin/memberBeans/insert2?moneyRecordMemberNum='
 													+ $("#moneyRecordMemberNum2")
@@ -1037,8 +1036,7 @@
 											dataType : 'json',
 											data : ant1,
 											success : function(data) {
-												alert("新增成功"
-														+ data.data.chipRecordChip);
+// 												alert("新增成功"+ data.data.chipRecordChip);
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
 // 												topup();
@@ -1056,14 +1054,14 @@
 			$("#sendout3").click(function() {
 
 								var insert = $("#form5").serializeArray();
-								alert(insert);
-								alert(JSON.stringify(insert));
+// 								alert(insert);
+// 								alert(JSON.stringify(insert));
 								var i = {};
 								$.each(insert, function(index, value1) {
 									i[value1.name] = value1.value;
 								});
 								var ant1 = JSON.stringify(i);
-								alert(ant1);
+// 								alert(ant1);
 
 								$.ajax({url : '/admin/memberBeans/insert2?moneyRecordMemberNum='
 													+ $("#moneyRecordMemberNum3")
@@ -1102,8 +1100,7 @@
 											dataType : 'json',
 											data : ant1,
 											success : function(data) {
-												alert("新增成功"
-														+ data.data.chipRecordChip);
+// 												alert("新增成功"+ data.data.chipRecordChip);
 												$(location).attr("href","/admin/memberBeans/aiocheckout");
 // 												$(location).attr("href","/admin/memberBeans/aiocheckoutonetime");
 // 												topup();

@@ -133,16 +133,26 @@ public class CustomerMessageBoardController {
 		return service.searchthecomment(bean.getCustomermessageboardArticleFloor());
 	}
 
-//	@RequestMapping("/update")
-//	public String toupdate(CMBBean bean) {
-//		service.insert(bean);
-//		return "/admin/CMB";
-//	}
+	@RequestMapping("/update")
+	public String toupdate(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
+			Model model) {
+		CustomerMessageBoardBean bean1 = new CustomerMessageBoardBean();
+		bean1 = service.searchMessageByNum(bean.getCustomermessageboardNum());
+		bean1.setCustomermessageboardTitle(bean.getCustomermessageboardTitle());
+		bean1.setCustomermessageboardMessage(bean.getCustomermessageboardMessage());
+		
+		service.update(bean1);
+		return "/main/Index";
+	}
 
 	@RequestMapping("/delete")
-	public String todelete(CustomerMessageBoardBean bean) {
-		
-		return "admin/memberBeans/login";
+	public String todelete(@Valid @ModelAttribute("report")CustomerMessageBoardBean bean, BindingResult result,
+			Model model) {
+		CustomerMessageBoardBean bean1 = new CustomerMessageBoardBean();
+		bean1 = service.searchMessageByNum(bean.getCustomermessageboardNum());
+		bean1.setCustomermessageboardStatus(0);
+		service.update(bean1);
+		return "/main/Index";
 	}
 	@ResponseBody
 	@Transactional
