@@ -8,10 +8,18 @@
 
 <c:choose>
 	<c:when test="${!empty sessionScope.UID}">
-		<jsp:include page="AfterIndex.jsp" />
-   </c:when>
+	<c:choose>
+		<c:when test="${sessionScope.member.memberIllegalTimes == 3}">
+			<jsp:include page="complain/complainBan.jsp" />
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="AfterIndex.jsp" />
+		</c:otherwise>
+	</c:choose>	
+	</c:when>
 	<c:otherwise>
 		<jsp:include page="BeforeIndex.jsp" />
-   </c:otherwise>
+	</c:otherwise>
 
 </c:choose>
+
