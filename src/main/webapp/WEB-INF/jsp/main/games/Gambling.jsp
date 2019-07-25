@@ -128,6 +128,11 @@
 							<h4 class="mb-3"></h4>
 							
 							
+							<div class="mb-3">
+								<label for="inputID">玩家編號</label> <input type="text" 
+									id="membernum" name="membernum" value="${sessionScope.member.memberNum}"
+									class="form-control" placeholder="" required autofocus readonly>
+							</div>
 							
 							
 							
@@ -185,11 +190,29 @@
 		</div>
 		
 		<script>
+		
 		$("#openroom").click(function(){
+
 			if(confirm("確定要開設賭局"))
 			{
-				$("#gameblingForm").submit();
-				
+				$.ajax({
+					url:"/main/complain/findSummary",
+					type:"POST",
+					data:{
+						memberNum:$("#membernum").val().trim(),
+					},
+					success:function(data){		
+						var money = $("#gameMoney").val() ;
+						var money2 = String(data).replace(",","");
+						if(money <= money2){						
+							$("#gameblingForm").submit();
+						}else if (money > money2){
+							alert("你餘額不足請先儲值");	
+							location.href='/main/Gamebling';
+						};			
+					},
+					
+				});				
 			}
 			else
 			{

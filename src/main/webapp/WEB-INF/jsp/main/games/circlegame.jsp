@@ -180,6 +180,9 @@ $(function (){
 								var ant1 = JSON.stringify(i);
 								//alert(ant1);
 
+								setTimeout(() => {
+									
+								
 								$.ajax({url : '/admin/memberBeans/insert3?chipRecordMemberNum='
 													+ $("#chipRecordMemberNum")
 															.val()
@@ -231,7 +234,7 @@ $(function (){
 												alert("資料新增失敗");
 											}
 										});
-
+								}, 7000);
 			
 			
 		console.log(item);
@@ -305,7 +308,7 @@ Russian roulette </h1>
 
 
 	<form class="form-signin" name="form2" id="form2" action=""
-			method="POST">	
+			method="POST" style="display:none">	
 						<input id='chipRecordMemberNum' name="chipRecordMemberNum"
 							type="text" value="${sessionScope.member.memberNum}"
 							placeholder="chipRecordMemberNum" class="form-control"

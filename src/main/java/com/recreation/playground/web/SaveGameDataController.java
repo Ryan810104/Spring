@@ -63,7 +63,7 @@ public class SaveGameDataController {
 		service1.SaveGameData(member);
 		model.addAttribute("open", "0");
 		model.addAttribute("player1", member);
-		System.out.println("member = " + member);
+		
 		return "/main/games/blingroom";
 	}
 
@@ -126,15 +126,16 @@ public class SaveGameDataController {
 		return "/main/games/blingroom";
 	}
 	
-	//
-	@RequestMapping("/GameBling4")
-	public  String GameResult() throws IOException {
-		TestJoup.jsoup();
-		return "";
+	
+	
+	
+	//判斷餘額購不夠開房
+	@RequestMapping("/GameBling6")
+	public String MoneyEnough() {
+		
+		
+		return"";
 	}
-	
-	
-	
 	
 	
 }

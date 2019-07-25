@@ -334,7 +334,7 @@ public class MemberController {
 			@RequestParam(value = "chipRecordFirstName", defaultValue = "") String chipRecordFirstName,
 			@RequestParam(value = "chipRecordNickName", defaultValue = "") String chipRecordNickName,
 			@RequestParam(value = "chipRecordChip", defaultValue = "0") Long chipRecordChip,
-			@RequestParam(value = "chipRecordChipType", defaultValue = "") String chipRecordChipType,
+			@RequestParam(value = "chipRecordChiptype", defaultValue = "") String chipRecordChiptype,
 			@RequestParam(value = "chipRecordRound", defaultValue = "0") Integer chipRecordRound,
 			@RequestParam(value = "chipRecordWin", defaultValue = "0") Integer chipRecordWin) {
 		Chip chip = new Chip();
@@ -352,7 +352,7 @@ public class MemberController {
 		chiprecord.setChipRecordFirstName(chipRecordFirstName);
 		chiprecord.setChipRecordNickName(chipRecordNickName);
 		chiprecord.setChipRecordChip(chipRecordChip);
-		chiprecord.setChipRecordChipType(chipRecordChipType);
+		chiprecord.setChipRecordChipType(chipRecordChiptype);
 		chiprecord.setChipRecordWin(chipRecordWin);
 		chiprecord.setChipRecordRound(chipRecordRound);
 		AjaxResponse<String> res = new AjaxResponse<>();

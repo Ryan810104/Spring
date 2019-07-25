@@ -203,12 +203,9 @@ var roomnum=${player1.roomNum}
 							class="form-control"> 
 							
 						<input id='chipRecordWin'
-							name="chipRecordWin" type="text"
+							name="chipRecordWin" type="text" 
 							
-							placeholder="chipRecordWin" class="form-control" value="" >
-
-
-
+							placeholder="chipRecordWin" class="form-control" value=0 >
 
 						<input id='chipMemberNum' name="chipMemberNum" type="text"
 							 value="${sessionScope.member.memberNum}"
@@ -236,7 +233,7 @@ var roomnum=${player1.roomNum}
 							placeholder="chipType:" class="form-control" > 
 							
 							<input
-							id='win' name="win" type="text" value="${memberP.chipRecordChip}"
+							id='win' name="win" type="text" value=0
 							placeholder="win:" class="form-control" > 
 							
 							<input
@@ -245,54 +242,8 @@ var roomnum=${player1.roomNum}
 							 
 					
 						</form>	
-
-
-
-
-
-
-<!-- 放玩家2的資料 -->
-<form class="form-signin" name=savegame id="savegame" action=""
-		method="POST" style="display:none">	
-			<h2>輸贏</h2>
+						
 			
-			<div class="form-group row">
-				<div class="col-sm-12">
-					<input id='money' name='money'  type="text" value="${memberP.chipMemberid}"
-						placeholder="取輪盤結果:" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-sm-12">
-					<input id='balance' name='balance' type="text" value="${memberP.chipBalanced}"
-						placeholder="送進後台的結果" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-sm-12">
-					<input id='gameType' name="gameType" type="text" value="${memberP.chipBalanced}"
-						placeholder="遊戲種類" class="form-control">
-				</div>
-			</div>
-			
-			<div class="form-group row">
-				<div class="col-sm-12">
-					<input id='memberId' name="memberId" type="text" value="${sessionScope.member.memberId}"
-						placeholder="玩家" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-sm-12">
-					<input id='round1' name="round1" type="text" value=""
-						placeholder="局數" class="form-control">
-				</div>
-			</div>
-			
-</form>
-
-
-
-
 
 
 <div  align="center" style="margin-top:650px;color:white; width:100%;position:absolute;z-index:1;">
@@ -302,14 +253,20 @@ var roomnum=${player1.roomNum}
 <!-- 察看結果js -->
 <script type="text/javascript">
 var winner="";
-$("#showWinner").click(function(){
-	document.getElementById('chipType').value='ballBling';
-	document.getElementById('chipRecordChiptype').value='ballBling';
+
+$("#showWinner").mousedown(function(){
+	
+	document.getElementById('chipType').value='球賽賭盤';
+	document.getElementById('chipRecordChiptype').value='球賽賭盤';
+	document.getElementById('playRound').value='1';	
+	document.getElementById('chipRecordRound').value='1';
 	
 	$.ajax({
 		url:"/save/GameBling3?num="+roomnum,
 		type:"POST",
 		success : function(data) {
+			document.getElementById('chipRecordChip').value=-(data.gameMoney/2);
+			document.getElementById('chipBalanced').value=-(data.gameMoney/2);
 			str=data.gameResult;
 			alert(str);
 			var player1Result="";
@@ -325,24 +282,103 @@ $("#showWinner").click(function(){
 //  				alert(player2Result);
 		
 			if(str.indexOf(player2Result)==0){			
-// 				alert(data.gameRoomMember+"贏了!!");		
-				winner=data.gameRoomMember;		
-			}else{			
-// 				alert(data.memberId+"贏了!!");
-				winner=data.memberId;		
+			alert(data.gameRoomMember+"贏了!!");	
+
+// 				winner=data.gameRoomMember;		
+			}else{
+				alert(data.memberId+"贏了!!");
 			}
+			
+			
+			if(str.indexOf(player2Result)==0&&$("#chipFirstName").val()==data.gameRoomMember){
+				  document.getElementById('chipRecordWin').value='1';
+	 				document.getElementById('win').value='1';
+	 				document.getElementById('chipRecordChip').value=data.gameMoney/2;
+	 				document.getElementById('chipBalanced').value=data.gameMoney/2;
+			}
+			
+			if(str.indexOf(player1Result)==0&&$("#chipFirstName").val()==data.memberId){
+				  document.getElementById('chipRecordWin').value='1';
+	 				document.getElementById('win').value='1';
+	 				document.getElementById('chipRecordChip').value=data.gameMoney/2;
+	 				document.getElementById('chipBalanced').value=data.gameMoney/2;
+			}
+			
+			
 	
-		}	
-	if(winner=="admin2"){
-		document.getElementById('chipType').value='ballBling';
-	}
-	
-	
-	
+		}
 	
 	});	
 	
+	
+	var insert = $("#form2").serializeArray();
+    alert(insert);
+	//alert(JSON.stringify(insert));
+	var i = {};
+	$.each(insert, function(index, value1) {
+		i[value1.name] = value1.value;
+	});
+	var ant1 = JSON.stringify(i);
+	//alert(ant1);
+
+	setTimeout(() => {
+		
+	
+	$.ajax({url : '/admin/memberBeans/insert3?chipRecordMemberNum='
+						+ $("#chipRecordMemberNum")
+								.val()
+						+ "&chipRecordNickName="
+						+ $("#chipRecordNickName")
+								.val()
+						+ "&chipRecordFirstName="
+						+ $("#chipRecordFirstName")
+								.val()
+						+ "&chipRecordChip="
+						+ $("#chipRecordChip")
+								.val()
+						+ "&chipRecordChiptype="
+						+ $("#chipRecordChiptype")
+								.val()
+						+ "&chipRecordRound="
+						+ $("#chipRecordRound")
+								.val()
+								+ "&chipRecordWin="
+						+ $("#chipRecordWin")
+								.val()
+								
+			
+						+ "&chipMemberNum="
+						+ $("#chipMemberNum").val()
+						+ "&chipFirstName="
+						+ $("#chipFirstName").val()
+						+ "&chipNickName="
+						+ $("#chipNickName").val()
+						+ "&chipBalanced="
+						+ $("#chipBalanced").val()
+						+ "&chipType="
+						+ $("#chipType").val()
+						+ "&playRound="
+						+ $("#playRound").val()
+						+ "&win=" + $("#win").val()
+						,
+				method : 'post',
+				contentType : 'application/json;charset=UTF-8',
+				dataType : 'json',
+				data : ant1,
+				success : function(data) {
+
+				},
+				error : function(ajaxres) {
+					alert("資料新增失敗");
+				}
+			});
+	}, 2000);
+	
 });
+
+
+
+
 </script>
 
 <script>
