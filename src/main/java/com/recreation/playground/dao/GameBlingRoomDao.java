@@ -8,11 +8,11 @@ import com.recreation.playground.entity.GameBlingRoom;
 
 public interface GameBlingRoomDao extends JpaRepository<GameBlingRoom, Integer> {
 
-	List<GameBlingRoom> findByGameRoomStage(Integer stage);
-	
-	
+	List<GameBlingRoom> findByGameRoomStage(Integer stage);	
 
 	GameBlingRoom findByRoomNum(Integer roomnum);
+	
+	
 	
 	
 }

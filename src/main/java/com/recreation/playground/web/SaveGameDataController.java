@@ -63,7 +63,7 @@ public class SaveGameDataController {
 		service1.SaveGameData(member);
 		model.addAttribute("open", "0");
 		model.addAttribute("player1", member);
-		System.out.println("member = " + member);
+		
 		return "/main/games/blingroom";
 	}
 
@@ -79,14 +79,24 @@ public class SaveGameDataController {
 	@ResponseBody
 	@RequestMapping("/GameBling1")
 	public List<GameBlingRoom> findGameRoom() {
+		
+		
 		return service1.showRoom();
 	}
+	
+	@ResponseBody
+	@RequestMapping("/GameBling5")
+	public List<GameBlingRoom> findOpeningGameRoom() {
+		return service1.showOpeningRoom();
+	}
+	
+	
 	
 	@ResponseBody
 	@RequestMapping("/GameBling3")
 	public GameBlingRoom findWhichGameRoom(@RequestParam(value = "num", defaultValue = "0") Integer num) {
 //System.out.println(num);
-		
+	
 //		return em.find(GameBlingRoom.class, num);
 		return service1.findbyroomnum(num);
 	}
@@ -96,13 +106,19 @@ public class SaveGameDataController {
 	public String findplayer1num(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, Model model) throws IOException {
 
 		GameBlingRoom bean = service1.findbyroomnum(member.getRoomNum());
+//使用爬蟲抓出資料
+		String Result=TestJoup.jsoup();	
+		bean.setGameResult(Result);
 		bean.setGameRoomMember(member.getGameRoomMember());
 		bean.setGameMoney(bean.getGameMoney() * 2);
-		String a = bean.getPlayer1Result();
-		if (bean.getPlayer1Result() == a) {
-			bean.setPlayer2Result("暴龍");
+		bean.setGameRoomStage(2);
+		
+	   
+	   
+		if (bean.getPlayer1Result() == "1") {
+			bean.setPlayer2Result("2");
 		} else {
-			bean.setPlayer2Result("勇士");
+			bean.setPlayer2Result("1");
 		}
 		
 		model.addAttribute("player1", bean);
@@ -110,13 +126,16 @@ public class SaveGameDataController {
 		return "/main/games/blingroom";
 	}
 	
-	//
-	@RequestMapping("/GameBling4")
-	public  String GameResult() throws IOException {
-		TestJoup.jsoup();
-		return "";
-	}
 	
+	
+	
+	//判斷餘額購不夠開房
+	@RequestMapping("/GameBling6")
+	public String MoneyEnough() {
+		
+		
+		return"";
+	}
 	
 	
 }

@@ -128,6 +128,11 @@
 							<h4 class="mb-3"></h4>
 							
 							
+							<div class="mb-3">
+								<label for="inputID">玩家編號</label> <input type="text" 
+									id="membernum" name="membernum" value="${sessionScope.member.memberNum}"
+									class="form-control" placeholder="" required autofocus readonly>
+							</div>
 							
 							
 							
@@ -146,8 +151,8 @@
 
 							<div class="mb-3">
 								<label for="inputPassword">選擇你賭的球隊</label> <select id="player1Result" name="player1Result">
-									<option value="勇士">勇士</option>
-									<option value="暴龍">暴龍</option>
+									<option value="Warriors">勇士</option>
+									<option value="Raptors">暴龍</option>
 									
 								</select>
 							</div>
@@ -185,11 +190,29 @@
 		</div>
 		
 		<script>
+		
 		$("#openroom").click(function(){
+
 			if(confirm("確定要開設賭局"))
 			{
-				$("#gameblingForm").submit();
-				
+				$.ajax({
+					url:"/main/complain/findSummary",
+					type:"POST",
+					data:{
+						memberNum:$("#membernum").val().trim(),
+					},
+					success:function(data){		
+						var money = $("#gameMoney").val() ;
+						var money2 = String(data).replace(",","");
+						if(money <= money2){						
+							$("#gameblingForm").submit();
+						}else if (money > money2){
+							alert("你餘額不足請先儲值");	
+							location.href='/main/Gamebling';
+						};			
+					},
+					
+				});				
 			}
 			else
 			{
@@ -310,9 +333,17 @@
 		
 			$(".roomnum").click(function(){
 				
-// 				alert($("#"+this.id+"1").html());
-			$("#roomNum").val($("#"+this.id+"1").html());
-		    document.getElementById("submitroom").submit();
+				if(confirm("確定要以相同賭金下注另一隊!!"))
+				{
+					$("#roomNum").val($("#"+this.id+"1").html());
+				    document.getElementById("submitroom").submit();
+					
+				}
+				else
+				{
+					location.href='/main/Gamebling';
+				}
+			
 			});
 		}
 		

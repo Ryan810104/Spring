@@ -27,6 +27,11 @@ public class GameBlingRoomService {
 	}
 	
 	
+	public List<GameBlingRoom> showOpeningRoom(){
+		return dao.findByGameRoomStage(2);
+	}
+	
+	
     public GameBlingRoom findbyroomnum(Integer roomnum){
 		
     	
