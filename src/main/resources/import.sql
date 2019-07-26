@@ -329,7 +329,7 @@ insert into customer_Message_Board(customermessageboard_article_floor,customerme
 
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('買了10000點錢被吃還我錢',getdate(),null,0,3,'Sally');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('網頁跳轉失敗',getdate(),null,0,2,'Mike');
-insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,cmb_num,complaint_picurl) values ('文章編號:6	(勿更改以利查證)',getdate(),null,0,4,'Sally',6,'/resources/complaintPhoto/complaintArticleNum6.png');
+insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,cmb_num,complaint_picurl) values ('文章編號:17	(勿更改以利查證)',getdate(),null,0,4,'Sally',17,'/resources/complaintPhoto/complaintArticleNum6.png');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('字真d太小',getdate(),null,0,2,'Udo');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('聊天室閃退',getdate(),null,0,2,'Ogushi');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('好友列表消失',getdate(),null,0,2,'Sally');
@@ -337,7 +337,7 @@ insert into complaint(complaint_message,complaint_messagetime,complaint_response
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('輪盤停不下來',getdate(),null,0,1,'Sally');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('不能儲值',getdate(),null,0,3,'Ogushi');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('儲值失敗有夠爛',getdate(),null,0,3,'Mike');
-insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,cmb_num,complaint_picurl) values ('文章編號:7	(勿更改以利查證)',getdate(),null,0,4,'Sally',7,'/resources/complaintPhoto/complaintArticleNum8.png');
+insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id,cmb_num,complaint_picurl) values ('文章編號:16	(勿更改以利查證)',getdate(),null,0,4,'Sally',16,'/resources/complaintPhoto/complaintArticleNum8.png');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('遊戲無聊',getdate(),null,0,1,'Udo');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('遊戲難度太低',getdate(),null,0,1,'Ogushi');
 insert into complaint(complaint_message,complaint_messagetime,complaint_response,complaint_status,complaint_type,member_id) values ('金額不符',getdate(),null,0,3,'John');
