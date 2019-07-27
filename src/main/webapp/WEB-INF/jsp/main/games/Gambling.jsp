@@ -62,6 +62,105 @@
 		} 
 	}
 	
+	.button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 38px;
+    border: 1px solid #c23c3c;
+    border-radius: 8px;
+    background: #ff6262;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff6262), to(#c23c3c));
+    background: -moz-linear-gradient(top, #ff6262, #c23c3c);
+    background: linear-gradient(to bottom, #ff6262, #c23c3c);
+    -webkit-box-shadow: #ff5a5a 0px 0px 40px 0px;
+    -moz-box-shadow: #ff5a5a 0px 0px 40px 0px;
+    box-shadow: #ff5a5a 0px 0px 40px 0px;
+    text-shadow: #792626 1px 1px 1px;
+    font: normal normal bold 20px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:hover,
+.button:focus {
+    border: 1px solid #f24b4b;
+    background: #ff7676;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff7676), to(#e94848));
+    background: -moz-linear-gradient(top, #ff7676, #e94848);
+    background: linear-gradient(to bottom, #ff7676, #e94848);
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:active {
+    background: #c23c3c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#c23c3c), to(#c23c3c));
+    background: -moz-linear-gradient(top, #c23c3c, #c23c3c);
+    background: linear-gradient(to bottom, #c23c3c, #c23c3c);
+}
+.button:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEyElEQVRIia2Va2xTZRjHf+fSrbRbYTh3010YY0Ecg8UoIETJ5APRDAYqfFliMqIJIpcgiSFZREOMH4xRol8MJCgYYzSBqENuMcIYlxmGLhtzA9Z1967b2q7t2p6257x+OGdQjSEu8UmenJw37/n/n///fc77KMwx6isoWFvI6ifmkyuniI1rxOaK8dC4tC//uBi7Ioy+MyJw6UOt8/PNV7/bntlYaMf+vxBc2F34vZgZFiI8JER4WIioV4jRy6Lv2JbeT2pZ98/98pwZhAAtaGUAZnxgy6F8yweVr7/73q8nXnE0pm9X567BgEQIdAMQJqHJjHPJBvXl3frRYPiwb895mgGUucI3rBDbyueHl0naFGS6QE+BHgM9DqkotgUlUnFWZEPbjd4vh2aIKtW5ZD1XREW3n4BZ3sNj06LkNqevc1mkqwXJfY7MhY+APQdSUUjFITlDdmGpMz9w1fjmlvaL8tlm9jUdbDi94/lHG1+rkVZvLJ5eoM2IaE8Av+nB32NtKetddparKmo8rpFy/4azsAhsDkjFTDUCpITv8WNnh76QTm7lcMPeXU04S028RIDkpJuhwUHP9NhQq7t/9OLxNtF6pg+PpTAXKFuaS+UbT7HjxSXUFpcX4Fi3E3TdKkmgjXexcc/pFWo0QRK/G2Tn/YJtOaWUL1xURo1RVpMKNtS9OsTw6Mi98KS35fadiYtHr9B6aZBb+8/z82CIQ++4vPsc2iBIDvPQdci021icS4l628c9ERxAyi4GYTxwRRZmE8uCjNxCyvMeq0A2KlbUTjdu3e412tu7Lqx7P/TSp9c5tHE56wsM/0rQTAJDgqk2ZAVZvTpMT8Q/QXZewCSQhNlbae1nPoRpkAx2yS9nTIUqzTdCsmteD7K2El0zwf3doA2AAmq3l2GfPxTK1vwuMB6AK2ngzKoxEKN38d0YJzxjdlzTC1Q9syZ/E8Y06EkI3QPNDzKkkhhqzCA4FdQGFwe6q8jKBRRThSxM/PtKdPQ+D972KKMaoa86+OhoA7X1dTnH5+dlOtD6IDaBeQAQ9cFIiEkVSPijuImPVWF4weEEuwMkG8hSWoPqiDxw1KgY4yLYtFp5u3yRrVJRk5C4a9prs0xLwEA/oevDeFSA8QjdqGxCFUAE9AikAFk2U5FAAtUFOTmw6klKEEkQCVNlpln4bMZuQ4ePlnAcnwrQ4eV3AUgq5u2kYlajGlZaa4qVkpVYf4ZhgRuQ6oTREVInOjgCGCrA5X7uxDRwuCwAmykTAWSlrSkWUfodLCwCDZLXwOeGZg9fn/2TFqztdI0x7AsTKivAhQ3ENPjbTVtzykBZDuSnkchpCjQQ/RBphUAcrvho2f8TB60STYKETnAihKfMRrUYg4luGBFEFZAjHuxON2QVQeZSkAsAO4gU6JMQvQPTg5AQ0Ozh1IEf2WsYeGcFzs6D1PQUbr2Lat8E9KfwHjjHTv8M8bfWsmtNEbX5fhxqG6jzQLE6mRREkhi3/PQcu8mR5k6+BUJpBj4YOCMxusaD1P8RpevN0+wYmOImYOw+RWuWnWV1VdSuKuHpXCcFGSpyWCPUO0HPD51c7vVyDfDxsOu+rppnP67npCODCv59lMqmObisdDDHiSgDGXP54L/EX5ztNQw3UOoSAAAAAElFTkSuQmCC") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+	
+	
+.button1 {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 38px;
+    border: 1px solid #3598a9;
+    border-radius: 8px;
+    background: #56faff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#56faff), to(#3598a9));
+    background: -moz-linear-gradient(top, #56faff, #3598a9);
+    background: linear-gradient(to bottom, #56faff, #3598a9);
+    -webkit-box-shadow: #5affff 0px 0px 40px 0px;
+    -moz-box-shadow: #5affff 0px 0px 40px 0px;
+    box-shadow: #5affff 0px 0px 40px 0px;
+    text-shadow: #266d79 1px 1px 1px;
+    font: normal normal bold 20px arial;
+    color: #ffffff;
+    text-decoration: none;
+}
+.button1:hover,
+.button1:focus {
+    border: 1px solid #4bd9f2;
+    background: #67ffff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#67ffff), to(#40b6cb));
+    background: -moz-linear-gradient(top, #67ffff, #40b6cb);
+    background: linear-gradient(to bottom, #67ffff, #40b6cb);
+    color: #ffffff;
+    text-decoration: none;
+}
+.button1:active {
+    background: #3598a9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3598a9), to(#3598a9));
+    background: -moz-linear-gradient(top, #3598a9, #3598a9);
+    background: linear-gradient(to bottom, #3598a9, #3598a9);
+}
+.button1:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEyElEQVRIia2Va2xTZRjHf+fSrbRbYTh3010YY0Ecg8UoIETJ5APRDAYqfFliMqIJIpcgiSFZREOMH4xRol8MJCgYYzSBqENuMcIYlxmGLhtzA9Z1967b2q7t2p6257x+OGdQjSEu8UmenJw37/n/n///fc77KMwx6isoWFvI6ifmkyuniI1rxOaK8dC4tC//uBi7Ioy+MyJw6UOt8/PNV7/bntlYaMf+vxBc2F34vZgZFiI8JER4WIioV4jRy6Lv2JbeT2pZ98/98pwZhAAtaGUAZnxgy6F8yweVr7/73q8nXnE0pm9X567BgEQIdAMQJqHJjHPJBvXl3frRYPiwb895mgGUucI3rBDbyueHl0naFGS6QE+BHgM9DqkotgUlUnFWZEPbjd4vh2aIKtW5ZD1XREW3n4BZ3sNj06LkNqevc1mkqwXJfY7MhY+APQdSUUjFITlDdmGpMz9w1fjmlvaL8tlm9jUdbDi94/lHG1+rkVZvLJ5eoM2IaE8Av+nB32NtKetddparKmo8rpFy/4azsAhsDkjFTDUCpITv8WNnh76QTm7lcMPeXU04S028RIDkpJuhwUHP9NhQq7t/9OLxNtF6pg+PpTAXKFuaS+UbT7HjxSXUFpcX4Fi3E3TdKkmgjXexcc/pFWo0QRK/G2Tn/YJtOaWUL1xURo1RVpMKNtS9OsTw6Mi98KS35fadiYtHr9B6aZBb+8/z82CIQ++4vPsc2iBIDvPQdci021icS4l628c9ERxAyi4GYTxwRRZmE8uCjNxCyvMeq0A2KlbUTjdu3e412tu7Lqx7P/TSp9c5tHE56wsM/0rQTAJDgqk2ZAVZvTpMT8Q/QXZewCSQhNlbae1nPoRpkAx2yS9nTIUqzTdCsmteD7K2El0zwf3doA2AAmq3l2GfPxTK1vwuMB6AK2ngzKoxEKN38d0YJzxjdlzTC1Q9syZ/E8Y06EkI3QPNDzKkkhhqzCA4FdQGFwe6q8jKBRRThSxM/PtKdPQ+D972KKMaoa86+OhoA7X1dTnH5+dlOtD6IDaBeQAQ9cFIiEkVSPijuImPVWF4weEEuwMkG8hSWoPqiDxw1KgY4yLYtFp5u3yRrVJRk5C4a9prs0xLwEA/oevDeFSA8QjdqGxCFUAE9AikAFk2U5FAAtUFOTmw6klKEEkQCVNlpln4bMZuQ4ePlnAcnwrQ4eV3AUgq5u2kYlajGlZaa4qVkpVYf4ZhgRuQ6oTREVInOjgCGCrA5X7uxDRwuCwAmykTAWSlrSkWUfodLCwCDZLXwOeGZg9fn/2TFqztdI0x7AsTKivAhQ3ENPjbTVtzykBZDuSnkchpCjQQ/RBphUAcrvho2f8TB60STYKETnAihKfMRrUYg4luGBFEFZAjHuxON2QVQeZSkAsAO4gU6JMQvQPTg5AQ0Ozh1IEf2WsYeGcFzs6D1PQUbr2Lat8E9KfwHjjHTv8M8bfWsmtNEbX5fhxqG6jzQLE6mRREkhi3/PQcu8mR5k6+BUJpBj4YOCMxusaD1P8RpevN0+wYmOImYOw+RWuWnWV1VdSuKuHpXCcFGSpyWCPUO0HPD51c7vVyDfDxsOu+rppnP67npCODCv59lMqmObisdDDHiSgDGXP54L/EX5ztNQw3UOoSAAAAAElFTkSuQmCC") no-repeat left center transparent;
+    background-size: 100% 100%;
+}	
+	
 	
 
 </style>
@@ -107,11 +206,14 @@
 		<hr>
  
 		<div style="margin-top: 200px; text-align: center">
-			<button style="align: center" data-toggle="modal"
+			<button  class="button" style="width:50%;align: center" data-toggle="modal"
 				data-target="#login">開創房間</button>
+		</div>		
+			
 				
+			<div style="margin-top: 200px; text-align: center">	
 				
-			<button style="align: center"  id="show"   data-toggle="modal"  data-target="#open"
+			<button  class="button1" style="width:50%;align: center"  id="show"   data-toggle="modal"  data-target="#open"
 				>現有房間列表</button>
 		</div>
 		
@@ -154,6 +256,7 @@
 								<label for="inputID">請輸入房間名稱</label> <input type="text"
 									id="gameRoomName" name="gameRoomName" value="${memberParam.memberId}"
 									class="form-control" placeholder="" required autofocus>
+									<span id="errorroom"></span>
 							</div>
 
 							<div class="mb-3">
@@ -181,8 +284,9 @@
 							
 
 							<hr>
-							<input type="button" id="openroom"  value="確認開設房間"/>
-
+							<div   align=center style="width:100%;height:40px ">
+							<input  style="width:100% ;height:100% ;background-color:#5599FF" type="button" id="openroom"  value="確認開設房間"/>
+                            </div>
 							<hr>
 				
 						</form>
@@ -199,7 +303,7 @@
 		<script>
 		
 		$("#openroom").click(function(){
-
+ 
 			if(confirm("確定要開設賭局"))
 			{
 				$.ajax({
@@ -214,7 +318,7 @@
 // 						alert(money);
 // 						alert(typeof(money2));
 // 						alert(money <= money2);
-						if(money <= money2){						
+						if(money <= money2&&flag5==true&&flag6==true){						
 							$("#gameblingForm").submit();
 						}else if (money > money2){
 							alert("你餘額不足請先儲值");	
@@ -311,7 +415,7 @@
 				document.getElementById("errormoney").innerHTML = "<i style='color:red'>一定要下注金額</n>";
 			} else if (re.test(Money)) {
 				flag5 = true;
-				document.getElementById("errormoney").innerHTML = "<n style='color:#66FFFF'>金額已確認</n>";
+				document.getElementById("errormoney").innerHTML = "<n style='color:#00DD00'>金額已確認</n>";
 				
 			} else{
 				
@@ -320,9 +424,28 @@
 			}
 
 		}
+		
+		
+		//檢測房名
+		function chkroomname(){
+			flag6=false;
+			let name= document.getElementById("gameRoomName").value;
+			if(name==""){
+				document.getElementById("errorroom").innerHTML = "<i style='color:red'>一定要輸入房名</n>";
+			}else{
+				document.getElementById("errorroom").innerHTML = "<i style='color:#00DD00'>以確認</n>";
+				flag6=true;
+			}
+		}
+		
 		document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("gameMoney").addEventListener("blur",
 					chkMoney);
+		})
+		
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("gameRoomName").addEventListener("blur",
+					chkroomname);
 		})
 		
 		
