@@ -1,11 +1,13 @@
 package com.recreation.playground.web;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.validation.Valid;
 
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.recreation.playground.dao.ChipDao;
 import com.recreation.playground.entity.GameBlingRoom;
 import com.recreation.playground.entity.SaveGameData;
 import com.recreation.playground.service.GameBlingRoomService;
@@ -35,7 +38,10 @@ public class SaveGameDataController {
 
 	@Autowired
 	GameBlingRoomService service1;
-
+	
+	@Autowired
+	ChipDao dao;
+	
 	@RequestMapping("/SaveGameData")
 	@ResponseBody
 	public String saveData(@RequestParam(value = "gameDataNum", defaultValue = "0") Integer gameDataNum,
@@ -104,31 +110,45 @@ public class SaveGameDataController {
 //找對應房間
 	@RequestMapping("/GameBling2")
 	public String findplayer1num(@Valid @ModelAttribute("gameblingForm") GameBlingRoom member, Model model) throws IOException {
-
+    
 		GameBlingRoom bean = service1.findbyroomnum(member.getRoomNum());
-//使用爬蟲抓出資料
-		String Result=TestJoup.jsoup();	
-		bean.setGameResult(Result);
-		bean.setGameRoomMember(member.getGameRoomMember());
-		bean.setGameMoney(bean.getGameMoney() * 2);
-		bean.setGameRoomStage(2);
+		Object aa=dao.findPlayerSummary(member.getChipMemberNum());	  
 		
-	   
-	   
-		if (bean.getPlayer1Result() == "1") {
-			bean.setPlayer2Result("2");
-		} else {
-			bean.setPlayer2Result("1");
-		}
-		
-		model.addAttribute("player1", bean);
-		service1.SaveGameData(bean);
-		return "/main/games/blingroom";
+	      List list1=Arrays.asList(aa);
+	      String  ii = (String)list1.get(1);     
+	      Integer aa1=Integer.parseInt(ii.replaceAll("[\\pP\\p{Punct}]",""));
+//	      System.out.println(aa1);     
+//	      System.out.println(String.valueOf( bean.getGameMoney()));
+	      
+	      if(aa1>=bean.getGameMoney()) {
+	    	//使用爬蟲抓出資料
+	  		String Result=TestJoup.jsoup();	
+	  		bean.setGameResult(Result);
+	  		bean.setGameRoomMember(member.getGameRoomMember());
+	  		bean.setGameMoney(bean.getGameMoney() * 2);
+	  		bean.setGameRoomStage(2);
+	  		bean.setChipMemberNum(member.getChipMemberNum());
+
+	           
+	  		if (bean.getPlayer1Result() == "1") {
+	  			bean.setPlayer2Result("2");
+	  		} else {
+	  			bean.setPlayer2Result("1");
+	  		}
+	  		
+	  		model.addAttribute("player1", bean);
+	  		service1.SaveGameData(bean);
+	  		return "/main/games/blingroom";
+	      }else {
+	    	  model.addAttribute("player2",1);
+	    	  return"/test1/ClearTemplateIndex";
+	      }
+	
+
 	}
+
 	
-	
-	
-	
+
 	//判斷餘額購不夠開房
 	@RequestMapping("/GameBling6")
 	public String MoneyEnough() {

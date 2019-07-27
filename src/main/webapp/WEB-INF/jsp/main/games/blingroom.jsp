@@ -61,6 +61,109 @@ canvas {
   line-height: 1em;
 }
 
+	.button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 12px 24px;
+    border: 1px solid #a12727;
+    border-radius: 8px;
+    background: #ff4a4a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff4a4a), to(#992727));
+    background: -moz-linear-gradient(top, #ff4a4a, #992727);
+    background: linear-gradient(to bottom, #ff4a4a, #992727);
+    -webkit-box-shadow: #ff5959 0px 0px 40px 0px;
+    -moz-box-shadow: #ff5959 0px 0px 40px 0px;
+    box-shadow: #ff5959 0px 0px 40px 0px;
+    text-shadow: #591717 1px 1px 1px;
+    font: normal normal bold 23px impact;
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:hover,
+.button:focus {
+    background: #ff5959;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff5959), to(#b62f2f));
+    background: -moz-linear-gradient(top, #ff5959, #b62f2f);
+    background: linear-gradient(to bottom, #ff5959, #b62f2f);
+    color: #ffffff;
+    text-decoration: none;
+}
+.button:active {
+    background: #982727;
+    background: -webkit-gradient(linear, left top, left bottom, from(#982727), to(#982727));
+    background: -moz-linear-gradient(top, #982727, #982727);
+    background: linear-gradient(to bottom, #982727, #982727);
+}
+.button:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEyElEQVRIia2Va2xTZRjHf+fSrbRbYTh3010YY0Ecg8UoIETJ5APRDAYqfFliMqIJIpcgiSFZREOMH4xRol8MJCgYYzSBqENuMcIYlxmGLhtzA9Z1967b2q7t2p6257x+OGdQjSEu8UmenJw37/n/n///fc77KMwx6isoWFvI6ifmkyuniI1rxOaK8dC4tC//uBi7Ioy+MyJw6UOt8/PNV7/bntlYaMf+vxBc2F34vZgZFiI8JER4WIioV4jRy6Lv2JbeT2pZ98/98pwZhAAtaGUAZnxgy6F8yweVr7/73q8nXnE0pm9X567BgEQIdAMQJqHJjHPJBvXl3frRYPiwb895mgGUucI3rBDbyueHl0naFGS6QE+BHgM9DqkotgUlUnFWZEPbjd4vh2aIKtW5ZD1XREW3n4BZ3sNj06LkNqevc1mkqwXJfY7MhY+APQdSUUjFITlDdmGpMz9w1fjmlvaL8tlm9jUdbDi94/lHG1+rkVZvLJ5eoM2IaE8Av+nB32NtKetddparKmo8rpFy/4azsAhsDkjFTDUCpITv8WNnh76QTm7lcMPeXU04S028RIDkpJuhwUHP9NhQq7t/9OLxNtF6pg+PpTAXKFuaS+UbT7HjxSXUFpcX4Fi3E3TdKkmgjXexcc/pFWo0QRK/G2Tn/YJtOaWUL1xURo1RVpMKNtS9OsTw6Mi98KS35fadiYtHr9B6aZBb+8/z82CIQ++4vPsc2iBIDvPQdci021icS4l628c9ERxAyi4GYTxwRRZmE8uCjNxCyvMeq0A2KlbUTjdu3e412tu7Lqx7P/TSp9c5tHE56wsM/0rQTAJDgqk2ZAVZvTpMT8Q/QXZewCSQhNlbae1nPoRpkAx2yS9nTIUqzTdCsmteD7K2El0zwf3doA2AAmq3l2GfPxTK1vwuMB6AK2ngzKoxEKN38d0YJzxjdlzTC1Q9syZ/E8Y06EkI3QPNDzKkkhhqzCA4FdQGFwe6q8jKBRRThSxM/PtKdPQ+D972KKMaoa86+OhoA7X1dTnH5+dlOtD6IDaBeQAQ9cFIiEkVSPijuImPVWF4weEEuwMkG8hSWoPqiDxw1KgY4yLYtFp5u3yRrVJRk5C4a9prs0xLwEA/oevDeFSA8QjdqGxCFUAE9AikAFk2U5FAAtUFOTmw6klKEEkQCVNlpln4bMZuQ4ePlnAcnwrQ4eV3AUgq5u2kYlajGlZaa4qVkpVYf4ZhgRuQ6oTREVInOjgCGCrA5X7uxDRwuCwAmykTAWSlrSkWUfodLCwCDZLXwOeGZg9fn/2TFqztdI0x7AsTKivAhQ3ENPjbTVtzykBZDuSnkchpCjQQ/RBphUAcrvho2f8TB60STYKETnAihKfMRrUYg4luGBFEFZAjHuxON2QVQeZSkAsAO4gU6JMQvQPTg5AQ0Ozh1IEf2WsYeGcFzs6D1PQUbr2Lat8E9KfwHjjHTv8M8bfWsmtNEbX5fhxqG6jzQLE6mRREkhi3/PQcu8mR5k6+BUJpBj4YOCMxusaD1P8RpevN0+wYmOImYOw+RWuWnWV1VdSuKuHpXCcFGSpyWCPUO0HPD51c7vVyDfDxsOu+rppnP67npCODCv59lMqmObisdDDHiSgDGXP54L/EX5ztNQw3UOoSAAAAAElFTkSuQmCC") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+
+ .button1 {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px 60px;
+    border: 5px solid #9322d4;
+    border-radius: 34px;
+    background: #e376a2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e376a2), to(#0e3cf2));
+    background: -moz-linear-gradient(top, #e376a2, #0e3cf2);
+    background: linear-gradient(to bottom, #e376a2, #0e3cf2);
+    -webkit-box-shadow: #ffff2f 0px 0px 40px 0px;
+    -moz-box-shadow: #ffff2f 0px 0px 40px 0px;
+    box-shadow: #ffff2f 0px 0px 40px 0px;
+    text-shadow: #ccccca -3px -1px 0px;
+    font: normal normal bold 26px impact;
+    color: #0c0d0d;
+    text-decoration: none;
+}
+.button1:hover,
+.button1:focus {
+    border: 5px solid #eb36ff;
+    background: #ff8ec2;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff8ec2), to(#1148ff));
+    background: -moz-linear-gradient(top, #ff8ec2, #1148ff);
+    background: linear-gradient(to bottom, #ff8ec2, #1148ff);
+    color: #0c0d0d;
+    text-decoration: none;
+}
+.button1:active {
+    background: #884761;
+    background: -webkit-gradient(linear, left top, left bottom, from(#884761), to(#0e3cf2));
+    background: -moz-linear-gradient(top, #884761, #0e3cf2);
+    background: linear-gradient(to bottom, #884761, #0e3cf2);
+}
+.button1:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEyElEQVRIia2Va2xTZRjHf+fSrbRbYTh3010YY0Ecg8UoIETJ5APRDAYqfFliMqIJIpcgiSFZREOMH4xRol8MJCgYYzSBqENuMcIYlxmGLhtzA9Z1967b2q7t2p6257x+OGdQjSEu8UmenJw37/n/n///fc77KMwx6isoWFvI6ifmkyuniI1rxOaK8dC4tC//uBi7Ioy+MyJw6UOt8/PNV7/bntlYaMf+vxBc2F34vZgZFiI8JER4WIioV4jRy6Lv2JbeT2pZ98/98pwZhAAtaGUAZnxgy6F8yweVr7/73q8nXnE0pm9X567BgEQIdAMQJqHJjHPJBvXl3frRYPiwb895mgGUucI3rBDbyueHl0naFGS6QE+BHgM9DqkotgUlUnFWZEPbjd4vh2aIKtW5ZD1XREW3n4BZ3sNj06LkNqevc1mkqwXJfY7MhY+APQdSUUjFITlDdmGpMz9w1fjmlvaL8tlm9jUdbDi94/lHG1+rkVZvLJ5eoM2IaE8Av+nB32NtKetddparKmo8rpFy/4azsAhsDkjFTDUCpITv8WNnh76QTm7lcMPeXU04S028RIDkpJuhwUHP9NhQq7t/9OLxNtF6pg+PpTAXKFuaS+UbT7HjxSXUFpcX4Fi3E3TdKkmgjXexcc/pFWo0QRK/G2Tn/YJtOaWUL1xURo1RVpMKNtS9OsTw6Mi98KS35fadiYtHr9B6aZBb+8/z82CIQ++4vPsc2iBIDvPQdci021icS4l628c9ERxAyi4GYTxwRRZmE8uCjNxCyvMeq0A2KlbUTjdu3e412tu7Lqx7P/TSp9c5tHE56wsM/0rQTAJDgqk2ZAVZvTpMT8Q/QXZewCSQhNlbae1nPoRpkAx2yS9nTIUqzTdCsmteD7K2El0zwf3doA2AAmq3l2GfPxTK1vwuMB6AK2ngzKoxEKN38d0YJzxjdlzTC1Q9syZ/E8Y06EkI3QPNDzKkkhhqzCA4FdQGFwe6q8jKBRRThSxM/PtKdPQ+D972KKMaoa86+OhoA7X1dTnH5+dlOtD6IDaBeQAQ9cFIiEkVSPijuImPVWF4weEEuwMkG8hSWoPqiDxw1KgY4yLYtFp5u3yRrVJRk5C4a9prs0xLwEA/oevDeFSA8QjdqGxCFUAE9AikAFk2U5FAAtUFOTmw6klKEEkQCVNlpln4bMZuQ4ePlnAcnwrQ4eV3AUgq5u2kYlajGlZaa4qVkpVYf4ZhgRuQ6oTREVInOjgCGCrA5X7uxDRwuCwAmykTAWSlrSkWUfodLCwCDZLXwOeGZg9fn/2TFqztdI0x7AsTKivAhQ3ENPjbTVtzykBZDuSnkchpCjQQ/RBphUAcrvho2f8TB60STYKETnAihKfMRrUYg4luGBFEFZAjHuxON2QVQeZSkAsAO4gU6JMQvQPTg5AQ0Ozh1IEf2WsYeGcFzs6D1PQUbr2Lat8E9KfwHjjHTv8M8bfWsmtNEbX5fhxqG6jzQLE6mRREkhi3/PQcu8mR5k6+BUJpBj4YOCMxusaD1P8RpevN0+wYmOImYOw+RWuWnWV1VdSuKuHpXCcFGSpyWCPUO0HPD51c7vVyDfDxsOu+rppnP67npCODCv59lMqmObisdDDHiSgDGXP54L/EX5ztNQw3UOoSAAAAAElFTkSuQmCC") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+
+
+
+
+
+	
+
 
 
 </style>
@@ -102,14 +205,12 @@ anime.timeline({loop: true})
 </script>
 
 <!-- 賭金資訊 -->
-<h1   id="money" align="center" class="ml10" style="margin-top:750px;color:white; width:100%;position:absolute;z-index:1;">
+<h1   id="money" align="center" class="ml10" style="margin-top:400px;color:white; width:100%;position:absolute;z-index:1;">
   <span class="text-wrapper">
     <span class="letters"></span>
   </span>
 </h1>
 
-<h1   id="money" class="ml13" style="color:white; width:100%;position:absolute;z-index:1;"></h1>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 
 <script type="text/javascript">
 //Wrap every letter in a span
@@ -144,10 +245,7 @@ var roomnum=${player1.roomNum}
 
 
 
-<!-- 賭金資訊 -->
-<div    align="center"  id="money" style="width:100%;color:white;margin-top:800px;position:absolute;z-index:1;">
 
-</div>
 
 
 
@@ -172,7 +270,7 @@ var roomnum=${player1.roomNum}
 
 <!-- 放玩家一的資料 -->
 <form class="form-signin" name="form2" id="form2" action=""
-			method="POST">	
+			method="POST"  style="display:none">	
 						<input id='chipRecordMemberNum' name="chipRecordMemberNum"
 							type="text" value="${sessionScope.member.memberNum}"
 							placeholder="chipRecordMemberNum" class="form-control"
@@ -237,7 +335,7 @@ var roomnum=${player1.roomNum}
 							placeholder="win:" class="form-control" > 
 							
 							<input
-							id='playRound' name="playRound" type="text"
+							id='round' name="round" type="text"
 							 placeholder="round:" class="form-control"  >
 							 
 					
@@ -247,7 +345,12 @@ var roomnum=${player1.roomNum}
 
 
 <div  align="center" style="margin-top:650px;color:white; width:100%;position:absolute;z-index:1;">
-<input   id="showWinner" type="button"  value="查看賭注結果"   />
+<a  id="showWinner"class="button" href="#">查看賭注結果</a>
+<!-- <input   id="showWinner" type="button"  value="查看賭注結果"   /> -->
+</div>
+
+<div  id="backhome"align="center" style="display:none;margin-top:650px;color:white; width:100%;position:absolute;z-index:1;">
+<a class="button1" href="/main/Gamebling"> Back to home</a>
 </div>
 
 <!-- 察看結果js -->
@@ -255,64 +358,69 @@ var roomnum=${player1.roomNum}
 var winner="";
 
 $("#showWinner").mousedown(function(){
-	
+
 	document.getElementById('chipType').value='球賽賭盤';
 	document.getElementById('chipRecordChiptype').value='球賽賭盤';
-	document.getElementById('playRound').value='1';	
+	document.getElementById('round').value='1';	
 	document.getElementById('chipRecordRound').value='1';
 	
 	$.ajax({
 		url:"/save/GameBling3?num="+roomnum,
 		type:"POST",
 		success : function(data) {
-			document.getElementById('chipRecordChip').value=-(data.gameMoney/2);
-			document.getElementById('chipBalanced').value=-(data.gameMoney/2);
-			str=data.gameResult;
-			alert(str);
-			var player1Result="";
-			var player2Result="";
-			if(data.player1Result=="Warriors"){
-				player1Result="勇士";
-				player2Result="暴龍";
+			if(data.player2Result==null){
+				alert("還沒有玩家進來!");
 			}else{
-				player1Result="暴龍";
-				player2Result="勇士";
-			}
-// 				alert(player1Result);
-//  				alert(player2Result);
-		
-			if(str.indexOf(player2Result)==0){			
-			alert(data.gameRoomMember+"贏了!!");	
+				document.getElementById('backhome').style.display="inline";
+				document.getElementById('chipRecordChip').value=-(data.gameMoney/2);
+				document.getElementById('chipBalanced').value=-(data.gameMoney/2);
+				str=data.gameResult;
+				alert(str);
+				var player1Result="";
+				var player2Result="";
+				if(data.player1Result=="Warriors"){
+					player1Result="勇士";
+					player2Result="暴龍";
+				}else{
+					player1Result="暴龍";
+					player2Result="勇士";
+				}
+//	 				alert(player1Result);
+//	  				alert(player2Result);
+			
+				if(str.indexOf(player2Result)==0){			
+				alert(data.gameRoomMember+"贏了!!");	
 
-// 				winner=data.gameRoomMember;		
-			}else{
-				alert(data.memberId+"贏了!!");
-			}
+//	 				winner=data.gameRoomMember;		
+				}else{
+					alert(data.memberId+"贏了!!");
+				}
+				
+				
+				if(str.indexOf(player2Result)==0&&$("#chipFirstName").val()==data.gameRoomMember){
+					  document.getElementById('chipRecordWin').value='1';
+		 				document.getElementById('win').value='1';
+		 				document.getElementById('chipRecordChip').value=data.gameMoney/2;
+		 				document.getElementById('chipBalanced').value=data.gameMoney/2;
+				}
+				
+				if(str.indexOf(player1Result)==0&&$("#chipFirstName").val()==data.memberId){
+					  document.getElementById('chipRecordWin').value='1';
+		 				document.getElementById('win').value='1';
+		 				document.getElementById('chipRecordChip').value=data.gameMoney/2;
+		 				document.getElementById('chipBalanced').value=data.gameMoney/2;
+				}
+				
+			}	
+		
 			
-			
-			if(str.indexOf(player2Result)==0&&$("#chipFirstName").val()==data.gameRoomMember){
-				  document.getElementById('chipRecordWin').value='1';
-	 				document.getElementById('win').value='1';
-	 				document.getElementById('chipRecordChip').value=data.gameMoney/2;
-	 				document.getElementById('chipBalanced').value=data.gameMoney/2;
-			}
-			
-			if(str.indexOf(player1Result)==0&&$("#chipFirstName").val()==data.memberId){
-				  document.getElementById('chipRecordWin').value='1';
-	 				document.getElementById('win').value='1';
-	 				document.getElementById('chipRecordChip').value=data.gameMoney/2;
-	 				document.getElementById('chipBalanced').value=data.gameMoney/2;
-			}
-			
-			
-	
 		}
 	
 	});	
 	
 	
 	var insert = $("#form2").serializeArray();
-    alert(insert);
+   
 	//alert(JSON.stringify(insert));
 	var i = {};
 	$.each(insert, function(index, value1) {
@@ -357,8 +465,8 @@ $("#showWinner").mousedown(function(){
 						+ $("#chipBalanced").val()
 						+ "&chipType="
 						+ $("#chipType").val()
-						+ "&playRound="
-						+ $("#playRound").val()
+						+ "&round="
+						+ $("#round").val()
 						+ "&win=" + $("#win").val()
 						,
 				method : 'post',

@@ -58,9 +58,12 @@
 			margin-top: 0px;
 		}
 		100% {
-			margin-top: 6px; 
+			margin-top: 1px; 
 		} 
 	}
+	
+	
+
 </style>
 
 
@@ -98,6 +101,8 @@
 				class="letters letters-2">勇士VS暴龍!! 誰將奪冠</span> <span
 				class="letters letters-3">請下注!!</span>
 		</h1>
+		
+		
 
 		<hr>
  
@@ -110,13 +115,15 @@
 				>現有房間列表</button>
 		</div>
 		
+		
+
 
 
 		<div class="modal fade" id="login" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-header" >
 						<h5 class="modal-title" id="exampleModalLongTitle">開設房間</h5>
 						
 					</div>
@@ -203,7 +210,10 @@
 					},
 					success:function(data){		
 						var money = $("#gameMoney").val() ;
-						var money2 = String(data).replace(",","");
+						var money2 = parseInt(String(data).replace(",",""));
+// 						alert(money);
+// 						alert(typeof(money2));
+// 						alert(money <= money2);
 						if(money <= money2){						
 							$("#gameblingForm").submit();
 						}else if (money > money2){
@@ -266,6 +276,19 @@
 									id="gameRoomMember" name="gameRoomMember" value="${sessionScope.member.memberId}"
 									class="form-control" placeholder="" required autofocus readonly>
 							</div>
+							
+							<div class="mb-3">
+								<label for="inputID">memberNum</label> <input type="text" 
+									id="chipMemberNum" name="chipMemberNum" value="${sessionScope.member.memberNum}"
+									class="form-control" placeholder="" required autofocus readonly>
+							</div>
+							
+							<div class="mb-3">
+								<label for="inputID">money</label> <input type="text" 
+									id="roommoney" name="roommoney" value=""
+									class="form-control" placeholder="" required autofocus readonly>
+							</div>
+							
 					
 							
 						</form>
@@ -276,7 +299,8 @@
 
 
 		<script>
-		
+		var alldata=null
+		var num2=0
 		//前端判斷資料用
 			function chkMoney() {
 			let Money = document.getElementById("gameMoney").value;
@@ -309,15 +333,18 @@
 				url : "/save/GameBling1",
 				type : "POST",
 				success : function(data) {
+					alldata=data;
 					var opt="";
 					for(i in data){
+						
 						opt += "<tr><td  id=\"num"+i+"1\" style='height:70px;width:100px'>" + data[i]["roomNum"] + "</td>" +"<td  style='height:60px;width:100px'>" + data[i]["gameRoomName"] + "</td>" + "<td style='height:60px;width:100px'>"
 						+ data[i]["memberId"] + "</td>" + "<td style='height:70px;width:100px'>"
-						+ data[i]["player1Result"] + "</td>" + "<td style='height:70px;width:100px'>"
+						+ data[i]["player1Result"] + "</td>" + "<td   id=\"money"+i+"1\" style='height:70px;width:100px' >"
 						+ data[i]["gameMoney"] + "</td>"+ "<td style='height:70px;width:100px'>"
-						+ "<button  class='roomnum'  id=num"+i+">"+"進入房間"+"</button>"+"</td><tr>";
-			
+						+ "<button    style='margin-top:0px;width:80px' class='roomnum'  id=num"+i+">"+"進入房間"+"</button>"+"</td><tr>";
+						
 					}
+					
 					$("#room").append(opt);
 					
 					findroomnum();
@@ -330,12 +357,13 @@
 		
 
 		function findroomnum(){
-		
+			
 			$(".roomnum").click(function(){
 				
 				if(confirm("確定要以相同賭金下注另一隊!!"))
 				{
 					$("#roomNum").val($("#"+this.id+"1").html());
+					
 				    document.getElementById("submitroom").submit();
 					
 				}
@@ -346,6 +374,16 @@
 			
 			});
 		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

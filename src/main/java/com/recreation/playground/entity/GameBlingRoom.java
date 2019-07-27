@@ -68,6 +68,7 @@ public class GameBlingRoom {
 	@Column
 	private int player2Money;
 
-	
+	@Column
+	private Integer chipMemberNum;
 	
 }
