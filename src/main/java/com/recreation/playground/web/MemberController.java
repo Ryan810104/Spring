@@ -934,7 +934,7 @@ public class MemberController {
 		
 		}else if (mb.getMemberIllegalTimes() == null) {
 			mb.setMemberIllegalTimes(1);
-		} else if (mb.getMemberIllegalTimes() >= 2 && mb.getBanAnnot() == null) {
+		} else if (mb.getMemberIllegalTimes() >= 1 && mb.getBanAnnot() == null) {
 			mb.setMemberIllegalTimes(mb.getMemberIllegalTimes() + 1);
 			mb.setBanAnnot(0);
 
