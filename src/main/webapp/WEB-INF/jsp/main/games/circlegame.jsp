@@ -83,158 +83,185 @@ $(function (){
 	$('.pointer').click(function (){
 		
 		
-		document.getElementById('chipType').value='Roulette';
-		document.getElementById('chipRecordChiptype').value='Roulette';
-		document.getElementById('playRound').value='1';
-		document.getElementById('chipRecordRound').value='1';
-		
-		
-		
-		if(bRotate)return;
-		var item = rnd(0,7);
+		$.ajax({
+			url:"/main/complain/findSummary",
+			type:"POST",
+			data:{
+				memberNum:$("#membernum").val().trim(),
+			},
+			success:function(data){		
+				var money2 = parseInt(String(data).replace(",",""));
+				if(money2>0){
+					
+					document.getElementById('chipType').value='Roulette';
+					document.getElementById('chipRecordChiptype').value='Roulette';
+					document.getElementById('round').value='1';
+					document.getElementById('chipRecordRound').value='1';
+					
+					
+					
+					if(bRotate)return;
+					var item = rnd(0,7);
 
-		switch (item) {
-			case 0:
-				//var angle = [26, 88, 137, 185, 235, 287, 337];
-				document.getElementById('chipBalanced').value=-200;
-				document.getElementById('chipRecordChip').value=-200;	
-				rotateFn(0, 337, '可惜了!下一次就會中大獎');
-				document.getElementById('money').value=0;
-				document.getElementById('win').value=0;
-				document.getElementById('chipRecordWin').value=0;
+					switch (item) {
+						case 0:
+							//var angle = [26, 88, 137, 185, 235, 287, 337];
+							document.getElementById('chipBalanced').value=-200;
+							document.getElementById('chipRecordChip').value=-200;	
+							rotateFn(0, 337, '可惜了!下一次就會中大獎');
+							document.getElementById('money').value=0;
+							document.getElementById('win').value=0;
+							document.getElementById('chipRecordWin').value=0;
+							
+							break;
+						case 1:
+							//var angle = [88, 137, 185, 235, 287];
+							document.getElementById('chipBalanced').value=600;
+							document.getElementById('chipRecordChip').value=600;
+							rotateFn(1, 26, '贏了800元');
+							document.getElementById('money').value=800;
+							document.getElementById('win').value=1;
+							document.getElementById('chipRecordWin').value=1;
+							break;
+						case 2:
+							//var angle = [137, 185, 235, 287];
+							document.getElementById('chipBalanced').value=-1200;
+							document.getElementById('chipRecordChip').value=-1200;
+							rotateFn(2, 88, '輸了1000');
+							document.getElementById('money').value=-1000;
+							document.getElementById('win').value=0;
+							document.getElementById('chipRecordWin').value=0;
+							break;
+						case 3:
+							//var angle = [137, 185, 235, 287];
+							document.getElementById('chipBalanced').value=8688;
+							document.getElementById('chipRecordChip').value=8688;
+							rotateFn(3, 137, '恭喜你!中大獎8888');
+							document.getElementById('money').value=8888;
+							document.getElementById('win').value=1;
+							document.getElementById('chipRecordWin').value=1;
+							break;
+						case 4:
+							//var angle = [185, 235, 287];
+							document.getElementById('chipBalanced').value=1400;
+							document.getElementById('chipRecordChip').value=1400;
+							rotateFn(4, 185, '贏了1600元');
+							document.getElementById('money').value=1600;
+							document.getElementById('win').value=1;
+							document.getElementById('chipRecordWin').value=1;
+							break;
+						case 5:
+							//var angle = [185, 235, 287];
+							document.getElementById('chipBalanced').value=1400;
+							document.getElementById('chipRecordChip').value=1400;
+							rotateFn(5, 185, '贏了1600元');
+							document.getElementById('money').value=1600;
+							document.getElementById('win').value=1;
+							document.getElementById('chipRecordWin').value=1;
+							break;
+						case 6:
+							//var angle = [235, 287];
+							document.getElementById('chipBalanced').value=-1000;
+							document.getElementById('chipRecordChip').value=-1000;
+							rotateFn(6, 235, '輸了800元');
+							document.getElementById('money').value=-800;
+							document.getElementById('win').value=0;
+							document.getElementById('chipRecordWin').value=0;
+							break;
+						case 7:
+							//var angle = [287];
+							document.getElementById('chipBalanced').value=-700;
+							document.getElementById('chipRecordChip').value=-700;
+							rotateFn(7, 287, '輸了500');
+							document.getElementById('money').value=-500;
+							document.getElementById('win').value=0;
+							document.getElementById('chipRecordWin').value=0;
+							break;
+					}
+					
+					//ajax丟資料
+					var insert = $("#form2").serializeArray();
+											//alert(insert);
+											//alert(JSON.stringify(insert));
+											var i = {};
+											$.each(insert, function(index, value1) {
+												i[value1.name] = value1.value;
+											});
+											var ant1 = JSON.stringify(i);
+											//alert(ant1);
+
+											setTimeout(() => {
+												
+											
+											$.ajax({url : '/admin/memberBeans/insert3?chipRecordMemberNum='
+																+ $("#chipRecordMemberNum")
+																		.val()
+																+ "&chipRecordNickName="
+																+ $("#chipRecordNickName")
+																		.val()
+																+ "&chipRecordFirstName="
+																+ $("#chipRecordFirstName")
+																		.val()
+																+ "&chipRecordChip="
+																+ $("#chipRecordChip")
+																		.val()
+																+ "&chipRecordChiptype="
+																+ $("#chipRecordChiptype")
+																		.val()
+																+ "&chipRecordRound="
+																+ $("#chipRecordRound")
+																		.val()
+																		+ "&chipRecordWin="
+																+ $("#chipRecordWin")
+																		.val()
+																		
+																		
+																		
+																		
+																		
+																+ "&chipMemberNum="
+																+ $("#chipMemberNum").val()
+																+ "&chipFirstName="
+																+ $("#chipFirstName").val()
+																+ "&chipNickName="
+																+ $("#chipNickName").val()
+																+ "&chipBalanced="
+																+ $("#chipBalanced").val()
+																+ "&chipType="
+																+ $("#chipType").val()
+																+ "&round="
+																+ $("#round").val()
+																+ "&win=" + $("#win").val()
+																,
+														method : 'post',
+														contentType : 'application/json;charset=UTF-8',
+														dataType : 'json',
+														data : ant1,
+														success : function(data) {
+
+														},
+														error : function(ajaxres) {
+															alert("資料新增失敗");
+														}
+													});
+											}, 7000);
+					
+					
+					
+				}else{
+					alert("你的餘額不足!請先儲值");
+				}
+
 				
-				break;
-			case 1:
-				//var angle = [88, 137, 185, 235, 287];
-				document.getElementById('chipBalanced').value=600;
-				document.getElementById('chipRecordChip').value=600;
-				rotateFn(1, 26, '贏了800元');
-				document.getElementById('money').value=800;
-				document.getElementById('win').value=1;
-				document.getElementById('chipRecordWin').value=1;
-				break;
-			case 2:
-				//var angle = [137, 185, 235, 287];
-				document.getElementById('chipBalanced').value=-1200;
-				document.getElementById('chipRecordChip').value=-1200;
-				rotateFn(2, 88, '輸了1000');
-				document.getElementById('money').value=-1000;
-				document.getElementById('win').value=0;
-				document.getElementById('chipRecordWin').value=0;
-				break;
-			case 3:
-				//var angle = [137, 185, 235, 287];
-				document.getElementById('chipBalanced').value=8688;
-				document.getElementById('chipRecordChip').value=8688;
-				rotateFn(3, 137, '恭喜你!中大獎8888');
-				document.getElementById('money').value=8888;
-				document.getElementById('win').value=1;
-				document.getElementById('chipRecordWin').value=1;
-				break;
-			case 4:
-				//var angle = [185, 235, 287];
-				document.getElementById('chipBalanced').value=1400;
-				document.getElementById('chipRecordChip').value=1400;
-				rotateFn(4, 185, '贏了1600元');
-				document.getElementById('money').value=1600;
-				document.getElementById('win').value=1;
-				document.getElementById('chipRecordWin').value=1;
-				break;
-			case 5:
-				//var angle = [185, 235, 287];
-				document.getElementById('chipBalanced').value=1400;
-				document.getElementById('chipRecordChip').value=1400;
-				rotateFn(5, 185, '贏了1600元');
-				document.getElementById('money').value=1600;
-				document.getElementById('win').value=1;
-				document.getElementById('chipRecordWin').value=1;
-				break;
-			case 6:
-				//var angle = [235, 287];
-				document.getElementById('chipBalanced').value=-1000;
-				document.getElementById('chipRecordChip').value=-1000;
-				rotateFn(6, 235, '輸了800元');
-				document.getElementById('money').value=-800;
-				document.getElementById('win').value=0;
-				document.getElementById('chipRecordWin').value=0;
-				break;
-			case 7:
-				//var angle = [287];
-				document.getElementById('chipBalanced').value=-700;
-				document.getElementById('chipRecordChip').value=-700;
-				rotateFn(7, 287, '輸了500');
-				document.getElementById('money').value=-500;
-				document.getElementById('win').value=0;
-				document.getElementById('chipRecordWin').value=0;
-				break;
-		}
+			},
+			
+		});				
 		
-		//ajax丟資料
-		var insert = $("#form2").serializeArray();
-								//alert(insert);
-								//alert(JSON.stringify(insert));
-								var i = {};
-								$.each(insert, function(index, value1) {
-									i[value1.name] = value1.value;
-								});
-								var ant1 = JSON.stringify(i);
-								//alert(ant1);
-
-								setTimeout(() => {
-									
-								
-								$.ajax({url : '/admin/memberBeans/insert3?chipRecordMemberNum='
-													+ $("#chipRecordMemberNum")
-															.val()
-													+ "&chipRecordNickName="
-													+ $("#chipRecordNickName")
-															.val()
-													+ "&chipRecordFirstName="
-													+ $("#chipRecordFirstName")
-															.val()
-													+ "&chipRecordChip="
-													+ $("#chipRecordChip")
-															.val()
-													+ "&chipRecordChiptype="
-													+ $("#chipRecordChiptype")
-															.val()
-													+ "&chipRecordRound="
-													+ $("#chipRecordRound")
-															.val()
-															+ "&chipRecordWin="
-													+ $("#chipRecordWin")
-															.val()
-															
-															
-															
-															
-															
-													+ "&chipMemberNum="
-													+ $("#chipMemberNum").val()
-													+ "&chipFirstName="
-													+ $("#chipFirstName").val()
-													+ "&chipNickName="
-													+ $("#chipNickName").val()
-													+ "&chipBalanced="
-													+ $("#chipBalanced").val()
-													+ "&chipType="
-													+ $("#chipType").val()
-													+ "&playRound="
-													+ $("#playRound").val()
-													+ "&win=" + $("#win").val()
-													,
-											method : 'post',
-											contentType : 'application/json;charset=UTF-8',
-											dataType : 'json',
-											data : ant1,
-											success : function(data) {
-
-											},
-											error : function(ajaxres) {
-												alert("資料新增失敗");
-											}
-										});
-								}, 7000);
+		
+		
+		
+		
+	
 			
 			
 		console.log(item);
@@ -255,8 +282,17 @@ function rnd(n, m){
 <script type="text/javascript" src="/resources/js/awardRotate.js"></script>
 
 <form class="form-signin" name=savegame id="savegame" action=""
-		method="POST" style="display:none">	
+		method="POST"   style="display:none">	
 			<h2>輸贏</h2>
+			
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<input id='membernum' name='membernum'  type="text" value="${sessionScope.member.memberNum}"
+						placeholder="玩家num:" class="form-control">
+				</div>
+			</div>
+			
+			
 			
 			<div class="form-group row">
 				<div class="col-sm-12">
@@ -373,7 +409,7 @@ Russian roulette </h1>
 							placeholder="win:" class="form-control" > 
 							
 							<input
-							id='playRound' name="playRound" type="text"
+							id='round' name="round" type="text"
 							 placeholder="round:" class="form-control"  >
 							 
 					
