@@ -9,7 +9,7 @@
 <c:choose>
 	<c:when test="${!empty sessionScope.UID}">
 	<c:choose>
-		<c:when test="${sessionScope.member.memberIllegalTimes == 3}">
+		<c:when test="${sessionScope.member.memberIllegalTimes == 2}">
 			<jsp:include page="complain/complainBan.jsp" />
 		</c:when>
 		<c:otherwise>
