@@ -79,7 +79,7 @@
 					type : "POST",
 					success : function(data) {
 					
-						$("#aa").html("總金額:"+"$"+data);
+						$("#aa").html("網站收入:"+"$"+data);
 					}
 					});
 
