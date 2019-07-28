@@ -84,7 +84,7 @@
 						<div class="col-md-11 mb-3">
 							<label style="font-size: 120%; color: green;"
 								for="complaintMessage">請輸入投訴內容:</label> <span id="complaintSp"
-								style="color: red;margin-left:160px"></span>
+								style="color: red;float:right"></span>
 							<textarea style="font-size: 120%" class="form-control"
 								id="complaintMessage" name="complaintMessage" rows="3">${AtricleNum}</textarea>
 						</div>

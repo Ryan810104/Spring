@@ -237,30 +237,33 @@ tbody td:hover {
 		<article class="content moe" style="margin-left: 20px; width: 68rem">
 			<nav class="navbar navbar-light" style="background-color: #CCDDFF;">
 				<div class="nav nav-tabs" id="nav-tab" role="tablist">
-					<a class="nav-item nav-link active" id="nav-home-tab"
+					<a class="nav-item nav-link active" id="nav-interact-tab"
+						data-toggle="tab" href="#nav-interact" role="tab"
+						aria-controls="nav-interact" aria-selected="false"
+						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
+							class="fas fa-users"></i></span> 社群問題</a> 
+					
+					<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+						role="tab" aria-controls="nav-contact" aria-selected="false"
+						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
+							class="fas fa-money-bill"></i></span> 儲值問題</a> 
+					
+					<a class="nav-item nav-link" id="nav-home-tab"
 						data-toggle="tab" href="#nav-home" role="tab"
 						aria-controls="nav-home" aria-selected="true"
 						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
-							class="fas fa-gamepad"></i></span> 遊戲問題</a> <a class="nav-item nav-link"
-						id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+							class="fas fa-gamepad"></i></span> 遊戲問題</a> 
+					
+					<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
 						role="tab" aria-controls="nav-profile" aria-selected="false"
 						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
-							class="fas fa-network-wired"></i></span> 網頁問題</a> <a
-						class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
-						href="#nav-contact" role="tab" aria-controls="nav-contact"
-						aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
-							class="fas fa-money-bill"></i></span> 儲值問題</a> <a class="nav-item nav-link"
-						id="nav-interact-tab" data-toggle="tab" href="#nav-interact"
-						role="tab" aria-controls="nav-interact" aria-selected="false"
-						style="font-family: 微軟正黑體; font-size: 150%; color: #FF44AA; background-color:"><span><i
-							class="fas fa-users"></i></span> 社群問題</a>
+							class="fas fa-network-wired"></i></span> 網頁問題</a>
 				</div>
 			</nav>
 			<!-- Write your data here -->
 			<!-- Write your data here -->
 			<div class="tab-content" id="nav-tabContent">
-				<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+				<div class="tab-pane fade" id="nav-home" role="tabpanel"
 					aria-labelledby="nav-home-tab" style="background-color:">
 
 					<div class="container">
@@ -394,7 +397,7 @@ tbody td:hover {
 					</div>
 				</div>
 
-				<div class="tab-pane fade" id="nav-interact" role="tabpanel"
+				<div class="tab-pane fade show active" id="nav-interact" role="tabpanel"
 					aria-labelledby="nav-interact-tab" style="background-color:">
 					<div class="container">
 						<div class="row">
