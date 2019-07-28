@@ -122,7 +122,8 @@ public class SaveGameDataController {
 	      
 	      if(aa1>=bean.getGameMoney()) {
 	    	//使用爬蟲抓出資料
-	  		String Result=TestJoup.jsoup();	
+//	  		String Result=TestJoup.jsoup();	
+	    	  String Result="暴龍4-2獲勝";
 	  		bean.setGameResult(Result);
 	  		bean.setGameRoomMember(member.getGameRoomMember());
 	  		bean.setGameMoney(bean.getGameMoney() * 2);
