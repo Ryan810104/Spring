@@ -178,39 +178,13 @@
 			</div>
 			<div class="container">
 			<div class="row">
-			<div class="col-sm-6">
-				<div class="my-3 p-3 bg-white rounded shadow-sm">
-					<h6 class="border-bottom border-gray pb-2 mb-0">News</h6>
-					<div class="media text-muted pt-3">
-						<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-							<strong class="d-block text-danger">公告</strong> 系統將於 <strong
-								class="text-danger">2019-05-30 09:00 ~ 12:00</strong>進行維護，如有不便請見諒。
-						</p>
-					</div>
-					<div class="media text-muted pt-3">
-						<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-							<strong class="d-block text-danger">公告</strong> 系統將於 <strong
-								class="text-danger">2019-05-30 09:00 ~ 12:00</strong>進行維護，如有不便請見諒。
-						</p>
-					</div>
-					<div class="media text-muted pt-3">
-						<p
-							class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-							<strong class="d-block text-success">活動</strong> 端午活動上線啦！獎品總額高達 <strong>1,000,000
-								元</strong>，詳情請入內參閱。
-						</p>
-					</div>
-					<div class="media text-muted pt-3">
-						<p
-							class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-							<strong class="d-block text-success">活動</strong>
-							第101期百家樂超級彩金已開獎，中獎名單請入內查看。
-						</p>
-					</div>
-				</div>
+			<div class="col-sm-6 my-3">
+			<br>
+			<br>
+			<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/25d03121d57/taipei/" data-label_1="TAIPEI" data-label_2="WEATHER" data-font="Noto Sans TC" data-icons="Climacons Animated" data-days="3" data-theme="marine" style="display: block; position: relative; height: 123px; padding: 0px; overflow: hidden; text-align: left; text-indent: -299rem;">TAIPEI WEATHER<iframe id="weatherwidget-io-0" class="weatherwidget-io-frame" scrolling="no" frameborder="0" width="100%" src="https://weatherwidget.io/w/" style="display: block; position: absolute; top: 0px; height: 123px;"></iframe></a>
+			
 			</div>
 			<div class="col-sm-6 my-3">
-			<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/25d03121d57/taipei/" data-label_1="TAIPEI" data-label_2="WEATHER" data-font="Noto Sans TC" data-icons="Climacons Animated" data-days="3" data-theme="marine" style="display: block; position: relative; height: 123px; padding: 0px; overflow: hidden; text-align: left; text-indent: -299rem;">TAIPEI WEATHER<iframe id="weatherwidget-io-0" class="weatherwidget-io-frame" scrolling="no" frameborder="0" width="100%" src="https://weatherwidget.io/w/" style="display: block; position: absolute; top: 0px; height: 123px;"></iframe></a>
 			<div class="col-sm-6 my-3" style="margin:auto;">
 			
 			<div style="background-color: #dce54f; text-align: center; border-radius: 3rem;">
