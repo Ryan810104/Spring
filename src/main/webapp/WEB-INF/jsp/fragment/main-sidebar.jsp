@@ -937,9 +937,9 @@ function talkfunction(id){
 //						$("#QQ").html("餘額:"+"$"+data[1]);
 					if(JSON.stringify(data).length == '2'){
 //							alert("a");
-						$("#QQ").html("餘額:"+"$"+0);
+						$("#QQ").html("點數:"+"$"+0);
 					} else{
-						$("#QQ").html("餘額:"+"$"+data[1]);
+						$("#QQ").html("點數:"+"$"+data[1]);
 					}
 					}
 

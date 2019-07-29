@@ -297,6 +297,7 @@ public class AioCheckOutController {
 	
 //		aio.setHoldTradeAMT("0");
 		aio.setReturnURL("http://www.yahoo.com.tw");
+		aio.setClientBackURL("http://localhost/main/index");
 //		aio.setReturnURL("http://211.23.128.214:5000");
 		try{
 			String html = all.aioCheckOut(aio, invoice);
