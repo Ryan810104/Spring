@@ -24,5 +24,7 @@ public class ArticleNice {
 		
 		@Column(name="pressid")
 		private String memberid;
+		
+		private String test;
 	
 }
